@@ -450,13 +450,17 @@
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85063760" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85063760</a></p>
-<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>设计模式是针对某一类问题的最优解决方案，是从许多优秀的软件系统总结出来的。<br>Java中设计模式通常有23种。<br>模式可以分成3大类：创建型、行为型、结构型</p>
-<h5 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h5><p>创建型模式涉及  对象的实例化  ，特点是不让用户代码依赖于对象的创建或排列方式，避免用户直接使用new创建对象<br>创建型模式有以下5种：<br><strong> 工厂方法模式、抽象工厂方法模式、生成器模式、单例模式。 </strong></p>
-<h5 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h5><p>行为型模式涉及怎样合理的设计对象之间的  交互通信  ，以及怎样合理为对象  分配职责  ，让设计富有弹性，易维护，易复用<br>行为型模式有以下11种：<br><strong> 责任链模式、命令模式、解释器模式、迭代器模式、中介者模式、备忘录模式、观察者模式、状态模式、策略模式、模板方法模式、访问者模式。 </strong></p>
-<h5 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h5><p>结构型模式涉及如何  组合类和对象以形成更大的结构  ，和类有关的结构型模式涉及如何  合理使用继承机制  ，和对象有关的结构型模式涉及如何<br>合理地使用对象组合机制  。<br>结构型模式有以下7种：<br><strong> 适配器模式、代理模式、组合模式、享元模式、外观模式、桥接模式、装饰模式。 </strong></p>
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85063760
+概述设计模式是针对某一类问题的最优解决方案，是从许多优秀的软件系统总结出来的。Java中设计模式通常有23种。模式可以分成3大类：创建型、行为型、结构型
 
-          
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/18/设计模式介绍及分类/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -653,170 +657,16 @@
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85063488" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85063488</a></p>
-<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>适配器模式的定义：将某个类的接口转换为接口客户所需类型<br>，适配器模式解决的问题是：使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以一起工作、可以进行同意管理。</p>
-<h4 id="举例实现"><a href="#举例实现" class="headerlink" title="举例实现"></a>举例实现</h4><p>这里有教师接口ITeacher、程序员接口IProgrammer，分别用于定义他们各自工种的具体工作。然后定义深圳大学的教师SZUTeacher、腾讯的程序<br>员TcProgrammer。这些不同的工种所作的工作都各自不同，无法进行统一管理，协同工作。我们要做的是将这些不同工种的工作内容全部输出。</p>
-<ul>
-<li>ITeacher接口 </li>
-</ul>
-<pre><code>public interface ITeacher {
-    void teach();
-}
-</code></pre><ul>
-<li>IProgrammer接口 </li>
-</ul>
-<pre><code>public interface IProgrammer {
-    void code();
-}
-</code></pre><ul>
-<li>SZUTeacher实现类 </li>
-</ul>
-<pre><code>public class SZUTeacher implements ITeacher {
-    @Override
-    public void teach() {
-        System.out.println(&quot;教离散数学！&quot;);;
-    }
-}
-</code></pre><ul>
-<li>TcProgrammer实现类 </li>
-</ul>
-<pre><code>public class TcProgrammer implements IProgrammer {
-    @Override
-    public void code() {
-        System.out.println(&quot;编php程序！&quot;);;
-    }
-}
-</code></pre><h5 id="不使用适配器模式"><a href="#不使用适配器模式" class="headerlink" title="不使用适配器模式"></a>不使用适配器模式</h5><p>不使用适配器模式，调用者需要定义出所有工作的对象，然后逐个对象调用自己的工作方法。<br><img src="https://img-blog.csdnimg.cn/20181218122800163.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<pre><code>public class Test1 {
-    public static void main(String[] args) {
-        ITeacher teacher = new SZUTeacher();
-        IProgrammer programmer = new TcProgrammer();
-        //逐个对象调用自己的工作方法
-        teacher.teach();
-        programmer.code();
-    }
-}
-</code></pre><h5 id="只定义一个适配器实现类"><a href="#只定义一个适配器实现类" class="headerlink" title="只定义一个适配器实现类"></a>只定义一个适配器实现类</h5><p>这种方式类似与多功能充电器，一个电源插头上接着多种类型的充电接口。用户使用充电器充电时，需要使用电器接口与多功能充电器的充电插口逐个对比，接口匹配则可以开始<br>充电。<br><img src="https://img-blog.csdnimg.cn/20181218124112215.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<ul>
-<li>适配器接口 </li>
-</ul>
-<pre><code>public interface IWorkerAdapter {
-    //为了兼容所有工种员工，这里的参数必须是Object类型
-    void work(Object worker);
-}
-</code></pre><ul>
-<li>单个适配器实现类 </li>
-</ul>
-<pre><code>public class WorkerAdapter implements IWorkerAdapter {
-    @Override
-    public void work(Object worker) {
-        if(worker instanceof ITeacher){
-            ((ITeacher) worker).teach();
-        }
-        if(worker instanceof IProgrammer){
-            ((IProgrammer) worker).code();
-        }
-
-    }
-}
-</code></pre><ul>
-<li>调用者 </li>
-</ul>
-<pre><code>public class Test2 {
-    public static void main(String[] args) {
-        ITeacher teacher = new SZUTeacher();
-        IProgrammer programmer = new TcProgrammer();
-        Object[] workers = {teacher, programmer};
-        IWorkerAdapter workerAdapter = new WorkerAdapter();
-        for(Object worker:workers){
-            workerAdapter.work(worker);
-        }
-    }
-}
-</code></pre><h5 id="为每一个工种定义一个适配器"><a href="#为每一个工种定义一个适配器" class="headerlink" title="为每一个工种定义一个适配器"></a>为每一个工种定义一个适配器</h5><p>为每一个工种定义一个适配器<br><img src="https://img-blog.csdnimg.cn/2018121812502578.png?x-oss-process=im
-age/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4u
-bmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<ul>
-<li>适配器接口 </li>
-</ul>
-<pre><code>public interface IWorkerAdapter2 {
-    void work(Object worker);
-    //判断当前适配器是否支持指定工种对象
-    boolean supprots(Object worker);
-}
-</code></pre><ul>
-<li>Teacher适配器实现类 </li>
-</ul>
-<pre><code>public class TeacherAdapter implements IWorkerAdapter2 {
-    @Override
-    public void work(Object worker) {
-        ((ITeacher)worker).teach();
-    }
-
-    @Override
-    public boolean supprots(Object worker) {
-        return (worker instanceof ITeacher);
-    }
-}
-</code></pre><ul>
-<li>Programmer适配器实现类 </li>
-</ul>
-<pre><code>public class ProgrammerAdapter implements IWorkerAdapter2 {
-    @Override
-    public void work(Object worker) {
-        ((IProgrammer)worker).code();
-    }
-
-    @Override
-    public boolean supprots(Object worker) {
-        return (worker instanceof IProgrammer);
-    }
-}
-</code></pre><ul>
-<li>调用者 </li>
-</ul>
-<pre><code>public class Test3 {
-    public static void main(String[] args) {
-        ITeacher teacher = new SZUTeacher();
-        IProgrammer programmer = new TcProgrammer();
-        Object[] workers = {teacher, programmer};
-        for(Object worker:workers){
-            IWorkerAdapter2 adapter = getAdapter(worker);
-            adapter.work(worker);
-        }
-    }
-
-    private static IWorkerAdapter2 getAdapter(Object worker) {
-        IWorkerAdapter2 teacherAdapter = new TeacherAdapter();
-        IWorkerAdapter2 programmerAdapter = new ProgrammerAdapter();
-        //获取所有工种适配器
-        IWorkerAdapter2[] allAdapter = {teacherAdapter, programmerAdapter};
-
-        //遍历每一个适配器，尝试哪一个适配器是对应工种
-        for(IWorkerAdapter2 adapter:allAdapter){
-            if(adapter.supprots(worker)){
-                return  adapter;
-            }
-        }
-        return null;
-    }
-}
-</code></pre><h5 id="补充：缺省适配器模式"><a href="#补充：缺省适配器模式" class="headerlink" title="补充：缺省适配器模式"></a>补充：缺省适配器模式</h5><ul>
-<li>缺省适配器模式是由适配器模式简化而来，省略了适配器模式中目标接口，也就是源接口和目标接口相同，原接口为接口，目标接口为类 </li>
-<li>典型的缺省适配器模式是JavaEE规范中的Servlet接口与GenericServlet抽象类 </li>
-<li><p>Servlet接口中包含五个抽象方法，而其中的service()方法才是用于实现业务逻辑的、必须要实现的方法，另外四个方法一般都是空实现，或简单实现<br><img src="https://img-blog.csdnimg.cn/20181218131748159.png" alt="在这里插入图片描述"></p>
-</li>
-<li><p>GenericServlet抽象类实现了Servlet接口的service()方法以外的另外四个方法，所以自定义的Servlet只需要继承GenericServlet抽象类，实现service()方法即可，无需再实现Servlet接口。<br><img src="https://img-blog.csdnimg.cn/20181218132121771.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</li>
-</ul>
-
-          
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85063488
+定义适配器模式的定义：将某个类的接口转换为接口客户所需类型，适配器模式解决的问题是：使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以一起工作
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/18/适配器模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1013,24 +863,17 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85049273" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85049273</a></p>
-<h3 id="1-对代理模式的理解"><a href="#1-对代理模式的理解" class="headerlink" title="1.对代理模式的理解"></a>1.对代理模式的理解</h3><blockquote>
-<p>代理模式的定义：为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户类和目标对象之<br>间起到中介作用。 百度百科《代理模式》</p>
-</blockquote>
-<ul>
-<li>使用代理对象，是为了在不修改目标对象的基础上，增强主业务逻辑；客户类真正想要访问的是目标对象，但客户类真正可以访问的对象是代理对象。客户类对目标对象的访问是通过访问代理对象来实现的。 </li>
-<li>我们可以用生活中的“代理律师”来理解“代理模式”： <ul>
-<li>当事人打官司，由于当事人并不非常了解官司过程，需要聘请律师来替他完成整个打官司的所有事务。所以整个打官司的过程，其实都是由律师完成，当事人均可不出现； </li>
-<li>打官司（主业务），当事人（目标对象），律师（代理对象）；律师用自己的专业知识增强主业务； </li>
-<li>需要注意的点：<br>1.当事人与代理律师是为同一件事努力——代理类和目标类要实现同一接口，即业务接口；<br>2.打官司所有的具体事务都是通过律师完成——客户类对目标类的调用均是通过代理类完成的；<br>3.在打官司过程中需要当事人完成某些工作时，律师通知当事人，并出谋划策——代理类的执行既执行了对目标类的增强业务逻辑，又调用了目标类的主业务逻辑。</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-代理模式分类"><a href="#2-代理模式分类" class="headerlink" title="2.代理模式分类"></a>2.代理模式分类</h3><p>根据代理关系建立的时间不同，可以将代理分为两类：静态代理和动态代理；如同法律顾问和代理律师。</p>
-<h4 id="静态代理："><a href="#静态代理：" class="headerlink" title="静态代理："></a>静态代理：</h4><p>静态代理，代理类是在程序运行之前就定义好的；类似于企业与企业的法律顾问，法律顾问是在企业打官司之前就已经存在的。<br><a href="https://blog.csdn.net/qq_40005950/article/details/85050367" target="_blank" rel="noopener"> 静态代理 </a></p>
-<h4 id="动态代理："><a href="#动态代理：" class="headerlink" title="动态代理："></a>动态代理：</h4><p>动态代理，程序在整个运行过程中根本不存在目标类的代理类，目标对象的代理对象是在程序运行时由jvm根据反射等机制由代理生成工具（如代理工厂类）动态生成的；类似<br>于当事人需要打官司时临时聘请代理律师。<br>常用的动态代理：<br><a href="https://blog.csdn.net/qq_40005950/article/details/85050381" target="_blank" rel="noopener"> JDK动态代理 </a><br><a href="https://blog.csdn.net/qq_40005950/article/details/85050397" target="_blank" rel="noopener"> CGLIB动态代理 </a></p>
-
-          
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85049273
+1.对代理模式的理解
+代理模式的定义：为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/17/代理模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1227,86 +1070,18 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85050397" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85050397</a></p>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><ul>
-<li>不管是静态代理还是jdk动态代理，代理的条件之一就是要求目标类和代理类实现同一业务接口；所以，对于无接口类的代理，我们就不能再用之前的代理方式； </li>
-<li>CGLIB动态代理的生成原理是  生成目标类的子类，而子类是增强过的，即子类就是目标类的代理类  。所以，使用CGLIB动态代理，要求目标类必须能够被继承，即不能是final的类 </li>
-</ul>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ol>
-<li><p>导入CDLIB的jar包：cglib-full.jar<br><img src="https://img-blog.csdnimg.cn/20181217171137177.png?x-oss-process=image/wate
-rmark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Fx
-XzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt></p>
-</li>
-<li><p>定义目标类，不用实现任何接口 </p>
-</li>
-</ol>
-<pre><code>public class AccountService {
-    //目标方法
-    public void transfer(){
-        System.out.println(&quot;转账！&quot;);
-    }
-}
-</code></pre><ol start="3">
-<li>创建代理类的工厂，该类需实现MethodInterceptor接口 <ol>
-<li>声明目标类的成员变量，并创建接受该参数的构造器 </li>
-<li>定义代理生成方法，用于创建代理对象，即目标类的子类 </li>
-<li>定义回调接口方法，在这里对目标类进行增强 </li>
-</ol>
-</li>
-</ol>
-<pre><code>public class AccountServiceCglibProxyFactory implements MethodInterceptor {
-    //1. 声明目标类的成员变量，并创建接受该参数的构造器
-    private AccountService targer;
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85050397
+原理
+不管是静态代理还是jdk动态代理，代理的条件之一就是要求目标类和代理类实现同一业务接口；所以，对于无接口类的代理，我们就不能再用之前的代理方式； 
 
-    public AccountServiceCglibProxyFactory(AccountService targer) {
-        this.targer = targer;
-    }
-
-    public AccountServiceCglibProxyFactory() {
-    }
-
-    //2. 定义代理生成方法，用于创建代理对象，即目标类的子类
-    public AccountService createProxy(){
-        //创建增强器
-        Enhancer enhancer = new Enhancer();
-        //初始化增强器，将目标类指定为父类
-        enhancer.setSuperclass(AccountService.class);
-        //初始化增强器，设置回调方法,因为MethodInterceptor接口继承自Callback，因此可以使用this
-        enhancer.setCallback(this);
-        //使用增强器创建代理对象
-        return (AccountService) enhancer.create();
-    }
-
-    //3. 定义回调接口方法，在这里对目标类进行增强；
-    //本类中调用了Enhance类的setCallback(this)方法，并将回调对象this作为实参传递给了Enhancer类；
-    //Enhancer类在后续的执行过程中，会调用本类的intercept方法；
-    //这个intercept()方法就是回调方法
-    @Override
-    public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-        //若为transfer方法，则进行增强
-        if(&quot;transfer&quot;.equals(method.getName())){
-            //直接调用目标对象的业务方法执行
-            Object result = method.invoke(targer, objects);
-            return  result;
-        }
-        return method.invoke(targer, objects);
-    }
-}
-</code></pre><ol start="4">
-<li>定义客户类 </li>
-</ol>
-<pre><code>public class Client {
-    public static void main(String[] args) {
-        //创建目标对象
-        AccountService target = new AccountService();
-        //创建代理对象
-        AccountService proxy = new AccountServiceCglibProxyFactory(target).createProxy();
-        //执行增强后的业务方法
-        proxy.transfer();
-    }
-}
-</code></pre>
-          
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/17/CGLIB动态代理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1503,107 +1278,17 @@ XzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt></p>
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85050381" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85050381</a></p>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><ul>
-<li>通过JDK的java.lang.reflect.Proxy类实现动态代理，使用其静态方法newProxyInstance()，依据目标对象，业务接口和业务逻辑增强三者动态生成代理对象。 </li>
-</ul>
-<pre><code>/**
- * @param   loader the class loader to define the proxy class
- *             目标类的类加载器，通过目标对象的发射可获取
- * @param   interfaces the list of interfaces for the proxy class
- *           to implement
- *             目标类实现的接口数组，通过反射可获取
- * @param   h the invocation handler to dispatch method invocations to
- *             业务增强逻辑，需要再定义
- * @return  a proxy instance with the specified invocation handler of a
- *          proxy class that is defined by the specified class loader
- *          and that implements the specified interfaces
-  */
-public static Object newProxyInstance(ClassLoader loader,
-                                          Class&lt;?&gt;[] interfaces,
-                                          InvocationHandler h)
-</code></pre><ul>
-<li>InvocationHandler是个接口，实现该接口的类用于增强目标类的主业务逻辑。接口中定义了一个invoke()方法，具体加强的代码逻辑定义在该方法中。程序在调用主业务逻辑时自动调用invoke()方法。 </li>
-</ul>
-<pre><code>/**
-     * @param   proxy the proxy instance that the method was invoked on
-     *            生成的代理对象
-     * @param   method the {@code Method} instance corresponding to
-     * the interface method invoked on the proxy instance.  The declaring
-     * class of the {@code Method} object will be the interface that
-     * the method was declared in, which may be a superinterface of the
-     * proxy interface that the proxy class inherits the method through.
-     *            目标方法
-     * @param   args an array of objects containing the values of the
-     * arguments passed in the method invocation on the proxy instance,
-     * or {@code null} if interface method takes no arguments.
-     * Arguments of primitive types are wrapped in instances of the
-     * appropriate primitive wrapper class, such as
-     * {@code java.lang.Integer} or {@code java.lang.Boolean}.
-     *            目标方法的参数
-     */
-    public Object invoke(Object proxy, Method method, Object[] args)
-        throws Throwable;
-</code></pre><p>由于该方法是由代理对象自动调用，所以三个参数不需程序员给出；<br>第二个参数Method类对象，该类中也有一个方法invoke()，可以  调用目标类的目标方法  ，该方法的具体作用是：调用执行obj对象所属类的方法。</p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ol>
-<li>定义业务接口，简单的转账业务 </li>
-</ol>
-<pre><code>public interface IAccountService {
-    //主业务逻辑，转账
-    void transfer();
-}
-</code></pre><ol start="2">
-<li>定义目标类，该类实现业务接口，并实现接口定义的目标方法（只实现主业务逻辑转账） </li>
-</ol>
-<pre><code>public class AccountServiceImpl implements IAccountService {
-    //目标方法
-    @Override
-    public void transfer() {
-        System.out.println(&quot;完成转账功能&quot;);
-    }
-}
-</code></pre><ol start="3">
-<li>定义主业务增强逻辑类，该类需实现InvokeHandler接口，在invoke()方法中增加增强业务的代码 </li>
-</ol>
-<pre><code>public class MyExtension implements InvocationHandler {
-    //目标对象
-    private Object target;
-
-    //将目标对象引入，以便在invoke()中调用目标对象的目标方法
-    public MyExtension(Object target) {
-        this.target = target;
-    }
-
-    public MyExtension() {
-    }
-
-    @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        //增强业务逻辑的代码
-        System.out.println(&quot;对转账人身份进行了验证！&quot;);
-        //无论主业务方法有无参数，有无返回值，下面的写法均可兼顾到
-        return method.invoke(target, args);
-    }
-}
-</code></pre><ol start="4">
-<li>定义客户类 </li>
-</ol>
-<pre><code>public class Client {
-    public static void main(String[] args) {
-        //定义目标对象
-        IAccountService target = new AccountServiceImpl();
-        //创建代理对象，并使用目标对象对其初始化
-        IAccountService proxy = (IAccountService) Proxy.newProxyInstance(
-               target.getClass().getClassLoader(),
-               target.getClass().getInterfaces(),
-               new MyExtension(target) 
-        );
-        //执行增强业务之后的方法
-        proxy.transfer();
-    }
-}
-</code></pre>
-          
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85050381
+原理
+通过JDK的java.lang.reflect.Proxy类实现动态代理，使用其静态方法newProxyInstance()，依据目标对象，业务接口
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/17/JDK动态代理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1800,64 +1485,21 @@ public static Object newProxyInstance(ClassLoader loader,
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85050367" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85050367</a></p>
-<p><strong> 静态代理，代理类是在程序运行之前就定义好的 </strong></p>
-<ol>
-<li>定义业务接口，简单的转账业务 </li>
-</ol>
-<pre><code>public interface IAccountService {
-    //主业务逻辑，转账
-    void transfer();
-}
-</code></pre><ol start="2">
-<li>定义目标类，该类实现业务接口，并实现接口定义的目标方法（只实现主业务逻辑转账） </li>
-</ol>
-<pre><code>public class AccountServiceImpl implements IAccountService {
-    //目标方法
-    @Override
-    public void transfer() {
-        System.out.println(&quot;完成转账功能&quot;);
-    }
-}
-</code></pre><ol start="3">
-<li>定义代理类，该类实现业务接口。并且将接口对象作为一个成员变量，还要定义一个带参数（接口对象）的构造器，因为要将目标对象引入代理类，以便代理类调用目标类的目标方法 </li>
-</ol>
-<pre><code>public class AccountProxy implements IAccountService {
-    //声明业务接口对象
-    private IAccountService target;
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85050367
+ 静态代理，代理类是在程序运行之前就定义好的 
 
-    public AccountProxy() {
-    }
-    // 业务接口对象作为构造器参数
-    public AccountProxy(IAccountService target) {
-        this.target = target;
-    }
+定义业务接口，简单的转账业务 
 
-    /**
-     * 代理方法，实现对目标方法的功能增强
-     */
-    @Override
-    public void transfer() {
-        //对目标方法的增强
-        System.out.println(&quot;对转账人身份进行了验证！！&quot;);
-        target.transfer();
-    }
-}
-</code></pre><ol start="4">
-<li>定义客户类实现使用代理类转账。 </li>
-</ol>
-<pre><code>public class Client {
-    public static void main(String[] args) {
-        //创建目标对象
-        IAccountService target = new AccountServiceImpl();
-        //创建代理对象
-        IAccountService proxy = new AccountProxy(target);
-        //执行增强过的业务
-        proxy.transfer();
-    }
-}
-</code></pre>
-          
+public interface IAccountService {
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/17/静态代理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2054,18 +1696,18 @@ public static Object newProxyInstance(ClassLoader loader,
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/83504442" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/83504442</a></p>
-<ol>
-<li><p>远程仓库与本地仓库关联 </p>
-<p>   1.git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:github_username/reposity_name.git</p>
-<p>2.git remote add origin <a href="https://github.com:github_username/reposity_name.git" target="_blank" rel="noopener">https://github.com:github_username/reposity_name.git</a></p>
-</li>
-<li><p>远程仓库与本地仓库取消 </p>
-<p>   git remote remove origin</p>
-</li>
-</ol>
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/83504442
 
-          
+远程仓库与本地仓库关联 
+   1.git remote add origin git@github.com:github_username/repos
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/29/git远程仓库与本地仓库关联错了？/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2262,112 +1904,25 @@ public static Object newProxyInstance(ClassLoader loader,
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/83350714" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/83350714</a></p>
-<ul>
-<li><h2 id="logback介绍"><a href="#logback介绍" class="headerlink" title="logback介绍"></a>logback介绍</h2><ul>
-<li>使用logback的目的 <ul>
-<li>故障定位 </li>
-<li>显示程序运行状态，定位为题的依据 </li>
-</ul>
-</li>
-<li>三大模块 <ul>
-<li>logback-access <ul>
-<li>与servlet容器集成，提供通过http访问日志功能，意思就是第三方软件可以通过这个模块来访问logback记录的日志 </li>
-</ul>
-</li>
-<li>logback-classic <ul>
-<li>log4j的改良版本，完整实现了slf4j的API，可以让我们很方便地更换成其他日志系统，比如说log4j等； </li>
-</ul>
-</li>
-<li>logback-core <ul>
-<li>为前面两个模块提供基础模块 </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><h2 id="logback配置"><a href="#logback配置" class="headerlink" title="logback配置"></a>logback配置</h2><ul>
-<li>当我们使用logback-classic.jar时，应用启动，logback加载顺序： <ol>
-<li>在系统配置文件System Properties中寻找是否有logback.configurationFile对应的value </li>
-<li>在classpath下寻找是否有logback.groovy（即logback支持groovy与xml两种配置方式） </li>
-<li>在classpath下寻找是否有logback-test.xml </li>
-<li>在classpath下寻找是否有logback.xml </li>
-</ol>
-</li>
-<li><p>logback主要标签介绍 </p>
-<ol>
-<li><configuration>，只有三个属性，分别是： <ol>
-<li>scan：当scan被设置为true时，当配置文件发生改变，将会被重新加载，默认为true </li>
-<li>scanPeriod：检测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认为毫秒，当scan=true时这个值生效，默认时间间隔为1分钟 </li>
-<li>debug：当被设置为true时，将打印出logback内部日志信息，实时查看logback运行信息，默认为false； </li>
-</ol>
-</configuration></li>
-<li><appender>，指定日志输出目的地，即日志输出的媒介，可以是控制台、文件、远程套接字服务器等<br>1. ConsoleAppender，将日志输出到控制台<br><br>                       <!-- 控制台设置 --><br>       <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender"><br>           <encoder><br>               <pattern>${log.pattern}</pattern><br>           </encoder><br>       </appender>
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/83350714
 
-<ol start="2">
-<li><p>FileAppender，将日志输出到文件中 </p>
-<pre><code>                &lt;appender name=&quot;FILE&quot; class=&quot;ch.qos.logback.core.FileAppender&quot;&gt;  
-    &lt;file&gt;D:/123.log&lt;/file&gt;  
-    &lt;append&gt;true&lt;/append&gt;  
-    &lt;encoder&gt;  
-        &lt;pattern&gt;%-4relative [%thread] %-5level %logger{35} - %msg%n&lt;/pattern&gt;  
-    &lt;/encoder&gt;  
-&lt;/appender&gt;
-</code></pre></li>
-<li><p>RollingFileAppender，滚动记录文件，先将日志记录到指定文件，当符合某个条件时再讲日志记录到其他文件 </p>
-<pre><code>                &lt;!-- DEBUG --&gt;
-&lt;appender name=&quot;debugAppender&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;
-    &lt;!-- 文件路径 --&gt;
-    &lt;file&gt;${log.filePath}/debug.log&lt;/file&gt;
-    &lt;!-- &lt;rollingPolicy&gt;的作用是当发生滚动时，定义RollingFileAppender的行为，其中上面的TimeBasedRollingPolicy是最常用的滚动策略，它根据时间指定滚动策略，既负责滚动也负责触发滚动 --&gt;
-    &lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;&gt;
-        &lt;!-- 文件名称 --&gt;
-        &lt;fileNamePattern&gt;${log.filePath}/debug/debug.%d{yyyy-MM-dd}.log.gz
-        &lt;/fileNamePattern&gt;
-        &lt;!-- 文件最大保存历史数量 --&gt;
-        &lt;maxHistory&gt;${log.maxHistory}&lt;/maxHistory&gt;
-    &lt;/rollingPolicy&gt;
-    &lt;!-- 输出格式 --&gt;
-    &lt;encoder&gt;
-        &lt;pattern&gt;${log.pattern}&lt;/pattern&gt;
-    &lt;/encoder&gt;
-    &lt;!-- 在当前给到的日志级别下再进行一次过滤 --&gt;
-    &lt;filter class=&quot;ch.qos.logback.classic.filter.LevelFilter&quot;&gt;
-        &lt;level&gt;DEBUG&lt;/level&gt;
-        &lt;onMatch&gt;ACCEPT&lt;/onMatch&gt;
-        &lt;onMismatch&gt;DENY&lt;/onMismatch&gt;
-    &lt;/filter&gt;
-&lt;/appender&gt;
-</code></pre></li>
-</ol>
-</appender></li>
-<li><p><logger>，作为日志的记录器，主要用于存放日志对象，还可以定义日志类型、级别等；其中有<root>标签，也是<logger>元素，是根logger，只有一个level属性；logger有三个属性： </logger></root></logger></p>
-<pre><code>        &lt;logger name=&quot;com.enpong.o2o&quot; level=&quot;${log.level}&quot; additivity=&quot;true&quot;&gt;
-&lt;appender-ref ref=&quot;debugAppender&quot;/&gt;
-&lt;appender-ref ref=&quot;infoAppender&quot;/&gt;
-&lt;appender-ref ref=&quot;errorAppender&quot;/&gt;
-</code></pre><p>   </p>
-   <root level="info"><br>       <appender-ref ref="consoleAppender"><br>   </appender-ref></root>
+logback介绍
+使用logback的目的 
+故障定位 
+显示程序运行状态，定位为题的依据 
 
-<ol>
-<li>name：用来指定受此logger约束的某一个包或者具体的某一个类 </li>
-<li>level（可选）：用来设置打印级别，五个常用打印级别从低至高依次为TRACE、DEBUG、INFO、WARN、ERROR，如果未设置此级别，那么当前logger会继承上级的级别 </li>
-<li>additivity（可选）：是否向上级logger传递打印信息，默认为true </li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>全部配置 </p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-</code></pre>  <configuration scan="true" scanperiod="60 seconds" debug="false"><br>      <!-- 定义参数常量 --><br>      <!-- TRACE<DEBUG<INFO<WARN<ERROR --><br>      <!-- logger.trace("msg") logger.debug... --><br>      <property name="log.level" value="debug"><br>      <property name="log.maxHistory" value="30"><br>      <property name="log.filePath" value="${catalina.base}/logs/webapps"><br>      <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"><br>      <!-- 控制台设置 --><br>      <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender"><br>          <encoder><br>              <pattern>${log.pattern}</pattern><br>          </encoder><br>      </appender><br>      <!-- DEBUG --><br>      <appender name="debugAppender" class="ch.qos.logback.core.rolling.RollingFileAppender"><br>          <!-- 文件路径 --><br>          <file>${log.filePath}/debug.log</file><br>          <!-- <rollingPolicy>的作用是当发生滚动时，定义RollingFileAppender的行为，其中上面的TimeBasedRollingPolicy是最常用的滚动策略，它根据时间指定滚动策略，既负责滚动也负责触发滚动 --><br>          <rollingpolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"><br>              <!-- 文件名称 --><br>              <filenamepattern>${log.filePath}/debug/debug.%d{yyyy-MM-dd}.log.gz<br>              </filenamepattern><br>              <!-- 文件最大保存历史数量 --><br>              <maxhistory>${log.maxHistory}</maxhistory><br>          </rollingpolicy><br>          <encoder><br>              <pattern>${log.pattern}</pattern><br>          </encoder><br>          <filter class="ch.qos.logback.classic.filter.LevelFilter"><br>              <level>DEBUG</level><br>              <onmatch>ACCEPT</onmatch><br>              <onmismatch>DENY</onmismatch><br>          </filter><br>      </appender><br>      <!-- INFO --><br>      <appender name="infoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender"><br>          <!-- 文件路径 --><br>          <file>${log.filePath}/info.log</file><br>          <rollingpolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"><br>              <!-- 文件名称 --><br>              <filenamepattern>${log.filePath}/info/info.%d{yyyy-MM-dd}.log.gz<br>              </filenamepattern><br>              <!-- 文件最大保存历史数量 --><br>              <maxhistory>${log.maxHistory}</maxhistory><br>          </rollingpolicy><br>          <encoder><br>              <pattern>${log.pattern}</pattern><br>          </encoder><br>          <filter class="ch.qos.logback.classic.filter.LevelFilter"><br>              <level>INFO</level><br>              <onmatch>ACCEPT</onmatch><br>              <onmismatch>DENY</onmismatch><br>          </filter><br>      </appender><br>      <!-- ERROR --><br>      <appender name="errorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender"><br>          <!-- 文件路径 --><br>          <file>${log.filePath}/erorr.log</file><br>          <rollingpolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"><br>              <!-- 文件名称 --><br>              <filenamepattern>${log.filePath}/error/error.%d{yyyy-MM-dd}.log.gz<br>              </filenamepattern><br>              <!-- 文件最大保存历史数量 --><br>              <maxhistory>${log.maxHistory}</maxhistory><br>          </rollingpolicy><br>          <encoder><br>              <pattern>${log.pattern}</pattern><br>          </encoder><br>          <filter class="ch.qos.logback.classic.filter.LevelFilter"><br>              <level>ERROR</level><br>              <onmatch>ACCEPT</onmatch><br>              <onmismatch>DENY</onmismatch><br>          </filter><br>      </appender><br>      <logger name="com.enpong.o2o" level="${log.level}" additivity="true"><br>          <appender-ref ref="debugAppender"><br>          <appender-ref ref="infoAppender"><br>          <appender-ref ref="errorAppender"><br>      </appender-ref></appender-ref></appender-ref></logger><br>      <root level="info"><br>          <appender-ref ref="consoleAppender"><br>      </appender-ref></root><br>  </property></property></property></property></configuration>
 
-</li>
-</ul>
-</li>
-</ul>
-
-          
+三大模块 
+logback-access 
+与ser
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/24/logback/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2575,127 +2130,20 @@ public static Object newProxyInstance(ClassLoader loader,
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/83343834" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/83343834</a></p>
-<ul>
-<li><p>将spring-mvc改为注解 </p>
-<ol>
-<li><p>修改spring-mvc.xml，将处理器的注册方式由原来的<bean>注册方式改为组件扫描器 </bean></p>
-<pre><code>    &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:p=&quot;http://www.springframework.org/schema/p&quot;
-xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;
-xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
-    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/83343834
 
-&lt;!--
-&lt;bean id=&quot;/test/register.do&quot; class=&quot;com.enpong.web.StudentController&quot;&gt;
-    &lt;property name=&quot;studentService&quot; ref=&quot;studentService&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;
---&gt;
+将spring-mvc改为注解 
 
-&lt;context:component-scan base-package=&quot;com.enpong.web&quot;&gt;&lt;/context:component-scan&gt;
-</code></pre><p> </p>
-</li>
-<li><p>修改处理器类，修改配置文件后，无法再通过配置文件完成service的注入，需要在处理器中以注解方式完成Service的注入 </p>
-<pre><code>package com.enpong.web;
-</code></pre><p> import javax.servlet.http.HttpServletRequest;<br> import javax.servlet.http.HttpServletResponse;</p>
-<p> import org.springframework.beans.factory.annotation.Autowired;<br> import org.springframework.beans.factory.annotation.Qualifier;<br> import org.springframework.stereotype.Controller;<br> import org.springframework.web.bind.annotation.RequestMapping;<br> import org.springframework.web.servlet.ModelAndView;</p>
-<p> import com.enpong.beans.Student;<br> import com.enpong.service.IStudentService;</p>
-<p> @Controller<br> @RequestMapping(“/test”)<br> public class StudentController{</p>
-<pre><code>@Autowired
-@Qualifier(&quot;studentService&quot;)  //ByName方式注入
-private IStudentService studentService;
-
-@RequestMapping(&quot;/regiter.do&quot;)
-public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    //接收请求参数
-    String name = request.getParameter(&quot;name&quot;);
-    String ageStr = request.getParameter(&quot;age&quot;);
-    Integer age = Integer.valueOf(ageStr);
-    Student student = new Student(name, age);
-    studentService.addStudent(student);
-    return new ModelAndView(&quot;/WEB-INF/jsp/welcome.jsp&quot;);
-}
-</code></pre><p> }</p>
-</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li><p>将spring改为注解 </p>
-<ol>
-<li><p>将service改为注解，完成Dao的注入 </p>
-<ul>
-<li><p>修改spring-service.xml </p>
-<pre><code>        &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xmlns:p=&quot;http://www.springframework.org/schema/p&quot;
-xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
-xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
-http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd&quot;&gt;
-
-&lt;!--
-&lt;bean id=&quot;studentService&quot; class=&quot;com.enpong.service.impl.StudentServiceImpl&quot;&gt;
-    &lt;property name=&quot;studentDao&quot; ref=&quot;IStudentDao&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;
---&gt;
-
-&lt;context:component-scan base-package=&quot;com.enpong.service.impl&quot;&gt;&lt;/context:component-scan&gt;
-</code></pre><p>   </p>
-</li>
-<li><p>修改Service实现类，对dao注入时可以用ByType方式或者ByName方式注入 </p>
-<pre><code>package com.enpong.service.impl;
-</code></pre><p>   import org.springframework.beans.factory.annotation.Autowired;<br>   import org.springframework.stereotype.Service;<br>   import org.springframework.transaction.annotation.Transactional;</p>
-<p>   import com.enpong.beans.Student;<br>   import com.enpong.dao.IStudentDao;<br>   import com.enpong.service.IStudentService;</p>
-<p>   @Service<br>   public class StudentServiceImpl implements IStudentService {</p>
-<pre><code>@Autowired   //ByType方式注入
-private IStudentDao studentDao;
-</code></pre></li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<pre><code>            @Override
-            @Transactional
-            public void addStudent(Student student) {
-                studentDao.insertStudent(student);
-            }
-
-        }
-
-
-2. 将事务以注解方式织入到Service层 
-  * 修改spring-tx.xml 
-
-                    &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-            xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xmlns:p=&quot;http://www.springframework.org/schema/p&quot;
-            xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
-            xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-            xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
-            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd&quot;&gt;
-
-            &lt;!-- 配置事务管理器 --&gt;
-            &lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
-                &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;&gt;&lt;/property&gt;
-            &lt;/bean&gt;
-
-            &lt;!-- 注册事务通知 --&gt;
-            &lt;tx:annotation-driven transaction-manager=&quot;transactionManager&quot;/&gt;
-
-        &lt;/beans&gt;
-
-  * 在service实现类中加入@Transactional 
-</code></pre><ul>
-<li>一般情况下，考虑性能问题，对于mybatis不建议使用注解式开发 </li>
-</ul>
-
-          
+修改spring-mvc.xml，将处理器的注册方式由原来的注册方式改为组件扫描器 
+    &lt;beans x
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/24/ssm注解式开发/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2903,90 +2351,20 @@ private IStudentDao studentDao;
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/83212469" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/83212469</a></p>
-<ul>
-<li><h2 id="导入jar包"><a href="#导入jar包" class="headerlink" title="导入jar包"></a>导入jar包</h2><ul>
-<li>利用maven进行包管理，不用手动一个个添加需要的jar包，开发便利快捷 </li>
-<li>pom.xml： </li>
-<li><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"><br><modelversion>4.0.0</modelversion><br><groupid>com.enpong</groupid><br><artifactid>ssm</artifactid><br><packaging>war</packaging><br><version>0.0.1-SNAPSHOT</version><br><name>ssm Maven Webapp</name><br><url><a href="http://maven.apache.org" target="_blank" rel="noopener">http://maven.apache.org</a></url><br><properties><br>  &lt;spring.version&gt;5.1.1.RELEASE&lt;/spring.version&gt;<br></properties><br><dependencies>  <dependency><br>      <groupid>junit</groupid><br>      <artifactid>junit</artifactid><br>      <version>3.8.1</version><br>      <scope>test</scope><br>  </dependency><br>  <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic --><br>  <dependency><br>      <groupid>ch.qos.logback</groupid><br>      <artifactid>logback-classic</artifactid><br>      <version>1.2.3</version><br>  </dependency><br>  <!-- Spring --><br>  <!-- 1)包含Spring 框架基本的核心工具类。Spring 其它组件要都要使用到这个包里的类，是其它组件的基本核心 --><br>  <dependency><br>      <groupid>org.springframework</groupid><br>      <artifactid>spring-core</artifactid><br>      <version>${spring.version}</version><br>  </dependency><br>  <!-- 2)这个jar 文件是所有应用都要用到的，它包含访问配置文件、创建和管理bean 以及进行Inversion of Control 
-      / Dependency Injection（IoC/DI）操作相关的所有类。如果应用只需基本的IoC/DI 支持，引入spring-core.jar 
-      及spring-beans.jar 文件就可以了。 --><br>  <dependency><br>      <groupid>org.springframework</groupid><br>      <artifactid>spring-beans</artifactid><br>      <version>${spring.version}</version><br>  </dependency><br>  <!-- 3)这个jar 文件为Spring 核心提供了大量扩展。可以找到使用Spring ApplicationContext特性时所需的全部类，JDNI 
-      所需的全部类，instrumentation组件以及校验Validation 方面的相关类。 --><br>  <dependency><br>      <groupid>org.springframework</groupid><br>      <artifactid>spring-context</artifactid><br>      <version>${spring.version}</version><br>  </dependency><br>  <!-- 4) 这个jar 文件包含对Spring 对JDBC 数据访问进行封装的所有类。 --><br>  <dependency><br>      <groupid>org.springframework</groupid><br>      <artifactid>spring-jdbc</artifactid><br>      <version>${spring.version}</version><br>  </dependency><br>  <!-- 5) 为JDBC、Hibernate、JDO、JPA等提供的一致的声明式和编程式事务管理。 --><br>  <dependency><br>      <groupid>org.springframework</groupid><br>      <artifactid>spring-tx</artifactid><br>      <version>${spring.version}</version><br>  </dependency><br>  <!-- 6)Spring web 包含Web应用开发时，用到Spring框架时所需的核心类，包括自动载入WebApplicationContext特性的类、Struts与JSF集成类、文件上传的支持类、Filter类和大量工具辅助类。 --><br>  <dependency><br>      <groupid>org.springframework</groupid><br>      <artifactid>spring-web</artifactid><br>      <version>${spring.version}</version><br>  </dependency><br>  <!-- 7)包含SpringMVC框架相关的所有类。 --><br>  <dependency><br>      <groupid>org.springframework</groupid><br>      <artifactid>spring-webmvc</artifactid><br>      <version>${spring.version}</version><br>  </dependency><br>  <!-- 8)Spring test 对JUNIT等测试框架的简单封装 --><br>  <dependency><br>      <groupid>org.springframework</groupid><br>      <artifactid>spring-test</artifactid><br>      <version>${spring.version}</version><br>      <scope>test</scope><br>  </dependency><br>  <!-- spring依赖的其他配置 --><br>  <!-- Servlet web --><br>  <dependency><br>      <groupid>javax.servlet</groupid><br>      <artifactid>javax.servlet-api</artifactid><br>      <version>4.0.1</version><br>  </dependency><br>  <!-- json解析 --><br>  <dependency><br>      <groupid>com.fasterxml.jackson.core</groupid><br>      <artifactid>jackson-databind</artifactid><br>      <version>2.9.7</version><br>  </dependency><br>  <!-- Map工具类 对标准java Collection的扩展 spring-core.jar需commons-collections.jar --><br>  <dependency><br>      <groupid>commons-collections</groupid><br>      <artifactid>commons-collections</artifactid><br>      <version>3.2.2</version><br>  </dependency><br>  <!-- Dao Mybatis --><br>  <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis --><br>  <dependency><br>      <groupid>org.mybatis</groupid><br>      <artifactid>mybatis</artifactid><br>      <version>3.4.6</version><br>  </dependency><br>  <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring --><br>  <dependency><br>      <groupid>org.mybatis</groupid><br>      <artifactid>mybatis-spring</artifactid><br>      <version>1.3.2</version><br>  </dependency><br>  <!-- 数据库 --><br>  <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java --><br>  <dependency><br>      <groupid>mysql</groupid><br>      <artifactid>mysql-connector-java</artifactid><br>      <version>8.0.12</version><br>  </dependency><br>  <!-- https://mvnrepository.com/artifact/com.mchange/c3p0 --><br>  <dependency><br>      <groupid>com.mchange</groupid><br>      <artifactid>c3p0</artifactid><br>      <version>0.9.5.2</version><br>  </dependency>
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/83212469
 
-
-</dependencies></project></li>
-</ul>
-</li>
-</ul>
-<pre><code>    &lt;/dependencies&gt;
-    &lt;build&gt;
-        &lt;finalName&gt;ssm&lt;/finalName&gt;
-        &lt;plugins&gt;
-            &lt;plugin&gt;
-                &lt;!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin --&gt;
-                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
-                &lt;version&gt;3.8.0&lt;/version&gt;
-                &lt;configuration&gt;
-                    &lt;source&gt;1.8&lt;/source&gt;
-                    &lt;target&gt;1.8&lt;/target&gt;
-                    &lt;encoding&gt;UTF8&lt;/encoding&gt;
-                &lt;/configuration&gt;
-            &lt;/plugin&gt;
-        &lt;/plugins&gt;
-    &lt;/build&gt;
-&lt;/project&gt;
-</code></pre><ul>
-<li><h2 id="配置Web-xml"><a href="#配置Web-xml" class="headerlink" title="配置Web.xml"></a>配置Web.xml</h2><ul>
-<li>web.xml: </li>
-<li><p>&lt;!DOCTYPE web-app PUBLIC<br>“-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN”<br>“<a href="http://java.sun.com/dtd/web-app_2_3.dtd&quot;" target="_blank" rel="noopener">http://java.sun.com/dtd/web-app_2_3.dtd&quot;</a> &gt;</p>
-<p><web-app></web-app></p>
-<!-- 指定spring配置文件位置  -->
-<p><context-param><br>  <param-name>contextConfigLocation</param-name><br>  <param-value>classpath:spring-*.xml</param-value><br></context-param></p>
-<!-- 注册字符集过滤器 -->
-<p><filter><br>  <filter-name>CharacterEncodingFilter</filter-name><br>  <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class><br>  <init-param></init-param></filter></p>
-<pre><code>&lt;param-name&gt;encoding&lt;/param-name&gt;
-&lt;param-value&gt;utf-8&lt;/param-value&gt;
-</code></pre><p>  <br>  <init-param></init-param></p>
-<pre><code>&lt;param-name&gt;forceEncoding&lt;/param-name&gt;
-&lt;param-value&gt;true&lt;/param-value&gt;
-</code></pre><p>  <br><br><filter-mapping><br>  <filter-name>CharacterEncodingFilter</filter-name><br>  <url-pattern>/*</url-pattern><br></filter-mapping></p>
-<!-- 注册ServletContext 监听器  -->
-<listener><br>  <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class><br></listener>
-
-
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>        &lt;!-- 注册中央调度器 --&gt;
-        &lt;servlet&gt;
-            &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
-            &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
-            &lt;init-param&gt;
-                &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
-                &lt;param-value&gt;classpath:spring-mvc.xml&lt;/param-value&gt;
-            &lt;/init-param&gt;
-            &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
-        &lt;/servlet&gt;
-        &lt;servlet-mapping&gt;
-            &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
-            &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
-        &lt;/servlet-mapping&gt;
-
-    &lt;/web-app&gt;
-
-
-* 指定spring配置文件位置 
-  * 这里指定的配置文件，让tomcat在启动时根据spring配置文件创建spring容器； 
-  * 由于spring配置文件根据功能模块划分，拆分为多个配置文件（spring-*.xml） 
-* 注册ServletContext监听器 
-  * 注册ServletContext监听器的实现类ContextLoaderListener；用于创建spring容器以及将创建好的spring容器对象放入到ServletContext的域属性空间，保证spring容器的唯一性。 
-* 注册字符集过滤器 
-  * 用于解决请求参数中携带的中文乱码问题 
-* 注册中央调度器（Dispatcher） 
-</code></pre>
-          
+导入jar包
+利用maven进行包管理，不用手动一个个添加需要的jar包，开发便利快捷 
+pom.xml： 
+4.0.0com.enpongssmwar
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/24/搭建SSM开发环境/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

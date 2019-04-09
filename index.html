@@ -450,49 +450,19 @@
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88742790" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88742790</a></p>
-<p>回溯搜索。该问题牵涉到括号的组合问题，一般使用递归+回溯的思想。主要想法：</p>
-<ul>
-<li>递归回溯。可以产生所有的组合方式。 </li>
-<li>每个小组合方式相当于一个子集，不断的将计算结果返回给上一层。 </li>
-</ul>
-<p>举例：a + (b - (c <em> d))会不断的变成a + (b - (res1 </em> res2))-&gt; a + (res1 - res2) -&gt; res1</p>
-<ul>
-<li>res2</li>
-</ul>
-<p>计算结果需要for循环！！！其实有这种情况，a + (b - (c <em> d))和a + (b - c) </em> d))，这里 a +<br>res2，res2就可能有多种情况。</p>
-<pre><code>class Solution {
-    public List&lt;Integer&gt; diffWaysToCompute(String input) {
-        List&lt;Integer&gt; ways = new ArrayList&lt;&gt;();
-        for(int i=0; i&lt;input.length(); i++){
-            char c = input.charAt(i);
-            if(c==&apos;+&apos; || c==&apos;-&apos; || c==&apos;*&apos;){
-                List&lt;Integer&gt; left = diffWaysToCompute(input.substring(0, i));
-                List&lt;Integer&gt; right = diffWaysToCompute(input.substring(i+1));
-                for(Integer l : left){
-                    for(Integer r : right){
-                        switch(c){
-                            case &apos;+&apos;:
-                                ways.add(l+r);
-                                break;
-                            case &apos;-&apos;:
-                                ways.add(l-r);
-                                break;
-                            case &apos;*&apos;:
-                                ways.add(l*r);
-                                break;
-                        }
-                    }
-                }
-            }
-        }
-        if(ways.size()==0)
-            ways.add(Integer.valueOf(input));
-        return ways;
-    }
-}
-</code></pre>
-          
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88742790
+回溯搜索。该问题牵涉到括号的组合问题，一般使用递归+回溯的思想。主要想法：
+
+递归回溯。可以产生所有的组合方式。 
+每个小组合方式相当于一个子集，不断的将
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/22/leetcode---241. 为运算表达式设计优先级/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -689,138 +659,18 @@
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88741847" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88741847</a></p>
-<pre><code>//二分查找基本实现
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88741847
+//二分查找基本实现
 public int binarySearch(int[] nums, int key){
-    int l = 0, h = nums.length-1;
-    while(l&lt;=h){
-        int mid = l+(h-l)/2;  //防止(h+l)/2加法溢出
-        if(nums[mid]==key)
-            return mid;
-        else if(nums[mid]&gt;key)
-            h = mid-1;
-        else
-            l = mid+1;
-    }
-    return -1;
-}
-
-/**
- * 变种二分查找，找出数组中key重复元素最左位置(注意边界)
- */
-public int binarySearch(int[] nums, int key){
-    int l=0, h=nums.length-1;
-    while(l&lt;h){
-        int mid = l+(h-l)/2;
-        if(nums[mid]&gt;=key)
-            h = mid;
-        else
-            l = mid+1;
-    }
-    if(nums[l]==key)
-        return l;
-    else 
-        return -1;
-}
-
-//求开方   69. Sqrt(x) (Easy)
-public int mySqrt(int x){
-    if(x&lt;=1)
-        return x;
-    int l=1,h=x;
-    while(l&lt;=h){
-        int mid = l+(h-l)/2;
-        int sqrt = x/mid;
-        if(sqrt==mid)
-            return mid;
-        else if(mid&gt;sqrt)
-            h = mid-1;
-        else
-            l = mid+1;
-    }
-    return h;
-}
-
-//给定一个有序的字符数组 letters 和一个字符 target，要求找出 letters 中大于 target 的最小字符，如果找不到就返回第 1 个字符
-//744. Find Smallest Letter Greater Than Target (Easy)
-public char nextGreatestLetter(char[] letters, char target){
-    int l=0, h=letters.length-1;
-    while(l&lt;=h){
-        int mid = l+(h-l)/2;
-        if(letters[mid]&lt;=target)
-            l = mid+1;
-        else
-            h = mid-1;
-    }
-    return l&lt;letters.length ? letters[l] : letters[0];
-}
-
-
-//以O(logN)时间复杂度找出有序数组中唯一不出现2次的元素
-//540. Single Element in a Sorted Array (Medium)
-//假设index是该元素所在位置，mid是偶数，则当(mid+1&lt;index)时，nums[m]==nums[m+1];
-//当(mid+1&gt;=index),nums[m]!=nums[m+1]
-//因此，m为偶数的情况下，当nums[m]==nums[m+1],index所在区间应该为[m+2,h];否则，index在[l,m];
-public int singleNonDuplicate(int[] nums){
-    int l=0, h=nums.length-1;
-    while(l&lt;h){
-        int mid = l+(h-l)/2;
-        if(mid%2==1)
-            mid--; //保证mid是偶数
-        if(nums[mid]==nums[mid+1)
-            l = m+2;
-        else
-            h = m;
-    }
-    return h;
-}
-
-
-//旋转数组中的最小数字 153. Find Minimum in Rotated Sorted Array (Medium)
-public int findMin(int[] nums){
-    int l=0, h=nums.length-1;
-    while(l&lt;h){
-        int mid = l+(h-l)/2;
-        if(nums[mid]&lt;=nums[h])
-            h = mid;
-        else
-            l = mid+1;
-    }
-    return nums[l];
-}
-
-//查找区间，找到最左位置，找到最右位置
-//34. Search for a Range (Medium)
-public int findRange(int[] nums, int target){
-    int first=0, last=0;
-    int l=0, h=nums.length-1;
-    //找最左位置
-    while(l&lt;h){
-        int mid = l+(h-l)/2;
-        if(nums[mid]&gt;=target)
-            h = mid;
-        else
-            l = mid+1;
-    }
-    if(nums[l]!=target)
-        return new int{-1,-1};
-    else{
-        first = l;
-        //找最右位置
-        l=0, h=nums.length-1;
-        while(l&lt;h){
-            int mid = l+(h-l+1)/2;//这里mid选择向上取整，否则会死循环
-            if(nums[mid]&lt;=target)
-                l = mid;
-            else
-                h = mid-1;
-        }
-        last = h;
-        return new int{first, last};
-    }
-}
-</code></pre>
-          
+    int l = 0, h = n
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/22/leetcode---二分查找/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1017,18 +867,16 @@ public int findRange(int[] nums, int target){
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88718474" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88718474</a></p>
-<h4 id="进程中线程同步的四种常用方式："><a href="#进程中线程同步的四种常用方式：" class="headerlink" title="进程中线程同步的四种常用方式："></a>进程中线程同步的四种常用方式：</h4><h6 id="临界区（CCriticalSection"><a href="#临界区（CCriticalSection" class="headerlink" title="临界区（CCriticalSection)"></a>临界区（CCriticalSection)</h6><p>当多个线程访问一个独占性共享资源时，可以使用临界区对象。拥有临界区对象的线程可以访问被保护的资源或代码段，其他线程若想访问，则被挂起，直到拥有临界区的线程释<br>放临界区为止。</p>
-<ol>
-<li>定义临界区对象CCriticalSection g_CriticalSection； </li>
-<li>在访问共享资源之前，先获取临界区对象，g_CriticalSection； </li>
-<li>访问资源结束后，释放临界区对象，g_CriticalSection.unLock(); </li>
-</ol>
-<h6 id="事件（CEvent）"><a href="#事件（CEvent）" class="headerlink" title="事件（CEvent）"></a>事件（CEvent）</h6><p>事件机制，则允许一个线程在处理完一个任务后，主动唤醒另外一个线程执行任务。比如在某些网络应用程序中，一个线程A负责侦听通信端口，另外一个线程B负责更新用户数<br>据，利用事件机制，则线程A可以通知线程B何时更新用户数据。<br>每个Cevent对象可以有两种状态：<br>有信号状态和无信号状态。<br>Cevent类对象有两种类型：人工事件和自动事件。<br>自动事件对象，在被至少一个线程释放后自动返回到无信号状态；<br>人工事件对象，获得信号后，释放可利用线程，但直到调用成员函数ReSet()才将其设置为无信号状态。在创建Cevent对象时，默认创建的是自动事件。</p>
-<h6 id="互斥量（CMutex）"><a href="#互斥量（CMutex）" class="headerlink" title="互斥量（CMutex）"></a>互斥量（CMutex）</h6><p>互斥对象和临界区对象非常相似，只是其允许在进程间使用，而临界区只限制与同一进程的各个线程之间使用，但是更节省资源，更有效率。<br>互斥量与临界区的作用非常相似，但互斥量是可以命名的，也就是说它可以跨越进程使用。所以创建互斥量需要的资源更多，所以如果只为了在进程内部是用的话使用临界区会带<br>来速度上的优势并能够减少资源占用量 。因为互斥量是跨进程的互斥量一旦被创建，就可以通过名字打开它。</p>
-<h6 id="信号量（CSemphore）"><a href="#信号量（CSemphore）" class="headerlink" title="信号量（CSemphore）"></a>信号量（CSemphore）</h6><p>当需要一个计数器来限制可以使用某共享资源的线程数目时，可以使用“信号量”对象。CSemaphore类对象保存了对当前访问某一个指定资源的线程的计数值，该计数<br>值是当前还可以使用该资源的线程数目。如果这个计数达到了零，则所有对这个CSemaphore类对象所控制的资源的访问尝试都被放入到一个队列中等待，直到超时或计<br>数值不为零为止。</p>
-
-          
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88718474
+进程中线程同步的四种常用方式：临界区（CCriticalSection)当多个线程访问一个独占性共享资源时，可以使用临界区对象。拥有临界区对象的线程可以访
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/21/操作系统---线程同步/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1225,213 +1073,18 @@ public int findRange(int[] nums, int target){
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88358466" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88358466</a></p>
-<p>1.基于”双向链表+HashMap“实现：</p>
-<ul>
-<li><p>访问某个节点时，将该节点从双向链表中原位置删除，并重新插入链表头。这样可以保证链表尾部节点就是最近最久未被使用的，当节点数量大于缓存空间就淘汰链表尾部节点； </p>
-</li>
-<li><p>为了能在O(1)时间内从链表删除某个节点，不能通过遍历链表查找该节点。需要借助HashMap存储key与节点的映射，通过key在O(1)时间内找到节点，并在O(1)时间内删除该节点。 </p>
-<pre><code>public class LRU&lt;K, V&gt; implements Iterable&lt;K&gt; {
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88358466
+1.基于”双向链表+HashMap“实现：
 
-private Node head;
-private Node tail;
-private HashMap&lt;K, Node&gt; map;
-private int maxSize;
-
-private class Node {
-
-    Node pre;
-    Node next;
-    K k;
-    V v;
-
-    public Node(K k, V v) {
-        this.k = k;
-        this.v = v;
-    }
-}
-</code></pre></li>
-</ul>
-<pre><code>    public LRU(int maxSize) {
-
-        this.maxSize = maxSize;
-        this.map = new HashMap&lt;&gt;(maxSize * 4 / 3);
-
-        head = new Node(null, null);
-        tail = new Node(null, null);
-
-        head.next = tail;
-        tail.pre = head;
-    }
-
-
-    public V get(K key) {
-
-        if (!map.containsKey(key)) {
-            return null;
-        }
-
-        Node node = map.get(key);
-        unlink(node);
-        appendHead(node);
-
-        return node.v;
-    }
-
-
-    public void put(K key, V value) {
-
-        if (map.containsKey(key)) {
-            Node node = map.get(key);
-            unlink(node);
-        }
-
-        Node node = new Node(key, value);
-        map.put(key, node);
-        appendHead(node);
-
-        if (map.size() &gt; maxSize) {
-            Node toRemove = removeTail();
-            map.remove(toRemove.k);
-        }
-    }
-
-
-    private void unlink(Node node) {
-
-        Node pre = node.pre;
-        Node next = node.next;
-
-        pre.next = next;
-        next.pre = pre;
-
-        node.pre = null;
-        node.next = null;
-    }
-
-
-    private void appendHead(Node node) {
-        Node next = head.next;
-        node.next = next;
-        next.pre = node;
-        node.pre = head;
-        head.next = node;
-    }
-
-
-    private Node removeTail() {
-
-        Node node = tail.pre;
-
-        Node pre = node.pre;
-        tail.pre = pre;
-        pre.next = tail;
-
-        node.pre = null;
-        node.next = null;
-
-        return node;
-    }
-
-
-    @Override
-    public Iterator&lt;K&gt; iterator() {
-
-        return new Iterator&lt;K&gt;() {
-            private Node cur = head.next;
-
-            @Override
-            public boolean hasNext() {
-                return cur != tail;
-            }
-
-            @Override
-            public K next() {
-                Node node = cur;
-                cur = cur.next;
-                return node.k;
-            }
-        };
-    }
-}
-</code></pre><p>2.使用Java容器中的LinkedHashMap</p>
-<ul>
-<li>LinkedHashMap继承自HashMap，因此具有和HashMap一样的快速查找特性； </li>
-<li>内部维护了一个双向链表，用来维护插入顺序或者LRU顺序；accessOrder字段决定了顺序，默认为false（插入顺序）； </li>
-<li>因此，LinkedHashMap = ”双向链表”+HashMap. </li>
-<li>但是LinkedHashMap实现的LRU缓存与第1个实现方式有一点  区别，即LinkedHashMap的链表首部才是最近最久未使用节点  ；当然，这个区别对于双向链表来说不是事儿，只是寓意上的区别而已（在我看来）。 </li>
-</ul>
-<blockquote>
-<p>访问一个节点时，调用get()方法，get()中有一个函数afterNodeAccess()；该方法用于将该节点移到链表尾部（最近访问节点）</p>
-</blockquote>
-<pre><code>void afterNodeAccess(Node&lt;K,V&gt; e) { // move node to last
-    LinkedHashMap.Entry&lt;K,V&gt; last;
-    if (accessOrder &amp;&amp; (last = tail) != e) {
-        LinkedHashMap.Entry&lt;K,V&gt; p =
-            (LinkedHashMap.Entry&lt;K,V&gt;)e, b = p.before, a = p.after;
-        p.after = null;
-        if (b == null)
-            head = a;
-        else
-            b.after = a;
-        if (a != null)
-            a.before = b;
-        else
-            last = b;
-        if (last == null)
-            head = p;
-        else {
-            p.before = last;
-            last.after = p;
-        }
-        tail = p;
-        ++modCount;
-    }
-}
-</code></pre><blockquote>
-<p>在put等操作之后执行afterNodeInsertion()，当removeEldestEntry()方法返回true时会移除最晚的节点，也就是链表首<br>部节点；evict只有在构建Map时才为false，在这里为true.</p>
-</blockquote>
-<pre><code>void afterNodeInsertion(boolean evict) { // possibly remove eldest
-    LinkedHashMap.Entry&lt;K,V&gt; first;
-    if (evict &amp;&amp; (first = head) != null &amp;&amp; removeEldestEntry(first)) {
-        K key = first.key;
-        removeNode(hash(key), key, null, false, true);
-    }
-}
-</code></pre><blockquote>
-<p>removeEldestEntry()默认为false，也就是说put操作后执行的afterNodeInsertion()并没有移除首部节点，也就没有L<br>RU缓存淘汰的说法了；如果需要让它为true，需要继承LinkedHashMap并且覆盖该方法；</p>
-</blockquote>
-<pre><code>protected boolean removeEldestEntry(Map.Entry&lt;K,V&gt; eldest) {
-    return false;
-}
-</code></pre><ul>
-<li>因此，要用LinkedHashMap来实现一个LRU缓存，需要：<br>1.设定最大缓存空间MAX_ENTRIES<br>2.使用LinkedHashMap的构造方法将accessOrder设置为true，开启LRU顺序；<br>3.覆盖removeEldestEntry（）方法实现，在节点多于MAX_ENTRIES就会将最近最久未使用的节点删除。</li>
-</ul>
-<pre><code>class LRUCache&lt;K, V&gt; extends LinkedHashMap&lt;K, V&gt; {
-    private static final int MAX_ENTRIES = 3;
-
-    protected boolean removeEldestEntry(Map.Entry eldest) {
-        return size() &gt; MAX_ENTRIES;
-    }
-
-    LRUCache() {
-        super(MAX_ENTRIES, 0.75f, true);
-    }
-}
-
-public class LRUTest{
-    public static void main(String[] args) {
-        LRUCache&lt;Integer, String&gt; cache = new LRUCache&lt;&gt;();
-        cache.put(1, &quot;a&quot;);
-        cache.put(2, &quot;b&quot;);
-        cache.put(3, &quot;c&quot;);
-        cache.get(1);
-        cache.put(4, &quot;d&quot;);
-        System.out.println(cache.keySet());
-    }
-}
-</code></pre>
-          
+访问某个节点时，将该节点从双向链表中原位置删除，并重新插入链表头。这样可以保证链表尾部节点就是最近最久未被使
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/08/Java实现LRU策略缓冲/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1628,18 +1281,16 @@ public class LRUTest{
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88238190" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88238190</a></p>
-<h5 id="InterruptedException"><a href="#InterruptedException" class="headerlink" title="InterruptedException"></a>InterruptedException</h5><p>如果一个线程处于阻塞、限期等待或无限期等待状态时，调用该线程的interrupt()方法中断线程，就会抛出InterruptedException，从而提前<br>结束该线程；（注意：不能中断IO阻塞和Synchronized锁阻塞）</p>
-<h5 id="Interupted"><a href="#Interupted" class="headerlink" title="Interupted"></a>Interupted</h5><ul>
-<li>如果一个线程的run()方法执行一个循环体，并且循环体中没有会抛出InterruptedException的操作（如sleep())，那么该线程调用interrupted()就无法中断线程； </li>
-<li>由于一个线程调用interrupt()会设置线程中断标志，该标志可以通过interrupted()来获取；因此可以在run()方法的循环体中以该标志来判断线程是否处于中断状态，以结束线程。 </li>
-</ul>
-<h5 id="Executor中断操作"><a href="#Executor中断操作" class="headerlink" title="Executor中断操作"></a>Executor中断操作</h5><ol>
-<li>Executor的shutDown()会等待所有线程执行完毕之后再关闭；而调用shutDownNow()，相当于调用每个线程的interrupt()方法，中断所有线程； </li>
-<li>如果只想中断Executor中的一个线程，可以使用submit()提交一个线程，该方法返回一个Future&lt;?&gt;对象，通过调用该对象的cancel(true)方法中断线程。 </li>
-</ol>
-
-          
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88238190
+InterruptedException如果一个线程处于阻塞、限期等待或无限期等待状态时，调用该线程的interrupt()方法中断线程，就会抛出Inte
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/06/Java多线程的中断操作/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1836,44 +1487,18 @@ public class LRUTest{
       
         
           
-            <p>转自： <a href="https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/%E8%AE%A1%
-E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E9%9D%A2%E8%AF%B7%E6%B1%8
-2%E8%BF%87%E7%A8%8B" target="_blank" rel="noopener"> https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/计算机网络.md#web-<br>页面请求过程 </a></p>
-<h5 id="DHCP配置主机信息"><a href="#DHCP配置主机信息" class="headerlink" title="DHCP配置主机信息"></a>DHCP配置主机信息</h5><ul>
-<li>假设主机最开始没有IP地址以及其他信息，那么就需要先使用DHCP来获取； </li>
-<li>主机生成一个DHCP请求报文，并将这个报文放入具有目的端口67和源端口68的UDP报文段中； </li>
-<li>该报文段则被放入在一个具有广播IP目的地址（255.255.255.255）和源IP地址（0.0.0.0）的IP数据报中； </li>
-<li>该数据报则被放置在MAC帧中，该帧具有目的地址FF:FF:FF:FF:FF:FF，将广播到与交换机连接的所有设备； </li>
-<li>连接在交换机的DHCP服务器收到广播帧之后，不断向上分解得到IP数据报、UDP报文段、DHCP请求报文，之后生成DHCP ACK报文，该报文包含以下信息：IP地址、DNS服务器IP地址、默认网关路由器的IP地址和子网掩码。该报文被放入UDP报文段中，UDP报文段又被放入IP数据报中，最后放入MAC帧中； </li>
-<li>该帧的目的地址是请求主机的MAC地址，因为交换机具有自学习能力，之前主机发送了广播帧之后就记录了MAC地址到其转发接口的交换表项，因此现在交换机就可以直接知道应该向哪个接口发送该帧； </li>
-<li>主机收到该帧后，不断向上分解得到DHCP报文。之后就配置它的IP地址，子网掩码和DNS服务器IP地址，并在其IP转发表中安装默认网关． </li>
-</ul>
-<h5 id="ARP解析MAC地址"><a href="#ARP解析MAC地址" class="headerlink" title="ARP解析MAC地址"></a>ARP解析MAC地址</h5><ul>
-<li>主机通过浏览器生成一个TCP套接字，套接字向HTTP服务器发送HTTP请求。为了生成该套接字，主机需要知道网站的域名对应的IP地址。 </li>
-<li>主机生成一个DNS查询报文，该报文具有53端口，因为DNS服务器的端口号时53； </li>
-<li>该DNS查询报文被放入目的地址为DNS服务器的IP数据报中； </li>
-<li>该IP数据报被放入一个以太网帧中，该帧将发送到网关路由器； </li>
-<li>DHCP过程只知道网关路由器的IP地址，为了获取网关路由器的MAC地址，需要使用ARP协议； </li>
-<li>主机生成一个包含目的地址为网关路由器IP地址的ARP查询报文，将该ARP查询报文放入一个具有广播目的地址（FF:FF:FF:FF:FF:FF)的以太网帧中，并向交换机发送该以太网帧，交换机将该帧转发给所有的连接设备，包括网关路由器； </li>
-<li>网关路由器接收到该帧后，不断向上分解得到ARP报文，发现其中的IP地址与其接口的IP地址匹配，因此就发送ARP回答报文，包含了它的MAC地址，发回给主机。 </li>
-</ul>
-<h5 id="DNS解析域名"><a href="#DNS解析域名" class="headerlink" title="DNS解析域名"></a>DNS解析域名</h5><ul>
-<li>知道了网关路由器的MAC地址之后，就可以继续DNS的解析过程了； </li>
-<li>网关路由器接收到包含DNS查询报文的以太网帧后，抽取出IP数据报，并根据转发表决定该IP数据报应该转发的路由器； </li>
-<li>因为路由器具有内部网关协议（RIP、OSPF）和外部网关协议（BGP）这两种路由选择协议，因此路由表中已经配置了网关路由器到达DNS服务器的路由表项； </li>
-<li>到达DNS服务器后，DNS服务器抽取出DNS查询报文，并在DNS数据库中查找待解析的域名； </li>
-<li>找到DNS记录之后，发送DNS回答报文，将该回答报文放入UDP报文段中，然后放入IP数据报中，通过路由器反向转发回网关路由器，并经过以太网交换机到达主机。 </li>
-</ul>
-<h5 id="HTTP请求页面"><a href="#HTTP请求页面" class="headerlink" title="HTTP请求页面"></a>HTTP请求页面</h5><ul>
-<li>有了HTTP服务器的IP地址，主机就能够生成TCP套接字，该套接字将用于向Web服务器发送HTTP GET报文； </li>
-<li>在生成TCP套接字之前，必须先与HTTP服务器进行三次握手来建立连接。生成一个具有目的端口80的TCP SYN报文段，并向HTTP服务器发送该报文段； </li>
-<li>HTTP服务器接到该报文段之后，生成TCP SYN ACK报文段，发回给主机； </li>
-<li>连接建立之后，浏览器生成HTTP GET报文，并交付给HTTP服务器； </li>
-<li>HTTP服务器从TCP套接字中读取HTTP GET报文，生成一个HTTP响应报文，将Web页面内容放入报文体中，发回给主机； </li>
-<li>浏览器收到HTTP响应报文后，抽取出Web页面内容，之后进行渲染，显示Web页面。 </li>
-</ul>
-
-          
+          转自：  https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/计算机网络.md#web-页面请求过程 
+DHCP配置主机信息
+假设主机最开始没有IP地址以及其他信息，那么就需要先使用DHCP来获取； 
+主机生成一个DHCP请求报文，并
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/06/Web页面请求过程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2070,56 +1695,23 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E9%9D%A2%E8%AF%B7%E6%B1%8
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88177447" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88177447</a></p>
-<p>一个输入操作通常有两个阶段：</p>
-<ul>
-<li>等待数据准备，即从存储介质（磁盘，网络等）拷贝到内核； </li>
-<li>从内核向进程复制数据 </li>
-</ul>
-<h5 id="阻塞I-O"><a href="#阻塞I-O" class="headerlink" title="阻塞I/O"></a>阻塞I/O</h5><p><img src="https://img-blog.csdnimg.cn/20190305124039713.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<ul>
-<li>应用进程被阻塞，直到数据从内核缓冲区复制到应用进程缓冲区中才返回 </li>
-</ul>
-<h5 id="非阻塞I-O"><a href="#非阻塞I-O" class="headerlink" title="非阻塞I/O"></a>非阻塞I/O</h5><p><img src="https://img-blog.csdnimg.cn/20190305124240779.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<ul>
-<li>应用进程执行系统调用之后，内核返回一个错误码。应用进程可以继续执行，但是需要不断的执行系统调用来获知 I/O 是否完成，这种方式称为轮询（polling）。 </li>
-</ul>
-<h5 id="I-O复用"><a href="#I-O复用" class="headerlink" title="I/O复用"></a>I/O复用</h5><p><img src="https://img-blog.csdnimg.cn/20190305124437547.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<ul>
-<li>使用 select 或者 poll 等待数据，并且可以等待多个套接字中的任何一个变为可读。这一过程会被阻塞，当某一个套接字可读时返回，之后再使用 recvfrom 把数据从内核复制到进程中； </li>
-<li>它可以让单个进程具有处理多个 I/O 事件的能力。又被称为 Event Driven I/O，即事件驱动 I/O。 </li>
-</ul>
-<h5 id="信号驱动I-O"><a href="#信号驱动I-O" class="headerlink" title="信号驱动I/O"></a>信号驱动I/O</h5><p><img src="https://img-blog.csdnimg.cn/20190305124709590.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<ul>
-<li>通过系统调用 sigaction 安装一个信号处理程序。此系统调用立即返回，进程继续工作，它是非阻塞的； </li>
-<li>当数据报准备好被读时，就为该进程生成一个SIGIO信号； </li>
-<li>应用进程收到之后在信号处理程序中调用 recvfrom 将数据从内核复制到应用进程中。 </li>
-</ul>
-<h5 id="异步I-O"><a href="#异步I-O" class="headerlink" title="异步I/O"></a>异步I/O</h5><p><img src="https://img-blog.csdnimg.cn/20190305125019326.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<ul>
-<li>应用进程执行 aio_read 系统调用会立即返回，应用进程可以继续执行，不会被阻塞，内核会在所有操作完成之后向应用进程发送信号； </li>
-<li>调用aio_read函数，告诉内核描述字，缓冲区指针，缓冲区大小，文件偏移以及通知的方式，然后立即返回。当内核将数据拷贝到缓冲区后，再通知应用程序。 </li>
-</ul>
-<h5 id="对比五种I-O模型"><a href="#对比五种I-O模型" class="headerlink" title="对比五种I/O模型"></a>对比五种I/O模型</h5><p><img src="https://img-blog.csdnimg.cn/20190305125145450.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<ul>
-<li>同步I/O：将数据从内核缓冲区复制到应用进程缓冲区的阶段，应用进程会阻塞； </li>
-<li>异步I/O：在I/O操作未完成前，请求进程未被阻塞。 </li>
-<li>阻塞式 I/O、非阻塞式 I/O、I/O 复用和信号驱动 I/O 都是同步 I/O，它们的主要区别在第一个阶段。非阻塞式 I/O 、信号驱动 I/O 和异步 I/O 在第一阶段不会阻塞。 </li>
-</ul>
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88177447
+一个输入操作通常有两个阶段：
 
-          
+等待数据准备，即从存储介质（磁盘，网络等）拷贝到内核； 
+从内核向进程复制数据 
+
+阻塞I/O
+
+应用进程被阻塞，直到数据
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/05/五种IO模型/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2327,82 +1919,15 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
       
         
           
-            <p>JAVA中BitSet就是“位图”数据结构，根据“位图”的语义，数据的存在性可以使用bit位上的1或0来表示；一个bit具有2个值：0和1，正好可以用来表示<br>false和true。对于判断“数据是否存在”的场景，我们通常使用HashMap来存储，不过hashmap这个数据结构KEY和Value的保存需要消耗较多的<br>内存，不适合保存较多的数据，即大数据场景；比如在有10亿条URL中判定一个（ <a href="http://www.baidu.com" target="_blank" rel="noopener"> www.baidu.com </a><br>）是否存在，如果我们使用常规的hashmap来保存将是不现实的，因为URL本身需要占据较多的内存而无法直接操作。如果我们使用bitset来保存，那么可以对一<br>条URL求hashcode，并将数字映射在bitset上，那么事实上它只需要bitset上的一个bit位即可，即我们1位空间即可表达一个URL字符串的存在性<br>。</p>
-<blockquote>
-<p>所谓“存在性”，就是通过BitSet来检测一个数字是否存在。</p>
-</blockquote>
-<h4 id="BitSet原理"><a href="#BitSet原理" class="headerlink" title="BitSet原理"></a>BitSet原理</h4><p>JAVA中，一个long型数字占用64位空间，根据上述“位图”的概念，那么一个long型数字（4个字节）就可以保存64个数字的“存在性”状态(无碰撞冲突时，<br>即true、false状态)。比如50个数字{0,1,10,…63}，判定“15”是否存在，那么我们通常会首先将这些数字使用数组或者hashmap保存，然后<br>再去判定，那么保存这些这些数据需要占用64 * 64位；如果使用位图，那么一个long型数字即可。（如果换成50个字符串，那么其节约的空间可能更大）。</p>
-<ol>
-<li>BitSet只面向数字比较，比如set(int a,boolean value)方法，将数字a在bitSet中设定为true或者false；此后可以通过get(int a)方法检测结果。对于string类型的数据，如果像使用BitSet，那么可以将其hashcode值映射在bitset中。 </li>
-<li>首先我们需要知道：1，1&lt;&lt;64，1&lt;&lt;128，1&lt;&lt;192…等，这些数字的计算结果是相等的（位运算）；这也是一个long数字，只能表达连续的(或者无冲突的)64个数字的状态，即如果把数字1在long中用位表示，那么数字64将无法通过同一个long数字中位表示–冲突；BitSet内部，是一个long[]数组，数组的大小由bitSet接收的最大数字决定，这个数组将数字分段表示[0,63],[64,127],[128,191]…。即long[0]用来存储[0,63]这个范围的数字的“存在性”，long[1]用来存储[64,127]，依次轮推，这样就避免了位运算导致的冲突。 首先我们需要知道：1，1&lt;&lt;64，1&lt;&lt;128，1&lt;&lt;192…等，这些数字的计算结果是相等的（位运算）；这也是一个long数字，只能表达连续的(或者无冲突的)64个数字的状态，即如果把数字1在long中用位表示，那么数字64将无法通过同一个long数字中位表示–冲突；BitSet内部，是一个long[]数组，数组的大小由bitSet接收的最大数字决定，这个数组将数字分段表示[0,63],[64,127],[128,191]…。即long[0]用来存储[0,63]这个范围的数字的“存在性”，long[1]用来存储[64,127]，依次轮推，这样就避免了位运算导致的冲突。 </li>
-</ol>
-<p>数字范围  [0,63]  [64,127]  [128,191]  …</p>
-<p>long数组索引</p>
-<p>0</p>
-<p>1</p>
-<p>2</p>
-<p>…</p>
-<ol start="3">
-<li><p>bitSet内部的long[]数组是基于向量的，即随着set的最大数字而动态扩展。数组的最大长度计算： </p>
-<p>   (maxValue - 1) &gt;&gt; 6  + 1  </p>
-</li>
-</ol>
-<ol start="4">
-<li><p>BitSet中set方法伪代码： </p>
-<p>   public void set(int number) {<br>   int index = number &gt;&gt; 6;//找到number需要映射的数组的index。<br>   if(index + 1 &gt; length) {  </p>
-<pre><code>ensureCapacity(index + 1);//重新扩展long[]数组  
-</code></pre><p>   }<br>   long[index] |= (1L &lt;&lt; number);//冲突解决<br>}  </p>
-</li>
-</ol>
-<h4 id="使用BitSet"><a href="#使用BitSet" class="headerlink" title="使用BitSet"></a>使用BitSet</h4><p>本例中使用bitSet做String字符串的存在性校验。</p>
-<pre><code>BitSet bitSet = new BitSet(Integer.MAX_VALUE);//hashcode的值域  
-
-//0x7FFFFFFF  
-String url = &quot;http://baidu.com/a&quot;;  
-int hashcode = url.hashCode() &amp; 0x7FFFFFFF;  
-bitSet.set(hashcode);  
-
-System.out.println(bitSet.cardinality());//着色位的个数  
-System.out.println(bitSet.get(hashcode));//检测存在性  
-bitSet.clear(hashcode);//清除位数据  
-</code></pre><h4 id="BitSet与Hashcode冲突"><a href="#BitSet与Hashcode冲突" class="headerlink" title="BitSet与Hashcode冲突"></a>BitSet与Hashcode冲突</h4><p>因为BitSet API只能接收int型的数字，即只能判定int数字是否在bitSet中存在。所以，对于String类型，我们通常使用它的hashcode，<br>但这有一种隐患，java中hashcode存在冲突问题，即不同的String可能得到的hashcode是一样的（即使不重写hashcode方法），如果我们不<br>能很好的解决这个问题，那么就会出现“数据抖动”—不同的hashcode算法、运行环境、bitSet容量，会导致判断的结果有所不同。比如A、B连个字符串，它们<br>的hashcode一样，如果A在BitSet中“着色”(值为true)，那么检测B是否在BitSet存在时，也会得到true。</p>
-<p>这个问题该如何解决或者缓解呢？</p>
-<ol>
-<li><p>调整hashcode生成算法：我们可以对一个String使用多个hashcode算法，生成多个hashcode，然后在同一个BitSet进行多次“着色”，在判断存在性时，只有所有的着色位为true时，才判定成功 </p>
-<p>   String url = “<a href="http://baidu.com/a&quot;" target="_blank" rel="noopener">http://baidu.com/a&quot;</a>;<br>int hashcode1 = url.hashCode() &amp; 0x7FFFFFFF;<br>bitSet.set(hashcode1);  </p>
-<p>int hashcode2 = (url + “-seed-“).hashCode() &amp; 0x7FFFFFFF;<br>bitSet.set(hashcode2);<br>System.out.println(bitSet.get(hashcode1) &amp;&amp; bitSet.get(hashcode2));<br>//也可以在两个不同的bitSet上进行2次“着色”，这样冲突性更小。但会消耗双倍的内存  </p>
-</li>
-</ol>
-<p>其实我们能够看出，这种方式降低了误判的概率。但是如果BitSet中存储了较多的数字，那么互相覆盖着色，最终数据冲突的可能性会逐渐增加，最终仍然有一定概率的判<br>断失误。所以在hashcode算法的个数与实际String的个数之间有一个权衡，我们建议: “hashcode算法个数 <em> String字符串的个数” &lt;<br>Integer.MAX_VALUE </em> 0.8</p>
-<ol start="2">
-<li>多个BitSet并行保存：<br>改良1)中的实现方式，我们仍然使用多个hashcode生成算法，但是每个算法生成的值在不同的BitSet中着色，这样可以保持每个BitSet的稀疏度(降低冲<br>突的几率)。在实际结果上，比1)的误判率更低，但是它需要额外的占用更多的内存，毕竟每个BitSet都需要占用内存。这种方式，通常是缩小hashcode的值域<br>，避免内存过度消耗。</li>
-</ol>
-<pre><code>    BitSet bitSet1 = new BitSet(Integer.MAX_VALUE);//127M  
-BitSet bitSet2 = new BitSet(Integer.MAX_VALUE);  
-
-String url = &quot;http://baidu.com/a&quot;;  
-int hashcode1 = url.hashCode() &amp; 0x7FFFFFFF;  
-bitSet1.set(hashcode1);  
-
-int hashcode2 = (url + &quot;-seed-&quot;).hashCode() &amp; 0x7FFFFFFF;  
-bitSet2.set(hashcode2);  
-
-System.out.println(bitSet1.get(hashcode1) &amp;&amp; bitSet2.get(hashcode2));  
-</code></pre><ol start="3">
-<li>是否有必要完全避免误判？<br>如果做到100%的正确判断率，在原理上说BitSet是无法做的，BitSet能够保证“如果判定结果为false，那么数据一定是不存在；但是如果结果为true<br>，可能数据存在，也可能不存在(冲突覆盖)”,即“false == YES，true ==<br>Maybe”。有人提出将冲突的数据保存在类似于BTree的额外数据结构中，事实上这种方式增加了设计的复杂度，而且最终仍然没有良好的解决内存占用较大的问题。</li>
-</ol>
-<h4 id="BloomFilter-布隆姆过滤器"><a href="#BloomFilter-布隆姆过滤器" class="headerlink" title="BloomFilter(布隆姆过滤器)"></a>BloomFilter(布隆姆过滤器)</h4><p>BloomFilter 的设计思想和BitSet有较大的相似性，目的也一致，它的核心思想也是使用多个Hash算法在一个“位图”结构上着色，最终提高“存在性”<br>判断的效率。请参见Guava BloomFilter。如下为代码样例：</p>
-<pre><code>Charset charset = Charset.forName(&quot;utf-8&quot;);  
-BloomFilter&lt;String&gt; bloomFilter = BloomFilter.create(Funnels.stringFunnel(charset),2&lt;&lt;21);//指定bloomFilter的容量  
-String url = &quot;www.baidu.com/a&quot;;  
-bloomFilter.put(url);  
-System.out.println(bloomFilter.mightContain(url));  
-</code></pre><h4 id="内存消耗"><a href="#内存消耗" class="headerlink" title="内存消耗"></a>内存消耗</h4><p>据上所述，BitSet可以有效的降低内存的使用量，但是它的内存使用量是有内部long数组的大小决定，所以在创建BitSet时指定的值域非常重要，过大的值域将<br>会导致OOM（比如指定Long.MAX_VALUE）,在一个BitMap上存储Integer.MAX_VALUE个“着色”（注意，BitSet只能对正数操作<br>），大概消耗128M内存。</p>
-<hr>
-<p>转自： <a href="https://shift-alt-
-ctrl.iteye.com/blog/2194519" target="_blank" rel="noopener"> https://shift-alt-ctrl.iteye.com/blog/2194519 </a></p>
-
-          
+          JAVA中BitSet就是“位图”数据结构，根据“位图”的语义，数据的存在性可以使用bit位上的1或0来表示；一个bit具有2个值：0和1，正好可以用来表示false和true。对于判断“数据是否存在”的场景，我们通常使用HashMap来存储，不过hashmap这个数据结构KEY和Value的保存需
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/02/JAVA中BitSet/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2599,97 +2124,20 @@ ctrl.iteye.com/blog/2194519" target="_blank" rel="noopener"> https://shift-alt-c
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88079131" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88079131</a></p>
-<p>Java非递归版</p>
-<pre><code>class Trie {
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88079131
+Java非递归版
+class Trie {
     private class Node{
         boolean isTrie;
-        Map&lt;Character, Node&gt; children = new HashMap&lt;&gt;();
-    }
-
-    private Node root = new Node();
-    /** Initialize your data structure here. */
-    public Trie() {
-
-    }
-
-    /** Inserts a word into the trie. */
-    public void insert(String word) {
-        Node node = root;
-        for(int i=0; i&lt;word.length(); i++){
-            char c = word.charAt(i);
-            if(!node.children.containsKey(c)){
-                node.children.put(c, new Node());
-            }
-            node = node.children.get(c);
-        }
-        node.isTrie = true;
-        return;
-
-    }
-
-    /** Returns if the word is in the trie. */
-    public boolean search(String word) {
-        Node node = root;
-        for(int i=0; i&lt;word.length(); i++){
-            char c = word.charAt(i);
-            Node temp = node.children.get(c);
-            if(temp == null)
-                return false;
-            node  = temp;
-        }
-        return node.isTrie;
-    }
-
-    /** Returns if there is any word in the trie that starts with the given prefix. */
-    public boolean startsWith(String prefix) {
-        Node node = root;
-        for(int i=0; i&lt;prefix.length(); i++){
-            char c = prefix.charAt(i);
-            Node temp = node.children.get(c);
-            if(temp == null)
-                return false;
-            node  = temp;
-        }
-        return node!=null;
-    }
-}
-</code></pre><h3 id="关于Trie"><a href="#关于Trie" class="headerlink" title="关于Trie"></a>关于Trie</h3><ul>
-<li><p>核心思想：空间换取时间 </p>
-</li>
-<li><p>Trie 树又叫又叫字典树、前缀树、单词查找树，它是一颗多叉查找树。与二叉查找树不同，键不是直接保存在节点中，而是由节点在树中的位置决定。 </p>
-</li>
-<li><p>如果  海量数据  是字符串数据，那么就可以用很小的空间开销构建一颗 Trie 树，空间开销和树高有关。 </p>
-</li>
-</ul>
-<p>{“a”, “to”, “tea”, “ted”, “ten”, “i”, “in”, “inn”}<br><img src="https://img-blog.csdnimg.cn/20190302174704179.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<ul>
-<li><p>基本性质： </p>
-<ul>
-<li>根节点不包含字符，除根节点外的每一个子节点都包含一个字符。 </li>
-<li>从根节点到某一个节点，路径上经过的字符连接起来，为该节点对应的字符串。 </li>
-<li>每个节点的所有子节点包含的字符互不相同。 </li>
-</ul>
-</li>
-<li><p>优点 </p>
-<ul>
-<li>插入和查询效率很高，都是O(m)，m是待插入/查询字符串长度；（关于查询，会有人认为hash表时间复杂度O(1)不是更快？确实，但是哈希搜索的效率通常取决于hash函数的好坏，因为这决定着冲突的概率）。 </li>
-<li>Trie树中不同关键字不会冲突； </li>
-<li>可以对关键字按字典排序。 </li>
-</ul>
-</li>
-<li><p>缺点 </p>
-<ul>
-<li>当hash函数很好时，Trie树的查找效率会低于哈希查找； </li>
-<li>空间消耗比较大。 </li>
-</ul>
-</li>
-<li>主要应用：字符串检索、词频统计、字符串排序、前缀匹配等 </li>
-</ul>
-
-          
+       
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/02/Leetcode---208.实现Trie前缀树/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2886,30 +2334,16 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88075375" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88075375</a></p>
-<h4 id="😊题目描述"><a href="#😊题目描述" class="headerlink" title="😊题目描述"></a>😊题目描述</h4><p>在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5 处理后为<br>1-&gt;2-&gt;5</p>
-<h4 id="解题思路（递归）"><a href="#解题思路（递归）" class="headerlink" title="解题思路（递归）"></a>解题思路（递归）</h4><p><img src="https://img-blog.csdnimg.cn/20190302140638410.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>//这里不对节点删除是因为Java有回收机制，当然手动删除也可以啦
-public class Solution {
-    public ListNode deleteDuplication(ListNode pHead)
-    {
-        if(pHead==null || pHead.next==null)
-            return pHead;
-        ListNode node = pHead.next;
-        if(pHead.val == node.val){
-            while(node!=null &amp;&amp; pHead.val==node.val)
-                node = node.next;
-            return deleteDuplication(node);
-        }else{
-            pHead.next = deleteDuplication(pHead.next);//当前节点的后继指针指向后继链表的去重链表
-            return pHead;
-        }
-    }
-}
-</code></pre>
-          
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88075375
+😊题目描述在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&gt;2-&gt;3-&gt
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/02/剑指offer---删除链表中重复的结点/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

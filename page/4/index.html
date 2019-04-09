@@ -461,32 +461,17 @@
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/87946665" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/87946665</a></p>
-<p>高效解法：<br>下面的讨论中 x 代表 base，n 代表 exponent。<br><img src="https://img-blog.csdnimg.cn/20190226201035335.png" alt="在这里插入图片描述"></p>
-<p>因为 (x*x)n/2 可以通过递归求解，并且每次递归 n 都减小一半，因此整个算法的时间复杂度为 O(logN)。</p>
-<p>比如：我们的目标是求出一个数字的32次方，如果我们已经知道了它的16次方，那么只要16次放的基础上再平方一次就可以了。而16次方又是8次方的平方。这样以此类<br>推，我们求32次方只需要5次乘方：先求平方，在平方的基础上求4次方，在4次方的基础上求8次方，在8次方的基础上求16次方，最后在16此方的基础上求32次方。</p>
-<pre><code>public class Solution {
-    public double Power(double base, int exponent) {
-        if(exponent == 0)
-            return 1;
-        if(exponent == 1)
-            return base;
-        boolean isNegative = false;
-        if(exponent &lt; 0){
-            exponent = -exponent;
-            isNegative = true;
-        }
-
-        double result = Power(base*base, exponent&gt;&gt;1);
-        if((exponent &amp; 0x1) == 1){
-            result = result * base;
-        }
-        return isNegative ? 1/result : result;
-  }
-}
-</code></pre><p>PS：最后，除以2可以用位运算右移代替，判断奇偶可以用(exponent &amp; 0x1)</p>
-
-          
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/87946665
+高效解法：下面的讨论中 x 代表 base，n 代表 exponent。
+因为 (x*x)n/2 可以通过递归求解，并且每次递归 n 都减小一半，因此整个
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/27/剑指offer---数值的整数次方/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -694,26 +679,16 @@
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/87947852" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/87947852</a></p>
-<p>解题思路：<br>设链表的长度为 N。设两个指针 P1 和 P2，先让 P1 移动 K 个节点，则还有 N - K 个节点可以移动。此时让 P1 和 P2<br>同时移动，可以知道当 P1 移动到链表结尾时，P2 移动到 N - K 个节点处，该位置就是倒数第 K 个节点。</p>
-<pre><code>public ListNode FindKthToTail(ListNode head,int k) {
-        if(head==null)
-            return null;
-        ListNode p1 = head;
-        while(p1!=null &amp;&amp; k--&gt;0){
-            p1 = p1.next;
-        }
-        if(k&gt;0)
-            return null;
-        ListNode p2 = head;
-        while(p1!=null){
-            p1 = p1.next;
-            p2 = p2.next;
-        }
-        return p2;
-    }
-</code></pre>
-          
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/87947852
+解题思路：设链表的长度为 N。设两个指针 P1 和 P2，先让 P1 移动 K 个节点，则还有 N - K 个节点可以移动。此时让 P1 和 P2同时移动
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/27/剑指offer---链表中倒数第k个节点/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -921,37 +896,18 @@
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/87948855" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/87948855</a></p>
-<p>递归：</p>
-<pre><code>public ListNode FindKthToTail(ListNode head,int k) {
-        if(head==null)
-            return null;
-        ListNode p1 = head;
-        while(p1!=null &amp;&amp; k--&gt;0){
-            p1 = p1.next;
-        }
-        if(k&gt;0)
-            return null;
-        ListNode p2 = head;
-        while(p1!=null){
-            p1 = p1.next;
-            p2 = p2.next;
-        }
-        return p2;
-    }
-</code></pre><p>非递归：</p>
-<pre><code>public ListNode ReverseList(ListNode head) {
-    ListNode newList = new ListNode(-1);
-    while (head != null) {
-        ListNode next = head.next;
-        head.next = newList.next;
-        newList.next = head;
-        head = next;
-    }
-    return newList.next;
-}
-</code></pre>
-          
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/87948855
+递归：
+public ListNode FindKthToTail(ListNode head,int k) {
+        if(head==nul
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/27/剑指offer---反转链表/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1159,43 +1115,19 @@
       
         
           
-            <p>第一步，在每个节点的后面插入复制的节点。<br><img src="https://img-blog.csdnimg.cn/20190227000248428.png" alt="在这里插入图片描述"><br>第二步，对复制节点的 random 链接进行赋值。<br><img src="https://img-blog.csdnimg.cn/20190227000314831.png" alt="在这里插入图片描述"><br>第三步，拆分<br><img src="https://img-blog.csdnimg.cn/20190227000341990.png" alt="在这里插入图片描述"></p>
-<pre><code>public RandomListNode Clone(RandomListNode pHead)
+          第一步，在每个节点的后面插入复制的节点。第二步，对复制节点的 random 链接进行赋值。第三步，拆分
+public RandomListNode Clone(RandomListNode pHead)
     {
         if(pHead == null){
-            return null;
-        }
-        //插入复制节点
-        RandomListNode cur = pHead;
-        while(cur!=null){
-            RandomListNode clone = new RandomListNode(cur.label);
-            clone.next = cur.next;
-            cur.next = clone;
-            cur = clone.next;
-        }
-
-        //为复制节点建立random连接
-        cur = pHead;
-        while(cur!=null){
-            RandomListNode clone = cur.next;
-            if(cur.random!=null)
-                clone.random = cur.random.next;
-            cur = clone.next;
-        }
-
-        //拆分两个链表
-        cur = pHead;
-        RandomListNode pCloneHead = pHead.next;
-        while(cur.next!=null){
-            //此处temp在拆分过程中交替表示复制节点
-            RandomListNode temp = cur.next;
-            cur.next = temp.next;
-            cur = temp;
-        }
-        return pCloneHead;
-    }
-</code></pre>
-          
+            ret
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/27/剑指offer---复制链表的复制/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1403,32 +1335,18 @@
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/87959329" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/87959329</a></p>
-<p>题目描述:<br>输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。</p>
-<p>递归法，中序遍历：</p>
-<pre><code>private TreeNode pre = null;
-private TreeNode head = null;
-public TreeNode Convert(TreeNode pRootOfTree) {
-    inOrder(pRootOfTree);
-    return head;
-}
-private void inOrder(TreeNode node){
-    if(node == null)
-        return;
-    inOrder(node.left);
-
-    node.left = pre;
-    if(pre!=null){
-        pre.right = node;
-    }
-    pre = node;
-    if(head == null)
-        head = node;
-
-    inOrder(node.right);
-}
-</code></pre>
-          
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/87959329
+题目描述:输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。
+递归法，中序遍历：
+priv
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/27/剑指offer---二叉搜索树与双向链表/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1625,112 +1543,17 @@ private void inOrder(TreeNode node){
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85082537" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85082537</a></p>
-<h4 id="避免使用基本数据类型数组转换为列表"><a href="#避免使用基本数据类型数组转换为列表" class="headerlink" title="避免使用基本数据类型数组转换为列表"></a>避免使用基本数据类型数组转换为列表</h4><pre><code> public static &lt;T&gt; List&lt;T&gt; asList(T... a) {
-        return new ArrayList&lt;&gt;(a);
-}
-</code></pre><p>asList接收的参数是一个泛型的变长参数，因为基本数据类型是无法泛型化的，也就是说8个基本类型无法作为asList的参数，要想作为泛型参数必须使用对应的包<br>装类型</p>
-<h4 id="asList产生的列表不可操作"><a href="#asList产生的列表不可操作" class="headerlink" title="asList产生的列表不可操作"></a>asList产生的列表不可操作</h4><p>对asList产生的列表不可操作，如add,remove等操作，否则会抛出UnsupportedOperationException<br>异常（表示list不支持该操作）</p>
-<pre><code> public static &lt;T&gt; List&lt;T&gt; asList(T... a) {
-    return new ArrayList&lt;&gt;(a);
-}
-</code></pre><p>注意：这里asList返回的ArrayList其实不是java.util.ArrayList，而是Arrays的一个内部类，该内部类提供了size、toAr<br>ray、get、set、indexOf、contains 方法，而像 add、remove 等改变 list 结果的方法从 AbstractList<br>父类继承过来，而且AbstractList 父类的add,remove等方法会直接抛出UnsupportedOperationException异常。</p>
-<pre><code>private static class ArrayList&lt;E&gt; extends AbstractList&lt;E&gt;
-    implements RandomAccess, java.io.Serializable
-{
-    private static final long serialVersionUID = -2764017481108945198L;
-    private final E[] a;
-
-    ArrayList(E[] array) {
-        a = Objects.requireNonNull(array);
-    }
-
-    @Override
-    public int size() {
-        return a.length;
-    }
-
-    @Override
-    public Object[] toArray() {
-        return a.clone();
-    }
-
-    @Override
-    @SuppressWarnings(&quot;unchecked&quot;)
-    public &lt;T&gt; T[] toArray(T[] a) {
-        int size = size();
-        if (a.length &lt; size)
-            return Arrays.copyOf(this.a, size,
-                                 (Class&lt;? extends T[]&gt;) a.getClass());
-        System.arraycopy(this.a, 0, a, 0, size);
-        if (a.length &gt; size)
-            a[size] = null;
-        return a;
-    }
-
-    @Override
-    public E get(int index) {
-        return a[index];
-    }
-
-    @Override
-    public E set(int index, E element) {
-        E oldValue = a[index];
-        a[index] = element;
-        return oldValue;
-    }
-
-    @Override
-    public int indexOf(Object o) {
-        E[] a = this.a;
-        if (o == null) {
-            for (int i = 0; i &lt; a.length; i++)
-                if (a[i] == null)
-                    return i;
-        } else {
-            for (int i = 0; i &lt; a.length; i++)
-                if (o.equals(a[i]))
-                    return i;
-        }
-        return -1;
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        return indexOf(o) != -1;
-    }
-
-    @Override
-    public Spliterator&lt;E&gt; spliterator() {
-        return Spliterators.spliterator(a, Spliterator.ORDERED);
-    }
-
-    @Override
-    public void forEach(Consumer&lt;? super E&gt; action) {
-        Objects.requireNonNull(action);
-        for (E e : a) {
-            action.accept(e);
-        }
-    }
-
-    @Override
-    public void replaceAll(UnaryOperator&lt;E&gt; operator) {
-        Objects.requireNonNull(operator);
-        E[] a = this.a;
-        for (int i = 0; i &lt; a.length; i++) {
-            a[i] = operator.apply(a[i]);
-        }
-    }
-
-    @Override
-    public void sort(Comparator&lt;? super E&gt; c) {
-        Arrays.sort(a, c);
-    }
-}
-</code></pre><p>参考文章： <a href="http://wiki.jikexueyuan.com/project/java-enhancement/java-
-thirtysix.html" target="_blank" rel="noopener"> http://wiki.jikexueyuan.com/project/java-enhancement/java-<br>thirtysix.html </a></p>
-
-          
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85082537
+避免使用基本数据类型数组转换为列表 public static &lt;T&gt; List&lt;T&gt; asList(T... a) {
+    
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/18/Arrays.asList()的坑/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1927,42 +1750,20 @@ thirtysix.html" target="_blank" rel="noopener"> http://wiki.jikexueyuan.com/proj
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85081462" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85081462</a></p>
-<ol>
-<li>Vector的实现<br>-  与ArrayList的实现类似，但是使用了synchronized进行同步。 <a href="https://blog.csdn.net/qq_40005950/article/details/85080586" target="_blank" rel="noopener"> ArrayList的实现
-</a></li>
-</ol>
-<pre><code>    public synchronized boolean add(E e) {
-    modCount++;
-    ensureCapacityHelper(elementCount + 1);
-    elementData[elementCount++] = e;
-    return true;
-}
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85081462
 
-public synchronized E get(int index) {
-    if (index &gt;= elementCount)
-        throw new ArrayIndexOutOfBoundsException(index);
+Vector的实现-  与ArrayList的实现类似，但是使用了synchronized进行同步。  ArrayList的实现
 
-    return elementData(index);
-}
-</code></pre><ol start="2">
-<li><p>与ArrayList的比较 </p>
-<ul>
-<li>Vector是同步的，因此开销就比ArrayList要大，访问速度更慢。最好使用ArrayList，因为同步操作完全可以由程序员自己控制。 </li>
-<li>Vector每次扩容请求其大小的2倍空间，而ArrayList是1.5倍。<br><img src="https://img-blog.csdnimg.cn/20181218215423298.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-</ul>
-</li>
-<li><p>替代方案<br>-  可以使用 Collections.synchronizedList()；得到一i个线程安全的ArrayList</p>
-</li>
-</ol>
-<pre><code>    List&lt;String&gt; list = new ArrayList&lt;&gt;();
-List&lt;String&gt; synList = Collections.synchronizedList(list);
-</code></pre><p>-  也可以使用concurrent并发包下的CopyOnWriteArrayList类</p>
-<pre><code>List&lt;String&gt; list = new CopyOnWriteArrayList&lt;&gt;();
-</code></pre>
-          
+
+    publi
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/18/Vector与ArrayList/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2159,136 +1960,19 @@ List&lt;String&gt; synList = Collections.synchronizedList(list);
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85080586" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85080586</a></p>
-<ol>
-<li><p>ArrayList类的定义，父类及实现的接口： </p>
-<p>   public class ArrayList<e> extends AbstractList<e></e></e></p>
-<pre><code>implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable
-</code></pre></li>
-</ol>
-<p>-  继承AbstractList类，该类中实现了get，add，remove，clear，indexOf，lastIndexOf，和获取迭代器等方法，其<br>中indexOf和lastIndexOf查找元素是用ListIterator实现的；<br>- 实现RandomAccess接口，该接口空的，即标记接口，那么它的作用是什么？</p>
-<pre><code>    * Marker interface used by &lt;tt&gt;List&lt;/tt&gt; implementations to indicate that
-* they support fast (generally constant time) random access.  The primary
-* purpose of this interface is to allow generic algorithms to alter their
-* behavior to provide good performance when applied to either random or
-* sequential access lists.
-* 以上是jdk官方文档的解释，即RandomAccess是List实现锁使用的标记接口，
-* 用来表明其支持快速（通常是固定时间）随机访问。
-* 此接口的主要目的是允许一般的算法更改其行为，
-* 从而在将其应用到随机或连续访问列表时能提供良好的性能
-</code></pre><p><strong> RandomAccess 这个标记接口就是标记能够随机访问元素的集合， 简单来说就是底层是数组实现的集合。 </strong><br>更具体的可以看看这篇文章： <a href="https://juejin.im/post/5a26134af265da43085de060" target="_blank" rel="noopener"> https://juejin.im/post/5a26134af265da43085de060
-</a><br>-  实现了 Cloneable 接口，以指示 Object.clone() 方法可以合法地对该类实例进行按字段复制。 如果在没有实现 Cloneable<br>接口的实例上调用 Object 的 clone 方法，则会导致抛出 CloneNotSupportedException 异常。<br>-  类通过实现 java.io.Serializable 接口以启用其序列化功能。未实现此接口的类将无法使其任何状态序列化或反序列化。</p>
-<ol start="2">
-<li>扩容<br>-  数组的默认大小为10</li>
-</ol>
-<pre><code>private static final int DEFAULT_CAPACITY = 10;
-</code></pre><p>-  添加元素时使用ensureCapacityInternal()方法来保证容量足够，如果不够时，需要使用grow()方法进行扩容，新容量的大小为<br>oldCapacity + (oldCapacity &gt;&gt; 1)  ，也就是旧容量的1.5倍。<br>-  扩容操作需要调用  Array.copyOf()<br>把原数组整个复制到新数组中，这个操作代价很高，因此最好在创建ArrayList对象时就指定大概容量大小，减少扩容操作的次数。</p>
-<pre><code>    public boolean add(E e){
-    ensureCapacityInternal(size + 1); //increments modCount!!
-    elementData[size++] = e;
-    return true;
-}
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85080586
 
-public void ensureCapacityInternal(int minCapacity){
-    if(elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA){
-        minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);
-    }
-    ensureExplicitCapacity(minCapacity);
-}
-
-public void ensureExplicitCapacity(int minCapacity){
-    modCount++;
-    //overflow-conscious code
-    if(minCapacity - elementData.length &gt; 0)
-        grow(minCapacity);
-}
-
-public void grow(int minCapacity){
-    //overflow-conscious code
-    int oldCapacity = elementData.length;
-    int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);
-    if(newCapacity - minCapacity &lt; 0)
-        newCapacity = minCapacity;
-    if(newCapacity - MAX_ARRAAY_SIZE &gt; 0)
-        newCapacity = hugeCapacity(minCapacity);
-    //minCapacity is usually close to size, so this is a win
-    elementData = Arrays.copyOf(elementData, newCapacity);;
-}
-</code></pre><ol start="3">
-<li>删除元素<br>-  需要调用System.arraycopy()将index+1后面的元素都复制到index位置上，该操作的时间复杂度为O(N)，可以看出ArrayLi<br>st删除元素的代价是非常高的。</li>
-</ol>
-<pre><code>    public E remove(int index){
-    rangeCheck(index);
-    modCount++;
-    E oldValue = elementData(index);
-    int numMoved = size - index -1;;
-    if(numMoved &gt; 0)
-        System.arraycopy(elementData, index+1, elementData, index, numMoved)
-    elementData[--size] = null; //clear to let GC do its work
-    return oldValue;
-}
-</code></pre><ol start="4">
-<li>部分序列化<br>-  ArrayList基于数组实现，并且具有动态扩容特性，因此保存元素的数组不一定都会被使用，那么就没必要全部进行序列化。保存元素的数组elementD<br>ata使用transient修饰，该关键词声明数组默认不会被序列化。</li>
-</ol>
-<pre><code>transient Object[] elementData; // non-private to simplify nested class access
-</code></pre><p>-  ArrayList实现了writeObject()和readObject()来控制只序列化数组中有元素填充那部分内容</p>
-<pre><code>    private void writeObject(java.io.ObjectOutputStream s)
-    throws java.io.Exception{
-    //write out element count, and any hidden stuff
-    int expectedModCount = modCount;
-    s.defaultWriteObject();
-
-    //write out size as capacity for behavioural compatibility with clone()
-    s.writeInt(size);
-
-    //write out all elements in the proper order
-    for(int i=0; i&lt;size; i++){
-        s.writeObject(elementData[i])
-    }
-
-    if(modCount != expectedModCount){
-        throw new ConcurrentModificationException();
-    }
-}
-
-private void readObject(java.io.ObjectInputStream s)
-    throws java.io.IOException, ClassNotFoundException {
-    elementData = EMPTY_ELEMENTDATA;
-
-    // Read in size, and any hidden stuff
-    s.defaultReadObject();
-
-    // Read in capacity
-    s.readInt(); // ignored
-
-    if (size &gt; 0) {
-        // be like clone(), allocate array based upon size not capacity
-        ensureCapacityInternal(size);
-
-        Object[] a = elementData;
-        // Read in all elements in the proper order.
-        for (int i=0; i&lt;size; i++) {
-            a[i] = s.readObject();
-        }
-    }
-}
-</code></pre><p>-  序列化时需要要使用ObjectOutputStream的writeObject()将对象转换为字节流并输出。而writeObject()方法在传入的<br>对象存在writeObject()存在writeObject()的时候会去反射调用该对象的writeObject()来实现序列化。反序列化使用的是Objec<br>tInputStream的readObject()方法，原理类似。比如下面的例子，oos的writeObject(list)方法，传入的对象list存在自己<br>的writeObject()方法，则反射调用list对象的writeObject()方法来实现部分序列化（有内容的数组部分）</p>
-<pre><code>    ArrayList list = new ArrayList();
-ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-oos.writeObject(list);
-</code></pre><ol start="5">
-<li>Fail-Fast<br>-  fail-fast，快速失败，是Java集合的一种错误检测机制。迭代器的快速失败行为无法得到保证，因为一般来说，不可能对是否出现不同步并发修改做出任<br>何硬性保证。快速失败迭代器会尽最大努力抛出 ConcurrentModificationException。因此，为提高这类迭代器的正确性而编写一个依赖于此<br>异常的程序是错误的做法：迭代器的快速失败行为应该仅用于检测 bug。<br>详细可见： <a href="https://blog.csdn.net/chenssy/article/details/38151189" target="_blank" rel="noopener"> https://blog.csdn.net/chenssy/article/details/38151189
-</a>  </li>
-</ol>
-<p>-  modCount用来记录ArrayList结构发生变化的次数，结构发生变化是指添加或者删除至少一个元素的所有操作，或者是调整内部数组大小，仅仅只是设<br>置元素的值不算结构发生变化。<br>-<br>在进行序列化或者迭代等操作时，需要比较操作前后modCount是否改变，如果改变了需要抛出ConcurrentModificationException。</p>
-<ol start="6">
-<li>toArray()异常问题<br>-  ArrayList中提供了2个toArray()方法：</li>
-</ol>
-<pre><code>    Object[] toArray()
-&lt;T&gt; T[] toArray(T[] contents)
-</code></pre><p>-  调用toArray()函数会抛出”java.lang.ClassCastException”异常，但是调用toArray(T[] contents)<br>能正常返回T[]。toArray()会抛出异常是因为toArray()返回的是Object[]数组，将Object[]转换为其它类型（比如将Object[]<br>转换为Integer[]）则会抛出”java.lang.ClassCastException”异常，因为java不支持向下转型。解决该问题的办法是调用<br>T[] toArray(T[] contents)，而不是Object[] toArray()。</p>
-
-          
+ArrayList类的定义，父类及实现的接口： 
+   public class ArrayList extends AbstractList
+impl
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/18/ArrayList源码分析/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2496,75 +2180,16 @@ oos.writeObject(list);
       
         
           
-            <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85071787" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85071787</a></p>
-<h4 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h4><p>迭代器模式，提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示，属于行为型模式。<br>把在元素之间游走地责任交给迭代器，而不是聚合对象，并可以以不同方式来遍历整个聚合对象。<br><strong> 优点： </strong><br>1.支持以不同方式遍历一个聚合对象；<br>2.将存储数据和遍历数据地职责分离，简化了聚合类；<br>3.在同一聚合上可以拥有多个遍历。<br><strong> 缺点： </strong><br>1.将存储数据和遍历数据地职责分离，增加新地聚合类时，需要增加对应的迭代器，类的个数成对增加，在一定程度上提高了系统的复杂性。</p>
-<h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h5><p><strong> 思路： </strong></p>
-<p>1.创建一个叙述导航方法的Iterator接口和一个返回迭代器的Container接口；实现了Container接口的实体类负责实现Iterator接口;<br>2.IteratorPatternDemo，我们的演示类使用实体类 NamesRepository 来打印 NamesRepository 中存储为集合的<br>Names。<br><img src="https://img-blog.csdnimg.cn/20181218172006417.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">  </p>
-<p>1.Iterator接口;</p>
-<pre><code>public interface Iterator {
-   public boolean hasNext();
-   public Object next();
-}
-</code></pre><p>2.Container接口</p>
-<pre><code>public interface Container {
-   public Iterator getIterator();
-}
-</code></pre><p>3.创建实现了 Container 接口的实体类。该类有实现了 Iterator 接口的内部类 NameIterator</p>
-<pre><code>public class NameRepository implements Container {
-   public String names[] = {&quot;Robert&quot; , &quot;John&quot; ,&quot;Julie&quot; , &quot;Lora&quot;};
-
-   @Override
-   public Iterator getIterator() {
-      return new NameIterator();
-   }
-
-   private class NameIterator implements Iterator {
-
-      int index;
-
-      @Override
-      public boolean hasNext() {
-         if(index &lt; names.length){
-            return true;
-         }
-         return false;
-      }
-
-      @Override
-      public Object next() {
-         if(this.hasNext()){
-            return names[index++];
-         }
-         return null;
-      }     
-   }
-}
-</code></pre><p>4.使用 NameRepository 来获取迭代器，并打印名字</p>
-<pre><code>public class IteratorPatternDemo {
-
-   public static void main(String[] args) {
-      NameRepository namesRepository = new NameRepository();
-
-      for(Iterator iter = namesRepository.getIterator(); iter.hasNext();){
-         String name = (String)iter.next();
-         System.out.println(&quot;Name : &quot; + name);
-      }  
-   }
-}
-</code></pre><p>5.执行程序，输出结果：</p>
-<pre><code>Name : Robert
-Name : John
-Name : Julie
-Name : Lora
-</code></pre><h4 id="java容器中的迭代器模式"><a href="#java容器中的迭代器模式" class="headerlink" title="java容器中的迭代器模式"></a>java容器中的迭代器模式</h4><p><img src="https://img-blog.csdnimg.cn/20181218173647480.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>其中ListIterator和Iterable接口中定义了获取迭代器的方法iterator()；<br>Collection接口继承了Iterable接口，其中的 iterator() 方法能够产生一个 Iterator 对象，通过这个对象就可以迭代遍历<br>Collection 中的元素；</p>
-<p>关于ListIterator和Iterator的异同点：<br>一．相同点<br>都是迭代器，当需要对集合中元素进行遍历不需要干涉其遍历过程时，这两种迭代器都可以使用。<br>二．不同点<br>1.使用范围不同，Iterator可以应用于所有的集合，Set、List和Map和这些集合的子类型。而ListIterator只能 用于List及其子类型。<br>2.ListIterator有add方法，可以向List中添加对象，而Iterator不能。<br>3.ListIterator和Iterator都有hasNext()和next()方法，可以实现顺序向后遍历，但是ListIterator有hasPrevi<br>ous()和previous()方法，可以实现逆向（顺序向前）遍历。Iterator不可以。<br>4.ListIterator可以定位当前索引的位置，nextIndex()和previousIndex()可以实现。Iterator没有此功能。<br>5.都可实现删除操作，但是ListIterator可以实现对象的修改，set()方法可以实现。Iterator仅能遍历，不能修改。<br>详细可去： <a href="https://www.cnblogs.com/a842297171/p/5379130.html" target="_blank" rel="noopener"> https://www.cnblogs.com/a842297171/p/5379130.html
-</a></p>
-
-          
+          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85071787
+迭代器模式迭代器模式，提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示，属于行为型模式。把在元素之间游走地责任交给迭代器，而不是
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/18/迭代器模式与Java容器/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2772,80 +2397,23 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
       
         
           
-            <p>点击原文： <a href="http://www.cnblogs.com/me115/p/4092632.html" target="_blank" rel="noopener"> http://www.cnblogs.com/me115/p/4092632.html
-</a><br>或者点击“阅读更多”</p>
-<h3 id="内容目录："><a href="#内容目录：" class="headerlink" title="内容目录："></a>内容目录：</h3><ul>
-<li><a href="http://www.cnblogs.com/me115/p/4092632.html#h20" target="_blank" rel="noopener"> 从一个示例开始 </a></li>
-<li><a href="http://www.cnblogs.com/me115/p/4092632.html#h21" target="_blank" rel="noopener"> 类之间的关系 </a></li>
-<li><a href="http://www.cnblogs.com/me115/p/4092632.html#h22" target="_blank" rel="noopener"> 时序图 </a></li>
-<li><a href="http://www.cnblogs.com/me115/p/4092632.html#h23" target="_blank" rel="noopener"> 附录：《图说设计模式》 </a></li>
-</ul>
-<h1 id="看懂UML类图和时序图"><a href="#看懂UML类图和时序图" class="headerlink" title="看懂UML类图和时序图"></a>看懂UML类图和时序图</h1><p>这里不会将UML的各种元素都提到，我只想讲讲类图中各个类之间的关系； 能看懂类图中各个类之间的线条、箭头代表什么意思后，也就足够应对 日常的工作和交流；<br>同时，我们应该能将类图所表达的含义和最终的代码对应起来； 有了这些知识，看后面章节的设计模式结构图就没有什么问题了；</p>
-<p>本章所有图形使用Enterprise Architect 9.2来画,所有示例详见根目录下的design_patterns.EAP</p>
-<h2 id="从一个示例开始"><a href="#从一个示例开始" class="headerlink" title="从一个示例开始"></a>从一个示例开始</h2><p>请看以下这个类图，类之间的关系是我们需要关注的：</p>
-<p><img src="http://images.cnitblog.com/blog/90573/201411/1216291094489
-14.jpg" alt="uml_class_struct"></p>
-<ul>
-<li>车的类图结构为&lt;<abstract>&gt;，表示车是一个抽象类； </abstract></li>
-<li>它有两个继承类：小汽车和自行车；它们之间的关系为实现关系，使用带空心箭头的虚线表示； </li>
-<li>小汽车为与SUV之间也是继承关系，它们之间的关系为泛化关系，使用带空心箭头的实线表示； </li>
-<li>小汽车与发动机之间是组合关系，使用带实心箭头的实线表示； </li>
-<li>学生与班级之间是聚合关系，使用带空心箭头的实线表示； </li>
-<li>学生与身份证之间为关联关系，使用一根实线表示； </li>
-<li>学生上学需要用到自行车，与自行车是一种依赖关系，使用带箭头的虚线表示； </li>
-</ul>
-<p>下面详细介绍这六种关系；</p>
-<hr>
-<h2 id="类之间的关系"><a href="#类之间的关系" class="headerlink" title="类之间的关系"></a>类之间的关系</h2><h3 id="泛化关系-generalization"><a href="#泛化关系-generalization" class="headerlink" title="泛化关系(generalization)"></a>泛化关系(generalization)</h3><p>类的继承结构表现在UML中为：泛化(generalize)与实现(realize)：</p>
-<p>继承关系为 is-a的关系；两个对象之间如果可以用 is-a 来表示，就是继承关系：（..是..)</p>
-<p>eg：自行车是车、猫是动物</p>
-<p>泛化关系用一条带空心箭头的直接表示；如下图表示（A继承自B）；</p>
-<p><img src="http://images.cnitblog.com/blog/90573/201411/12162911991
-9100.jpg" alt="uml_generalization"></p>
-<p>eg：汽车在现实中有实现，可用汽车定义具体的对象；汽车与SUV之间为泛化关系；</p>
-<p><img src="http://images.cnitblog.com/blog/90573/201411/121629125225430
-.jpg" alt="uml_generalize"></p>
-<p>注：最终代码中，泛化关系表现为继承非抽象类；</p>
-<h3 id="实现关系-realize"><a href="#实现关系-realize" class="headerlink" title="实现关系(realize)"></a>实现关系(realize)</h3><p>实现关系用一条带空心箭头的虚线表示；</p>
-<p>eg：”车”为一个抽象概念，在现实中并无法直接用来定义对象；只有指明具体的子类(汽车还是自行车)，才<br>可以用来定义对象（”车”这个类在C++中用抽象类表示，在JAVA中有接口这个概念，更容易理解）</p>
-<p><img src="http://images.cnitblog.com/blog/90573/201411/121629132727059.jp
-g" alt="uml_realize"></p>
-<p>注：最终代码中，实现关系表现为继承抽象类；</p>
-<h3 id="聚合关系-aggregation"><a href="#聚合关系-aggregation" class="headerlink" title="聚合关系(aggregation)"></a>聚合关系(aggregation)</h3><p>聚合关系用一条带空心菱形箭头的直线表示，如下图表示A聚合到B上，或者说B由A组成；</p>
-<p><img src="http://images.cnitblog.com/blog/90573/201411/12162913835593
-0.jpg" alt="uml_aggregation"></p>
-<p>聚合关系用于表示实体对象之间的关系，表示整体由部分构成的语义；例如一个部门由多个员工组成；</p>
-<p>与组合关系不同的是，整体和部分不是强依赖的，即使整体不存在了，部分仍然存在；例如， 部门撤销了，人员不会消失，他们依然存在；</p>
-<h3 id="组合关系-composition"><a href="#组合关系-composition" class="headerlink" title="组合关系(composition)"></a>组合关系(composition)</h3><p>组合关系用一条带实心菱形箭头直线表示，如下图表示A组成B，或者B由A组成；</p>
-<p><img src="http://images.cnitblog.com/blog/90573/201411/12162914522677
-4.jpg" alt="uml_composition"></p>
-<p>与聚合关系一样，组合关系同样表示整体由部分构成的语义；比如公司由多个部门组成；</p>
-<p>但组合关系是一种强依赖的特殊聚合关系，如果整体不存在了，则部分也不存在了；例如， 公司不存在了，部门也将不存在了；</p>
-<h3 id="关联关系-association"><a href="#关联关系-association" class="headerlink" title="关联关系(association)"></a>关联关系(association)</h3><p>关联关系是用一条直线表示的；它描述不同类的对象之间的结构关系；它是一种静态关系，<br>通常与运行状态无关，一般由常识等因素决定的；它一般用来定义对象之间静态的、天然的结构； 所以，关联关系是一种“强关联”的关系；</p>
-<p>比如，乘车人和车票之间就是一种关联关系；学生和学校就是一种关联关系；</p>
-<p>关联关系默认不强调方向，表示对象间相互知道；如果特别强调方向，如下图，表示A知道B，但 B不知道A；</p>
-<p><img src="http://images.cnitblog.com/blog/90573/201411/12162915225868
-7.jpg" alt="uml_association"></p>
-<p>注：在最终代码中，关联对象通常是以成员变量的形式实现的；</p>
-<h3 id="依赖关系-dependency"><a href="#依赖关系-dependency" class="headerlink" title="依赖关系(dependency)"></a>依赖关系(dependency)</h3><p>依赖关系是用一套带箭头的虚线表示的；如下图表示A依赖于B；他描述一个对象在运行期间会用到另一个对象的关系；</p>
-<p><img src="http://images.cnitblog.com/blog/90573/201411/121629157726490
-.jpg" alt="uml_dependency"></p>
-<p>与关联关系不同的是，它是一种临时性的关系，通常在运行期间产生，并且随着运行时的变化； 依赖关系也可能发生变化；</p>
-<p>显然，依赖也有方向，双向依赖是一种非常糟糕的结构，我们总是应该保持单向依赖，杜绝双向依赖的产生；</p>
-<p>注：在最终代码中，依赖关系体现为类构造方法及类方法的传入参数，箭头的指向为调用关系；依赖关系处理临时知道对方外，还是“使用”对方的方法和属性；</p>
-<h2 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h2><p>为了展示对象之间的交互细节，后续章节对设计模式中每个模式的介绍，都会用到时序图；</p>
-<p>时序图（Sequence Diagram）是显示对象之间交互的图，这些对象是按时间顺序排列的。时序图中显示的是参与交互的对象及其对象之间消息交互的顺序。</p>
-<p>时序图包括的建模元素主要有：对象（Actor）、生命线（Lifeline）、控制焦点（Focus of control）、消息（Message）等等。</p>
-<p>关于时序图，以下这篇文章将概念介绍的比较详细，更多实例应用，参加后续章节中的模式中的时序图；</p>
-<p><a href="http://smartlife.blog.51cto.com/1146871/284874" target="_blank" rel="noopener"> http://smartlife.blog.51cto.com/1146871/284874
-</a></p>
-<h2 id="附录：《图说设计模式》"><a href="#附录：《图说设计模式》" class="headerlink" title="附录：《图说设计模式》"></a>附录：《图说设计模式》</h2><p>本文为开源书籍  《图说设计模式》  的第一篇，目前这本书基本完成；</p>
-<p>这本书使用图形和代码结合的方式来解析设计模式；<br>每个模式都有相应的对象结构图，同时为了展示对象间的交互细节， 我会用到时序图来介绍其如何运行；（在状态模式中，<br>还会用到状态图，这种图的使用对于理解状态的转换非常直观）</p>
-<p>详情请见： <a href="https://github.com/me115/design_patterns" target="_blank" rel="noopener"> https://github.com/me115/design_patterns
-</a></p>
-<p>（github中包含书中所有源代码及各个模式的类图）</p>
+          点击原文：  http://www.cnblogs.com/me115/p/4092632.html
+或者点击“阅读更多”
+内容目录：
+ 从一个示例开始 
+ 类之间的关系 
+ 时序图 
+ 附录：《图说设计模式》 
 
-          
+看懂UML类图和时序图这里不会将UML的各种元素都提到，我只想讲讲类图中各个类之间的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/18/UML各种线的含义/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
