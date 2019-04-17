@@ -427,7 +427,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -450,10 +450,11 @@
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88358466
-1.基于”双向链表+HashMap“实现：
+          1.基于双向链表+HashMap实现：
 
-访问某个节点时，将该节点从双向链表中原位置删除，并重新插入链表头。这样可以保证链表尾部节点就是最近最久未被使
+访问某个节点时，将该节点从双向链表中原位置删除，并重新插入链表头。这样可以保证链表尾部节点就是最近最久未被使用的，当节点数量大于缓存空间就淘汰链表尾部节点； 
+
+为了能在O(1)时间内从链表删除某个节点，不能通过遍历链表查找该节点。需要借助HashMap存储
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1355,7 +1356,7 @@ DHCP配置主机信息
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://enpong.github.io/2019/03/02/Leetcode---208.实现Trie前缀树/">
+    <link itemprop="mainEntityOfPage" href="https://enpong.github.io/2019/03/02/实现Trie前缀树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Enpong">
@@ -1374,7 +1375,7 @@ DHCP配置主机信息
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/02/Leetcode---208.实现Trie前缀树/" itemprop="url">Leetcode---208.实现Trie前缀树</a></h1>
+                <a class="post-title-link" href="/2019/03/02/实现Trie前缀树/" itemprop="url">实现Trie前缀树</a></h1>
         
 
         <div class="post-meta">
@@ -1410,8 +1411,8 @@ DHCP配置主机信息
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/undefined/" itemprop="url" rel="index">
-                    <span itemprop="name">undefined</span>
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
                   </a>
                 </span>
 
@@ -1428,8 +1429,8 @@ DHCP配置主机信息
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/03/02/Leetcode---208.实现Trie前缀树/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/02/Leetcode---208.实现Trie前缀树/" itemprop="commentCount"></span>
+                <a href="/2019/03/02/实现Trie前缀树/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/02/实现Trie前缀树/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1437,7 +1438,7 @@ DHCP配置主机信息
 
           
           
-             <span id="/2019/03/02/Leetcode---208.实现Trie前缀树/" class="leancloud_visitors" data-flag-title="Leetcode---208.实现Trie前缀树">
+             <span id="/2019/03/02/实现Trie前缀树/" class="leancloud_visitors" data-flag-title="实现Trie前缀树">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1462,7 +1463,7 @@ DHCP配置主机信息
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  554
+                  559
                 </span>
               
 
@@ -1501,16 +1502,12 @@ DHCP配置主机信息
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88079131
-Java非递归版
-class Trie {
-    private class Node{
-        boolean isTrie;
-       
+          Java非递归版
+​1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253class Trie &#123;    private class Node&#12
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/02/Leetcode---208.实现Trie前缀树/#more" rel="contents">
+            <a class="btn" href="/2019/03/02/实现Trie前缀树/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1565,7 +1562,7 @@ class Trie {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://enpong.github.io/2019/03/02/LeetCode869---重新排序得到2的幂/">
+    <link itemprop="mainEntityOfPage" href="https://enpong.github.io/2019/03/02/重新排序得到2的幂/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Enpong">
@@ -1584,7 +1581,7 @@ class Trie {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/02/LeetCode869---重新排序得到2的幂/" itemprop="url">LeetCode869---重新排序得到2的幂</a></h1>
+                <a class="post-title-link" href="/2019/03/02/重新排序得到2的幂/" itemprop="url">重新排序得到2的幂</a></h1>
         
 
         <div class="post-meta">
@@ -1620,8 +1617,8 @@ class Trie {
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/undefined/" itemprop="url" rel="index">
-                    <span itemprop="name">undefined</span>
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
                   </a>
                 </span>
 
@@ -1638,8 +1635,8 @@ class Trie {
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/03/02/LeetCode869---重新排序得到2的幂/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/02/LeetCode869---重新排序得到2的幂/" itemprop="commentCount"></span>
+                <a href="/2019/03/02/重新排序得到2的幂/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/02/重新排序得到2的幂/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1647,7 +1644,7 @@ class Trie {
 
           
           
-             <span id="/2019/03/02/LeetCode869---重新排序得到2的幂/" class="leancloud_visitors" data-flag-title="LeetCode869---重新排序得到2的幂">
+             <span id="/2019/03/02/重新排序得到2的幂/" class="leancloud_visitors" data-flag-title="重新排序得到2的幂">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1672,7 +1669,7 @@ class Trie {
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  378
+                  371
                 </span>
               
 
@@ -1711,12 +1708,13 @@ class Trie {
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88074612
-😍题目描述从正整数 N 开始，我们按任何顺序（包括原始顺序）将数字重新排序，注意其前导数字不能为零。如果我们可以通过上述方式得到 2 的幂，返回 tru
+          😍题目描述从正整数 N 开始，我们按任何顺序（包括原始顺序）将数字重新排序，注意其前导数字不能为零。如果我们可以通过上述方式得到 2 的幂，返回 true；否则，返回false。
+😘解题思路
+先将数值N中的每个数字独立存储并排序为list，长度记作n；在2的幂中找出长度为n的所有数值，并同样对每
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/02/LeetCode869---重新排序得到2的幂/#more" rel="contents">
+            <a class="btn" href="/2019/03/02/重新排序得到2的幂/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2440,7 +2438,7 @@ class Trie {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2451,7 +2449,7 @@ class Trie {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2537,7 +2535,7 @@ class Trie {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38k字</span>
+  <span class="post-count">博客全站共39.5k字</span>
 </div>
 
         

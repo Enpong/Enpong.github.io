@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="log日志,">
+  <meta name="keywords" content="logback,配置,">
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/83350714  logback介绍 使用logback的目的  故障定位  显示程序运行状态，定位为题的依据    三大模块  logback-access  与servlet容器集成，提供通过http访问日志功能，意思就是第三方软件可以通过这个模块来访问logbac">
-<meta name="keywords" content="log日志">
+<meta name="description" content="logback介绍 使用logback的目的  故障定位  显示程序运行状态，定位为题的依据    三大模块  logback-access  与servlet容器集成，提供通过http访问日志功能，意思就是第三方软件可以通过这个模块来访问logback记录的日志    logback-classic  log4j的改良版本，完整实现了slf4j的API，可以让我们很方便地更换成其他日志系统，比">
+<meta name="keywords" content="logback,配置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="logback">
 <meta property="og:url" content="https://enpong.github.io/2018/10/24/logback/index.html">
 <meta property="og:site_name" content="Enpong">
-<meta property="og:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/83350714  logback介绍 使用logback的目的  故障定位  显示程序运行状态，定位为题的依据    三大模块  logback-access  与servlet容器集成，提供通过http访问日志功能，意思就是第三方软件可以通过这个模块来访问logbac">
+<meta property="og:description" content="logback介绍 使用logback的目的  故障定位  显示程序运行状态，定位为题的依据    三大模块  logback-access  与servlet容器集成，提供通过http访问日志功能，意思就是第三方软件可以通过这个模块来访问logback记录的日志    logback-classic  log4j的改良版本，完整实现了slf4j的API，可以让我们很方便地更换成其他日志系统，比">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-09T07:58:52.603Z">
+<meta property="og:updated_time" content="2019-04-17T20:20:53.088Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="logback">
-<meta name="twitter:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/83350714  logback介绍 使用logback的目的  故障定位  显示程序运行状态，定位为题的依据    三大模块  logback-access  与servlet容器集成，提供通过http访问日志功能，意思就是第三方软件可以通过这个模块来访问logbac">
+<meta name="twitter:description" content="logback介绍 使用logback的目的  故障定位  显示程序运行状态，定位为题的依据    三大模块  logback-access  与servlet容器集成，提供通过http访问日志功能，意思就是第三方软件可以通过这个模块来访问logback记录的日志    logback-classic  log4j的改良版本，完整实现了slf4j的API，可以让我们很方便地更换成其他日志系统，比">
 
 
 
@@ -358,8 +358,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/J2EE/" itemprop="url" rel="index">
-                    <span itemprop="name">J2EE</span>
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
                   </a>
                 </span>
 
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1k
+                  1.7k
                 </span>
               
 
@@ -431,7 +431,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  8
                 </span>
               
             </div>
@@ -452,8 +452,7 @@
       
 
       
-        <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/83350714" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/83350714</a></p>
-<ul>
+        <ul>
 <li><h2 id="logback介绍"><a href="#logback介绍" class="headerlink" title="logback介绍"></a>logback介绍</h2><ul>
 <li>使用logback的目的 <ul>
 <li>故障定位 </li>
@@ -487,59 +486,27 @@
 </li>
 <li><p>logback主要标签介绍 </p>
 <ol>
-<li><configuration>，只有三个属性，分别是： <ol>
+<li><code>&lt;configuration&gt;</code>，只有三个属性，分别是： <ol>
 <li>scan：当scan被设置为true时，当配置文件发生改变，将会被重新加载，默认为true </li>
 <li>scanPeriod：检测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认为毫秒，当scan=true时这个值生效，默认时间间隔为1分钟 </li>
 <li>debug：当被设置为true时，将打印出logback内部日志信息，实时查看logback运行信息，默认为false； </li>
 </ol>
-</configuration></li>
-<li><appender>，指定日志输出目的地，即日志输出的媒介，可以是控制台、文件、远程套接字服务器等<br>1. ConsoleAppender，将日志输出到控制台<br><br>                       <!-- 控制台设置 --><br>       <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender"><br>           <encoder><br>               <pattern>${log.pattern}</pattern><br>           </encoder><br>       </appender>
-
-<ol start="2">
+</li>
+<li><p><code>&lt;appender&gt;</code>，指定日志输出目的地，即日志输出的媒介，可以是控制台、文件、远程套接字服务器等 </p>
+<ol>
+<li><p>ConsoleAppender，将日志输出到控制台 </p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 控制台设置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"consoleAppender"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.ConsoleAppender"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;log.pattern&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>FileAppender，将日志输出到文件中 </p>
-<pre><code>                &lt;appender name=&quot;FILE&quot; class=&quot;ch.qos.logback.core.FileAppender&quot;&gt;  
-    &lt;file&gt;D:/123.log&lt;/file&gt;  
-    &lt;append&gt;true&lt;/append&gt;  
-    &lt;encoder&gt;  
-        &lt;pattern&gt;%-4relative [%thread] %-5level %logger{35} - %msg%n&lt;/pattern&gt;  
-    &lt;/encoder&gt;  
-&lt;/appender&gt;
-</code></pre></li>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"FILE"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.FileAppender"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">file</span>&gt;</span>D:/123.log<span class="tag">&lt;/<span class="name">file</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">append</span>&gt;</span>true<span class="tag">&lt;/<span class="name">append</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>%-4relative [%thread] %-5level %logger&#123;35&#125; - %msg%n<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>RollingFileAppender，滚动记录文件，先将日志记录到指定文件，当符合某个条件时再讲日志记录到其他文件 </p>
-<pre><code>                &lt;!-- DEBUG --&gt;
-&lt;appender name=&quot;debugAppender&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;
-    &lt;!-- 文件路径 --&gt;
-    &lt;file&gt;${log.filePath}/debug.log&lt;/file&gt;
-    &lt;!-- &lt;rollingPolicy&gt;的作用是当发生滚动时，定义RollingFileAppender的行为，其中上面的TimeBasedRollingPolicy是最常用的滚动策略，它根据时间指定滚动策略，既负责滚动也负责触发滚动 --&gt;
-    &lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;&gt;
-        &lt;!-- 文件名称 --&gt;
-        &lt;fileNamePattern&gt;${log.filePath}/debug/debug.%d{yyyy-MM-dd}.log.gz
-        &lt;/fileNamePattern&gt;
-        &lt;!-- 文件最大保存历史数量 --&gt;
-        &lt;maxHistory&gt;${log.maxHistory}&lt;/maxHistory&gt;
-    &lt;/rollingPolicy&gt;
-    &lt;!-- 输出格式 --&gt;
-    &lt;encoder&gt;
-        &lt;pattern&gt;${log.pattern}&lt;/pattern&gt;
-    &lt;/encoder&gt;
-    &lt;!-- 在当前给到的日志级别下再进行一次过滤 --&gt;
-    &lt;filter class=&quot;ch.qos.logback.classic.filter.LevelFilter&quot;&gt;
-        &lt;level&gt;DEBUG&lt;/level&gt;
-        &lt;onMatch&gt;ACCEPT&lt;/onMatch&gt;
-        &lt;onMismatch&gt;DENY&lt;/onMismatch&gt;
-    &lt;/filter&gt;
-&lt;/appender&gt;
-</code></pre></li>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- DEBUG --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"debugAppender"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 文件路径 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">file</span>&gt;</span>$&#123;log.filePath&#125;/debug.log<span class="tag">&lt;/<span class="name">file</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;rollingPolicy&gt;的作用是当发生滚动时，定义RollingFileAppender的行为，其中上面的TimeBasedRollingPolicy是最常用的滚动策略，它根据时间指定滚动策略，既负责滚动也负责触发滚动 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 文件名称 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>$&#123;log.filePath&#125;/debug/debug.%d&#123;yyyy-MM-dd&#125;.log.gz</span><br><span class="line">        <span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 文件最大保存历史数量 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>$&#123;log.maxHistory&#125;<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 输出格式 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;log.pattern&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 在当前给到的日志级别下再进行一次过滤 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.classic.filter.LevelFilter"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">level</span>&gt;</span>DEBUG<span class="tag">&lt;/<span class="name">level</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">onMatch</span>&gt;</span>ACCEPT<span class="tag">&lt;/<span class="name">onMatch</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">onMismatch</span>&gt;</span>DENY<span class="tag">&lt;/<span class="name">onMismatch</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-</appender></li>
-<li><p><logger>，作为日志的记录器，主要用于存放日志对象，还可以定义日志类型、级别等；其中有<root>标签，也是<logger>元素，是根logger，只有一个level属性；logger有三个属性： </logger></root></logger></p>
-<pre><code>        &lt;logger name=&quot;com.enpong.o2o&quot; level=&quot;${log.level}&quot; additivity=&quot;true&quot;&gt;
-&lt;appender-ref ref=&quot;debugAppender&quot;/&gt;
-&lt;appender-ref ref=&quot;infoAppender&quot;/&gt;
-&lt;appender-ref ref=&quot;errorAppender&quot;/&gt;
-</code></pre><p>   </p>
-   <root level="info"><br>       <appender-ref ref="consoleAppender"><br>   </appender-ref></root>
-
+</li>
+<li><p><code>&lt;logger&gt;</code>，作为日志的记录器，主要用于存放日志对象，还可以定义日志类型、级别等；其中有<code>&lt;root&gt;</code>标签，也是<code>&lt;logger&gt;</code>元素，是根logger，只有一个level属性；logger有三个属性： </p>
+   <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"com.enpong.o2o"</span> <span class="attr">level</span>=<span class="string">"$&#123;log.level&#125;"</span> <span class="attr">additivity</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"debugAppender"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"infoAppender"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"errorAppender"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">logger</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"info"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"consoleAppender"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ol>
 <li>name：用来指定受此logger约束的某一个包或者具体的某一个类 </li>
 <li>level（可选）：用来设置打印级别，五个常用打印级别从低至高依次为TRACE、DEBUG、INFO、WARN、ERROR，如果未设置此级别，那么当前logger会继承上级的级别 </li>
@@ -549,9 +516,7 @@
 </ol>
 </li>
 <li><p>全部配置 </p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-</code></pre>  <configuration scan="true" scanperiod="60 seconds" debug="false"><br>      <!-- 定义参数常量 --><br>      <!-- TRACE<DEBUG<INFO<WARN<ERROR --><br>      <!-- logger.trace("msg") logger.debug... --><br>      <property name="log.level" value="debug"><br>      <property name="log.maxHistory" value="30"><br>      <property name="log.filePath" value="${catalina.base}/logs/webapps"><br>      <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"><br>      <!-- 控制台设置 --><br>      <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender"><br>          <encoder><br>              <pattern>${log.pattern}</pattern><br>          </encoder><br>      </appender><br>      <!-- DEBUG --><br>      <appender name="debugAppender" class="ch.qos.logback.core.rolling.RollingFileAppender"><br>          <!-- 文件路径 --><br>          <file>${log.filePath}/debug.log</file><br>          <!-- <rollingPolicy>的作用是当发生滚动时，定义RollingFileAppender的行为，其中上面的TimeBasedRollingPolicy是最常用的滚动策略，它根据时间指定滚动策略，既负责滚动也负责触发滚动 --><br>          <rollingpolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"><br>              <!-- 文件名称 --><br>              <filenamepattern>${log.filePath}/debug/debug.%d{yyyy-MM-dd}.log.gz<br>              </filenamepattern><br>              <!-- 文件最大保存历史数量 --><br>              <maxhistory>${log.maxHistory}</maxhistory><br>          </rollingpolicy><br>          <encoder><br>              <pattern>${log.pattern}</pattern><br>          </encoder><br>          <filter class="ch.qos.logback.classic.filter.LevelFilter"><br>              <level>DEBUG</level><br>              <onmatch>ACCEPT</onmatch><br>              <onmismatch>DENY</onmismatch><br>          </filter><br>      </appender><br>      <!-- INFO --><br>      <appender name="infoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender"><br>          <!-- 文件路径 --><br>          <file>${log.filePath}/info.log</file><br>          <rollingpolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"><br>              <!-- 文件名称 --><br>              <filenamepattern>${log.filePath}/info/info.%d{yyyy-MM-dd}.log.gz<br>              </filenamepattern><br>              <!-- 文件最大保存历史数量 --><br>              <maxhistory>${log.maxHistory}</maxhistory><br>          </rollingpolicy><br>          <encoder><br>              <pattern>${log.pattern}</pattern><br>          </encoder><br>          <filter class="ch.qos.logback.classic.filter.LevelFilter"><br>              <level>INFO</level><br>              <onmatch>ACCEPT</onmatch><br>              <onmismatch>DENY</onmismatch><br>          </filter><br>      </appender><br>      <!-- ERROR --><br>      <appender name="errorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender"><br>          <!-- 文件路径 --><br>          <file>${log.filePath}/erorr.log</file><br>          <rollingpolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"><br>              <!-- 文件名称 --><br>              <filenamepattern>${log.filePath}/error/error.%d{yyyy-MM-dd}.log.gz<br>              </filenamepattern><br>              <!-- 文件最大保存历史数量 --><br>              <maxhistory>${log.maxHistory}</maxhistory><br>          </rollingpolicy><br>          <encoder><br>              <pattern>${log.pattern}</pattern><br>          </encoder><br>          <filter class="ch.qos.logback.classic.filter.LevelFilter"><br>              <level>ERROR</level><br>              <onmatch>ACCEPT</onmatch><br>              <onmismatch>DENY</onmismatch><br>          </filter><br>      </appender><br>      <logger name="com.enpong.o2o" level="${log.level}" additivity="true"><br>          <appender-ref ref="debugAppender"><br>          <appender-ref ref="infoAppender"><br>          <appender-ref ref="errorAppender"><br>      </appender-ref></appender-ref></appender-ref></logger><br>      <root level="info"><br>          <appender-ref ref="consoleAppender"><br>      </appender-ref></root><br>  </property></property></property></property></configuration>
-
+   <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">scan</span>=<span class="string">"true"</span> <span class="attr">scanPeriod</span>=<span class="string">"60 seconds"</span> <span class="attr">debug</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 定义参数常量 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- TRACE&lt;DEBUG&lt;INFO&lt;WARN&lt;ERROR --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- logger.trace("msg") logger.debug... --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"log.level"</span> <span class="attr">value</span>=<span class="string">"debug"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"log.maxHistory"</span> <span class="attr">value</span>=<span class="string">"30"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"log.filePath"</span> <span class="attr">value</span>=<span class="string">"$&#123;catalina.base&#125;/logs/webapps"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"log.pattern"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">value</span>=<span class="string">"%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n"</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 控制台设置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"consoleAppender"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.ConsoleAppender"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;log.pattern&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- DEBUG --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"debugAppender"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 文件路径 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">file</span>&gt;</span>$&#123;log.filePath&#125;/debug.log<span class="tag">&lt;/<span class="name">file</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;rollingPolicy&gt;的作用是当发生滚动时，定义RollingFileAppender的行为，其中上面的TimeBasedRollingPolicy是最常用的滚动策略，它根据时间指定滚动策略，既负责滚动也负责触发滚动 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 文件名称 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>$&#123;log.filePath&#125;/debug/debug.%d&#123;yyyy-MM-dd&#125;.log.gz</span><br><span class="line">            <span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 文件最大保存历史数量 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>$&#123;log.maxHistory&#125;<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;log.pattern&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.classic.filter.LevelFilter"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">level</span>&gt;</span>DEBUG<span class="tag">&lt;/<span class="name">level</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">onMatch</span>&gt;</span>ACCEPT<span class="tag">&lt;/<span class="name">onMatch</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">onMismatch</span>&gt;</span>DENY<span class="tag">&lt;/<span class="name">onMismatch</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- INFO --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"infoAppender"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 文件路径 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">file</span>&gt;</span>$&#123;log.filePath&#125;/info.log<span class="tag">&lt;/<span class="name">file</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 文件名称 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>$&#123;log.filePath&#125;/info/info.%d&#123;yyyy-MM-dd&#125;.log.gz</span><br><span class="line">            <span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 文件最大保存历史数量 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>$&#123;log.maxHistory&#125;<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;log.pattern&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.classic.filter.LevelFilter"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">level</span>&gt;</span>INFO<span class="tag">&lt;/<span class="name">level</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">onMatch</span>&gt;</span>ACCEPT<span class="tag">&lt;/<span class="name">onMatch</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">onMismatch</span>&gt;</span>DENY<span class="tag">&lt;/<span class="name">onMismatch</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ERROR --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"errorAppender"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 文件路径 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">file</span>&gt;</span>$&#123;log.filePath&#125;/erorr.log<span class="tag">&lt;/<span class="name">file</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 文件名称 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>$&#123;log.filePath&#125;/error/error.%d&#123;yyyy-MM-dd&#125;.log.gz</span><br><span class="line">            <span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 文件最大保存历史数量 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>$&#123;log.maxHistory&#125;<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;log.pattern&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.classic.filter.LevelFilter"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">level</span>&gt;</span>ERROR<span class="tag">&lt;/<span class="name">level</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">onMatch</span>&gt;</span>ACCEPT<span class="tag">&lt;/<span class="name">onMatch</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">onMismatch</span>&gt;</span>DENY<span class="tag">&lt;/<span class="name">onMismatch</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"com.enpong.o2o"</span> <span class="attr">level</span>=<span class="string">"$&#123;log.level&#125;"</span> <span class="attr">additivity</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"debugAppender"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"infoAppender"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"errorAppender"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">logger</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"info"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"consoleAppender"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -583,7 +548,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/log日志/" rel="tag"><i class="fa fa-tag"></i> log日志</a>
+            <a href="/tags/logback/" rel="tag"><i class="fa fa-tag"></i> logback</a>
+          
+            <a href="/tags/配置/" rel="tag"><i class="fa fa-tag"></i> 配置</a>
           
         </div>
       
@@ -701,7 +668,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -712,7 +679,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -814,7 +781,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38k字</span>
+  <span class="post-count">博客全站共39.5k字</span>
 </div>
 
         

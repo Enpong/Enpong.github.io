@@ -1164,7 +1164,7 @@ UTF-16be 编码中，中文字符
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/28/Java并发---互斥同步/" itemprop="url">Java并发---互斥同步</a></h1>
+                <a class="post-title-link" href="/2019/02/28/Java并发---互斥同步/" itemprop="url">Java并发互斥同步</a></h1>
         
 
         <div class="post-meta">
@@ -1200,8 +1200,8 @@ UTF-16be 编码中，中文字符
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/undefined/" itemprop="url" rel="index">
-                    <span itemprop="name">undefined</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -1227,7 +1227,7 @@ UTF-16be 编码中，中文字符
 
           
           
-             <span id="/2019/02/28/Java并发---互斥同步/" class="leancloud_visitors" data-flag-title="Java并发---互斥同步">
+             <span id="/2019/02/28/Java并发---互斥同步/" class="leancloud_visitors" data-flag-title="Java并发互斥同步">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1252,7 +1252,7 @@ UTF-16be 编码中，中文字符
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  400
+                  394
                 </span>
               
 
@@ -1291,9 +1291,10 @@ UTF-16be 编码中，中文字符
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88019011
-Java提供两种锁机制控制多线程对互斥资源的互斥访问，一种是JVM实现的synchronized，一种是JDK实现的RentranLock.
-synchr
+          Java提供两种锁机制控制多线程对互斥资源的互斥访问，一种是JVM实现的synchronized，一种是JDK实现的RentranLock.
+synchronized
+同步一个代码块；只作用于一个对象，如果调用两个不同的对象上的同步代码块，不会进行同步； 
+  123456789public cla
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1890,7 +1891,7 @@ synchr
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  530
+                  551
                 </span>
               
 
@@ -1929,9 +1930,8 @@ synchr
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85082537
-避免使用基本数据类型数组转换为列表 public static &lt;T&gt; List&lt;T&gt; asList(T... a) {
-    
+          避免使用基本数据类型数组转换为列表123public static &lt;T&gt; List&lt;T&gt; asList(T... a) &#123;    return new ArrayList&lt;&gt;(a);&#125;
+asList接收的参数是一个泛型的变长参数，因为基本数据
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2097,7 +2097,7 @@ synchr
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  197
+                  186
                 </span>
               
 
@@ -2136,12 +2136,9 @@ synchr
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85081462
-
-Vector的实现-  与ArrayList的实现类似，但是使用了synchronized进行同步。  ArrayList的实现
-
-
-    publi
+          Vector的实现
+与ArrayList的实现类似，但是使用了synchronized进行同步。  ArrayList的实现
+12345678910111213public synchronized boolean add(E e) &#123;    modCount++;    ensureCa
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2346,11 +2343,7 @@ Vector的实现-  与ArrayList的实现类似，但是使用了synchronized进�
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85080586
-
-ArrayList类的定义，父类及实现的接口： 
-   public class ArrayList extends AbstractList
-impl
+          ArrayList类的定义，父类及实现的接口：123public class ArrayList&lt;E&gt; extends AbstractList&lt;E&gt;    implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2459,7 +2452,7 @@ impl
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2470,7 +2463,7 @@ impl
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2556,7 +2549,7 @@ impl
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38k字</span>
+  <span class="post-count">博客全站共39.5k字</span>
 </div>
 
         

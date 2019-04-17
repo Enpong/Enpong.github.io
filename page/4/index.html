@@ -422,7 +422,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  768
+                  756
                 </span>
               
 
@@ -461,8 +461,13 @@
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85071787
-迭代器模式迭代器模式，提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示，属于行为型模式。把在元素之间游走地责任交给迭代器，而不是
+          迭代器模式迭代器模式，提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示，属于行为型模式。把在元素之间游走地责任交给迭代器，而不是聚合对象，并可以以不同方式来遍历整个聚合对象。  
+
+优点：  
+
+
+支持以不同方式遍历一个聚合对象；  
+将存储数据和遍历数据地职责分离，简化了
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -678,15 +683,14 @@
       
         
           
-          点击原文：  http://www.cnblogs.com/me115/p/4092632.html
-或者点击“阅读更多”
+          点击原文：  http://www.cnblogs.com/me115/p/4092632.html  
 内容目录：
  从一个示例开始 
  类之间的关系 
  时序图 
  附录：《图说设计模式》 
 
-看懂UML类图和时序图这里不会将UML的各种元素都提到，我只想讲讲类图中各个类之间的
+看懂UML类图和时序图这里不会将UML的各种元素都提到，我只想讲讲类图中各个类之间的关系； 能看懂类图
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -800,8 +804,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/undefined/" itemprop="url" rel="index">
-                    <span itemprop="name">undefined</span>
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -852,7 +856,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  397
+                  382
                 </span>
               
 
@@ -891,9 +895,11 @@
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85063760
-概述设计模式是针对某一类问题的最优解决方案，是从许多优秀的软件系统总结出来的。Java中设计模式通常有23种。模式可以分成3大类：创建型、行为型、结构型
+          概述设计模式是针对某一类问题的最优解决方案，是从许多优秀的软件系统总结出来的。Java中设计模式通常有23种。模式可以分成3大类：
 
+创建型、行为型、结构型
+
+创建型模式创建型模式涉及  对象的实例化  ，特点是不让用户代码依赖于对象的创建或排列方式，避免用户直接使用new创建对象创建型模式有以下5
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1059,7 +1065,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  940
+                  985
                 </span>
               
 
@@ -1075,7 +1081,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -1098,8 +1104,8 @@
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85063488
-定义适配器模式的定义：将某个类的接口转换为接口客户所需类型，适配器模式解决的问题是：使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以一起工作
+          定义适配器模式的定义：将某个类的接口转换为接口客户所需类型，适配器模式解决的问题是：使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以一起工作、可以进行同意管理。
+举例实现这里有教师接口ITeacher、程序员接口IProgrammer，分别用于定义他们各自工种的具体工作。然后定义深圳大
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1265,7 +1271,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  685
+                  670
                 </span>
               
 
@@ -1304,9 +1310,11 @@
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85049273
-1.对代理模式的理解
-代理模式的定义：为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以
+          1.对代理模式的理解
+代理模式的定义：为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户类和目标对象之间起到中介作用。 百度百科《代理模式》
+
+
+使用代理对象，是为了在不修改目标对象的基础上，增强主业务逻辑；客户类真正想要访问的
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1472,7 +1480,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  595
+                  596
                 </span>
               
 
@@ -1511,10 +1519,9 @@
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85050397
-原理
+          原理
 不管是静态代理还是jdk动态代理，代理的条件之一就是要求目标类和代理类实现同一业务接口；所以，对于无接口类的代理，我们就不能再用之前的代理方式； 
-
+CGLIB动态代理的生成原理是  生成目标类的子类，而子类是增强过的，即子类就是目标类的代理类  。所以，使用CGLIB动态代理，要求目标类必须能
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1680,7 +1687,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  781
+                  792
                 </span>
               
 
@@ -1719,9 +1726,9 @@
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85050381
-原理
-通过JDK的java.lang.reflect.Proxy类实现动态代理，使用其静态方法newProxyInstance()，依据目标对象，业务接口
+          原理
+通过JDK的java.lang.reflect.Proxy类实现动态代理，使用其静态方法newProxyInstance()，依据目标对象，业务接口和业务逻辑增强三者动态生成代理对象。 
+12345678910111213141516/**- @param   loader the class
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1926,13 +1933,17 @@
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85050367
- 静态代理，代理类是在程序运行之前就定义好的 
+          
+静态代理，代理类是在程序运行之前就定义好的 
 
 定义业务接口，简单的转账业务 
+1234567public interface IAccountService &#123;    //主业务逻辑，转账    void transfer();&#125;
 
-public interface IAccountService {
 
+
+
+
+定义目标类，该类实现业务接口，并实
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2046,8 +2057,8 @@ public interface IAccountService {
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/undefined/" itemprop="url" rel="index">
-                    <span itemprop="name">undefined</span>
+                  <a href="/categories/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
                   </a>
                 </span>
 
@@ -2098,7 +2109,7 @@ public interface IAccountService {
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  63
+                  48
                 </span>
               
 
@@ -2137,10 +2148,10 @@ public interface IAccountService {
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/83504442
-
+          
 远程仓库与本地仓库关联 
-   1.git remote add origin git@github.com:github_username/repos
+   1.git remote add origin git@github.com:github_username/reposity_name.git
+   2.git remote add origin https://github.com:github_usernam
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2254,8 +2265,8 @@ public interface IAccountService {
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/J2EE/" itemprop="url" rel="index">
-                    <span itemprop="name">J2EE</span>
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
                   </a>
                 </span>
 
@@ -2306,7 +2317,7 @@ public interface IAccountService {
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1k
+                  1.7k
                 </span>
               
 
@@ -2322,7 +2333,7 @@ public interface IAccountService {
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  8
                 </span>
               
             </div>
@@ -2345,8 +2356,7 @@ public interface IAccountService {
       
         
           
-          版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/83350714
-
+          
 logback介绍
 使用logback的目的 
 故障定位 
@@ -2355,7 +2365,10 @@ logback介绍
 
 三大模块 
 logback-access 
-与ser
+与servlet容器集成，提供通过http访问日志功能，意思就是第三方软件可以通过这个模块来访问logback记录的日志 
+
+
+logback-class
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2464,7 +2477,7 @@ logback-access
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2475,7 +2488,7 @@ logback-access
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2561,7 +2574,7 @@ logback-access
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38k字</span>
+  <span class="post-count">博客全站共39.5k字</span>
 </div>
 
         

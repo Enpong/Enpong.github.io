@@ -88,34 +88,24 @@
 
 
 
-<meta name="description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85063488 定义适配器模式的定义：将某个类的接口转换为接口客户所需类型，适配器模式解决的问题是：使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以一起工作、可以进行同意管理。 举例实现这里有教师接口ITeacher、程序员接口IProgrammer，分别">
+<meta name="description" content="定义适配器模式的定义：将某个类的接口转换为接口客户所需类型，适配器模式解决的问题是：使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以一起工作、可以进行同意管理。 举例实现这里有教师接口ITeacher、程序员接口IProgrammer，分别用于定义他们各自工种的具体工作。然后定义深圳大学的教师SZUTeacher、腾讯的程序员TcProgrammer。这些不同的工种所作的工作都各自不">
 <meta name="keywords" content="结构型模式,适配器模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="适配器模式">
 <meta property="og:url" content="https://enpong.github.io/2018/12/18/适配器模式/index.html">
 <meta property="og:site_name" content="Enpong">
-<meta property="og:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85063488 定义适配器模式的定义：将某个类的接口转换为接口客户所需类型，适配器模式解决的问题是：使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以一起工作、可以进行同意管理。 举例实现这里有教师接口ITeacher、程序员接口IProgrammer，分别">
+<meta property="og:description" content="定义适配器模式的定义：将某个类的接口转换为接口客户所需类型，适配器模式解决的问题是：使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以一起工作、可以进行同意管理。 举例实现这里有教师接口ITeacher、程序员接口IProgrammer，分别用于定义他们各自工种的具体工作。然后定义深圳大学的教师SZUTeacher、腾讯的程序员TcProgrammer。这些不同的工种所作的工作都各自不">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218122800163.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218124112215.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2018121812502578.png?x-oss-process=im
-age/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4u
-bmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218122800163.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218124112215.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2018121812502578.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20181218131748159.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218132121771.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-04-09T07:58:56.622Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218132121771.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-04-17T20:40:35.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="适配器模式">
-<meta name="twitter:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85063488 定义适配器模式的定义：将某个类的接口转换为接口客户所需类型，适配器模式解决的问题是：使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以一起工作、可以进行同意管理。 举例实现这里有教师接口ITeacher、程序员接口IProgrammer，分别">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181218122800163.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta name="twitter:description" content="定义适配器模式的定义：将某个类的接口转换为接口客户所需类型，适配器模式解决的问题是：使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以一起工作、可以进行同意管理。 举例实现这里有教师接口ITeacher、程序员接口IProgrammer，分别用于定义他们各自工种的具体工作。然后定义深圳大学的教师SZUTeacher、腾讯的程序员TcProgrammer。这些不同的工种所作的工作都各自不">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181218122800163.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
 
 
 
@@ -431,7 +421,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  940
+                  985
                 </span>
               
 
@@ -447,7 +437,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -468,166 +458,67 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
       
 
       
-        <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85063488" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85063488</a></p>
-<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>适配器模式的定义：将某个类的接口转换为接口客户所需类型<br>，适配器模式解决的问题是：使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以一起工作、可以进行同意管理。</p>
+        <h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>适配器模式的定义：将某个类的接口转换为接口客户所需类型，适配器模式解决的问题是：使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以一起工作、可以进行同意管理。</p>
 <h4 id="举例实现"><a href="#举例实现" class="headerlink" title="举例实现"></a>举例实现</h4><p>这里有教师接口ITeacher、程序员接口IProgrammer，分别用于定义他们各自工种的具体工作。然后定义深圳大学的教师SZUTeacher、腾讯的程序<br>员TcProgrammer。这些不同的工种所作的工作都各自不同，无法进行统一管理，协同工作。我们要做的是将这些不同工种的工作内容全部输出。</p>
 <ul>
-<li>ITeacher接口 </li>
+<li><p>ITeacher接口 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ITeacher</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">teach</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<pre><code>public interface ITeacher {
-    void teach();
-}
-</code></pre><ul>
-<li>IProgrammer接口 </li>
-</ul>
-<pre><code>public interface IProgrammer {
-    void code();
-}
-</code></pre><ul>
-<li>SZUTeacher实现类 </li>
-</ul>
-<pre><code>public class SZUTeacher implements ITeacher {
-    @Override
-    public void teach() {
-        System.out.println(&quot;教离散数学！&quot;);;
-    }
-}
-</code></pre><ul>
-<li>TcProgrammer实现类 </li>
-</ul>
-<pre><code>public class TcProgrammer implements IProgrammer {
-    @Override
-    public void code() {
-        System.out.println(&quot;编php程序！&quot;);;
-    }
-}
-</code></pre><h5 id="不使用适配器模式"><a href="#不使用适配器模式" class="headerlink" title="不使用适配器模式"></a>不使用适配器模式</h5><p>不使用适配器模式，调用者需要定义出所有工作的对象，然后逐个对象调用自己的工作方法。<br><img src="https://img-blog.csdnimg.cn/20181218122800163.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<pre><code>public class Test1 {
-    public static void main(String[] args) {
-        ITeacher teacher = new SZUTeacher();
-        IProgrammer programmer = new TcProgrammer();
-        //逐个对象调用自己的工作方法
-        teacher.teach();
-        programmer.code();
-    }
-}
-</code></pre><h5 id="只定义一个适配器实现类"><a href="#只定义一个适配器实现类" class="headerlink" title="只定义一个适配器实现类"></a>只定义一个适配器实现类</h5><p>这种方式类似与多功能充电器，一个电源插头上接着多种类型的充电接口。用户使用充电器充电时，需要使用电器接口与多功能充电器的充电插口逐个对比，接口匹配则可以开始<br>充电。<br><img src="https://img-blog.csdnimg.cn/20181218124112215.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <ul>
-<li>适配器接口 </li>
+<li><p>IProgrammer接口 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IProgrammer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">code</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<pre><code>public interface IWorkerAdapter {
-    //为了兼容所有工种员工，这里的参数必须是Object类型
-    void work(Object worker);
-}
-</code></pre><ul>
-<li>单个适配器实现类 </li>
-</ul>
-<pre><code>public class WorkerAdapter implements IWorkerAdapter {
-    @Override
-    public void work(Object worker) {
-        if(worker instanceof ITeacher){
-            ((ITeacher) worker).teach();
-        }
-        if(worker instanceof IProgrammer){
-            ((IProgrammer) worker).code();
-        }
-
-    }
-}
-</code></pre><ul>
-<li>调用者 </li>
-</ul>
-<pre><code>public class Test2 {
-    public static void main(String[] args) {
-        ITeacher teacher = new SZUTeacher();
-        IProgrammer programmer = new TcProgrammer();
-        Object[] workers = {teacher, programmer};
-        IWorkerAdapter workerAdapter = new WorkerAdapter();
-        for(Object worker:workers){
-            workerAdapter.work(worker);
-        }
-    }
-}
-</code></pre><h5 id="为每一个工种定义一个适配器"><a href="#为每一个工种定义一个适配器" class="headerlink" title="为每一个工种定义一个适配器"></a>为每一个工种定义一个适配器</h5><p>为每一个工种定义一个适配器<br><img src="https://img-blog.csdnimg.cn/2018121812502578.png?x-oss-process=im
-age/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4u
-bmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <ul>
-<li>适配器接口 </li>
+<li><p>SZUTeacher实现类 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SZUTeacher</span> <span class="keyword">implements</span> <span class="title">ITeacher</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">teach</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"教离散数学！"</span>);;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<pre><code>public interface IWorkerAdapter2 {
-    void work(Object worker);
-    //判断当前适配器是否支持指定工种对象
-    boolean supprots(Object worker);
-}
-</code></pre><ul>
-<li>Teacher适配器实现类 </li>
+<ul>
+<li><p>TcProgrammer实现类 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TcProgrammer</span> <span class="keyword">implements</span> <span class="title">IProgrammer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">code</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"编php程序！"</span>);;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<pre><code>public class TeacherAdapter implements IWorkerAdapter2 {
-    @Override
-    public void work(Object worker) {
-        ((ITeacher)worker).teach();
-    }
-
-    @Override
-    public boolean supprots(Object worker) {
-        return (worker instanceof ITeacher);
-    }
-}
-</code></pre><ul>
-<li>Programmer适配器实现类 </li>
+<h5 id="不使用适配器模式"><a href="#不使用适配器模式" class="headerlink" title="不使用适配器模式"></a>不使用适配器模式</h5><p>不使用适配器模式，调用者需要定义出所有工作的对象，然后逐个对象调用自己的工作方法。<br><img src="https://img-blog.csdnimg.cn/20181218122800163.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt></p>
+<p>​<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ITeacher teacher = <span class="keyword">new</span> SZUTeacher();</span><br><span class="line">        IProgrammer programmer = <span class="keyword">new</span> TcProgrammer();</span><br><span class="line">        <span class="comment">//逐个对象调用自己的工作方法</span></span><br><span class="line">        teacher.teach();</span><br><span class="line">        programmer.code();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="只定义一个适配器实现类"><a href="#只定义一个适配器实现类" class="headerlink" title="只定义一个适配器实现类"></a>只定义一个适配器实现类</h5><p>这种方式类似与多功能充电器，一个电源插头上接着多种类型的充电接口。用户使用充电器充电时，需要使用电器接口与多功能充电器的充电插口逐个对比，接口匹配则可以开始<br>充电。<br><img src="https://img-blog.csdnimg.cn/20181218124112215.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt></p>
+<ul>
+<li><p>适配器接口 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IWorkerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//为了兼容所有工种员工，这里的参数必须是Object类型</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">(Object worker)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<pre><code>public class ProgrammerAdapter implements IWorkerAdapter2 {
-    @Override
-    public void work(Object worker) {
-        ((IProgrammer)worker).code();
-    }
-
-    @Override
-    public boolean supprots(Object worker) {
-        return (worker instanceof IProgrammer);
-    }
-}
-</code></pre><ul>
-<li>调用者 </li>
+<ul>
+<li><p>单个适配器实现类 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WorkerAdapter</span> <span class="keyword">implements</span> <span class="title">IWorkerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(worker <span class="keyword">instanceof</span> ITeacher)&#123;</span><br><span class="line"></span><br><span class="line">            ((ITeacher) worker).teach();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(worker <span class="keyword">instanceof</span> IProgrammer)&#123;</span><br><span class="line"></span><br><span class="line">            ((IProgrammer) worker).code();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用者 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ITeacher teacher = <span class="keyword">new</span> SZUTeacher();</span><br><span class="line"></span><br><span class="line">        IProgrammer programmer = <span class="keyword">new</span> TcProgrammer();</span><br><span class="line"></span><br><span class="line">        Object[] workers = &#123;teacher, programmer&#125;;</span><br><span class="line"></span><br><span class="line">        IWorkerAdapter workerAdapter = <span class="keyword">new</span> WorkerAdapter();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(Object worker:workers)&#123;</span><br><span class="line"></span><br><span class="line">            workerAdapter.work(worker);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<pre><code>public class Test3 {
-    public static void main(String[] args) {
-        ITeacher teacher = new SZUTeacher();
-        IProgrammer programmer = new TcProgrammer();
-        Object[] workers = {teacher, programmer};
-        for(Object worker:workers){
-            IWorkerAdapter2 adapter = getAdapter(worker);
-            adapter.work(worker);
-        }
-    }
-
-    private static IWorkerAdapter2 getAdapter(Object worker) {
-        IWorkerAdapter2 teacherAdapter = new TeacherAdapter();
-        IWorkerAdapter2 programmerAdapter = new ProgrammerAdapter();
-        //获取所有工种适配器
-        IWorkerAdapter2[] allAdapter = {teacherAdapter, programmerAdapter};
-
-        //遍历每一个适配器，尝试哪一个适配器是对应工种
-        for(IWorkerAdapter2 adapter:allAdapter){
-            if(adapter.supprots(worker)){
-                return  adapter;
-            }
-        }
-        return null;
-    }
-}
-</code></pre><h5 id="补充：缺省适配器模式"><a href="#补充：缺省适配器模式" class="headerlink" title="补充：缺省适配器模式"></a>补充：缺省适配器模式</h5><ul>
+<h5 id="为每一个工种定义一个适配器"><a href="#为每一个工种定义一个适配器" class="headerlink" title="为每一个工种定义一个适配器"></a>为每一个工种定义一个适配器</h5><p>为每一个工种定义一个适配器<br><img src="https://img-blog.csdnimg.cn/2018121812502578.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt></p>
+<ul>
+<li><p>适配器接口 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IWorkerAdapter2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">(Object worker)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断当前适配器是否支持指定工种对象</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">supprots</span><span class="params">(Object worker)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>Teacher适配器实现类 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TeacherAdapter</span> <span class="keyword">implements</span> <span class="title">IWorkerAdapter2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ((ITeacher)worker).teach();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supprots</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (worker <span class="keyword">instanceof</span> ITeacher);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Programmer适配器实现类 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProgrammerAdapter</span> <span class="keyword">implements</span> <span class="title">IWorkerAdapter2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ((IProgrammer)worker).code();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supprots</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (worker <span class="keyword">instanceof</span> IProgrammer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用者 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test3</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ITeacher teacher = <span class="keyword">new</span> SZUTeacher();</span><br><span class="line"></span><br><span class="line">        IProgrammer programmer = <span class="keyword">new</span> TcProgrammer();</span><br><span class="line"></span><br><span class="line">        Object[] workers = &#123;teacher, programmer&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(Object worker:workers)&#123;</span><br><span class="line"></span><br><span class="line">            IWorkerAdapter2 adapter = getAdapter(worker);</span><br><span class="line"></span><br><span class="line">            adapter.work(worker);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> IWorkerAdapter2 <span class="title">getAdapter</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line">        IWorkerAdapter2 teacherAdapter = <span class="keyword">new</span> TeacherAdapter();</span><br><span class="line">        IWorkerAdapter2 programmerAdapter = <span class="keyword">new</span> ProgrammerAdapter();</span><br><span class="line">        <span class="comment">//获取所有工种适配器</span></span><br><span class="line">        IWorkerAdapter2[] allAdapter = &#123;teacherAdapter, programmerAdapter&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//遍历每一个适配器，尝试哪一个适配器是对应工种</span></span><br><span class="line">        <span class="keyword">for</span>(IWorkerAdapter2 adapter:allAdapter)&#123;</span><br><span class="line">            <span class="keyword">if</span>(adapter.supprots(worker))&#123;</span><br><span class="line">                <span class="keyword">return</span>  adapter;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="补充：缺省适配器模式"><a href="#补充：缺省适配器模式" class="headerlink" title="补充：缺省适配器模式"></a>补充：缺省适配器模式</h5><ul>
 <li>缺省适配器模式是由适配器模式简化而来，省略了适配器模式中目标接口，也就是源接口和目标接口相同，原接口为接口，目标接口为类 </li>
 <li>典型的缺省适配器模式是JavaEE规范中的Servlet接口与GenericServlet抽象类 </li>
 <li><p>Servlet接口中包含五个抽象方法，而其中的service()方法才是用于实现业务逻辑的、必须要实现的方法，另外四个方法一般都是空实现，或简单实现<br><img src="https://img-blog.csdnimg.cn/20181218131748159.png" alt="在这里插入图片描述"></p>
 </li>
-<li><p>GenericServlet抽象类实现了Servlet接口的service()方法以外的另外四个方法，所以自定义的Servlet只需要继承GenericServlet抽象类，实现service()方法即可，无需再实现Servlet接口。<br><img src="https://img-blog.csdnimg.cn/20181218132121771.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<li><p>GenericServlet抽象类实现了Servlet接口的service()方法以外的另外四个方法，所以自定义的Servlet只需要继承GenericServlet抽象类，实现service()方法即可，无需再实现Servlet接口。<br><img src="https://img-blog.csdnimg.cn/20181218132121771.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt></p>
 </li>
 </ul>
 
@@ -777,7 +668,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -788,7 +679,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -890,7 +781,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38k字</span>
+  <span class="post-count">博客全站共39.5k字</span>
 </div>
 
         

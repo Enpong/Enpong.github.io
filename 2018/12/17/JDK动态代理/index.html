@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="设计模式,结构型模式,代理模式,动态代理,">
+  <meta name="keywords" content="结构型模式,代理模式,动态代理,">
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85050381 原理 通过JDK的java.lang.reflect.Proxy类实现动态代理，使用其静态方法newProxyInstance()，依据目标对象，业务接口和业务逻辑增强三者动态生成代理对象。   /**  * @param   loader the cl">
-<meta name="keywords" content="设计模式,结构型模式,代理模式,动态代理">
+<meta name="description" content="原理 通过JDK的java.lang.reflect.Proxy类实现动态代理，使用其静态方法newProxyInstance()，依据目标对象，业务接口和业务逻辑增强三者动态生成代理对象。  12345678910111213141516/**- @param   loader the class loader to define the proxy class  - 目标类的类加载器，通过目标">
+<meta name="keywords" content="结构型模式,代理模式,动态代理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JDK动态代理">
 <meta property="og:url" content="https://enpong.github.io/2018/12/17/JDK动态代理/index.html">
 <meta property="og:site_name" content="Enpong">
-<meta property="og:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85050381 原理 通过JDK的java.lang.reflect.Proxy类实现动态代理，使用其静态方法newProxyInstance()，依据目标对象，业务接口和业务逻辑增强三者动态生成代理对象。   /**  * @param   loader the cl">
+<meta property="og:description" content="原理 通过JDK的java.lang.reflect.Proxy类实现动态代理，使用其静态方法newProxyInstance()，依据目标对象，业务接口和业务逻辑增强三者动态生成代理对象。  12345678910111213141516/**- @param   loader the class loader to define the proxy class  - 目标类的类加载器，通过目标">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-09T07:58:55.241Z">
+<meta property="og:updated_time" content="2019-04-17T20:32:54.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JDK动态代理">
-<meta name="twitter:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85050381 原理 通过JDK的java.lang.reflect.Proxy类实现动态代理，使用其静态方法newProxyInstance()，依据目标对象，业务接口和业务逻辑增强三者动态生成代理对象。   /**  * @param   loader the cl">
+<meta name="twitter:description" content="原理 通过JDK的java.lang.reflect.Proxy类实现动态代理，使用其静态方法newProxyInstance()，依据目标对象，业务接口和业务逻辑增强三者动态生成代理对象。  12345678910111213141516/**- @param   loader the class loader to define the proxy class  - 目标类的类加载器，通过目标">
 
 
 
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  781
+                  792
                 </span>
               
 
@@ -452,106 +452,39 @@
       
 
       
-        <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85050381" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85050381</a></p>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><ul>
-<li>通过JDK的java.lang.reflect.Proxy类实现动态代理，使用其静态方法newProxyInstance()，依据目标对象，业务接口和业务逻辑增强三者动态生成代理对象。 </li>
+        <h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><ul>
+<li><p>通过JDK的java.lang.reflect.Proxy类实现动态代理，使用其静态方法newProxyInstance()，依据目标对象，业务接口和业务逻辑增强三者动态生成代理对象。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">- <span class="doctag">@param</span>   loader the class loader to define the proxy class</span></span><br><span class="line"><span class="comment">  - 目标类的类加载器，通过目标对象的发射可获取</span></span><br><span class="line"><span class="comment">- <span class="doctag">@param</span>   interfaces the list of interfaces for the proxy class</span></span><br><span class="line"><span class="comment">- to implement</span></span><br><span class="line"><span class="comment">  - 目标类实现的接口数组，通过反射可获取</span></span><br><span class="line"><span class="comment">- <span class="doctag">@param</span>   h the invocation handler to dispatch method invocations to</span></span><br><span class="line"><span class="comment">  - 业务增强逻辑，需要再定义</span></span><br><span class="line"><span class="comment">- <span class="doctag">@return</span>  a proxy instance with the specified invocation handler of a</span></span><br><span class="line"><span class="comment">- proxy class that is defined by the specified class loader</span></span><br><span class="line"><span class="comment">- and that implements the specified interfaces</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">newProxyInstance</span><span class="params">(ClassLoader loader,</span></span></span><br><span class="line"><span class="function"><span class="params">                                       Class&lt;?&gt;[] interfaces,</span></span></span><br><span class="line"><span class="function"><span class="params">                                       InvocationHandler h)</span></span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<pre><code>/**
- * @param   loader the class loader to define the proxy class
- *             目标类的类加载器，通过目标对象的发射可获取
- * @param   interfaces the list of interfaces for the proxy class
- *           to implement
- *             目标类实现的接口数组，通过反射可获取
- * @param   h the invocation handler to dispatch method invocations to
- *             业务增强逻辑，需要再定义
- * @return  a proxy instance with the specified invocation handler of a
- *          proxy class that is defined by the specified class loader
- *          and that implements the specified interfaces
-  */
-public static Object newProxyInstance(ClassLoader loader,
-                                          Class&lt;?&gt;[] interfaces,
-                                          InvocationHandler h)
-</code></pre><ul>
-<li>InvocationHandler是个接口，实现该接口的类用于增强目标类的主业务逻辑。接口中定义了一个invoke()方法，具体加强的代码逻辑定义在该方法中。程序在调用主业务逻辑时自动调用invoke()方法。 </li>
+<ul>
+<li><p>InvocationHandler是个接口，实现该接口的类用于增强目标类的主业务逻辑。接口中定义了一个invoke()方法，具体加强的代码逻辑定义在该方法中。程序在调用主业务逻辑时自动调用invoke()方法。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>   proxy the proxy instance that the method was invoked on</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     *			生成的代理对象</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>   method the &#123;<span class="doctag">@code</span> Method&#125; instance corresponding to</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * the interface method invoked on the proxy instance.  The declaring</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * class of the &#123;<span class="doctag">@code</span> Method&#125; object will be the interface that</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * the method was declared in, which may be a superinterface of the</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * proxy interface that the proxy class inherits the method through.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     *			目标方法</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>   args an array of objects containing the values of the</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * arguments passed in the method invocation on the proxy instance,</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * or &#123;<span class="doctag">@code</span> null&#125; if interface method takes no arguments.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * Arguments of primitive types are wrapped in instances of the</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * appropriate primitive wrapper class, such as</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     * &#123;<span class="doctag">@code</span> java.lang.Integer&#125; or &#123;<span class="doctag">@code</span> java.lang.Boolean&#125;.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     *			目标方法的参数</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> Throwable</span>;</span><br></pre></td></tr></table></figure>
+<p>由于该方法是由代理对象自动调用，所以三个参数不需程序员给出；  </p>
+<p>第二个参数Method类对象，该类中也有一个方法invoke()，可以  调用目标类的目标方法  ，该方法的具体作用是：调用执行obj对象所属类的方法。</p>
+</li>
 </ul>
-<pre><code>/**
-     * @param   proxy the proxy instance that the method was invoked on
-     *            生成的代理对象
-     * @param   method the {@code Method} instance corresponding to
-     * the interface method invoked on the proxy instance.  The declaring
-     * class of the {@code Method} object will be the interface that
-     * the method was declared in, which may be a superinterface of the
-     * proxy interface that the proxy class inherits the method through.
-     *            目标方法
-     * @param   args an array of objects containing the values of the
-     * arguments passed in the method invocation on the proxy instance,
-     * or {@code null} if interface method takes no arguments.
-     * Arguments of primitive types are wrapped in instances of the
-     * appropriate primitive wrapper class, such as
-     * {@code java.lang.Integer} or {@code java.lang.Boolean}.
-     *            目标方法的参数
-     */
-    public Object invoke(Object proxy, Method method, Object[] args)
-        throws Throwable;
-</code></pre><p>由于该方法是由代理对象自动调用，所以三个参数不需程序员给出；<br>第二个参数Method类对象，该类中也有一个方法invoke()，可以  调用目标类的目标方法  ，该方法的具体作用是：调用执行obj对象所属类的方法。</p>
 <h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ol>
-<li>定义业务接口，简单的转账业务 </li>
+<li><p>定义业务接口，简单的转账业务 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IAccountService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//主业务逻辑，转账</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">transfer</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<pre><code>public interface IAccountService {
-    //主业务逻辑，转账
-    void transfer();
-}
-</code></pre><ol start="2">
-<li>定义目标类，该类实现业务接口，并实现接口定义的目标方法（只实现主业务逻辑转账） </li>
+<ol start="2">
+<li><p>定义目标类，该类实现业务接口，并实现接口定义的目标方法（只实现主业务逻辑转账） </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceImpl</span> <span class="keyword">implements</span> <span class="title">IAccountService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//目标方法</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transfer</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"完成转账功能"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<pre><code>public class AccountServiceImpl implements IAccountService {
-    //目标方法
-    @Override
-    public void transfer() {
-        System.out.println(&quot;完成转账功能&quot;);
-    }
-}
-</code></pre><ol start="3">
-<li>定义主业务增强逻辑类，该类需实现InvokeHandler接口，在invoke()方法中增加增强业务的代码 </li>
+<ol start="3">
+<li><p>定义主业务增强逻辑类，该类需实现InvokeHandler接口，在invoke()方法中增加增强业务的代码 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyExtension</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//目标对象</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Object target;</span><br><span class="line">    <span class="comment">//将目标对象引入，以便在invoke()中调用目标对象的目标方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyExtension</span><span class="params">(Object target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.target = target;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyExtension</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">//增强业务逻辑的代码</span></span><br><span class="line">        System.out.println(<span class="string">"对转账人身份进行了验证！"</span>);</span><br><span class="line">        <span class="comment">//无论主业务方法有无参数，有无返回值，下面的写法均可兼顾到</span></span><br><span class="line">        <span class="keyword">return</span> method.invoke(target, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<pre><code>public class MyExtension implements InvocationHandler {
-    //目标对象
-    private Object target;
+<ol start="4">
+<li><p>定义客户类 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//定义目标对象</span></span><br><span class="line"></span><br><span class="line">        IAccountService target = <span class="keyword">new</span> AccountServiceImpl();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建代理对象，并使用目标对象对其初始化</span></span><br><span class="line"></span><br><span class="line">        IAccountService proxy = (IAccountService) Proxy.newProxyInstance(</span><br><span class="line"></span><br><span class="line">               target.getClass().getClassLoader(),</span><br><span class="line"></span><br><span class="line">               target.getClass().getInterfaces(),</span><br><span class="line"></span><br><span class="line">               <span class="keyword">new</span> MyExtension(target) </span><br><span class="line"></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">//执行增强业务之后的方法</span></span><br><span class="line"></span><br><span class="line">        proxy.transfer();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 
-    //将目标对象引入，以便在invoke()中调用目标对象的目标方法
-    public MyExtension(Object target) {
-        this.target = target;
-    }
-
-    public MyExtension() {
-    }
-
-    @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        //增强业务逻辑的代码
-        System.out.println(&quot;对转账人身份进行了验证！&quot;);
-        //无论主业务方法有无参数，有无返回值，下面的写法均可兼顾到
-        return method.invoke(target, args);
-    }
-}
-</code></pre><ol start="4">
-<li>定义客户类 </li>
-</ol>
-<pre><code>public class Client {
-    public static void main(String[] args) {
-        //定义目标对象
-        IAccountService target = new AccountServiceImpl();
-        //创建代理对象，并使用目标对象对其初始化
-        IAccountService proxy = (IAccountService) Proxy.newProxyInstance(
-               target.getClass().getClassLoader(),
-               target.getClass().getInterfaces(),
-               new MyExtension(target) 
-        );
-        //执行增强业务之后的方法
-        proxy.transfer();
-    }
-}
-</code></pre>
       
     </div>
     
@@ -577,8 +510,6 @@ public static Object newProxyInstance(ClassLoader loader,
     <footer class="post-footer">
       
         <div class="post-tags">
-          
-            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
           
             <a href="/tags/结构型模式/" rel="tag"><i class="fa fa-tag"></i> 结构型模式</a>
           
@@ -702,7 +633,7 @@ public static Object newProxyInstance(ClassLoader loader,
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -713,7 +644,7 @@ public static Object newProxyInstance(ClassLoader loader,
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -815,7 +746,7 @@ public static Object newProxyInstance(ClassLoader loader,
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38k字</span>
+  <span class="post-count">博客全站共39.5k字</span>
 </div>
 
         

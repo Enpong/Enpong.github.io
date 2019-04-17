@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="设计模式,结构型模式,代理模式,">
+  <meta name="keywords" content="结构型模式,代理模式,">
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85049273 1.对代理模式的理解 代理模式的定义：为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户类和目标对象之间起到中介作用。 百度百科《代理模式》   使用代理对象，是为了在不修改目标对象">
-<meta name="keywords" content="设计模式,结构型模式,代理模式">
+<meta name="description" content="1.对代理模式的理解 代理模式的定义：为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户类和目标对象之间起到中介作用。 百度百科《代理模式》   使用代理对象，是为了在不修改目标对象的基础上，增强主业务逻辑；客户类真正想要访问的是目标对象，但客户类真正可以访问的对象是代理对象。客户类对目标对象的访问是通过访问代理对象来实现的。">
+<meta name="keywords" content="结构型模式,代理模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代理模式">
 <meta property="og:url" content="https://enpong.github.io/2018/12/17/代理模式/index.html">
 <meta property="og:site_name" content="Enpong">
-<meta property="og:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85049273 1.对代理模式的理解 代理模式的定义：为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户类和目标对象之间起到中介作用。 百度百科《代理模式》   使用代理对象，是为了在不修改目标对象">
+<meta property="og:description" content="1.对代理模式的理解 代理模式的定义：为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户类和目标对象之间起到中介作用。 百度百科《代理模式》   使用代理对象，是为了在不修改目标对象的基础上，增强主业务逻辑；客户类真正想要访问的是目标对象，但客户类真正可以访问的对象是代理对象。客户类对目标对象的访问是通过访问代理对象来实现的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-09T07:58:54.002Z">
+<meta property="og:updated_time" content="2019-04-17T20:30:01.943Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代理模式">
-<meta name="twitter:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85049273 1.对代理模式的理解 代理模式的定义：为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户类和目标对象之间起到中介作用。 百度百科《代理模式》   使用代理对象，是为了在不修改目标对象">
+<meta name="twitter:description" content="1.对代理模式的理解 代理模式的定义：为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户类和目标对象之间起到中介作用。 百度百科《代理模式》   使用代理对象，是为了在不修改目标对象的基础上，增强主业务逻辑；客户类真正想要访问的是目标对象，但客户类真正可以访问的对象是代理对象。客户类对目标对象的访问是通过访问代理对象来实现的。">
 
 
 
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  685
+                  670
                 </span>
               
 
@@ -452,8 +452,7 @@
       
 
       
-        <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85049273" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85049273</a></p>
-<h3 id="1-对代理模式的理解"><a href="#1-对代理模式的理解" class="headerlink" title="1.对代理模式的理解"></a>1.对代理模式的理解</h3><blockquote>
+        <h3 id="1-对代理模式的理解"><a href="#1-对代理模式的理解" class="headerlink" title="1.对代理模式的理解"></a>1.对代理模式的理解</h3><blockquote>
 <p>代理模式的定义：为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户类和目标对象之<br>间起到中介作用。 百度百科《代理模式》</p>
 </blockquote>
 <ul>
@@ -466,8 +465,8 @@
 </li>
 </ul>
 <h3 id="2-代理模式分类"><a href="#2-代理模式分类" class="headerlink" title="2.代理模式分类"></a>2.代理模式分类</h3><p>根据代理关系建立的时间不同，可以将代理分为两类：静态代理和动态代理；如同法律顾问和代理律师。</p>
-<h4 id="静态代理："><a href="#静态代理：" class="headerlink" title="静态代理："></a>静态代理：</h4><p>静态代理，代理类是在程序运行之前就定义好的；类似于企业与企业的法律顾问，法律顾问是在企业打官司之前就已经存在的。<br><a href="https://blog.csdn.net/qq_40005950/article/details/85050367" target="_blank" rel="noopener"> 静态代理 </a></p>
-<h4 id="动态代理："><a href="#动态代理：" class="headerlink" title="动态代理："></a>动态代理：</h4><p>动态代理，程序在整个运行过程中根本不存在目标类的代理类，目标对象的代理对象是在程序运行时由jvm根据反射等机制由代理生成工具（如代理工厂类）动态生成的；类似<br>于当事人需要打官司时临时聘请代理律师。<br>常用的动态代理：<br><a href="https://blog.csdn.net/qq_40005950/article/details/85050381" target="_blank" rel="noopener"> JDK动态代理 </a><br><a href="https://blog.csdn.net/qq_40005950/article/details/85050397" target="_blank" rel="noopener"> CGLIB动态代理 </a></p>
+<h4 id="静态代理："><a href="#静态代理：" class="headerlink" title="静态代理："></a>静态代理：</h4><p>静态代理，代理类是在程序运行之前就定义好的；类似于企业与企业的法律顾问，法律顾问是在企业打官司之前就已经存在的。<br><a href="https://enpong.github.io/2018/12/17/%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86/"> 静态代理 </a></p>
+<h4 id="动态代理："><a href="#动态代理：" class="headerlink" title="动态代理："></a>动态代理：</h4><p>动态代理，程序在整个运行过程中根本不存在目标类的代理类，目标对象的代理对象是在程序运行时由jvm根据反射等机制由代理生成工具（如代理工厂类）动态生成的；类似<br>于当事人需要打官司时临时聘请代理律师。<br>常用的动态代理：<br><a href="https://enpong.github.io/2018/12/17/JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/"> JDK动态代理 </a><br><a href="https://enpong.github.io/2018/12/17/CGLIB%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/"> CGLIB动态代理 </a></p>
 
       
     </div>
@@ -494,8 +493,6 @@
     <footer class="post-footer">
       
         <div class="post-tags">
-          
-            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
           
             <a href="/tags/结构型模式/" rel="tag"><i class="fa fa-tag"></i> 结构型模式</a>
           
@@ -617,7 +614,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -628,7 +625,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -730,7 +727,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38k字</span>
+  <span class="post-count">博客全站共39.5k字</span>
 </div>
 
         

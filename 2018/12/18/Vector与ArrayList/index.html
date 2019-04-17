@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="java,ArrayList,容器,Vector,">
+  <meta name="keywords" content="java容器,ArrayList,Vector,">
 
 
 
@@ -88,24 +88,20 @@
 
 
 
-<meta name="description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85081462  Vector的实现-  与ArrayList的实现类似，但是使用了synchronized进行同步。  ArrayList的实现       public synchronized boolean add(E e) {     modCount++;">
-<meta name="keywords" content="java,ArrayList,容器,Vector">
+<meta name="description" content="Vector的实现 与ArrayList的实现类似，但是使用了synchronized进行同步。  ArrayList的实现 12345678910111213public synchronized boolean add(E e) &amp;#123;    modCount++;    ensureCapacityHelper(elementCount + 1);    elementData[ele">
+<meta name="keywords" content="java容器,ArrayList,Vector">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vector与ArrayList">
 <meta property="og:url" content="https://enpong.github.io/2018/12/18/Vector与ArrayList/index.html">
 <meta property="og:site_name" content="Enpong">
-<meta property="og:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85081462  Vector的实现-  与ArrayList的实现类似，但是使用了synchronized进行同步。  ArrayList的实现       public synchronized boolean add(E e) {     modCount++;">
+<meta property="og:description" content="Vector的实现 与ArrayList的实现类似，但是使用了synchronized进行同步。  ArrayList的实现 12345678910111213public synchronized boolean add(E e) &amp;#123;    modCount++;    ensureCapacityHelper(elementCount + 1);    elementData[ele">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218215423298.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-04-09T07:59:00.890Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218215423298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-04-17T21:12:42.147Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vector与ArrayList">
-<meta name="twitter:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85081462  Vector的实现-  与ArrayList的实现类似，但是使用了synchronized进行同步。  ArrayList的实现       public synchronized boolean add(E e) {     modCount++;">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181218215423298.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta name="twitter:description" content="Vector的实现 与ArrayList的实现类似，但是使用了synchronized进行同步。  ArrayList的实现 12345678910111213public synchronized boolean add(E e) &amp;#123;    modCount++;    ensureCapacityHelper(elementCount + 1);    elementData[ele">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181218215423298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
 
 
 
@@ -421,7 +417,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  197
+                  186
                 </span>
               
 
@@ -458,41 +454,30 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
       
 
       
-        <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85081462" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85081462</a></p>
-<ol>
-<li>Vector的实现<br>-  与ArrayList的实现类似，但是使用了synchronized进行同步。 <a href="https://blog.csdn.net/qq_40005950/article/details/85080586" target="_blank" rel="noopener"> ArrayList的实现
-</a></li>
-</ol>
-<pre><code>    public synchronized boolean add(E e) {
-    modCount++;
-    ensureCapacityHelper(elementCount + 1);
-    elementData[elementCount++] = e;
-    return true;
-}
-
-public synchronized E get(int index) {
-    if (index &gt;= elementCount)
-        throw new ArrayIndexOutOfBoundsException(index);
-
-    return elementData(index);
-}
-</code></pre><ol start="2">
+        <h5 id="Vector的实现"><a href="#Vector的实现" class="headerlink" title="Vector的实现"></a>Vector的实现</h5><ul>
+<li><p>与ArrayList的实现类似，但是使用了synchronized进行同步。 <a href="https://enpong.github.io/2018/12/18/ArrayList%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"> ArrayList的实现</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">    modCount++;</span><br><span class="line">    ensureCapacityHelper(elementCount + <span class="number">1</span>);</span><br><span class="line">    elementData[elementCount++] = e;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (index &gt;= elementCount)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException(index);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> elementData(index);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
 <li><p>与ArrayList的比较 </p>
 <ul>
 <li>Vector是同步的，因此开销就比ArrayList要大，访问速度更慢。最好使用ArrayList，因为同步操作完全可以由程序员自己控制。 </li>
-<li>Vector每次扩容请求其大小的2倍空间，而ArrayList是1.5倍。<br><img src="https://img-blog.csdnimg.cn/20181218215423298.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>Vector每次扩容请求其大小的2倍空间，而ArrayList是1.5倍。<br><img src="https://img-blog.csdnimg.cn/20181218215423298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
 </ul>
 </li>
-<li><p>替代方案<br>-  可以使用 Collections.synchronizedList()；得到一i个线程安全的ArrayList</p>
+<li><p>替代方案   </p>
+<ul>
+<li><p>可以使用 Collections.synchronizedList()；得到一i个线程安全的ArrayList</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">List&lt;String&gt; synList = Collections.synchronizedList(list);</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<pre><code>    List&lt;String&gt; list = new ArrayList&lt;&gt;();
-List&lt;String&gt; synList = Collections.synchronizedList(list);
-</code></pre><p>-  也可以使用concurrent并发包下的CopyOnWriteArrayList类</p>
-<pre><code>List&lt;String&gt; list = new CopyOnWriteArrayList&lt;&gt;();
-</code></pre>
+<li><p>也可以使用concurrent并发包下的CopyOnWriteArrayList类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> CopyOnWriteArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
     
@@ -519,11 +504,9 @@ List&lt;String&gt; synList = Collections.synchronizedList(list);
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+            <a href="/tags/java容器/" rel="tag"><i class="fa fa-tag"></i> java容器</a>
           
             <a href="/tags/ArrayList/" rel="tag"><i class="fa fa-tag"></i> ArrayList</a>
-          
-            <a href="/tags/容器/" rel="tag"><i class="fa fa-tag"></i> 容器</a>
           
             <a href="/tags/Vector/" rel="tag"><i class="fa fa-tag"></i> Vector</a>
           
@@ -605,8 +588,17 @@ List&lt;String&gt; synList = Collections.synchronizedList(list);
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -634,7 +626,7 @@ List&lt;String&gt; synList = Collections.synchronizedList(list);
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -645,7 +637,7 @@ List&lt;String&gt; synList = Collections.synchronizedList(list);
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -692,6 +684,22 @@ List&lt;String&gt; synList = Collections.synchronizedList(list);
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Vector的实现"><span class="nav-number">1.</span> <span class="nav-text">Vector的实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -731,7 +739,7 @@ List&lt;String&gt; synList = Collections.synchronizedList(list);
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38k字</span>
+  <span class="post-count">博客全站共39.5k字</span>
 </div>
 
         

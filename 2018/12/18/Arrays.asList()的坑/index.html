@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="java,ArrayList,Arrays,asList,">
+  <meta name="keywords" content="java容器,ArrayList,">
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85082537 避免使用基本数据类型数组转换为列表 public static &amp;lt;T&amp;gt; List&amp;lt;T&amp;gt; asList(T... a) {         return new ArrayList&amp;lt;&amp;gt;(a); } asList接收的参数">
-<meta name="keywords" content="java,ArrayList,Arrays,asList">
+<meta name="description" content="避免使用基本数据类型数组转换为列表123public static &amp;lt;T&amp;gt; List&amp;lt;T&amp;gt; asList(T... a) &amp;#123;    return new ArrayList&amp;lt;&amp;gt;(a);&amp;#125; asList接收的参数是一个泛型的变长参数，因为基本数据类型是无法泛型化的，也就是说8个基本类型无法作为asList的参数，要想作为泛型参数必须使用对应的包">
+<meta name="keywords" content="java容器,ArrayList">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Arrays.asList()的坑">
 <meta property="og:url" content="https://enpong.github.io/2018/12/18/Arrays.asList()的坑/index.html">
 <meta property="og:site_name" content="Enpong">
-<meta property="og:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85082537 避免使用基本数据类型数组转换为列表 public static &amp;lt;T&amp;gt; List&amp;lt;T&amp;gt; asList(T... a) {         return new ArrayList&amp;lt;&amp;gt;(a); } asList接收的参数">
+<meta property="og:description" content="避免使用基本数据类型数组转换为列表123public static &amp;lt;T&amp;gt; List&amp;lt;T&amp;gt; asList(T... a) &amp;#123;    return new ArrayList&amp;lt;&amp;gt;(a);&amp;#125; asList接收的参数是一个泛型的变长参数，因为基本数据类型是无法泛型化的，也就是说8个基本类型无法作为asList的参数，要想作为泛型参数必须使用对应的包">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-09T07:59:01.606Z">
+<meta property="og:updated_time" content="2019-04-17T21:18:17.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arrays.asList()的坑">
-<meta name="twitter:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85082537 避免使用基本数据类型数组转换为列表 public static &amp;lt;T&amp;gt; List&amp;lt;T&amp;gt; asList(T... a) {         return new ArrayList&amp;lt;&amp;gt;(a); } asList接收的参数">
+<meta name="twitter:description" content="避免使用基本数据类型数组转换为列表123public static &amp;lt;T&amp;gt; List&amp;lt;T&amp;gt; asList(T... a) &amp;#123;    return new ArrayList&amp;lt;&amp;gt;(a);&amp;#125; asList接收的参数是一个泛型的变长参数，因为基本数据类型是无法泛型化的，也就是说8个基本类型无法作为asList的参数，要想作为泛型参数必须使用对应的包">
 
 
 
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  530
+                  551
                 </span>
               
 
@@ -452,110 +452,13 @@
       
 
       
-        <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85082537" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85082537</a></p>
-<h4 id="避免使用基本数据类型数组转换为列表"><a href="#避免使用基本数据类型数组转换为列表" class="headerlink" title="避免使用基本数据类型数组转换为列表"></a>避免使用基本数据类型数组转换为列表</h4><pre><code> public static &lt;T&gt; List&lt;T&gt; asList(T... a) {
-        return new ArrayList&lt;&gt;(a);
-}
-</code></pre><p>asList接收的参数是一个泛型的变长参数，因为基本数据类型是无法泛型化的，也就是说8个基本类型无法作为asList的参数，要想作为泛型参数必须使用对应的包<br>装类型</p>
+        <h4 id="避免使用基本数据类型数组转换为列表"><a href="#避免使用基本数据类型数组转换为列表" class="headerlink" title="避免使用基本数据类型数组转换为列表"></a>避免使用基本数据类型数组转换为列表</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">asList</span><span class="params">(T... a)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>asList接收的参数是一个泛型的变长参数，因为基本数据类型是无法泛型化的，也就是说8个基本类型无法作为asList的参数，要想作为泛型参数必须使用对应的包<br>装类型</p>
 <h4 id="asList产生的列表不可操作"><a href="#asList产生的列表不可操作" class="headerlink" title="asList产生的列表不可操作"></a>asList产生的列表不可操作</h4><p>对asList产生的列表不可操作，如add,remove等操作，否则会抛出UnsupportedOperationException<br>异常（表示list不支持该操作）</p>
-<pre><code> public static &lt;T&gt; List&lt;T&gt; asList(T... a) {
-    return new ArrayList&lt;&gt;(a);
-}
-</code></pre><p>注意：这里asList返回的ArrayList其实不是java.util.ArrayList，而是Arrays的一个内部类，该内部类提供了size、toAr<br>ray、get、set、indexOf、contains 方法，而像 add、remove 等改变 list 结果的方法从 AbstractList<br>父类继承过来，而且AbstractList 父类的add,remove等方法会直接抛出UnsupportedOperationException异常。</p>
-<pre><code>private static class ArrayList&lt;E&gt; extends AbstractList&lt;E&gt;
-    implements RandomAccess, java.io.Serializable
-{
-    private static final long serialVersionUID = -2764017481108945198L;
-    private final E[] a;
-
-    ArrayList(E[] array) {
-        a = Objects.requireNonNull(array);
-    }
-
-    @Override
-    public int size() {
-        return a.length;
-    }
-
-    @Override
-    public Object[] toArray() {
-        return a.clone();
-    }
-
-    @Override
-    @SuppressWarnings(&quot;unchecked&quot;)
-    public &lt;T&gt; T[] toArray(T[] a) {
-        int size = size();
-        if (a.length &lt; size)
-            return Arrays.copyOf(this.a, size,
-                                 (Class&lt;? extends T[]&gt;) a.getClass());
-        System.arraycopy(this.a, 0, a, 0, size);
-        if (a.length &gt; size)
-            a[size] = null;
-        return a;
-    }
-
-    @Override
-    public E get(int index) {
-        return a[index];
-    }
-
-    @Override
-    public E set(int index, E element) {
-        E oldValue = a[index];
-        a[index] = element;
-        return oldValue;
-    }
-
-    @Override
-    public int indexOf(Object o) {
-        E[] a = this.a;
-        if (o == null) {
-            for (int i = 0; i &lt; a.length; i++)
-                if (a[i] == null)
-                    return i;
-        } else {
-            for (int i = 0; i &lt; a.length; i++)
-                if (o.equals(a[i]))
-                    return i;
-        }
-        return -1;
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        return indexOf(o) != -1;
-    }
-
-    @Override
-    public Spliterator&lt;E&gt; spliterator() {
-        return Spliterators.spliterator(a, Spliterator.ORDERED);
-    }
-
-    @Override
-    public void forEach(Consumer&lt;? super E&gt; action) {
-        Objects.requireNonNull(action);
-        for (E e : a) {
-            action.accept(e);
-        }
-    }
-
-    @Override
-    public void replaceAll(UnaryOperator&lt;E&gt; operator) {
-        Objects.requireNonNull(operator);
-        E[] a = this.a;
-        for (int i = 0; i &lt; a.length; i++) {
-            a[i] = operator.apply(a[i]);
-        }
-    }
-
-    @Override
-    public void sort(Comparator&lt;? super E&gt; c) {
-        Arrays.sort(a, c);
-    }
-}
-</code></pre><p>参考文章： <a href="http://wiki.jikexueyuan.com/project/java-enhancement/java-
-thirtysix.html" target="_blank" rel="noopener"> http://wiki.jikexueyuan.com/project/java-enhancement/java-<br>thirtysix.html </a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">asList</span><span class="params">(T... a)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意： 这里asList返回的ArrayList其实不是java.util.ArrayList，而是Arrays的一个内部类，该内部类提供了size、toArray、get、set、indexOf、contains 方法，而像 add、remove 等改变 list 结果的方法从 AbstractList<br>父类继承过来，而且AbstractList 父类的add,remove等方法会直接抛出UnsupportedOperationException异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">        <span class="keyword">implements</span> <span class="title">RandomAccess</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">2764017481108945198L</span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> E[] a;</span><br><span class="line"></span><br><span class="line">        ArrayList(E[] array) &#123;</span><br><span class="line">            a = Objects.requireNonNull(array);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> a.length;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Object[] toArray() &#123;</span><br><span class="line">            <span class="keyword">return</span> a.clone();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">        <span class="keyword">public</span> &lt;T&gt; T[] toArray(T[] a) &#123;</span><br><span class="line">            <span class="keyword">int</span> size = size();</span><br><span class="line">            <span class="keyword">if</span> (a.length &lt; size)</span><br><span class="line">                <span class="keyword">return</span> Arrays.copyOf(<span class="keyword">this</span>.a, size,</span><br><span class="line">                                     (Class&lt;? extends T[]&gt;) a.getClass());</span><br><span class="line">            System.arraycopy(<span class="keyword">this</span>.a, <span class="number">0</span>, a, <span class="number">0</span>, size);</span><br><span class="line">            <span class="keyword">if</span> (a.length &gt; size)</span><br><span class="line">                a[size] = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">return</span> a;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> a[index];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">            E oldValue = a[index];</span><br><span class="line">            a[index] = element;</span><br><span class="line">            <span class="keyword">return</span> oldValue;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">            E[] a = <span class="keyword">this</span>.a;</span><br><span class="line">            <span class="keyword">if</span> (o == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++)</span><br><span class="line">                    <span class="keyword">if</span> (a[i] == <span class="keyword">null</span>)</span><br><span class="line">                        <span class="keyword">return</span> i;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++)</span><br><span class="line">                    <span class="keyword">if</span> (o.equals(a[i]))</span><br><span class="line">                        <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> indexOf(o) != -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Spliterator&lt;E&gt; <span class="title">spliterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> Spliterators.spliterator(a, Spliterator.ORDERED);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> E&gt; action)</span> </span>&#123;</span><br><span class="line">            Objects.requireNonNull(action);</span><br><span class="line">            <span class="keyword">for</span> (E e : a) &#123;</span><br><span class="line">                action.accept(e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">replaceAll</span><span class="params">(UnaryOperator&lt;E&gt; operator)</span> </span>&#123;</span><br><span class="line">            Objects.requireNonNull(operator);</span><br><span class="line">            E[] a = <span class="keyword">this</span>.a;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">                a[i] = operator.apply(a[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparator&lt;? <span class="keyword">super</span> E&gt; c)</span> </span>&#123;</span><br><span class="line">            Arrays.sort(a, c);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>参考文章： <a href="http://wiki.jikexueyuan.com/project/java-enhancement/java-thirtysix.html" target="_blank" rel="noopener"> http://wiki.jikexueyuan.com/project/java-enhancement/java-thirtysix.html </a></p>
 
       
     </div>
@@ -583,13 +486,9 @@ thirtysix.html" target="_blank" rel="noopener"> http://wiki.jikexueyuan.com/proj
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+            <a href="/tags/java容器/" rel="tag"><i class="fa fa-tag"></i> java容器</a>
           
             <a href="/tags/ArrayList/" rel="tag"><i class="fa fa-tag"></i> ArrayList</a>
-          
-            <a href="/tags/Arrays/" rel="tag"><i class="fa fa-tag"></i> Arrays</a>
-          
-            <a href="/tags/asList/" rel="tag"><i class="fa fa-tag"></i> asList</a>
           
         </div>
       
@@ -707,7 +606,7 @@ thirtysix.html" target="_blank" rel="noopener"> http://wiki.jikexueyuan.com/proj
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -718,7 +617,7 @@ thirtysix.html" target="_blank" rel="noopener"> http://wiki.jikexueyuan.com/proj
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -820,7 +719,7 @@ thirtysix.html" target="_blank" rel="noopener"> http://wiki.jikexueyuan.com/proj
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38k字</span>
+  <span class="post-count">博客全站共39.5k字</span>
 </div>
 
         

@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="undefined,">
+  <meta name="keywords" content="并发,同步，锁,">
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88019011 Java提供两种锁机制控制多线程对互斥资源的互斥访问，一种是JVM实现的synchronized，一种是JDK实现的RentranLock. synchronized 同步一个代码块；只作用于一个对象，如果调用两个不同的对象上的同步代码块，不会进行同步；">
-<meta name="keywords" content="undefined">
+<meta name="description" content="Java提供两种锁机制控制多线程对互斥资源的互斥访问，一种是JVM实现的synchronized，一种是JDK实现的RentranLock. synchronized 同步一个代码块；只作用于一个对象，如果调用两个不同的对象上的同步代码块，不会进行同步；    123456789public class SynchronizedExample &amp;#123;    public void func1">
+<meta name="keywords" content="并发,同步，锁">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java并发---互斥同步">
+<meta property="og:title" content="Java并发互斥同步">
 <meta property="og:url" content="https://enpong.github.io/2019/02/28/Java并发---互斥同步/index.html">
 <meta property="og:site_name" content="Enpong">
-<meta property="og:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88019011 Java提供两种锁机制控制多线程对互斥资源的互斥访问，一种是JVM实现的synchronized，一种是JDK实现的RentranLock. synchronized 同步一个代码块；只作用于一个对象，如果调用两个不同的对象上的同步代码块，不会进行同步；">
+<meta property="og:description" content="Java提供两种锁机制控制多线程对互斥资源的互斥访问，一种是JVM实现的synchronized，一种是JDK实现的RentranLock. synchronized 同步一个代码块；只作用于一个对象，如果调用两个不同的对象上的同步代码块，不会进行同步；    123456789public class SynchronizedExample &amp;#123;    public void func1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-09T07:59:13.753Z">
+<meta property="og:updated_time" content="2019-04-17T21:24:21.813Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java并发---互斥同步">
-<meta name="twitter:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88019011 Java提供两种锁机制控制多线程对互斥资源的互斥访问，一种是JVM实现的synchronized，一种是JDK实现的RentranLock. synchronized 同步一个代码块；只作用于一个对象，如果调用两个不同的对象上的同步代码块，不会进行同步；">
+<meta name="twitter:title" content="Java并发互斥同步">
+<meta name="twitter:description" content="Java提供两种锁机制控制多线程对互斥资源的互斥访问，一种是JVM实现的synchronized，一种是JDK实现的RentranLock. synchronized 同步一个代码块；只作用于一个对象，如果调用两个不同的对象上的同步代码块，不会进行同步；    123456789public class SynchronizedExample &amp;#123;    public void func1">
 
 
 
@@ -135,7 +135,7 @@
 
 
 
-  <title>Java并发---互斥同步 | Enpong</title>
+  <title>Java并发互斥同步 | Enpong</title>
   
 
 
@@ -322,7 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java并发---互斥同步</h1>
+          <h1 class="post-title" itemprop="name headline">Java并发互斥同步</h1>
         
 
         <div class="post-meta">
@@ -358,8 +358,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/undefined/" itemprop="url" rel="index">
-                    <span itemprop="name">undefined</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -385,7 +385,7 @@
 
           
           
-             <span id="/2019/02/28/Java并发---互斥同步/" class="leancloud_visitors" data-flag-title="Java并发---互斥同步">
+             <span id="/2019/02/28/Java并发---互斥同步/" class="leancloud_visitors" data-flag-title="Java并发互斥同步">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  400
+                  394
                 </span>
               
 
@@ -452,53 +452,30 @@
       
 
       
-        <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88019011" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88019011</a></p>
-<p>Java提供两种锁机制控制多线程对互斥资源的互斥访问，一种是JVM实现的synchronized，一种是JDK实现的RentranLock.</p>
+        <p>Java提供两种锁机制控制多线程对互斥资源的互斥访问，一种是JVM实现的<code>synchronized</code>，一种是JDK实现的<code>RentranLock</code>.</p>
 <h3 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h3><ul>
 <li><p>同步一个代码块；只作用于一个对象，如果调用两个不同的对象上的同步代码块，不会进行同步； </p>
-<pre><code>public class SynchronizedExample {
-
-public void func1() {
-    synchronized (this) {
-        for (int i = 0; i &lt; 10; i++) {
-            System.out.print(i + &quot; &quot;);
-        }
-    }
-}
-</code></pre><p>}</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SynchronizedExample</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">                System.out.print(i + <span class="string">" "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <ul>
 <li><p>同步一个方法；和同步代码块一样，只作用于相同对象； </p>
-<pre><code>public synchronized void func () {
-// ...
-</code></pre><p>}</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<ul>
 <li><p>同步一个类；作用于整个类，即两个线程调用同一类的不同对象上的同步语句，也会进行同步； </p>
-<pre><code>public void func() {
-synchronized (SynchronizedExample.class) {
-    // ...
-}
-</code></pre><p>}</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (SynchronizedExample.class) &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<ul>
 <li><p>同步一个静态方法；作用于整个类 </p>
-<pre><code>public synchronized static void fun() {
-// ...
-</code></pre><p>}</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="RentranLock"><a href="#RentranLock" class="headerlink" title="RentranLock"></a>RentranLock</h3><p>RentranLock是java.util.concurrent(J.U.C)包中的锁；<br><a href="https://blog.csdn.net/lipeng_bigdata/article/details/52154637" target="_blank" rel="noopener"> Java并发之ReentrantLock详解
-</a></p>
+<h3 id="RentranLock"><a href="#RentranLock" class="headerlink" title="RentranLock"></a>RentranLock</h3><p><code>RentranLock</code>是<code>java.util.concurrent(J.U.C)</code>包中的锁；<br><a href="https://blog.csdn.net/lipeng_bigdata/article/details/52154637" target="_blank" rel="noopener"> Java并发之ReentrantLock详解</a></p>
 <h3 id="两者的异同"><a href="#两者的异同" class="headerlink" title="两者的异同"></a>两者的异同</h3><ul>
-<li>锁的实现；synchronized是JVM实现，RentranLock是JDK实现 </li>
-<li>性能：由于新版本Java对synchronized进行了很多 <a href="https://blog.csdn.net/qq_40005950/article/details/88019202" target="_blank" rel="noopener"> 优化 </a> ，例如自旋锁等，两者性能大致相同 </li>
-<li>等待可中断；当一个线程长期不释放锁时，其他在等待的线程可以放弃等待去处理其他事情；RentranLock可中断，而synchronized不行 </li>
-<li>公平锁；即当多个线程在等待同一锁时，必须按照申请锁的时间顺序获得锁；synchronized中的锁是非公平的；RentranLock默认的锁也是不公平的，但是也可以是公平的 </li>
-<li>绑定条件；一个RentranLock可以绑定多个Condition对象。 <a href="https://blog.csdn.net/sunyameng_ndsc/article/details/40923679" target="_blank" rel="noopener"> 在一个锁中使用多个条件（Condition) </a></li>
+<li>锁的实现；<code>synchronized</code>是JVM实现，<code>RentranLock</code>是JDK实现 </li>
+<li>性能：由于新版本Java对<code>synchronized</code>进行了很多 <a href="https://blog.csdn.net/qq_40005950/article/details/88019202" target="_blank" rel="noopener"> 优化 </a> ，例如自旋锁等，两者性能大致相同 </li>
+<li>等待可中断；当一个线程长期不释放锁时，其他在等待的线程可以放弃等待去处理其他事情；<code>RentranLock</code>可中断，而synchronized`不行 </li>
+<li>公平锁；即当多个线程在等待同一锁时，必须按照申请锁的时间顺序获得锁；<code>synchronized</code>中的锁是非公平的；<code>RentranLock</code>默认的锁也是不公平的，但是也可以是公平的 </li>
+<li>绑定条件；一个<code>RentranLock</code>可以绑定多个<code>Condition</code>对象。 <a href="https://blog.csdn.net/sunyameng_ndsc/article/details/40923679" target="_blank" rel="noopener"> 在一个锁中使用多个条件（Condition) </a></li>
 </ul>
 
       
@@ -527,7 +504,9 @@ synchronized (SynchronizedExample.class) {
       
         <div class="post-tags">
           
-            <a href="/tags/undefined/" rel="tag"><i class="fa fa-tag"></i> undefined</a>
+            <a href="/tags/并发/" rel="tag"><i class="fa fa-tag"></i> 并发</a>
+          
+            <a href="/tags/同步，锁/" rel="tag"><i class="fa fa-tag"></i> 同步，锁</a>
           
         </div>
       
@@ -645,7 +624,7 @@ synchronized (SynchronizedExample.class) {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -656,7 +635,7 @@ synchronized (SynchronizedExample.class) {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -758,7 +737,7 @@ synchronized (SynchronizedExample.class) {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38k字</span>
+  <span class="post-count">博客全站共39.5k字</span>
 </div>
 
         

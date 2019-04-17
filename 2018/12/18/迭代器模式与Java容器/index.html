@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="设计模式,行为型模式,迭代器模式,Java容器,">
+  <meta name="keywords" content="行为型模式,迭代器模式,Java容器,">
 
 
 
@@ -88,27 +88,21 @@
 
 
 
-<meta name="description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85071787 迭代器模式迭代器模式，提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示，属于行为型模式。把在元素之间游走地责任交给迭代器，而不是聚合对象，并可以以不同方式来遍历整个聚合对象。 优点： 1.支持以不同方式遍历一个聚合对象；2.将存">
-<meta name="keywords" content="设计模式,行为型模式,迭代器模式,Java容器">
+<meta name="description" content="迭代器模式迭代器模式，提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示，属于行为型模式。把在元素之间游走地责任交给迭代器，而不是聚合对象，并可以以不同方式来遍历整个聚合对象。    优点：     支持以不同方式遍历一个聚合对象；   将存储数据和遍历数据地职责分离，简化了聚合类；   在同一聚合上可以拥有多个遍历。     缺点：    将存储数据和遍历数据地职责分离，">
+<meta name="keywords" content="行为型模式,迭代器模式,Java容器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="迭代器模式与Java容器">
 <meta property="og:url" content="https://enpong.github.io/2018/12/18/迭代器模式与Java容器/index.html">
 <meta property="og:site_name" content="Enpong">
-<meta property="og:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85071787 迭代器模式迭代器模式，提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示，属于行为型模式。把在元素之间游走地责任交给迭代器，而不是聚合对象，并可以以不同方式来遍历整个聚合对象。 优点： 1.支持以不同方式遍历一个聚合对象；2.将存">
+<meta property="og:description" content="迭代器模式迭代器模式，提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示，属于行为型模式。把在元素之间游走地责任交给迭代器，而不是聚合对象，并可以以不同方式来遍历整个聚合对象。    优点：     支持以不同方式遍历一个聚合对象；   将存储数据和遍历数据地职责分离，简化了聚合类；   在同一聚合上可以拥有多个遍历。     缺点：    将存储数据和遍历数据地职责分离，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218172006417.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218173647480.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-04-09T07:58:58.456Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218172006417.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218173647480.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-04-17T20:48:03.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="迭代器模式与Java容器">
-<meta name="twitter:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85071787 迭代器模式迭代器模式，提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示，属于行为型模式。把在元素之间游走地责任交给迭代器，而不是聚合对象，并可以以不同方式来遍历整个聚合对象。 优点： 1.支持以不同方式遍历一个聚合对象；2.将存">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181218172006417.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta name="twitter:description" content="迭代器模式迭代器模式，提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示，属于行为型模式。把在元素之间游走地责任交给迭代器，而不是聚合对象，并可以以不同方式来遍历整个聚合对象。    优点：     支持以不同方式遍历一个聚合对象；   将存储数据和遍历数据地职责分离，简化了聚合类；   在同一聚合上可以拥有多个遍历。     缺点：    将存储数据和遍历数据地职责分离，">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181218172006417.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
 
 
 
@@ -435,7 +429,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  768
+                  756
                 </span>
               
 
@@ -472,73 +466,67 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
       
 
       
-        <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85071787" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85071787</a></p>
-<h4 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h4><p>迭代器模式，提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示，属于行为型模式。<br>把在元素之间游走地责任交给迭代器，而不是聚合对象，并可以以不同方式来遍历整个聚合对象。<br><strong> 优点： </strong><br>1.支持以不同方式遍历一个聚合对象；<br>2.将存储数据和遍历数据地职责分离，简化了聚合类；<br>3.在同一聚合上可以拥有多个遍历。<br><strong> 缺点： </strong><br>1.将存储数据和遍历数据地职责分离，增加新地聚合类时，需要增加对应的迭代器，类的个数成对增加，在一定程度上提高了系统的复杂性。</p>
-<h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h5><p><strong> 思路： </strong></p>
-<p>1.创建一个叙述导航方法的Iterator接口和一个返回迭代器的Container接口；实现了Container接口的实体类负责实现Iterator接口;<br>2.IteratorPatternDemo，我们的演示类使用实体类 NamesRepository 来打印 NamesRepository 中存储为集合的<br>Names。<br><img src="https://img-blog.csdnimg.cn/20181218172006417.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">  </p>
-<p>1.Iterator接口;</p>
-<pre><code>public interface Iterator {
-   public boolean hasNext();
-   public Object next();
-}
-</code></pre><p>2.Container接口</p>
-<pre><code>public interface Container {
-   public Iterator getIterator();
-}
-</code></pre><p>3.创建实现了 Container 接口的实体类。该类有实现了 Iterator 接口的内部类 NameIterator</p>
-<pre><code>public class NameRepository implements Container {
-   public String names[] = {&quot;Robert&quot; , &quot;John&quot; ,&quot;Julie&quot; , &quot;Lora&quot;};
-
-   @Override
-   public Iterator getIterator() {
-      return new NameIterator();
-   }
-
-   private class NameIterator implements Iterator {
-
-      int index;
-
-      @Override
-      public boolean hasNext() {
-         if(index &lt; names.length){
-            return true;
-         }
-         return false;
-      }
-
-      @Override
-      public Object next() {
-         if(this.hasNext()){
-            return names[index++];
-         }
-         return null;
-      }     
-   }
-}
-</code></pre><p>4.使用 NameRepository 来获取迭代器，并打印名字</p>
-<pre><code>public class IteratorPatternDemo {
-
-   public static void main(String[] args) {
-      NameRepository namesRepository = new NameRepository();
-
-      for(Iterator iter = namesRepository.getIterator(); iter.hasNext();){
-         String name = (String)iter.next();
-         System.out.println(&quot;Name : &quot; + name);
-      }  
-   }
-}
-</code></pre><p>5.执行程序，输出结果：</p>
+        <h4 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h4><p>迭代器模式，提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示，属于行为型模式。<br>把在元素之间游走地责任交给迭代器，而不是聚合对象，并可以以不同方式来遍历整个聚合对象。  </p>
+<ul>
+<li>优点：  </li>
+</ul>
+<ol>
+<li>支持以不同方式遍历一个聚合对象；  </li>
+<li>将存储数据和遍历数据地职责分离，简化了聚合类；  </li>
+<li>在同一聚合上可以拥有多个遍历。  </li>
+</ol>
+<ul>
+<li>缺点： </li>
+</ul>
+<ol>
+<li>将存储数据和遍历数据地职责分离，增加新地聚合类时，需要增加对应的迭代器，类的个数成对增加，在一定程度上提高了系统的复杂性。</li>
+</ol>
+<h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h5><ul>
+<li>思路：</li>
+</ul>
+<ol>
+<li>创建一个叙述导航方法的Iterator接口和一个返回迭代器的Container接口；实现了Container接口的实体类负责实现Iterator接口;  </li>
+<li>IteratorPatternDemo，我们的演示类使用实体类 NamesRepository 来打印 NamesRepository 中存储为集合的Names。  </li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20181218172006417.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">  </p>
+<p>Iterator接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Container接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Container</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Iterator <span class="title">getIterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建实现了 Container 接口的实体类。该类有实现了 Iterator 接口的内部类 NameIterator</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NameRepository</span> <span class="keyword">implements</span> <span class="title">Container</span> </span>&#123;</span><br><span class="line">   <span class="keyword">public</span> String names[] = &#123;<span class="string">"Robert"</span> , <span class="string">"John"</span> ,<span class="string">"Julie"</span> , <span class="string">"Lora"</span>&#125;;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Iterator <span class="title">getIterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> NameIterator();</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">NameIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">int</span> index;</span><br><span class="line"> </span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(index &lt; names.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line"> </span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(<span class="keyword">this</span>.hasNext())&#123;</span><br><span class="line">            <span class="keyword">return</span> names[index++];</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;     </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 NameRepository 来获取迭代器，并打印名字 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IteratorPatternDemo</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      NameRepository namesRepository = <span class="keyword">new</span> NameRepository();</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">for</span>(Iterator iter = namesRepository.getIterator(); iter.hasNext();)&#123;</span><br><span class="line">         String name = (String)iter.next();</span><br><span class="line">         System.out.println(<span class="string">"Name : "</span> + name);</span><br><span class="line">      &#125;  </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行程序，输出结果：</p>
 <pre><code>Name : Robert
 Name : John
 Name : Julie
 Name : Lora
-</code></pre><h4 id="java容器中的迭代器模式"><a href="#java容器中的迭代器模式" class="headerlink" title="java容器中的迭代器模式"></a>java容器中的迭代器模式</h4><p><img src="https://img-blog.csdnimg.cn/20181218173647480.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>其中ListIterator和Iterable接口中定义了获取迭代器的方法iterator()；<br>Collection接口继承了Iterable接口，其中的 iterator() 方法能够产生一个 Iterator 对象，通过这个对象就可以迭代遍历<br>Collection 中的元素；</p>
-<p>关于ListIterator和Iterator的异同点：<br>一．相同点<br>都是迭代器，当需要对集合中元素进行遍历不需要干涉其遍历过程时，这两种迭代器都可以使用。<br>二．不同点<br>1.使用范围不同，Iterator可以应用于所有的集合，Set、List和Map和这些集合的子类型。而ListIterator只能 用于List及其子类型。<br>2.ListIterator有add方法，可以向List中添加对象，而Iterator不能。<br>3.ListIterator和Iterator都有hasNext()和next()方法，可以实现顺序向后遍历，但是ListIterator有hasPrevi<br>ous()和previous()方法，可以实现逆向（顺序向前）遍历。Iterator不可以。<br>4.ListIterator可以定位当前索引的位置，nextIndex()和previousIndex()可以实现。Iterator没有此功能。<br>5.都可实现删除操作，但是ListIterator可以实现对象的修改，set()方法可以实现。Iterator仅能遍历，不能修改。<br>详细可去： <a href="https://www.cnblogs.com/a842297171/p/5379130.html" target="_blank" rel="noopener"> https://www.cnblogs.com/a842297171/p/5379130.html
-</a></p>
+</code></pre><h4 id="java容器中的迭代器模式"><a href="#java容器中的迭代器模式" class="headerlink" title="java容器中的迭代器模式"></a>java容器中的迭代器模式</h4><p><img src="https://img-blog.csdnimg.cn/20181218173647480.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">  </p>
+<ul>
+<li><p>其中ListIterator和Iterable接口中定义了获取迭代器的方法iterator()；  </p>
+</li>
+<li><p>Collection接口继承了Iterable接口，其中的 iterator() 方法能够产生一个 Iterator 对象，通过这个对象就可以迭代遍历Collection 中的元素；</p>
+</li>
+<li><p>关于ListIterator和Iterator的异同点：  </p>
+<p>一．相同点  </p>
+<ol>
+<li>都是迭代器，当需要对集合中元素进行遍历不需要干涉其遍历过程时，这两种迭代器都可以使用。  1</li>
+</ol>
+<p>二．不同点  </p>
+<ol>
+<li>使用范围不同，Iterator可以应用于所有的集合，Set、List和Map和这些集合的子类型。而ListIterator只能 用于List及其子类型。  </li>
+<li>ListIterator有add方法，可以向List中添加对象，而Iterator不能。  </li>
+<li>ListIterator和Iterator都有hasNext()和next()方法，可以实现顺序向后遍历，但是ListIterator有hasPrevi</li>
+</ol>
+<p>ous()和previous()方法，可以实现逆向（顺序向前）遍历。Iterator不可以。  </p>
+<ol start="4">
+<li>ListIterator可以定位当前索引的位置，nextIndex()和previousIndex()可以实现。Iterator没有此功能。  </li>
+<li>都可实现删除操作，但是ListIterator可以实现对象的修改，set()方法可以实现。Iterator仅能遍历，不能修改。  </li>
+</ol>
+<p>详细可去： <a href="https://www.cnblogs.com/a842297171/p/5379130.html" target="_blank" rel="noopener"> https://www.cnblogs.com/a842297171/p/5379130.html</a></p>
+</li>
+</ul>
 
       
     </div>
@@ -565,8 +553,6 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
     <footer class="post-footer">
       
         <div class="post-tags">
-          
-            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
           
             <a href="/tags/行为型模式/" rel="tag"><i class="fa fa-tag"></i> 行为型模式</a>
           
@@ -690,7 +676,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -701,7 +687,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -803,7 +789,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38k字</span>
+  <span class="post-count">博客全站共39.5k字</span>
 </div>
 
         

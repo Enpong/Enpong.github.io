@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="设计模式,结构型模式,代理模式,静态代理,">
+  <meta name="keywords" content="结构型模式,代理模式,静态代理,">
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85050367  静态代理，代理类是在程序运行之前就定义好的   定义业务接口，简单的转账业务   public interface IAccountService {     //主业务逻辑，转账     void transfer(); }  定义目标类，该类实现业">
-<meta name="keywords" content="设计模式,结构型模式,代理模式,静态代理">
+<meta name="description" content="静态代理，代理类是在程序运行之前就定义好的   定义业务接口，简单的转账业务  1234567public interface IAccountService &amp;#123;    //主业务逻辑，转账    void transfer();&amp;#125;      定义目标类，该类实现业务接口，并实现接口定义的目标方法（只实现主业务逻辑转账）  12345678910111213public cl">
+<meta name="keywords" content="结构型模式,代理模式,静态代理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="静态代理">
 <meta property="og:url" content="https://enpong.github.io/2018/12/17/静态代理/index.html">
 <meta property="og:site_name" content="Enpong">
-<meta property="og:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85050367  静态代理，代理类是在程序运行之前就定义好的   定义业务接口，简单的转账业务   public interface IAccountService {     //主业务逻辑，转账     void transfer(); }  定义目标类，该类实现业">
+<meta property="og:description" content="静态代理，代理类是在程序运行之前就定义好的   定义业务接口，简单的转账业务  1234567public interface IAccountService &amp;#123;    //主业务逻辑，转账    void transfer();&amp;#125;      定义目标类，该类实现业务接口，并实现接口定义的目标方法（只实现主业务逻辑转账）  12345678910111213public cl">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-09T07:58:54.591Z">
+<meta property="og:updated_time" content="2019-04-17T20:26:16.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="静态代理">
-<meta name="twitter:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/85050367  静态代理，代理类是在程序运行之前就定义好的   定义业务接口，简单的转账业务   public interface IAccountService {     //主业务逻辑，转账     void transfer(); }  定义目标类，该类实现业">
+<meta name="twitter:description" content="静态代理，代理类是在程序运行之前就定义好的   定义业务接口，简单的转账业务  1234567public interface IAccountService &amp;#123;    //主业务逻辑，转账    void transfer();&amp;#125;      定义目标类，该类实现业务接口，并实现接口定义的目标方法（只实现主业务逻辑转账）  12345678910111213public cl">
 
 
 
@@ -452,63 +452,31 @@
       
 
       
-        <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/85050367" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/85050367</a></p>
-<p><strong> 静态代理，代理类是在程序运行之前就定义好的 </strong></p>
+        <ul>
+<li><p>静态代理，代理类是在程序运行之前就定义好的 </p>
 <ol>
-<li>定义业务接口，简单的转账业务 </li>
+<li><p>定义业务接口，简单的转账业务 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IAccountService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//主业务逻辑，转账</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">transfer</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<pre><code>public interface IAccountService {
-    //主业务逻辑，转账
-    void transfer();
-}
-</code></pre><ol start="2">
-<li>定义目标类，该类实现业务接口，并实现接口定义的目标方法（只实现主业务逻辑转账） </li>
+</li>
+</ul>
+<ol start="2">
+<li><p>定义目标类，该类实现业务接口，并实现接口定义的目标方法（只实现主业务逻辑转账） </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceImpl</span> <span class="keyword">implements</span> <span class="title">IAccountService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//目标方法</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transfer</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"完成转账功能"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<pre><code>public class AccountServiceImpl implements IAccountService {
-    //目标方法
-    @Override
-    public void transfer() {
-        System.out.println(&quot;完成转账功能&quot;);
-    }
-}
-</code></pre><ol start="3">
-<li>定义代理类，该类实现业务接口。并且将接口对象作为一个成员变量，还要定义一个带参数（接口对象）的构造器，因为要将目标对象引入代理类，以便代理类调用目标类的目标方法 </li>
+<ol start="3">
+<li><p>定义代理类，该类实现业务接口。并且将接口对象作为一个成员变量，还要定义一个带参数（接口对象）的构造器，因为要将目标对象引入代理类，以便代理类调用目标类的目标方法 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountProxy</span> <span class="keyword">implements</span> <span class="title">IAccountService</span> </span>&#123;</span><br><span class="line">    <span class="comment">//声明业务接口对象</span></span><br><span class="line">    <span class="keyword">private</span> IAccountService target;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AccountProxy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 业务接口对象作为构造器参数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AccountProxy</span><span class="params">(IAccountService target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.target = target;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 代理方法，实现对目标方法的功能增强</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transfer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//对目标方法的增强</span></span><br><span class="line">        System.out.println(<span class="string">"对转账人身份进行了验证！！"</span>);</span><br><span class="line">        target.transfer();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<pre><code>public class AccountProxy implements IAccountService {
-    //声明业务接口对象
-    private IAccountService target;
+<ol start="4">
+<li><p>定义客户类实现使用代理类转账。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">           <span class="comment">//创建目标对象</span></span><br><span class="line">           IAccountService target = <span class="keyword">new</span> AccountServiceImpl();</span><br><span class="line">           <span class="comment">//创建代理对象</span></span><br><span class="line">           IAccountService proxy = <span class="keyword">new</span> AccountProxy(target);</span><br><span class="line">           <span class="comment">//执行增强过的业务</span></span><br><span class="line">           proxy.transfer();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 
-    public AccountProxy() {
-    }
-    // 业务接口对象作为构造器参数
-    public AccountProxy(IAccountService target) {
-        this.target = target;
-    }
-
-    /**
-     * 代理方法，实现对目标方法的功能增强
-     */
-    @Override
-    public void transfer() {
-        //对目标方法的增强
-        System.out.println(&quot;对转账人身份进行了验证！！&quot;);
-        target.transfer();
-    }
-}
-</code></pre><ol start="4">
-<li>定义客户类实现使用代理类转账。 </li>
-</ol>
-<pre><code>public class Client {
-    public static void main(String[] args) {
-        //创建目标对象
-        IAccountService target = new AccountServiceImpl();
-        //创建代理对象
-        IAccountService proxy = new AccountProxy(target);
-        //执行增强过的业务
-        proxy.transfer();
-    }
-}
-</code></pre>
       
     </div>
     
@@ -534,8 +502,6 @@
     <footer class="post-footer">
       
         <div class="post-tags">
-          
-            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
           
             <a href="/tags/结构型模式/" rel="tag"><i class="fa fa-tag"></i> 结构型模式</a>
           
@@ -650,7 +616,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -661,7 +627,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -747,7 +713,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38k字</span>
+  <span class="post-count">博客全站共39.5k字</span>
 </div>
 
         

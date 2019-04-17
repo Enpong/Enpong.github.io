@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="LRU,缓存,">
+  <meta name="keywords" content="java容器,LRU,缓存,">
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88358466 1.基于”双向链表+HashMap“实现：  访问某个节点时，将该节点从双向链表中原位置删除，并重新插入链表头。这样可以保证链表尾部节点就是最近最久未被使用的，当节点数量大于缓存空间就淘汰链表尾部节点；   为了能在O(1)时间内从链表删除某个节点，不能">
-<meta name="keywords" content="LRU,缓存">
+<meta name="description" content="1.基于双向链表+HashMap实现：  访问某个节点时，将该节点从双向链表中原位置删除，并重新插入链表头。这样可以保证链表尾部节点就是最近最久未被使用的，当节点数量大于缓存空间就淘汰链表尾部节点；   为了能在O(1)时间内从链表删除某个节点，不能通过遍历链表查找该节点。需要借助HashMap存储key与节点的映射，通过key在O(1)时间内找到节点，并在O(1)时间内删除该节点。    123">
+<meta name="keywords" content="java容器,LRU,缓存">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java实现LRU策略缓冲">
 <meta property="og:url" content="https://enpong.github.io/2019/03/08/Java实现LRU策略缓冲/index.html">
 <meta property="og:site_name" content="Enpong">
-<meta property="og:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88358466 1.基于”双向链表+HashMap“实现：  访问某个节点时，将该节点从双向链表中原位置删除，并重新插入链表头。这样可以保证链表尾部节点就是最近最久未被使用的，当节点数量大于缓存空间就淘汰链表尾部节点；   为了能在O(1)时间内从链表删除某个节点，不能">
+<meta property="og:description" content="1.基于双向链表+HashMap实现：  访问某个节点时，将该节点从双向链表中原位置删除，并重新插入链表头。这样可以保证链表尾部节点就是最近最久未被使用的，当节点数量大于缓存空间就淘汰链表尾部节点；   为了能在O(1)时间内从链表删除某个节点，不能通过遍历链表查找该节点。需要借助HashMap存储key与节点的映射，通过key在O(1)时间内找到节点，并在O(1)时间内删除该节点。    123">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-09T07:59:25.172Z">
+<meta property="og:updated_time" content="2019-04-17T21:32:46.494Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java实现LRU策略缓冲">
-<meta name="twitter:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88358466 1.基于”双向链表+HashMap“实现：  访问某个节点时，将该节点从双向链表中原位置删除，并重新插入链表头。这样可以保证链表尾部节点就是最近最久未被使用的，当节点数量大于缓存空间就淘汰链表尾部节点；   为了能在O(1)时间内从链表删除某个节点，不能">
+<meta name="twitter:description" content="1.基于双向链表+HashMap实现：  访问某个节点时，将该节点从双向链表中原位置删除，并重新插入链表头。这样可以保证链表尾部节点就是最近最久未被使用的，当节点数量大于缓存空间就淘汰链表尾部节点；   为了能在O(1)时间内从链表删除某个节点，不能通过遍历链表查找该节点。需要借助HashMap存储key与节点的映射，通过key在O(1)时间内找到节点，并在O(1)时间内删除该节点。    123">
 
 
 
@@ -431,7 +431,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -452,212 +452,39 @@
       
 
       
-        <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88358466" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88358466</a></p>
-<p>1.基于”双向链表+HashMap“实现：</p>
+        <p>1.基于<code>双向链表+HashMap</code>实现：</p>
 <ul>
 <li><p>访问某个节点时，将该节点从双向链表中原位置删除，并重新插入链表头。这样可以保证链表尾部节点就是最近最久未被使用的，当节点数量大于缓存空间就淘汰链表尾部节点； </p>
 </li>
-<li><p>为了能在O(1)时间内从链表删除某个节点，不能通过遍历链表查找该节点。需要借助HashMap存储key与节点的映射，通过key在O(1)时间内找到节点，并在O(1)时间内删除该节点。 </p>
-<pre><code>public class LRU&lt;K, V&gt; implements Iterable&lt;K&gt; {
-
-private Node head;
-private Node tail;
-private HashMap&lt;K, Node&gt; map;
-private int maxSize;
-
-private class Node {
-
-    Node pre;
-    Node next;
-    K k;
-    V v;
-
-    public Node(K k, V v) {
-        this.k = k;
-        this.v = v;
-    }
-}
-</code></pre></li>
+<li><p>为了能在<code>O(1)</code>时间内从链表删除某个节点，不能通过遍历链表查找该节点。需要借助<code>HashMap</code>存储key与节点的映射，通过key在<code>O(1)</code>时间内找到节点，并在<code>O(1)</code>时间内删除该节点。 </p>
+</li>
 </ul>
-<pre><code>    public LRU(int maxSize) {
-
-        this.maxSize = maxSize;
-        this.map = new HashMap&lt;&gt;(maxSize * 4 / 3);
-
-        head = new Node(null, null);
-        tail = new Node(null, null);
-
-        head.next = tail;
-        tail.pre = head;
-    }
-
-
-    public V get(K key) {
-
-        if (!map.containsKey(key)) {
-            return null;
-        }
-
-        Node node = map.get(key);
-        unlink(node);
-        appendHead(node);
-
-        return node.v;
-    }
-
-
-    public void put(K key, V value) {
-
-        if (map.containsKey(key)) {
-            Node node = map.get(key);
-            unlink(node);
-        }
-
-        Node node = new Node(key, value);
-        map.put(key, node);
-        appendHead(node);
-
-        if (map.size() &gt; maxSize) {
-            Node toRemove = removeTail();
-            map.remove(toRemove.k);
-        }
-    }
-
-
-    private void unlink(Node node) {
-
-        Node pre = node.pre;
-        Node next = node.next;
-
-        pre.next = next;
-        next.pre = pre;
-
-        node.pre = null;
-        node.next = null;
-    }
-
-
-    private void appendHead(Node node) {
-        Node next = head.next;
-        node.next = next;
-        next.pre = node;
-        node.pre = head;
-        head.next = node;
-    }
-
-
-    private Node removeTail() {
-
-        Node node = tail.pre;
-
-        Node pre = node.pre;
-        tail.pre = pre;
-        pre.next = tail;
-
-        node.pre = null;
-        node.next = null;
-
-        return node;
-    }
-
-
-    @Override
-    public Iterator&lt;K&gt; iterator() {
-
-        return new Iterator&lt;K&gt;() {
-            private Node cur = head.next;
-
-            @Override
-            public boolean hasNext() {
-                return cur != tail;
-            }
-
-            @Override
-            public K next() {
-                Node node = cur;
-                cur = cur.next;
-                return node.k;
-            }
-        };
-    }
-}
-</code></pre><p>2.使用Java容器中的LinkedHashMap</p>
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRU</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Iterable</span>&lt;<span class="title">K</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Node head;</span><br><span class="line">    <span class="keyword">private</span> Node tail;</span><br><span class="line">    <span class="keyword">private</span> HashMap&lt;K, Node&gt; map;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> maxSize;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">        Node pre;</span><br><span class="line">        Node next;</span><br><span class="line">        K k;</span><br><span class="line">        V v;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(K k, V v)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.k = k;</span><br><span class="line">            <span class="keyword">this</span>.v = v;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRU</span><span class="params">(<span class="keyword">int</span> maxSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.maxSize = maxSize;</span><br><span class="line">        <span class="keyword">this</span>.map = <span class="keyword">new</span> HashMap&lt;&gt;(maxSize * <span class="number">4</span> / <span class="number">3</span>);</span><br><span class="line">        head = <span class="keyword">new</span> Node(<span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">        tail = <span class="keyword">new</span> Node(<span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">        head.next = tail;</span><br><span class="line">        tail.pre = head;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(K key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!map.containsKey(key)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Node node = map.get(key);</span><br><span class="line">        unlink(node);</span><br><span class="line">        appendHead(node);</span><br><span class="line">        <span class="keyword">return</span> node.v;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(key)) &#123;</span><br><span class="line">            Node node = map.get(key);</span><br><span class="line">            unlink(node);</span><br><span class="line">        &#125;</span><br><span class="line">        Node node = <span class="keyword">new</span> Node(key, value);</span><br><span class="line">        map.put(key, node);</span><br><span class="line">        appendHead(node);</span><br><span class="line">        <span class="keyword">if</span> (map.size() &gt; maxSize) &#123;</span><br><span class="line">            Node toRemove = removeTail();</span><br><span class="line">            map.remove(toRemove.k);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">unlink</span><span class="params">(Node node)</span> </span>&#123;</span><br><span class="line">        Node pre = node.pre;</span><br><span class="line">        Node next = node.next;</span><br><span class="line">        pre.next = next;</span><br><span class="line">        next.pre = pre;</span><br><span class="line">        node.pre = <span class="keyword">null</span>;</span><br><span class="line">        node.next = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">appendHead</span><span class="params">(Node node)</span> </span>&#123;</span><br><span class="line">        Node next = head.next;</span><br><span class="line">        node.next = next;</span><br><span class="line">        next.pre = node;</span><br><span class="line">        node.pre = head;</span><br><span class="line">        head.next = node;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> Node <span class="title">removeTail</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Node node = tail.pre;</span><br><span class="line">        Node pre = node.pre;</span><br><span class="line">        tail.pre = pre;</span><br><span class="line">        pre.next = tail;</span><br><span class="line">        node.pre = <span class="keyword">null</span>;</span><br><span class="line">        node.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator&lt;K&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Iterator&lt;K&gt;() &#123;</span><br><span class="line">            <span class="keyword">private</span> Node cur = head.next;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> cur != tail;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> K <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Node node = cur;</span><br><span class="line">                cur = cur.next;</span><br><span class="line">                <span class="keyword">return</span> node.k;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p>2.使用Java容器中的<code>LinkedHashMap</code></p>
 <ul>
-<li>LinkedHashMap继承自HashMap，因此具有和HashMap一样的快速查找特性； </li>
-<li>内部维护了一个双向链表，用来维护插入顺序或者LRU顺序；accessOrder字段决定了顺序，默认为false（插入顺序）； </li>
-<li>因此，LinkedHashMap = ”双向链表”+HashMap. </li>
-<li>但是LinkedHashMap实现的LRU缓存与第1个实现方式有一点  区别，即LinkedHashMap的链表首部才是最近最久未使用节点  ；当然，这个区别对于双向链表来说不是事儿，只是寓意上的区别而已（在我看来）。 </li>
+<li><code>LinkedHashMap</code>继承自<code>HashMap</code>，因此具有和<code>HashMap</code>一样的快速查找特性； </li>
+<li>内部维护了一个<code>双向链表</code>，用来维护插入顺序或者LRU顺序；<code>accessOrder</code>字段决定了顺序，默认为<code>false</code>（插入顺序）； </li>
+<li>因此，<code>LinkedHashMap = 双向链表+HashMap</code>. </li>
+<li>但是<code>LinkedHashMap</code>实现的LRU缓存与第1个实现方式有一点  区别，即<code>LinkedHashMap</code>的链表首部才是最近最久未使用节点  ；当然，这个区别对于双向链表来说不是事儿，只是寓意上的区别而已（在我看来）。 </li>
 </ul>
 <blockquote>
-<p>访问一个节点时，调用get()方法，get()中有一个函数afterNodeAccess()；该方法用于将该节点移到链表尾部（最近访问节点）</p>
+<p>访问一个节点时，调用<code>get()</code>方法，<code>get()</code>中有一个函数<code>afterNodeAccess()</code>；该方法用于将该节点移到链表尾部（最近访问节点）</p>
 </blockquote>
-<pre><code>void afterNodeAccess(Node&lt;K,V&gt; e) { // move node to last
-    LinkedHashMap.Entry&lt;K,V&gt; last;
-    if (accessOrder &amp;&amp; (last = tail) != e) {
-        LinkedHashMap.Entry&lt;K,V&gt; p =
-            (LinkedHashMap.Entry&lt;K,V&gt;)e, b = p.before, a = p.after;
-        p.after = null;
-        if (b == null)
-            head = a;
-        else
-            b.after = a;
-        if (a != null)
-            a.before = b;
-        else
-            last = b;
-        if (last == null)
-            head = p;
-        else {
-            p.before = last;
-            last.after = p;
-        }
-        tail = p;
-        ++modCount;
-    }
-}
-</code></pre><blockquote>
-<p>在put等操作之后执行afterNodeInsertion()，当removeEldestEntry()方法返回true时会移除最晚的节点，也就是链表首<br>部节点；evict只有在构建Map时才为false，在这里为true.</p>
+<p>​<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">afterNodeAccess</span><span class="params">(Node&lt;K,V&gt; e)</span> </span>&#123; <span class="comment">// move node to last</span></span><br><span class="line">    LinkedHashMap.Entry&lt;K,V&gt; last;</span><br><span class="line">    <span class="keyword">if</span> (accessOrder &amp;&amp; (last = tail) != e) &#123;</span><br><span class="line">        LinkedHashMap.Entry&lt;K,V&gt; p =</span><br><span class="line">            (LinkedHashMap.Entry&lt;K,V&gt;)e, b = p.before, a = p.after;</span><br><span class="line">        p.after = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (b == <span class="keyword">null</span>)</span><br><span class="line">            head = a;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            b.after = a;</span><br><span class="line">        <span class="keyword">if</span> (a != <span class="keyword">null</span>)</span><br><span class="line">            a.before = b;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            last = b;</span><br><span class="line">        <span class="keyword">if</span> (last == <span class="keyword">null</span>)</span><br><span class="line">            head = p;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            p.before = last;</span><br><span class="line">            last.after = p;</span><br><span class="line">        &#125;</span><br><span class="line">        tail = p;</span><br><span class="line">        ++modCount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>在<code>put</code>等操作之后执行<code>afterNodeInsertion()</code>，当<code>removeEldestEntry()</code>方法返回true时会移除最晚的节点，也就是链表首<br>部节点；<code>evict</code>只有在构建Map时才为<code>false</code>，在这里为<code>true</code>.</p>
 </blockquote>
-<pre><code>void afterNodeInsertion(boolean evict) { // possibly remove eldest
-    LinkedHashMap.Entry&lt;K,V&gt; first;
-    if (evict &amp;&amp; (first = head) != null &amp;&amp; removeEldestEntry(first)) {
-        K key = first.key;
-        removeNode(hash(key), key, null, false, true);
-    }
-}
-</code></pre><blockquote>
-<p>removeEldestEntry()默认为false，也就是说put操作后执行的afterNodeInsertion()并没有移除首部节点，也就没有L<br>RU缓存淘汰的说法了；如果需要让它为true，需要继承LinkedHashMap并且覆盖该方法；</p>
+<p>​<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">afterNodeInsertion</span><span class="params">(<span class="keyword">boolean</span> evict)</span> </span>&#123; <span class="comment">// possibly remove eldest</span></span><br><span class="line">    LinkedHashMap.Entry&lt;K,V&gt; first;</span><br><span class="line">    <span class="keyword">if</span> (evict &amp;&amp; (first = head) != <span class="keyword">null</span> &amp;&amp; removeEldestEntry(first)) &#123;</span><br><span class="line">        K key = first.key;</span><br><span class="line">        removeNode(hash(key), key, <span class="keyword">null</span>, <span class="keyword">false</span>, <span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p><code>removeEldestEntry()</code>默认为false，也就是说put操作后执行的<code>afterNodeInsertion()</code>并没有移除首部节点，也就没有L<br>RU缓存淘汰的说法了；如果需要让它为true，需要继承<code>LinkedHashMap</code>并且覆盖该方法；</p>
 </blockquote>
-<pre><code>protected boolean removeEldestEntry(Map.Entry&lt;K,V&gt; eldest) {
-    return false;
-}
-</code></pre><ul>
-<li>因此，要用LinkedHashMap来实现一个LRU缓存，需要：<br>1.设定最大缓存空间MAX_ENTRIES<br>2.使用LinkedHashMap的构造方法将accessOrder设置为true，开启LRU顺序；<br>3.覆盖removeEldestEntry（）方法实现，在节点多于MAX_ENTRIES就会将最近最久未使用的节点删除。</li>
+<p>​<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">removeEldestEntry</span><span class="params">(Map.Entry&lt;K,V&gt; eldest)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>因此，要用<code>LinkedHashMap</code>来实现一个LRU缓存，需要：<br>1.设定最大缓存空间<code>MAX_ENTRIES</code><br>2.使用<code>LinkedHashMap</code>的构造方法将<code>accessOrder</code>设置为true，开启LRU顺序；<br>3.覆盖<code>removeEldestEntry（）</code>方法实现，在节点多于<code>MAX_ENTRIES</code>就会将最近最久未使用的节点删除。</li>
 </ul>
-<pre><code>class LRUCache&lt;K, V&gt; extends LinkedHashMap&lt;K, V&gt; {
-    private static final int MAX_ENTRIES = 3;
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">LinkedHashMap</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_ENTRIES = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">removeEldestEntry</span><span class="params">(Map.Entry eldest)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size() &gt; MAX_ENTRIES;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    LRUCache() &#123;</span><br><span class="line">        <span class="keyword">super</span>(MAX_ENTRIES, <span class="number">0.75f</span>, <span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUTest</span></span>&#123;</span><br><span class="line">    - <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        LRUCache&lt;Integer, String&gt; cache = <span class="keyword">new</span> LRUCache&lt;&gt;();</span><br><span class="line">        cache.put(<span class="number">1</span>, <span class="string">"a"</span>);</span><br><span class="line">        cache.put(<span class="number">2</span>, <span class="string">"b"</span>);</span><br><span class="line">        cache.put(<span class="number">3</span>, <span class="string">"c"</span>);</span><br><span class="line">        cache.get(<span class="number">1</span>);</span><br><span class="line">        cache.put(<span class="number">4</span>, <span class="string">"d"</span>);</span><br><span class="line">        System.out.println(cache.keySet());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  ​    </p>
 
-    protected boolean removeEldestEntry(Map.Entry eldest) {
-        return size() &gt; MAX_ENTRIES;
-    }
-
-    LRUCache() {
-        super(MAX_ENTRIES, 0.75f, true);
-    }
-}
-
-public class LRUTest{
-    public static void main(String[] args) {
-        LRUCache&lt;Integer, String&gt; cache = new LRUCache&lt;&gt;();
-        cache.put(1, &quot;a&quot;);
-        cache.put(2, &quot;b&quot;);
-        cache.put(3, &quot;c&quot;);
-        cache.get(1);
-        cache.put(4, &quot;d&quot;);
-        System.out.println(cache.keySet());
-    }
-}
-</code></pre>
       
     </div>
     
@@ -683,6 +510,8 @@ public class LRUTest{
     <footer class="post-footer">
       
         <div class="post-tags">
+          
+            <a href="/tags/java容器/" rel="tag"><i class="fa fa-tag"></i> java容器</a>
           
             <a href="/tags/LRU/" rel="tag"><i class="fa fa-tag"></i> LRU</a>
           
@@ -795,7 +624,7 @@ public class LRUTest{
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -806,7 +635,7 @@ public class LRUTest{
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -892,7 +721,7 @@ public class LRUTest{
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38k字</span>
+  <span class="post-count">博客全站共39.5k字</span>
 </div>
 
         
