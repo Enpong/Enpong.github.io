@@ -447,31 +447,6 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
   </entry>
   
   <entry>
-    <title>剑指offer---删除链表中重复的结点</title>
-    <link href="https://enpong.github.io/2019/03/02/%E5%89%91%E6%8C%87offer---%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E7%BB%93%E7%82%B9/"/>
-    <id>https://enpong.github.io/2019/03/02/剑指offer---删除链表中重复的结点/</id>
-    <published>2019-03-02T06:10:38.000Z</published>
-    <updated>2019-04-09T07:59:20.247Z</updated>
-    
-    <content type="html"><![CDATA[<p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88075375" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88075375</a></p><h4 id="😊题目描述"><a href="#😊题目描述" class="headerlink" title="😊题目描述"></a>😊题目描述</h4><p>在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5 处理后为<br>1-&gt;2-&gt;5</p><h4 id="解题思路（递归）"><a href="#解题思路（递归）" class="headerlink" title="解题思路（递归）"></a>解题思路（递归）</h4><p><img src="https://img-blog.csdnimg.cn/20190302140638410.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>//这里不对节点删除是因为Java有回收机制，当然手动删除也可以啦public class Solution {    public ListNode deleteDuplication(ListNode pHead)    {        if(pHead==null || pHead.next==null)            return pHead;        ListNode node = pHead.next;        if(pHead.val == node.val){            while(node!=null &amp;&amp; pHead.val==node.val)                node = node.next;            return deleteDuplication(node);        }else{            pHead.next = deleteDuplication(pHead.next);//当前节点的后继指针指向后继链表的去重链表            return pHead;        }    }}</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;版权声明：Enpong之家 &lt;a href=&quot;https://blog.csdn.net/qq_40005950/article/details/88075375&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/q
-      
-    
-    </summary>
-    
-      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
-    
-    
-      <category term="链表" scheme="https://enpong.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
-    
-  </entry>
-  
-  <entry>
     <title>LeetCode869---重新排序得到2的幂</title>
     <link href="https://enpong.github.io/2019/03/02/LeetCode869---%E9%87%8D%E6%96%B0%E6%8E%92%E5%BA%8F%E5%BE%97%E5%88%B02%E7%9A%84%E5%B9%82/"/>
     <id>https://enpong.github.io/2019/03/02/LeetCode869---重新排序得到2的幂/</id>
@@ -543,6 +518,35 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
     
     
       <category term="进程同步" scheme="https://enpong.github.io/tags/%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SSM---对Spring的理解</title>
+    <link href="https://enpong.github.io/2019/03/01/SSM---%E5%AF%B9Spring%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+    <id>https://enpong.github.io/2019/03/01/SSM---对Spring的理解/</id>
+    <published>2019-03-01T06:24:16.000Z</published>
+    <updated>2019-04-09T07:59:16.987Z</updated>
+    
+    <content type="html"><![CDATA[<p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88057759" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88057759</a></p><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Spring是一个开源框架，为简化企业级应用开发而生。Spring可以是使简单的JavaBean实现以前只有EJB才能实现的功能。Spring是一个IOC和<br>AOP容器框架。</p><h3 id="主要核心"><a href="#主要核心" class="headerlink" title="主要核心"></a>主要核心</h3><ul><li>控制反转（IOC），传统的Java开发模式中，当需要一个对象时，我们会自己使用new或者getInstance等直接或者间接调用构造方法创建一个对象，而在Spring开发模式中，spring容器使用了工厂模式为我们创建了所需要的对象，不需要我们自己创建了，直接调用spring提供的对象就可以了，这是控制反转的思想。控制反转主要的实现方式有两种：依赖查找、依赖注入。 </li><li>依赖注入（DI），spring使用JavaBean对象的set方法或者带参数的构造方法为我们在创建所需对象时将其属性自动设置所需要的值的过程，就是依赖注入的思想。 </li><li>面向切面编程（AOP），在面向对象编程(oop)思想中，我们将事物纵向抽成一个个对象。而在面向切面编程中，我们将一个个的对象某些类似的方面横向抽成一个切面，对这个切面进行一些如权限控制、事务管理、记录日志等公用操作处理的过程就是面向切面编程的思想。AOP底层是动态代理，如果是接口采用JDK动态代理，如果是类采用CGLIB方式实现动态代理。 </li></ul><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p><img src="https://img-blog.csdnimg.cn/20190301134638454.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>spring由20多个模块组成，可以分为数据访问/集成、Web、面向切面编程、应用服务器设备管理、消息发送、核心容器和测试</p><ol><li>Core模块：封装了框架依赖的最底层部分，包括资源访问、类型转换和常用的工具类； </li><li>Beans模块：提供框架的基础部分，包括控制反转和依赖注入。其中BeanFactory是容器核心。 </li><li>Context模块：以Core和Beans为基础，集成Beans模块功能并添加资源绑定、数据验证、国际化等；核心接口是ApplicationContext。 </li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;版权声明：Enpong之家 &lt;a href=&quot;https://blog.csdn.net/qq_40005950/article/details/88057759&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/q
+      
+    
+    </summary>
+    
+      <category term="ssm" scheme="https://enpong.github.io/categories/ssm/"/>
+    
+    
+      <category term="spring" scheme="https://enpong.github.io/tags/spring/"/>
+    
+      <category term="IOC" scheme="https://enpong.github.io/tags/IOC/"/>
+    
+      <category term="AOP" scheme="https://enpong.github.io/tags/AOP/"/>
     
   </entry>
   
