@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://enpong.github.io/"/>
-  <updated>2019-04-17T16:51:30.699Z</updated>
+  <updated>2019-04-17T19:50:42.122Z</updated>
   <id>https://enpong.github.io/</id>
   
   <author>
@@ -17,11 +17,154 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>用两个栈实现队列</title>
+    <link href="https://enpong.github.io/2019/04/18/%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/"/>
+    <id>https://enpong.github.io/2019/04/18/用两个栈实现队列/</id>
+    <published>2019-04-17T19:42:52.000Z</published>
+    <updated>2019-04-17T19:50:42.122Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。 </p><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>in 栈用来处理入栈（push）操作，out 栈用来处理出栈（pop）操作。一个元素进入 in 栈之后，出栈的顺序被反转。当元素要出栈时，需要先进入 out 栈，此时元素出栈顺序再一次被反转，因此出栈顺序就和最开始入栈顺序是相同的，先进入的元素先退出，这就是队列的顺序。 </p><div align="center"><img src="//enpong.github.io/2019/04/18/用两个栈实现队列/9_1.gif"></div><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Stack&lt;Integer&gt; in = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">Stack&lt;Integer&gt; out = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span></span>&#123;</span><br><span class="line">    in.push(node);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(out.isEmpty())&#123;</span><br><span class="line">        <span class="keyword">while</span>(!in.isEmpty())&#123;</span><br><span class="line">            out.push(in.pop());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="keyword">if</span>(out.isEmpty())</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"queue is empty!"</span>);</span><br><span class="line">    <span class="keyword">return</span> out.pop();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h4&gt;&lt;p&gt;用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。 &lt;/p&gt;
+&lt;h4 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路
+      
+    
+    </summary>
+    
+      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="栈" scheme="https://enpong.github.io/tags/%E6%A0%88/"/>
+    
+      <category term="队列" scheme="https://enpong.github.io/tags/%E9%98%9F%E5%88%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>二叉树的下一个结点</title>
+    <link href="https://enpong.github.io/2019/04/18/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E7%BB%93%E7%82%B9/"/>
+    <id>https://enpong.github.io/2019/04/18/二叉树的下一个结点/</id>
+    <published>2019-04-17T19:10:37.000Z</published>
+    <updated>2019-04-17T19:42:10.972Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。 </p><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol><li><p>该节点的右子树不为空，则下一节点是该节点右子树中最左节点；</p><div align="center"><img src="//enpong.github.io/2019/04/18/二叉树的下一个结点/8_1.gif"></div></li></ol><ol start="2"><li><p>该节点的右子树为空，则下一节点是包含该节点的最小左子树的子树根节点。</p><div align="center"><img src="//enpong.github.io/2019/04/18/二叉树的下一个结点/8_2.gif"></div><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//二叉树结点结构</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    TreeNode left;</span><br><span class="line">    TreeNode right;</span><br><span class="line">    TreeNode parent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">getNext</span><span class="params">(TreeNode node)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(node.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        TreeNode temp = node.right;</span><br><span class="line">        <span class="keyword">while</span>(temp.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            temp = temp.left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(node.parent!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            TreeNode parent = node.parent;</span><br><span class="line">            <span class="keyword">if</span>(parent.left==node)</span><br><span class="line">                <span class="keyword">return</span> parent;</span><br><span class="line">            node = parent;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h4&gt;&lt;p&gt;给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结
+      
+    
+    </summary>
+    
+      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="二叉树" scheme="https://enpong.github.io/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    
+      <category term="中序" scheme="https://enpong.github.io/tags/%E4%B8%AD%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>重建二叉树</title>
+    <link href="https://enpong.github.io/2019/04/18/%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <id>https://enpong.github.io/2019/04/18/重建二叉树/</id>
+    <published>2019-04-17T18:07:54.000Z</published>
+    <updated>2019-04-17T19:10:01.869Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>根据二叉树的前序遍历和中序遍历的结果，重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">preorder = [3,9,20,15,7]</span><br><span class="line">inorder =  [9,3,15,20,7]</span><br></pre></td></tr></table></figure><div align="center"><img src="//enpong.github.io/2019/04/18/重建二叉树/7_1.gif"></div><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>前序遍历的第一个值为根节点的值，使用这个值将中序遍历结果分成两部分，左部分为树的左子树中序遍历结果，右部分为树的右子树中序遍历的结果。 </p><div align="center"><img src="//enpong.github.io/2019/04/18/重建二叉树/7_2.gif"></div><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//二叉树结构</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    TreeNode left;</span><br><span class="line">    TreeNode right;</span><br><span class="line">    TreeNode(<span class="keyword">int</span> val)&#123;<span class="keyword">this</span>.val = val; left = <span class="keyword">null</span>; right = <span class="keyword">null</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//缓存中序遍历数组每个值对应的索引</span></span><br><span class="line"><span class="keyword">public</span> Map&lt;Integer, Integer&gt; indexForInOrder = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">reConstructBinaryTree</span><span class="params">(<span class="keyword">int</span>[] pre, <span class="keyword">int</span>[] in)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;in.length; i++)&#123;</span><br><span class="line">        indexForInOrder.put(in[i], i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> reConstructBianryTree(pre, <span class="number">0</span>, pre.length-<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//参数：前序遍历数组、前序部分数组左边界，前序部分数组右边界、中序部分数组左边界</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> TreeNode <span class="title">reConstructBinaryTree</span><span class="params">(<span class="keyword">int</span>[] pre, <span class="keyword">int</span> preL, <span class="keyword">int</span> preR, <span class="keyword">int</span> inL)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(preL &gt; preR)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    TreeNode root = <span class="keyword">new</span> TreeNode(pre[preL]);</span><br><span class="line">    <span class="keyword">int</span> leftTreeSize = indexForInOrder(root.val) - inL;</span><br><span class="line">    <span class="comment">//对于preL和preR的计算：DLR</span></span><br><span class="line">    <span class="comment">//对于inL的计算：LDR</span></span><br><span class="line">    root.left = reConstructBinaryTree(pre, preL+<span class="number">1</span>, preL+leftTreeSize, inL);<span class="comment">//D(L)R</span></span><br><span class="line">    root.right = reConstructBinaryTree(pre, preL+leftSize+<span class="number">1</span>, preR, inL+leftTreeSize+<span class="number">1</span>);<span class="comment">//DL(R)</span></span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h4><p>重建一棵二叉树：</p><ol><li><p>前序+中序</p></li><li><p>后序+中序</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//二叉树结构</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    TreeNode left;</span><br><span class="line">    TreeNode right;</span><br><span class="line">    TreeNode(<span class="keyword">int</span> val)&#123;<span class="keyword">this</span>.val = val; left = <span class="keyword">null</span>; right = <span class="keyword">null</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//缓存中序遍历数组每个值对应的索引</span></span><br><span class="line"><span class="keyword">public</span> Map&lt;Integer, Integer&gt; indexForInOrder = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">reConstructBinaryTree</span><span class="params">(<span class="keyword">int</span>[] next, <span class="keyword">int</span>[] in)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;in.length; i++)&#123;</span><br><span class="line">        indexForInOrder.put(in[i], i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> reConstructBianryTree(next, next.length-<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//参数：后序遍历数组、后序部分数组右边界，后序部分数组左边界、中序部分数组左边界</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> TreeNode <span class="title">reConstructBinaryTree</span><span class="params">(<span class="keyword">int</span>[] next, <span class="keyword">int</span> nextR, <span class="keyword">int</span> nextL, <span class="keyword">int</span> inL)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nextL &gt; nextR)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    TreeNode root = <span class="keyword">new</span> TreeNode(next[nextR]);</span><br><span class="line">    <span class="keyword">int</span> rightTreeSize = indexForInOrder(root.val) - inL;</span><br><span class="line">    <span class="comment">//对于nextR和nextL的计算：LRD</span></span><br><span class="line">    <span class="comment">//对于inL的计算：LDR</span></span><br><span class="line">    root.right = reConstructBinaryTree(next, nextR-<span class="number">1</span>, nextR-rightTreeSize, inL);<span class="comment">//L(R)D</span></span><br><span class="line">    root.left = reConstructBinaryTree(pre, nextR-rightTreeSize-<span class="number">1</span>, nextL, inL+leftTreeSize+<span class="number">1</span>);<span class="comment">//(L)RD</span></span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h4&gt;&lt;p&gt;根据二叉树的前序遍历和中序遍历的结果，重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。&lt;/p&gt;
+&lt;fi
+      
+    
+    </summary>
+    
+      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="二叉树" scheme="https://enpong.github.io/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    
+      <category term="前序" scheme="https://enpong.github.io/tags/%E5%89%8D%E5%BA%8F/"/>
+    
+      <category term="后序" scheme="https://enpong.github.io/tags/%E5%90%8E%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从尾到头打印链表</title>
+    <link href="https://enpong.github.io/2019/04/18/%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/"/>
+    <id>https://enpong.github.io/2019/04/18/从尾到头打印链表/</id>
+    <published>2019-04-17T17:12:02.000Z</published>
+    <updated>2019-04-17T18:06:49.180Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>反转链表，返回反转后链表头部</p><blockquote><p>Input: 1-&gt;2-&gt;3</p><p>Output: 3-&gt;2-&gt;1</p></blockquote><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    Node next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li><p>递归</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">reverseList</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next==<span class="keyword">null</span>)<span class="comment">//如果没有节点或者只有一个节点直接返回</span></span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    Node cur = head.next;<span class="comment">//保存当前节点的下一个节点</span></span><br><span class="line">    head.next = <span class="keyword">null</span>;<span class="comment">//打断当前节点的指针域，使之能够成为末尾节点</span></span><br><span class="line">    Node newHead = reverseList(cur); <span class="comment">//返回以pNext为头的反转链表，</span></span><br><span class="line">    <span class="comment">//返回之后newHead为新头，pNext为末节点</span></span><br><span class="line">    cur.next = head;<span class="comment">//在以newHead为头、以pNext为末的新链表中接上应该为末节点的head</span></span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><ul><li><p>栈</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">reverseList</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next==<span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    Stack&lt;Node&gt; s = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    Node newHead = <span class="keyword">null</span>;<span class="comment">//记录最后一个指针,即反转后头节点</span></span><br><span class="line">    <span class="keyword">while</span>(head.next!=<span class="keyword">null</span>)&#123;<span class="comment">//最后一个指针不入栈，方便出栈容易实现</span></span><br><span class="line">        s.push(head);</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    newHead = head;</span><br><span class="line">    <span class="keyword">while</span>(!s.isEmpty())&#123;</span><br><span class="line">        head.next = s.pop();</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    head.next = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><ul><li><p>遍历</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">reverseList</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    Node newHead = <span class="keyword">null</span>;<span class="comment">//反转后的新头节点</span></span><br><span class="line">    Node cur = head; <span class="comment">//当前节点</span></span><br><span class="line">    Node pre = <span class="keyword">null</span>; <span class="comment">//当前节点前一节点</span></span><br><span class="line">    <span class="keyword">while</span>(node!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        Node next = cur.next; <span class="comment">//当前节点后一节点</span></span><br><span class="line">        <span class="keyword">if</span>(next==<span class="keyword">null</span>)</span><br><span class="line">            newHead = cur;</span><br><span class="line">        cur.next = pre;<span class="comment">//当前节点下一节点指向前节点，起到反转作用</span></span><br><span class="line">        pre = cur;</span><br><span class="line">        cur = next;<span class="comment">//三个指针整体向后移动，起到遍历效果</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><h4 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h4><p>反转部分链表，反转[m,n]之间的链表</p><blockquote><p>Input: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;6    [2,5]</p><p>Output: 1-&gt;5-&gt;4-&gt;3-&gt;2-&gt;6</p></blockquote><p>个人感觉递归实现困难，采用栈和遍历的方式应该简单（只要记录以下入栈节点个数或者遍历个数即可）</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h4&gt;&lt;p&gt;反转链表，返回反转后链表头部&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Input: 1-&amp;gt;2-&amp;gt;3&lt;/p&gt;
+&lt;p
+      
+    
+    </summary>
+    
+      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="链表，反转，递归，遍历，栈" scheme="https://enpong.github.io/tags/%E9%93%BE%E8%A1%A8%EF%BC%8C%E5%8F%8D%E8%BD%AC%EF%BC%8C%E9%80%92%E5%BD%92%EF%BC%8C%E9%81%8D%E5%8E%86%EF%BC%8C%E6%A0%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>替换空格</title>
+    <link href="https://enpong.github.io/2019/04/18/%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/"/>
+    <id>https://enpong.github.io/2019/04/18/替换空格/</id>
+    <published>2019-04-17T17:00:45.000Z</published>
+    <updated>2019-04-17T17:11:36.244Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>将一个字符串中的空格替换成 “%20”。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">&quot;A B&quot;</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line">&quot;A%20B&quot;</span><br></pre></td></tr></table></figure><h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>在字符串尾部填充任意字符，使得字符串的长度等于替换之后的长度。因为一个空格要替换成三个字符（%20），因此当遍历到一个空格时，需要在尾部填充两个任意字符。</p><p>令 P1 指向字符串原来的末尾位置，P2 指向字符串现在的末尾位置。P1 和 P2 从后向前遍历，当 P1 遍历到一个空格时，就需要令 P2 指向的位置依次填充 02%（注意是逆序的），否则就填充上 P1 指向字符的值。</p><p>从后向前遍是为了在改变 P2 所指向的内容时，不会影响到 P1 遍历原来字符串的内容。</p><div align="center"><img src="//enpong.github.io/2019/04/18/替换空格/5.gif"></div><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">replaceSpace</span><span class="params">(StringBuffer str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> P1 = str.length() - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= P1; i++)</span><br><span class="line">        <span class="keyword">if</span> (str.charAt(i) == <span class="string">' '</span>)</span><br><span class="line">            str.append(<span class="string">"  "</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> P2 = str.length() - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (P1 &gt;= <span class="number">0</span> &amp;&amp; P2 &gt; P1) &#123;</span><br><span class="line">        <span class="keyword">char</span> c = str.charAt(P1--);</span><br><span class="line">        <span class="keyword">if</span> (c == <span class="string">' '</span>) &#123;</span><br><span class="line">            str.setCharAt(P2--, <span class="string">'0'</span>);</span><br><span class="line">            str.setCharAt(P2--, <span class="string">'2'</span>);</span><br><span class="line">            str.setCharAt(P2--, <span class="string">'%'</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            str.setCharAt(P2--, c);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> str.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h4&gt;&lt;p&gt;将一个字符串中的空格替换成 “%20”。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;tabl
+      
+    
+    </summary>
+    
+      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="字符串" scheme="https://enpong.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+      <category term="替换" scheme="https://enpong.github.io/tags/%E6%9B%BF%E6%8D%A2/"/>
+    
+      <category term="双指针" scheme="https://enpong.github.io/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
+  
+  <entry>
     <title>二维数组中的查找</title>
     <link href="https://enpong.github.io/2019/04/18/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/"/>
     <id>https://enpong.github.io/2019/04/18/二维数组中的查找/</id>
     <published>2019-04-17T16:36:41.000Z</published>
-    <updated>2019-04-17T16:51:30.699Z</updated>
+    <updated>2019-04-17T16:55:53.059Z</updated>
     
     <content type="html"><![CDATA[<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给定一个二维数组，其每一行从左到右递增排序，从上到下也是递增排序。给定一个数，判断这个数是否在该二维数组中。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Consider the following matrix:</span><br><span class="line">[</span><br><span class="line">  [1,   4,  7, 11, 15],</span><br><span class="line">  [2,   5,  8, 12, 19],</span><br><span class="line">  [3,   6,  9, 16, 22],</span><br><span class="line">  [10, 13, 14, 17, 24],</span><br><span class="line">  [18, 21, 23, 26, 30]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">Given target = 5, return true.</span><br><span class="line">Given target = 20, return false.</span><br></pre></td></tr></table></figure><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>要求时间复杂度 O(M + N)，空间复杂度 O(1)。</p><p>该二维数组中的一个数，它左边的数都比它小，下边的数都比它大。因此，从右上角开始查找，就可以根据 target 和当前元素的大小关系来缩小查找区间，当前元素的查找区间为左下角的所有元素。</p><div align="center"> <img src="//enpong.github.io/2019/04/18/二维数组中的查找/4.gif"> </div> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> target, <span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(matrix==<span class="keyword">null</span> || matrix.length==<span class="number">0</span> || matrix[<span class="number">0</span>].length==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">int</span> row = matrix.length;</span><br><span class="line">    <span class="keyword">int</span> col = matrix[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">int</span> r = <span class="number">0</span>, c = col-<span class="number">1</span>;<span class="comment">//从右上角开始</span></span><br><span class="line">    <span class="keyword">while</span>(r&lt;=row-<span class="number">1</span> &amp;&amp; c&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == matrix[r][c])</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(target &gt; matrix[r][c])</span><br><span class="line">            r++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            c--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -35,6 +178,10 @@
     
     </summary>
     
+      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="数组，查找" scheme="https://enpong.github.io/tags/%E6%95%B0%E7%BB%84%EF%BC%8C%E6%9F%A5%E6%89%BE/"/>
     
   </entry>
   
@@ -396,142 +543,6 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
     
     
       <category term="进程同步" scheme="https://enpong.github.io/tags/%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SSM---对Spring的理解</title>
-    <link href="https://enpong.github.io/2019/03/01/SSM---%E5%AF%B9Spring%E7%9A%84%E7%90%86%E8%A7%A3/"/>
-    <id>https://enpong.github.io/2019/03/01/SSM---对Spring的理解/</id>
-    <published>2019-03-01T06:24:16.000Z</published>
-    <updated>2019-04-09T07:59:16.987Z</updated>
-    
-    <content type="html"><![CDATA[<p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88057759" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88057759</a></p><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Spring是一个开源框架，为简化企业级应用开发而生。Spring可以是使简单的JavaBean实现以前只有EJB才能实现的功能。Spring是一个IOC和<br>AOP容器框架。</p><h3 id="主要核心"><a href="#主要核心" class="headerlink" title="主要核心"></a>主要核心</h3><ul><li>控制反转（IOC），传统的Java开发模式中，当需要一个对象时，我们会自己使用new或者getInstance等直接或者间接调用构造方法创建一个对象，而在Spring开发模式中，spring容器使用了工厂模式为我们创建了所需要的对象，不需要我们自己创建了，直接调用spring提供的对象就可以了，这是控制反转的思想。控制反转主要的实现方式有两种：依赖查找、依赖注入。 </li><li>依赖注入（DI），spring使用JavaBean对象的set方法或者带参数的构造方法为我们在创建所需对象时将其属性自动设置所需要的值的过程，就是依赖注入的思想。 </li><li>面向切面编程（AOP），在面向对象编程(oop)思想中，我们将事物纵向抽成一个个对象。而在面向切面编程中，我们将一个个的对象某些类似的方面横向抽成一个切面，对这个切面进行一些如权限控制、事务管理、记录日志等公用操作处理的过程就是面向切面编程的思想。AOP底层是动态代理，如果是接口采用JDK动态代理，如果是类采用CGLIB方式实现动态代理。 </li></ul><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p><img src="https://img-blog.csdnimg.cn/20190301134638454.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>spring由20多个模块组成，可以分为数据访问/集成、Web、面向切面编程、应用服务器设备管理、消息发送、核心容器和测试</p><ol><li>Core模块：封装了框架依赖的最底层部分，包括资源访问、类型转换和常用的工具类； </li><li>Beans模块：提供框架的基础部分，包括控制反转和依赖注入。其中BeanFactory是容器核心。 </li><li>Context模块：以Core和Beans为基础，集成Beans模块功能并添加资源绑定、数据验证、国际化等；核心接口是ApplicationContext。 </li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;版权声明：Enpong之家 &lt;a href=&quot;https://blog.csdn.net/qq_40005950/article/details/88057759&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/q
-      
-    
-    </summary>
-    
-      <category term="ssm" scheme="https://enpong.github.io/categories/ssm/"/>
-    
-    
-      <category term="spring" scheme="https://enpong.github.io/tags/spring/"/>
-    
-      <category term="IOC" scheme="https://enpong.github.io/tags/IOC/"/>
-    
-      <category term="AOP" scheme="https://enpong.github.io/tags/AOP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统---概述</title>
-    <link href="https://enpong.github.io/2019/02/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F---%E6%A6%82%E8%BF%B0/"/>
-    <id>https://enpong.github.io/2019/02/28/操作系统---概述/</id>
-    <published>2019-02-28T12:00:54.000Z</published>
-    <updated>2019-04-09T07:59:16.473Z</updated>
-    
-    <content type="html"><![CDATA[<p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88043694" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88043694</a></p><h3 id="基本特征"><a href="#基本特征" class="headerlink" title="基本特征"></a>基本特征</h3><ul><li><p>并发<br>一段时间内运行多个程序为并发；<br>同一时刻运行多条指令为并行；<br>并行需要硬件支持，比如多核处理器、分布式系统<br>操作系统引入进程和线程，使得程序能够并发运行</p></li><li><p>共享<br>指系统资源可以被多个并发进程使用<br>两种共享方式：互斥共享、同时共享</p></li><li><p>虚拟<br>两种虚拟技术：<br>时分复用技术，多个进程在同一个处理器上并发执行<br>空分复用技术，虚拟内存</p></li><li><p>异步<br>指一个进程不是一次执行完毕，而是走走停停</p></li></ul><h3 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h3><ul><li><p>进程管理<br>进程控制、进程同步、进程调度、死锁处理、处理机调度等</p></li><li><p>内存管理<br>内存分配、地址映射、内存保护与共享、虚拟内存等</p></li><li><p>文件管理<br>文件存储空间管理、目录管理、文件读写管理与保护等</p></li><li><p>设备管理<br>帮助用户完成IO请求，包括缓冲管理、设备分配、设备处理、虚拟设备等</p></li></ul><h3 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h3><p>如果一个进程在用户态需要使用内核态的功能，需要通过系统调用陷入内核态，有操作系统代为完成。<br><img src="https://img-blog.csdnimg.cn/20190228195735602.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h3 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h3><ol><li>外中断，如IO完成请求、时钟中断、控制台中断等 </li><li>异常，由CPU执行指令的内部事件引起，如非法操作码、地址越界、算术溢出等 </li><li>陷入，进程使用系统调用由用户态陷入内核态 </li></ol><p>参考： <a href="https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.md#%E4%B8%80%E6%A6%82%E8%BF%B0" target="_blank" rel="noopener"> https://github.com/CyC2018/CS-<br>Notes/blob/master/docs/notes/计算机操作系统.md#一概述 </a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;版权声明：Enpong之家 &lt;a href=&quot;https://blog.csdn.net/qq_40005950/article/details/88043694&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/q
-      
-    
-    </summary>
-    
-      <category term="操作系统" scheme="https://enpong.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="概念" scheme="https://enpong.github.io/tags/%E6%A6%82%E5%BF%B5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaIO---字符操作</title>
-    <link href="https://enpong.github.io/2019/02/28/JavaIO---%E5%AD%97%E7%AC%A6%E6%93%8D%E4%BD%9C/"/>
-    <id>https://enpong.github.io/2019/02/28/JavaIO---字符操作/</id>
-    <published>2019-02-28T10:59:12.000Z</published>
-    <updated>2019-04-09T07:59:15.290Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="编码与解码"><a href="#编码与解码" class="headerlink" title="编码与解码"></a>编码与解码</h3><p>编码就是把字符转换为字节，而解码是把字节重新组合成字符。</p><p>如果编码和解码过程使用不同的编码方式那么就出现了乱码。</p><ul><li>GBK 编码中，中文字符占 2 个字节，英文字符占 1 个字节； </li><li>UTF-8 编码中，中文字符占 3 个字节，英文字符占 1 个字节； </li><li>UTF-16be 编码中，中文字符和英文字符都占 2 个字节。 </li></ul><p>UTF-16be 中的 be 指的是 Big Endian，也就是大端。相应地也有 UTF-16le，le 指的是 Little Endian，也就是小端。</p><p>Java 的内存编码使用双字节编码 UTF-16be，这不是指 Java 只支持这一种编码方式，而是说 char 这种类型使用 UTF-16be<br>进行编码。char 类型占 16 位，也就是两个字节，Java 使用这种双字节编码是为了让一个中文或者一个英文都能使用一个 char 来存储。</p><h4 id="String-的编码方式"><a href="#String-的编码方式" class="headerlink" title="String 的编码方式"></a>String 的编码方式</h4><p>String 可以看成一个字符序列，可以指定一个编码方式将它编码为字节序列，也可以指定一个编码方式将一个字节序列解码为 String。</p><pre><code>String str1 = &quot;中文&quot;;byte[] bytes = str1.getBytes(&quot;UTF-8&quot;);String str2 = new String(bytes, &quot;UTF-8&quot;);System.out.println(str2);</code></pre><p>在调用无参数 getBytes() 方法时，默认的编码方式不是 UTF-16be。双字节编码的好处是可以使用一个 char 存储中文和英文，而将<br>String 转为 bytes[] 字节数组就不再需要这个好处，因此也就不再需要双字节编码。getBytes() 的默认编码方式与平台有关，一般为<br>UTF-8。</p><h3 id="Reader-与-Writer"><a href="#Reader-与-Writer" class="headerlink" title="Reader 与 Writer"></a>Reader 与 Writer</h3><p>不管是磁盘还是网络传输，最小的存储单元都是字节，而不是字符。但是在程序中操作的通常是字符形式的数据，因此需要提供对字符进行操作的方法。</p><p>InputStreamReader 实现从字节流解码成字符流；<br>OutputStreamWriter 实现字符流编码成为字节流。</p><p>实现逐行输出文本文件的内容</p><pre><code>public static void readFileContent(String filePath) throws IOException {    FileReader fileReader = new FileReader(filePath);    BufferedReader bufferedReader = new BufferedReader(fileReader);    String line;    while ((line = bufferedReader.readLine()) != null) {        System.out.println(line);    }    // 装饰者模式使得 BufferedReader 组合了一个 Reader 对象    // 在调用 BufferedReader 的 close() 方法时会去调用 Reader 的 close() 方法    // 因此只要一个 close() 调用即可    bufferedReader.close();}</code></pre><p>参考： <a href="https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/Java%20IO.md" target="_blank" rel="noopener"> https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/Java IO.md</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;编码与解码&quot;&gt;&lt;a href=&quot;#编码与解码&quot; class=&quot;headerlink&quot; title=&quot;编码与解码&quot;&gt;&lt;/a&gt;编码与解码&lt;/h3&gt;&lt;p&gt;编码就是把字符转换为字节，而解码是把字节重新组合成字符。&lt;/p&gt;
-&lt;p&gt;如果编码和解码过程使用不同的编码方式那么就出
-      
-    
-    </summary>
-    
-      <category term="java" scheme="https://enpong.github.io/categories/java/"/>
-    
-    
-      <category term="IO" scheme="https://enpong.github.io/tags/IO/"/>
-    
-      <category term="字符" scheme="https://enpong.github.io/tags/%E5%AD%97%E7%AC%A6/"/>
-    
-      <category term="编码" scheme="https://enpong.github.io/tags/%E7%BC%96%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>装饰者模式</title>
-    <link href="https://enpong.github.io/2019/02/28/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
-    <id>https://enpong.github.io/2019/02/28/装饰者模式/</id>
-    <published>2019-02-28T10:47:23.000Z</published>
-    <updated>2019-04-09T07:59:14.704Z</updated>
-    
-    <content type="html"><![CDATA[<p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88040936" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88040936</a></p><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>在不改变原类文件以及不使用继承的情况下，动态地将责任附加到对象上，从而实现动态拓展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象</p><h3 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h3><p><img src="https://img-blog.csdnimg.cn/20190228180200747.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><ol><li><p>抽象构件(Component)<br>它是具体构件和抽象装饰类的共同祖先，声明了具体构件需要实现的业务方法</p></li><li><p>具体构件(ConcreteComponent)<br>它是抽象构件的子类，用于定义具体的构件对象，实现了在抽象构件中声明的业务方法</p></li><li><p>抽象装饰类(Decorator)<br>它也是抽象构件类的子类，用于给具体构件增加职责，但是具体职责在其子类中实现。它维护一个指向抽象构件对象的引用，通过该引用可以调用装饰之前构件对象的方法，并通<br>过其子类扩展该方法，以达到装饰的目的。</p></li><li><p>具体装饰类(ConcreteDecorator)<br>它是抽象装饰类的子类，负责向构件添加新的职责。每一个具体装饰类都定义了一些新的行为，它可以调用在抽象装饰类中定义的方法，并可以增加新的方法用以扩充对象的行为</p></li></ol><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>假设有两个程序员他们原来只会各自的技能，现在需要让Android程序猿具备设计模式技能，那就给他装饰一下。说明一下：</p><ul><li>抽象构件：掌握技能的程序员 </li><li>具体构件：一个掌握写Android代码技能的程序员，一个掌握写php代码技能的程序员 </li><li>抽象装饰类： </li><li>具体装饰类： 在业务方法中添加设计模式的技能 </li></ul><pre><code>//Component（抽象构件）interface ProgramMonkey {    void skills();}//ConcreteComponent（具体构件）class AndroidProgramMonkey implements ProgramMonkey {    @Override    public void skills() {        System.out.println(&quot;会写Android代码！&quot;);    }}//ConcreteComponent（具体构件）class PHPProgramMonkey implements ProgramMonkey {    @Override    public void skills() {        System.out.println(&quot;会写PHP代码！&quot;);    }}//Decorator（抽象装饰类）class ProgramMonkeyDecorator implements ProgramMonkey {    protected ProgramMonkey mProgramMonkey;    public ProgramMonkeyDecorator(ProgramMonkey mProgramMonkey) {        this.mProgramMonkey = mProgramMonkey;    }    public void skills() {        mProgramMonkey.skills();    }}//ConcreteDecorator（具体装饰类）class PatternDecorator extends ProgramMonkeyDecorator {    public PatternDecorator(ProgramMonkey mProgramMonkey) {        super(mProgramMonkey);    }    @Override    public void skills() {        super.skills();        System.out.println(&quot;会设计模式！&quot;);    }}public class Main {    public static void main(String[] args) {        //有一个Android程序猿只会写Android代码        ProgramMonkey programMonkey = new AndroidProgramMonkey();        programMonkey.skills();        //装饰一下他，装逼的技能，他竟然除了写Android还懂设计模式        programMonkey = new PatternDecorator(programMonkey);        programMonkey.skills();        programMonkey = new PHPProgramMonkey();        programMonkey.skills();    }}</code></pre><h3 id="Java-I-O中的装饰模式"><a href="#Java-I-O中的装饰模式" class="headerlink" title="Java I/O中的装饰模式"></a>Java I/O中的装饰模式</h3><p><img src="https://img-blog.csdnimg.cn/20190228184318894.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><ul><li>InputStream是抽象构件 </li><li>FileInputStream是InputStream的子类，属于其中一个具体构件，提供字节流输入的操作；PipedInputStream、ByteArrayInputStream也是具体构件 </li><li>FilterInputStream是InputStream的子类，属于抽象装饰类，装饰者用于装饰组件，为组件提供额外的功能。例如 BufferedInputStream 为 FileInputStream 提供缓存的功能。 </li><li>DataInputStream、BufferedInputStream、PushBackInputStream都是具体装饰者 </li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;版权声明：Enpong之家 &lt;a href=&quot;https://blog.csdn.net/qq_40005950/article/details/88040936&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/q
-      
-    
-    </summary>
-    
-      <category term="java" scheme="https://enpong.github.io/categories/java/"/>
-    
-      <category term="设计模式" scheme="https://enpong.github.io/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="JavaIO" scheme="https://enpong.github.io/tags/JavaIO/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java基础</title>
-    <link href="https://enpong.github.io/2019/02/28/java%E5%9F%BA%E7%A1%80/"/>
-    <id>https://enpong.github.io/2019/02/28/java基础/</id>
-    <published>2019-02-28T09:18:03.000Z</published>
-    <updated>2019-04-09T07:59:14.149Z</updated>
-    
-    <content type="html"><![CDATA[<p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88036891" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88036891</a></p><ul><li>基本数据类型，byte/8、short/16、char/16、int/32、float/32、long/62、double/16、boolean（只有两个值，可以用1bit来表示，但是具体大小没有明确规定，JVM在编译时期将boolean类型的数据转成int类型） </li><li>包装数据类型，基本数据类型都有对应的包装数据类型，两者之间的转换过程为装箱拆箱，装箱：基本数据类型–&gt;包装数据类型； </li><li><p>缓存池：new Integer(123)每次都会新建一个对象，而使用Integer.valueOf(123)创建实例时，会先判断该值是否在缓存池中，如果在直接返回缓存池中的内容，因此多次调用会取得同一个对象的引用；在自动装箱过程中，编译器会自动调用valueOf()，因此多个 Integer 实例使用自动装箱来创建并且值相同，那么就会引用相同的对象；每个基本数据类型都有对应的缓存池，使用这些基本类型对应的包装类型时，就可以直接使用缓冲池中的对象，但是有大小限制；<br><img src="https://img-blog.csdnimg.cn/20190228162602511.png" alt="在这里插入图片描述"></p></li><li><p>String Pool(字符串常量池)：在String Pool中添加字符串有两种方法，一种是字符串字面量”abc”在编译时期就确定，另一种是通过调用intern()在程序运行时将字符串对象添加到String Pool并返回该字符串的引用。在 Java 7 之前，String Pool 被放在运行时常量池中，它属于永久代。而在 Java 7，String Pool 被移到堆中。这是因为永久代的空间有限，在大量使用字符串的场景下会导致 OutOfMemoryError 错误 </p></li><li>switch：从Java7开始，可以在switch条件判断语句中使用String对象；switch 不支持 long，是因为 switch 的设计初衷是对那些只有少数的几个值进行等值判断，如果值过于复杂，那么还是用 if 比较合适 </li><li>抽象类与接口：抽象类可以有构造方法而接口不行；接口的成员（字段和方法）默认都是public而抽象类可以是任意访问权限；接口的字段默认都是static和final修饰的而抽象类可以有普通成员变量 </li><li>重写的两个限制：子类方法访问权限必须大于等于父类的；子类方法返回值类型必须是父类的返回值类型或子类型 </li><li>重载：返回值类型、方法名相同；参数类型、个数、顺序不同 </li><li>equal(Object o)的实现：1.判断是否为同一对象的引用，如果是直接返回true；2.判断是否为同一类型（getClass())，如果不是直接返回false；3.将参数Object对象进行转型；4.判断每个关键域是否相等。 </li><li>hashCode()：hashCode() 返回散列值，而 equals() 是用来判断两个对象是否等价。等价的两个对象散列值一定相同，但是散列值相同的两个对象不一定等价。在覆盖 equals() 方法时应当总是覆盖 hashCode() 方法，保证等价的两个对象散列值也相等； </li><li>clone()：1.Object的一个protected方法，如果一个类不显式重写该方法，那该类就不能调用clone()方法；而且该类要实现Cloneable()标记接口，要不然调用时会抛出CloneNotSupportedException。2.使用 clone() 方法来拷贝一个对象即复杂又有风险，它会抛出异常，并且还需要类型转换。Effective Java 书上讲到，最好不要去使用 clone()，可以使用拷贝构造函数或者拷贝工厂来拷贝一个对象。 </li><li>深拷贝与浅拷贝：区别在于浅拷贝拷贝时碰到对象只是复制了对象的引用。 </li><li>异常： <img src="https://img-blog.csdnimg.cn/20190228171321744.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>Java与C++： <img src="https://img-blog.csdnimg.cn/20190228171618152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li></ul><p>参考： <a href="https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/Java%20%E5%9F%BA%E7%A1%80.md" target="_blank" rel="noopener"> CS-Note/Java基础 </a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;版权声明：Enpong之家 &lt;a href=&quot;https://blog.csdn.net/qq_40005950/article/details/88036891&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/q
-      
-    
-    </summary>
-    
-      <category term="java" scheme="https://enpong.github.io/categories/java/"/>
-    
-    
-      <category term="基础" scheme="https://enpong.github.io/tags/%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
