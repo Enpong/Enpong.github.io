@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Enpong博客</title>
+  <title>Enpong</title>
   
-  <subtitle>代码日记</subtitle>
+  <subtitle>成长之路</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2019-04-09T07:59:26.071Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="https://enpong.github.io/"/>
+  <updated>2019-04-17T16:51:30.699Z</updated>
+  <id>https://enpong.github.io/</id>
   
   <author>
     <name>Enpong</name>
@@ -17,9 +17,58 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>二维数组中的查找</title>
+    <link href="https://enpong.github.io/2019/04/18/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/"/>
+    <id>https://enpong.github.io/2019/04/18/二维数组中的查找/</id>
+    <published>2019-04-17T16:36:41.000Z</published>
+    <updated>2019-04-17T16:51:30.699Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给定一个二维数组，其每一行从左到右递增排序，从上到下也是递增排序。给定一个数，判断这个数是否在该二维数组中。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Consider the following matrix:</span><br><span class="line">[</span><br><span class="line">  [1,   4,  7, 11, 15],</span><br><span class="line">  [2,   5,  8, 12, 19],</span><br><span class="line">  [3,   6,  9, 16, 22],</span><br><span class="line">  [10, 13, 14, 17, 24],</span><br><span class="line">  [18, 21, 23, 26, 30]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">Given target = 5, return true.</span><br><span class="line">Given target = 20, return false.</span><br></pre></td></tr></table></figure><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>要求时间复杂度 O(M + N)，空间复杂度 O(1)。</p><p>该二维数组中的一个数，它左边的数都比它小，下边的数都比它大。因此，从右上角开始查找，就可以根据 target 和当前元素的大小关系来缩小查找区间，当前元素的查找区间为左下角的所有元素。</p><div align="center"> <img src="//enpong.github.io/2019/04/18/二维数组中的查找/4.gif"> </div> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> target, <span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(matrix==<span class="keyword">null</span> || matrix.length==<span class="number">0</span> || matrix[<span class="number">0</span>].length==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">int</span> row = matrix.length;</span><br><span class="line">    <span class="keyword">int</span> col = matrix[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">int</span> r = <span class="number">0</span>, c = col-<span class="number">1</span>;<span class="comment">//从右上角开始</span></span><br><span class="line">    <span class="keyword">while</span>(r&lt;=row-<span class="number">1</span> &amp;&amp; c&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == matrix[r][c])</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(target &gt; matrix[r][c])</span><br><span class="line">            r++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            c--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h4&gt;&lt;p&gt;给定一个二维数组，其每一行从左到右递增排序，从上到下也是递增排序。给定一个数，判断这个数是否在该二维数组中。&lt;/p&gt;
+&lt;fi
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数组中重复的数字</title>
+    <link href="https://enpong.github.io/2019/04/18/%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/"/>
+    <id>https://enpong.github.io/2019/04/18/数组中重复的数字/</id>
+    <published>2019-04-17T16:10:37.000Z</published>
+    <updated>2019-04-17T16:30:22.058Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>在一个长度为 n 的数组里的所有数字都在 0 到 n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字是重复的，也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 </p><blockquote><p>Input:{2, 3, 1, 0, 2, 5}</p><p>Output:2</p></blockquote><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>要求是时间复杂度 O(N)，空间复杂度 O(1)。因此不能使用排序的方法，也不能使用额外的标记数组。</p><p>对于这种数组元素在 [0, n-1] 范围内的问题，可以将值为 i 的元素调整到第 i 个位置上进行求解。</p><p>以 (2, 3, 1, 0, 2, 5) 为例，遍历到位置 4 时，该位置上的数为 2，但是第 2 个位置上已经有一个 2 的值了，因此可以知道 2 重复：</p><div align="center"> <img src="//enpong.github.io/2019/04/18/数组中重复的数字/3.gif"> </div> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">duplicate</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> length, <span class="keyword">int</span>[] duplicatin)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums==<span class="keyword">null</span> || length==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;length; i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(nums[i]!=i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]==nums[nums[i]])&#123;</span><br><span class="line">                duplication[<span class="number">0</span>] = nums[i];</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            swap(nums, i, nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">    nums[j] = nums[i];</span><br><span class="line">    nums[i] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h4&gt;&lt;p&gt;在一个长度为 n 的数组里的所有数字都在 0 到 n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字是重复的，也不
+      
+    
+    </summary>
+    
+      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="数组" scheme="https://enpong.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="重复" scheme="https://enpong.github.io/tags/%E9%87%8D%E5%A4%8D/"/>
+    
+  </entry>
+  
+  <entry>
     <title>leetcode---241. 为运算表达式设计优先级</title>
-    <link href="http://yoursite.com/2019/03/22/leetcode---241.%20%E4%B8%BA%E8%BF%90%E7%AE%97%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%BE%E8%AE%A1%E4%BC%98%E5%85%88%E7%BA%A7/"/>
-    <id>http://yoursite.com/2019/03/22/leetcode---241. 为运算表达式设计优先级/</id>
+    <link href="https://enpong.github.io/2019/03/22/leetcode---241.%20%E4%B8%BA%E8%BF%90%E7%AE%97%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%BE%E8%AE%A1%E4%BC%98%E5%85%88%E7%BA%A7/"/>
+    <id>https://enpong.github.io/2019/03/22/leetcode---241. 为运算表达式设计优先级/</id>
     <published>2019-03-22T07:39:51.000Z</published>
     <updated>2019-04-09T07:59:26.071Z</updated>
     
@@ -34,17 +83,17 @@
     
     </summary>
     
-      <category term="leetcode" scheme="http://yoursite.com/categories/leetcode/"/>
+      <category term="leetcode" scheme="https://enpong.github.io/categories/leetcode/"/>
     
     
-      <category term="undefined" scheme="http://yoursite.com/tags/undefined/"/>
+      <category term="undefined" scheme="https://enpong.github.io/tags/undefined/"/>
     
   </entry>
   
   <entry>
     <title>leetcode---二分查找</title>
-    <link href="http://yoursite.com/2019/03/22/leetcode---%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
-    <id>http://yoursite.com/2019/03/22/leetcode---二分查找/</id>
+    <link href="https://enpong.github.io/2019/03/22/leetcode---%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
+    <id>https://enpong.github.io/2019/03/22/leetcode---二分查找/</id>
     <published>2019-03-22T07:10:34.000Z</published>
     <updated>2019-04-09T07:59:25.746Z</updated>
     
@@ -59,17 +108,17 @@
     
     </summary>
     
-      <category term="leetcode" scheme="http://yoursite.com/categories/leetcode/"/>
+      <category term="leetcode" scheme="https://enpong.github.io/categories/leetcode/"/>
     
     
-      <category term="二分查找" scheme="http://yoursite.com/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
+      <category term="二分查找" scheme="https://enpong.github.io/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
     
   </entry>
   
   <entry>
     <title>操作系统---线程同步</title>
-    <link href="http://yoursite.com/2019/03/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F---%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/"/>
-    <id>http://yoursite.com/2019/03/21/操作系统---线程同步/</id>
+    <link href="https://enpong.github.io/2019/03/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F---%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/"/>
+    <id>https://enpong.github.io/2019/03/21/操作系统---线程同步/</id>
     <published>2019-03-21T08:22:46.000Z</published>
     <updated>2019-04-09T07:59:25.412Z</updated>
     
@@ -84,17 +133,17 @@
     
     </summary>
     
-      <category term="操作系统" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+      <category term="操作系统" scheme="https://enpong.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="线程同步" scheme="http://yoursite.com/tags/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/"/>
+      <category term="线程同步" scheme="https://enpong.github.io/tags/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/"/>
     
   </entry>
   
   <entry>
     <title>Java实现LRU策略缓冲</title>
-    <link href="http://yoursite.com/2019/03/08/Java%E5%AE%9E%E7%8E%B0LRU%E7%AD%96%E7%95%A5%E7%BC%93%E5%86%B2/"/>
-    <id>http://yoursite.com/2019/03/08/Java实现LRU策略缓冲/</id>
+    <link href="https://enpong.github.io/2019/03/08/Java%E5%AE%9E%E7%8E%B0LRU%E7%AD%96%E7%95%A5%E7%BC%93%E5%86%B2/"/>
+    <id>https://enpong.github.io/2019/03/08/Java实现LRU策略缓冲/</id>
     <published>2019-03-08T13:05:21.000Z</published>
     <updated>2019-04-09T07:59:25.172Z</updated>
     
@@ -109,19 +158,19 @@
     
     </summary>
     
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+      <category term="java" scheme="https://enpong.github.io/categories/java/"/>
     
     
-      <category term="LRU" scheme="http://yoursite.com/tags/LRU/"/>
+      <category term="LRU" scheme="https://enpong.github.io/tags/LRU/"/>
     
-      <category term="缓存" scheme="http://yoursite.com/tags/%E7%BC%93%E5%AD%98/"/>
+      <category term="缓存" scheme="https://enpong.github.io/tags/%E7%BC%93%E5%AD%98/"/>
     
   </entry>
   
   <entry>
     <title>Java多线程的中断操作</title>
-    <link href="http://yoursite.com/2019/03/06/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%AD%E6%96%AD%E6%93%8D%E4%BD%9C/"/>
-    <id>http://yoursite.com/2019/03/06/Java多线程的中断操作/</id>
+    <link href="https://enpong.github.io/2019/03/06/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%AD%E6%96%AD%E6%93%8D%E4%BD%9C/"/>
+    <id>https://enpong.github.io/2019/03/06/Java多线程的中断操作/</id>
     <published>2019-03-06T07:33:09.000Z</published>
     <updated>2019-04-09T07:59:24.724Z</updated>
     
@@ -136,19 +185,19 @@
     
     </summary>
     
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+      <category term="java" scheme="https://enpong.github.io/categories/java/"/>
     
     
-      <category term="多线程" scheme="http://yoursite.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+      <category term="多线程" scheme="https://enpong.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
-      <category term="中断" scheme="http://yoursite.com/tags/%E4%B8%AD%E6%96%AD/"/>
+      <category term="中断" scheme="https://enpong.github.io/tags/%E4%B8%AD%E6%96%AD/"/>
     
   </entry>
   
   <entry>
     <title>Web页面请求过程</title>
-    <link href="http://yoursite.com/2019/03/06/Web%E9%A1%B5%E9%9D%A2%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B/"/>
-    <id>http://yoursite.com/2019/03/06/Web页面请求过程/</id>
+    <link href="https://enpong.github.io/2019/03/06/Web%E9%A1%B5%E9%9D%A2%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B/"/>
+    <id>https://enpong.github.io/2019/03/06/Web页面请求过程/</id>
     <published>2019-03-06T06:23:37.000Z</published>
     <updated>2019-04-09T07:59:24.218Z</updated>
     
@@ -164,17 +213,17 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
     
     </summary>
     
-      <category term="网络" scheme="http://yoursite.com/categories/%E7%BD%91%E7%BB%9C/"/>
+      <category term="网络" scheme="https://enpong.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
     
     
-      <category term="undefined" scheme="http://yoursite.com/tags/undefined/"/>
+      <category term="undefined" scheme="https://enpong.github.io/tags/undefined/"/>
     
   </entry>
   
   <entry>
     <title>五种IO模型</title>
-    <link href="http://yoursite.com/2019/03/05/%E4%BA%94%E7%A7%8DIO%E6%A8%A1%E5%9E%8B/"/>
-    <id>http://yoursite.com/2019/03/05/五种IO模型/</id>
+    <link href="https://enpong.github.io/2019/03/05/%E4%BA%94%E7%A7%8DIO%E6%A8%A1%E5%9E%8B/"/>
+    <id>https://enpong.github.io/2019/03/05/五种IO模型/</id>
     <published>2019-03-05T04:55:40.000Z</published>
     <updated>2019-04-09T07:59:23.537Z</updated>
     
@@ -189,19 +238,19 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
     
     </summary>
     
-      <category term="操作系统" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+      <category term="操作系统" scheme="https://enpong.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="I" scheme="http://yoursite.com/tags/I/"/>
+      <category term="I" scheme="https://enpong.github.io/tags/I/"/>
     
-      <category term="O" scheme="http://yoursite.com/tags/O/"/>
+      <category term="O" scheme="https://enpong.github.io/tags/O/"/>
     
   </entry>
   
   <entry>
     <title>JAVA中BitSet</title>
-    <link href="http://yoursite.com/2019/03/02/JAVA%E4%B8%ADBitSet/"/>
-    <id>http://yoursite.com/2019/03/02/JAVA中BitSet/</id>
+    <link href="https://enpong.github.io/2019/03/02/JAVA%E4%B8%ADBitSet/"/>
+    <id>https://enpong.github.io/2019/03/02/JAVA中BitSet/</id>
     <published>2019-03-02T11:10:27.000Z</published>
     <updated>2019-04-09T07:59:22.639Z</updated>
     
@@ -216,19 +265,19 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
     
     </summary>
     
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+      <category term="java" scheme="https://enpong.github.io/categories/java/"/>
     
-      <category term="大数据量" scheme="http://yoursite.com/categories/java/%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%8F/"/>
+      <category term="大数据量" scheme="https://enpong.github.io/categories/java/%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%8F/"/>
     
     
-      <category term="BitSet" scheme="http://yoursite.com/tags/BitSet/"/>
+      <category term="BitSet" scheme="https://enpong.github.io/tags/BitSet/"/>
     
   </entry>
   
   <entry>
     <title>Leetcode---208.实现Trie前缀树</title>
-    <link href="http://yoursite.com/2019/03/02/Leetcode---208.%E5%AE%9E%E7%8E%B0Trie%E5%89%8D%E7%BC%80%E6%A0%91/"/>
-    <id>http://yoursite.com/2019/03/02/Leetcode---208.实现Trie前缀树/</id>
+    <link href="https://enpong.github.io/2019/03/02/Leetcode---208.%E5%AE%9E%E7%8E%B0Trie%E5%89%8D%E7%BC%80%E6%A0%91/"/>
+    <id>https://enpong.github.io/2019/03/02/Leetcode---208.实现Trie前缀树/</id>
     <published>2019-03-02T09:59:11.000Z</published>
     <updated>2019-04-09T07:59:21.416Z</updated>
     
@@ -243,17 +292,17 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
     
     </summary>
     
-      <category term="undefined" scheme="http://yoursite.com/categories/undefined/"/>
+      <category term="undefined" scheme="https://enpong.github.io/categories/undefined/"/>
     
     
-      <category term="undefined" scheme="http://yoursite.com/tags/undefined/"/>
+      <category term="undefined" scheme="https://enpong.github.io/tags/undefined/"/>
     
   </entry>
   
   <entry>
     <title>剑指offer---删除链表中重复的结点</title>
-    <link href="http://yoursite.com/2019/03/02/%E5%89%91%E6%8C%87offer---%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E7%BB%93%E7%82%B9/"/>
-    <id>http://yoursite.com/2019/03/02/剑指offer---删除链表中重复的结点/</id>
+    <link href="https://enpong.github.io/2019/03/02/%E5%89%91%E6%8C%87offer---%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E7%BB%93%E7%82%B9/"/>
+    <id>https://enpong.github.io/2019/03/02/剑指offer---删除链表中重复的结点/</id>
     <published>2019-03-02T06:10:38.000Z</published>
     <updated>2019-04-09T07:59:20.247Z</updated>
     
@@ -268,17 +317,17 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
     
     </summary>
     
-      <category term="剑指offer" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer/"/>
+      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
     
     
-      <category term="链表" scheme="http://yoursite.com/tags/%E9%93%BE%E8%A1%A8/"/>
+      <category term="链表" scheme="https://enpong.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
     
   </entry>
   
   <entry>
     <title>LeetCode869---重新排序得到2的幂</title>
-    <link href="http://yoursite.com/2019/03/02/LeetCode869---%E9%87%8D%E6%96%B0%E6%8E%92%E5%BA%8F%E5%BE%97%E5%88%B02%E7%9A%84%E5%B9%82/"/>
-    <id>http://yoursite.com/2019/03/02/LeetCode869---重新排序得到2的幂/</id>
+    <link href="https://enpong.github.io/2019/03/02/LeetCode869---%E9%87%8D%E6%96%B0%E6%8E%92%E5%BA%8F%E5%BE%97%E5%88%B02%E7%9A%84%E5%B9%82/"/>
+    <id>https://enpong.github.io/2019/03/02/LeetCode869---重新排序得到2的幂/</id>
     <published>2019-03-02T04:54:18.000Z</published>
     <updated>2019-04-09T07:59:19.615Z</updated>
     
@@ -293,17 +342,17 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
     
     </summary>
     
-      <category term="undefined" scheme="http://yoursite.com/categories/undefined/"/>
+      <category term="undefined" scheme="https://enpong.github.io/categories/undefined/"/>
     
     
-      <category term="undefined" scheme="http://yoursite.com/tags/undefined/"/>
+      <category term="undefined" scheme="https://enpong.github.io/tags/undefined/"/>
     
   </entry>
   
   <entry>
     <title>操作系统---进程通信</title>
-    <link href="http://yoursite.com/2019/03/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F---%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/"/>
-    <id>http://yoursite.com/2019/03/01/操作系统---进程通信/</id>
+    <link href="https://enpong.github.io/2019/03/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F---%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/"/>
+    <id>https://enpong.github.io/2019/03/01/操作系统---进程通信/</id>
     <published>2019-03-01T15:54:07.000Z</published>
     <updated>2019-04-09T07:59:18.751Z</updated>
     
@@ -318,17 +367,17 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
     
     </summary>
     
-      <category term="操作系统" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+      <category term="操作系统" scheme="https://enpong.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="进程通信" scheme="http://yoursite.com/tags/%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/"/>
+      <category term="进程通信" scheme="https://enpong.github.io/tags/%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/"/>
     
   </entry>
   
   <entry>
     <title>操作系统---进程同步经典问题</title>
-    <link href="http://yoursite.com/2019/03/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F---%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2019/03/01/操作系统---进程同步经典问题/</id>
+    <link href="https://enpong.github.io/2019/03/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F---%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98/"/>
+    <id>https://enpong.github.io/2019/03/01/操作系统---进程同步经典问题/</id>
     <published>2019-03-01T12:43:04.000Z</published>
     <updated>2019-04-09T07:59:17.781Z</updated>
     
@@ -343,17 +392,17 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
     
     </summary>
     
-      <category term="操作系统" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+      <category term="操作系统" scheme="https://enpong.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="进程同步" scheme="http://yoursite.com/tags/%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5/"/>
+      <category term="进程同步" scheme="https://enpong.github.io/tags/%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5/"/>
     
   </entry>
   
   <entry>
     <title>SSM---对Spring的理解</title>
-    <link href="http://yoursite.com/2019/03/01/SSM---%E5%AF%B9Spring%E7%9A%84%E7%90%86%E8%A7%A3/"/>
-    <id>http://yoursite.com/2019/03/01/SSM---对Spring的理解/</id>
+    <link href="https://enpong.github.io/2019/03/01/SSM---%E5%AF%B9Spring%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+    <id>https://enpong.github.io/2019/03/01/SSM---对Spring的理解/</id>
     <published>2019-03-01T06:24:16.000Z</published>
     <updated>2019-04-09T07:59:16.987Z</updated>
     
@@ -368,21 +417,21 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
     
     </summary>
     
-      <category term="ssm" scheme="http://yoursite.com/categories/ssm/"/>
+      <category term="ssm" scheme="https://enpong.github.io/categories/ssm/"/>
     
     
-      <category term="spring" scheme="http://yoursite.com/tags/spring/"/>
+      <category term="spring" scheme="https://enpong.github.io/tags/spring/"/>
     
-      <category term="IOC" scheme="http://yoursite.com/tags/IOC/"/>
+      <category term="IOC" scheme="https://enpong.github.io/tags/IOC/"/>
     
-      <category term="AOP" scheme="http://yoursite.com/tags/AOP/"/>
+      <category term="AOP" scheme="https://enpong.github.io/tags/AOP/"/>
     
   </entry>
   
   <entry>
     <title>操作系统---概述</title>
-    <link href="http://yoursite.com/2019/02/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F---%E6%A6%82%E8%BF%B0/"/>
-    <id>http://yoursite.com/2019/02/28/操作系统---概述/</id>
+    <link href="https://enpong.github.io/2019/02/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F---%E6%A6%82%E8%BF%B0/"/>
+    <id>https://enpong.github.io/2019/02/28/操作系统---概述/</id>
     <published>2019-02-28T12:00:54.000Z</published>
     <updated>2019-04-09T07:59:16.473Z</updated>
     
@@ -397,17 +446,17 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
     
     </summary>
     
-      <category term="操作系统" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+      <category term="操作系统" scheme="https://enpong.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="概念" scheme="http://yoursite.com/tags/%E6%A6%82%E5%BF%B5/"/>
+      <category term="概念" scheme="https://enpong.github.io/tags/%E6%A6%82%E5%BF%B5/"/>
     
   </entry>
   
   <entry>
     <title>JavaIO---字符操作</title>
-    <link href="http://yoursite.com/2019/02/28/JavaIO---%E5%AD%97%E7%AC%A6%E6%93%8D%E4%BD%9C/"/>
-    <id>http://yoursite.com/2019/02/28/JavaIO---字符操作/</id>
+    <link href="https://enpong.github.io/2019/02/28/JavaIO---%E5%AD%97%E7%AC%A6%E6%93%8D%E4%BD%9C/"/>
+    <id>https://enpong.github.io/2019/02/28/JavaIO---字符操作/</id>
     <published>2019-02-28T10:59:12.000Z</published>
     <updated>2019-04-09T07:59:15.290Z</updated>
     
@@ -423,21 +472,21 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
     
     </summary>
     
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+      <category term="java" scheme="https://enpong.github.io/categories/java/"/>
     
     
-      <category term="IO" scheme="http://yoursite.com/tags/IO/"/>
+      <category term="IO" scheme="https://enpong.github.io/tags/IO/"/>
     
-      <category term="字符" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6/"/>
+      <category term="字符" scheme="https://enpong.github.io/tags/%E5%AD%97%E7%AC%A6/"/>
     
-      <category term="编码" scheme="http://yoursite.com/tags/%E7%BC%96%E7%A0%81/"/>
+      <category term="编码" scheme="https://enpong.github.io/tags/%E7%BC%96%E7%A0%81/"/>
     
   </entry>
   
   <entry>
     <title>装饰者模式</title>
-    <link href="http://yoursite.com/2019/02/28/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2019/02/28/装饰者模式/</id>
+    <link href="https://enpong.github.io/2019/02/28/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://enpong.github.io/2019/02/28/装饰者模式/</id>
     <published>2019-02-28T10:47:23.000Z</published>
     <updated>2019-04-09T07:59:14.704Z</updated>
     
@@ -452,19 +501,19 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
     
     </summary>
     
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+      <category term="java" scheme="https://enpong.github.io/categories/java/"/>
     
-      <category term="设计模式" scheme="http://yoursite.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://enpong.github.io/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="JavaIO" scheme="http://yoursite.com/tags/JavaIO/"/>
+      <category term="JavaIO" scheme="https://enpong.github.io/tags/JavaIO/"/>
     
   </entry>
   
   <entry>
     <title>java基础</title>
-    <link href="http://yoursite.com/2019/02/28/java%E5%9F%BA%E7%A1%80/"/>
-    <id>http://yoursite.com/2019/02/28/java基础/</id>
+    <link href="https://enpong.github.io/2019/02/28/java%E5%9F%BA%E7%A1%80/"/>
+    <id>https://enpong.github.io/2019/02/28/java基础/</id>
     <published>2019-02-28T09:18:03.000Z</published>
     <updated>2019-04-09T07:59:14.149Z</updated>
     
@@ -479,62 +528,10 @@ E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#web-%E9%A1%B5%E
     
     </summary>
     
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+      <category term="java" scheme="https://enpong.github.io/categories/java/"/>
     
     
-      <category term="基础" scheme="http://yoursite.com/tags/%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java并发---互斥同步</title>
-    <link href="http://yoursite.com/2019/02/28/Java%E5%B9%B6%E5%8F%91---%E4%BA%92%E6%96%A5%E5%90%8C%E6%AD%A5/"/>
-    <id>http://yoursite.com/2019/02/28/Java并发---互斥同步/</id>
-    <published>2019-02-28T03:18:58.000Z</published>
-    <updated>2019-04-09T07:59:13.753Z</updated>
-    
-    <content type="html"><![CDATA[<p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88019011" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88019011</a></p><p>Java提供两种锁机制控制多线程对互斥资源的互斥访问，一种是JVM实现的synchronized，一种是JDK实现的RentranLock.</p><h3 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h3><ul><li><p>同步一个代码块；只作用于一个对象，如果调用两个不同的对象上的同步代码块，不会进行同步； </p><pre><code>public class SynchronizedExample {public void func1() {    synchronized (this) {        for (int i = 0; i &lt; 10; i++) {            System.out.print(i + &quot; &quot;);        }    }}</code></pre><p>}</p></li></ul><ul><li><p>同步一个方法；和同步代码块一样，只作用于相同对象； </p><pre><code>public synchronized void func () {// ...</code></pre><p>}</p></li></ul><ul><li><p>同步一个类；作用于整个类，即两个线程调用同一类的不同对象上的同步语句，也会进行同步； </p><pre><code>public void func() {synchronized (SynchronizedExample.class) {    // ...}</code></pre><p>}</p></li></ul><ul><li><p>同步一个静态方法；作用于整个类 </p><pre><code>public synchronized static void fun() {// ...</code></pre><p>}</p></li></ul><h3 id="RentranLock"><a href="#RentranLock" class="headerlink" title="RentranLock"></a>RentranLock</h3><p>RentranLock是java.util.concurrent(J.U.C)包中的锁；<br><a href="https://blog.csdn.net/lipeng_bigdata/article/details/52154637" target="_blank" rel="noopener"> Java并发之ReentrantLock详解</a></p><h3 id="两者的异同"><a href="#两者的异同" class="headerlink" title="两者的异同"></a>两者的异同</h3><ul><li>锁的实现；synchronized是JVM实现，RentranLock是JDK实现 </li><li>性能：由于新版本Java对synchronized进行了很多 <a href="https://blog.csdn.net/qq_40005950/article/details/88019202" target="_blank" rel="noopener"> 优化 </a> ，例如自旋锁等，两者性能大致相同 </li><li>等待可中断；当一个线程长期不释放锁时，其他在等待的线程可以放弃等待去处理其他事情；RentranLock可中断，而synchronized不行 </li><li>公平锁；即当多个线程在等待同一锁时，必须按照申请锁的时间顺序获得锁；synchronized中的锁是非公平的；RentranLock默认的锁也是不公平的，但是也可以是公平的 </li><li>绑定条件；一个RentranLock可以绑定多个Condition对象。 <a href="https://blog.csdn.net/sunyameng_ndsc/article/details/40923679" target="_blank" rel="noopener"> 在一个锁中使用多个条件（Condition) </a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;版权声明：Enpong之家 &lt;a href=&quot;https://blog.csdn.net/qq_40005950/article/details/88019011&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/q
-      
-    
-    </summary>
-    
-      <category term="undefined" scheme="http://yoursite.com/categories/undefined/"/>
-    
-    
-      <category term="undefined" scheme="http://yoursite.com/tags/undefined/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>剑指offer---数组中只出现一次地数字</title>
-    <link href="http://yoursite.com/2019/02/28/%E5%89%91%E6%8C%87offer---%E6%95%B0%E7%BB%84%E4%B8%AD%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E5%9C%B0%E6%95%B0%E5%AD%97/"/>
-    <id>http://yoursite.com/2019/02/28/剑指offer---数组中只出现一次地数字/</id>
-    <published>2019-02-28T02:33:29.000Z</published>
-    <updated>2019-04-09T07:59:12.785Z</updated>
-    
-    <content type="html"><![CDATA[<p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88016727" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88016727</a></p><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>一个整型数组里除了两个数字之外，其他的数字都出现了偶数次。请写程序找出这两个只出现一次的数字</p><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ul><li>两个相同的数异或的结果为0；利用这点将数组的所有元素异或得到的结果即是不存在重复的两个元素异或的结果； </li><li>diff &amp;= -diff 得到出 diff 最右侧不为 0 的位，也就是不存在重复的两个元素在位级表示上最右侧不同的那一位，利用这一位就可以将两个元素区分开来 </li><li>假设两个元素在位级表示上不同的那一位是第N位，可以将原数组分为两个子数组，则两个子数组中各包含一个不同的元素以及若干对第N位一样的相同元素，分别对子数组所有元素异或得到的结果就是那位元素； </li><li>num&amp;diff可将数组分成两个子数组。 </li></ul><pre><code>public void FindNumsAppearOnce(int [] array,int num1[] , int num2[]) {        int diff = 0;        for(int num : array){            diff ^= num;        }        diff &amp;= -diff;        for(int num : array){            if((num&amp;diff) == 0){                num1[0] ^= num;            }else{                num2[0] ^= num;            }        }    }</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;版权声明：Enpong之家 &lt;a href=&quot;https://blog.csdn.net/qq_40005950/article/details/88016727&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/q
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="剑指offer" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/%E5%89%91%E6%8C%87offer/"/>
-    
-    
-      <category term="位运算" scheme="http://yoursite.com/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+      <category term="基础" scheme="https://enpong.github.io/tags/%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   

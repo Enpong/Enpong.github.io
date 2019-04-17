@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[二维数组中的查找]]></title>
+    <url>%2F2019%2F04%2F18%2F%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
+    <content type="text"><![CDATA[题目描述给定一个二维数组，其每一行从左到右递增排序，从上到下也是递增排序。给定一个数，判断这个数是否在该二维数组中。 1234567891011Consider the following matrix:[ [1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]]Given target = 5, return true.Given target = 20, return false. 思路要求时间复杂度 O(M + N)，空间复杂度 O(1)。 该二维数组中的一个数，它左边的数都比它小，下边的数都比它大。因此，从右上角开始查找，就可以根据 target 和当前元素的大小关系来缩小查找区间，当前元素的查找区间为左下角的所有元素。 12345678910111213141516public boolean Find(int target, int[][] matrix) &#123; if(matrix==null || matrix.length==0 || matrix[0].length==0) return false; int row = matrix.length; int col = matrix[0].length; int r = 0, c = col-1;//从右上角开始 while(r&lt;=row-1 &amp;&amp; c&gt;=0)&#123; if(target == matrix[r][c]) return true; else if(target &gt; matrix[r][c]) r++; else c--; &#125; return false;&#125;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[数组中重复的数字]]></title>
+    <url>%2F2019%2F04%2F18%2F%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97%2F</url>
+    <content type="text"><![CDATA[题目描述在一个长度为 n 的数组里的所有数字都在 0 到 n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字是重复的，也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 Input:{2, 3, 1, 0, 2, 5} Output:2 思路要求是时间复杂度 O(N)，空间复杂度 O(1)。因此不能使用排序的方法，也不能使用额外的标记数组。 对于这种数组元素在 [0, n-1] 范围内的问题，可以将值为 i 的元素调整到第 i 个位置上进行求解。 以 (2, 3, 1, 0, 2, 5) 为例，遍历到位置 4 时，该位置上的数为 2，但是第 2 个位置上已经有一个 2 的值了，因此可以知道 2 重复： 12345678910111213141516171819public boolean duplicate(int[] nums, int length, int[] duplicatin)&#123; if(nums==null || length==0) return false; for(int i=0; i&lt;length; i++)&#123; while(nums[i]!=i)&#123; if(nums[i]==nums[nums[i]])&#123; duplication[0] = nums[i]; return true; &#125; swap(nums, i, nums[i]); &#125; &#125;&#125;private void swap(int[] nums, int i, int j)&#123; int temp = nums[i]; nums[j] = nums[i]; nums[i] = temp;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>重复</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode---241. 为运算表达式设计优先级]]></title>
     <url>%2F2019%2F03%2F22%2Fleetcode---241.%20%E4%B8%BA%E8%BF%90%E7%AE%97%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%BE%E8%AE%A1%E4%BC%98%E5%85%88%E7%BA%A7%2F</url>
     <content type="text"><![CDATA[版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88742790 回溯搜索。该问题牵涉到括号的组合问题，一般使用递归+回溯的思想。主要想法： 递归回溯。可以产生所有的组合方式。 每个小组合方式相当于一个子集，不断的将计算结果返回给上一层。 举例：a + (b - (c d))会不断的变成a + (b - (res1 res2))-&gt; a + (res1 - res2) -&gt; res1 res2 计算结果需要for循环！！！其实有这种情况，a + (b - (c d))和a + (b - c) d))，这里 a +res2，res2就可能有多种情况。 class Solution { public List&lt;Integer&gt; diffWaysToCompute(String input) { List&lt;Integer&gt; ways = new ArrayList&lt;&gt;(); for(int i=0; i&lt;input.length(); i++){ char c = input.charAt(i); if(c==&apos;+&apos; || c==&apos;-&apos; || c==&apos;*&apos;){ List&lt;Integer&gt; left = diffWaysToCompute(input.substring(0, i)); List&lt;Integer&gt; right = diffWaysToCompute(input.substring(i+1)); for(Integer l : left){ for(Integer r : right){ switch(c){ case &apos;+&apos;: ways.add(l+r); break; case &apos;-&apos;: ways.add(l-r); break; case &apos;*&apos;: ways.add(l*r); break; } } } } } if(ways.size()==0) ways.add(Integer.valueOf(input)); return ways; } }]]></content>
@@ -219,31 +236,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer---数组中只出现一次地数字]]></title>
-    <url>%2F2019%2F02%2F28%2F%E5%89%91%E6%8C%87offer---%E6%95%B0%E7%BB%84%E4%B8%AD%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E5%9C%B0%E6%95%B0%E5%AD%97%2F</url>
-    <content type="text"><![CDATA[版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88016727 题目描述一个整型数组里除了两个数字之外，其他的数字都出现了偶数次。请写程序找出这两个只出现一次的数字 解题思路 两个相同的数异或的结果为0；利用这点将数组的所有元素异或得到的结果即是不存在重复的两个元素异或的结果； diff &amp;= -diff 得到出 diff 最右侧不为 0 的位，也就是不存在重复的两个元素在位级表示上最右侧不同的那一位，利用这一位就可以将两个元素区分开来 假设两个元素在位级表示上不同的那一位是第N位，可以将原数组分为两个子数组，则两个子数组中各包含一个不同的元素以及若干对第N位一样的相同元素，分别对子数组所有元素异或得到的结果就是那位元素； num&amp;diff可将数组分成两个子数组。 public void FindNumsAppearOnce(int [] array,int num1[] , int num2[]) { int diff = 0; for(int num : array){ diff ^= num; } diff &amp;= -diff; for(int num : array){ if((num&amp;diff) == 0){ num1[0] ^= num; }else{ num2[0] ^= num; } } }]]></content>
-      <categories>
-        <category>算法</category>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>位运算</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[剑指offer---求1+2+3+...+n]]></title>
-    <url>%2F2019%2F02%2F28%2F%E5%89%91%E6%8C%87offer---%E6%B1%821%2B2%2B3%2B...%2Bn%2F</url>
-    <content type="text"><![CDATA[题目描述求1+2+3+…+n，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。 解法使用递归解法最重要的是指定返回条件，但是本题无法直接使用 if 语句来指定返回条件。 条件与 &amp;&amp; 具有短路原则，即在第一个条件语句为 false 的情况下不会去执行第二个条件语句。利用这一特性，将递归的返回条件取非然后作为 &amp;&amp;的第一个条件语句，递归的主体转换为第二个条件语句，那么当递归的返回条件为 true 的情况下就不会执行递归的主体部分，递归返回。 本题的递归返回条件为 n &lt;= 0，取非后就是 n &gt; 0；递归的主体部分为 sum += Sum_Solution(n - 1)，转换为条件语句后就是(sum += Sum_Solution(n - 1)) &gt; 0。 public int Sum_Solution(int n) { int sum = n; boolean b = (n&gt;0) &amp;&amp; (sum += Sum_Solution(n-1))&gt;0; return sum; }]]></content>
-      <categories>
-        <category>剑指offer</category>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>递归</tag>
-        <tag>短路原则</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[面向对象思想]]></title>
     <url>%2F2019%2F02%2F27%2F%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E6%83%B3%2F</url>
     <content type="text"><![CDATA[三大特性 封装 继承 多态编译时多态：主要指方法的重载运行时多态：三个条件（继承，重写，向上转型） 类图 泛化关系：描述继承关系，extend 实现关系：实现一个接口，implement 聚合关系：整体和部分不是强依赖，整体不存在，部分可以存在 组合关系：整体和部分强依赖，整体消失，部分跟着消失 关联关系：表示不同类对象之间的关联，这是一种静态关系，与运行过程无关，如1对1，1对多… 依赖关系：在运行过程中起作用，有三种形式：A 类是 B 类方法的局部变量；A 类是 B 类方法当中的一个参数；A 类向 B 类发送消息，从而影响 B 类发生变化 设计原则（S.O.L.I.D) S：单一责任原则 修改一个类的原因只有一个 让一个类只负责一件事，当这个类需要做过多的事情，应该分解这个类；如果一个类承担职责过多，就等于把这些职责耦合在一起，一个职责的变化可能削弱该类完成其他职责的能力。 O：开放封闭原则 类对扩展开放，对修改关闭 添加新功能时不修改代码；装饰者模式，动态地将责任附加到对象上而不用修改代码。 L：里氏替换原则 子类必须可以替换所有父类对象 I：接口分离原则 不应该强迫客户依赖于它们不用的方法。 因此使用多个专门的接口比使用单一的总接口要好 D：依赖倒置原则 高层模块不应该依赖于低层模块，两者都应该依赖于抽象；抽象不应该依赖于细节，细节依赖于抽象 高层模块包含一个应用程序中重要的策略选择和业务模块，如果高层模块依赖于低层模块，那么低层模块的改动就会直接影响到高层模块，从而迫使高层模块也需要改动。 依赖于抽象意味着： 任何变量都不应该持有一个指向具体类的指针或者引用； 任何类都不应该从具体类派生； 任何方法都不应该覆写它的任何基类中的已经实现的方法。 其他常见原则 迪米特法则迪米特法则又叫作最少知识原则（Least Knowledge Principle，简写LKP），就是说一个对象应当对其他对象有尽可能少的了解，不和陌生人说话。 合成复用原则尽量使用对象组合，而不是通过继承来达到复用的目的。 共同封闭原则一起修改的类，应该组合在一起（同一个包里）。如果必须修改应用程序里的代码，我们希望所有的修改都发生在一个包里（修改关闭），而不是遍布在很多包里。 稳定抽象原则最稳定的包应该是最抽象的包，不稳定的包应该是具体的包，即包的抽象程度跟它的稳定性成正比。 稳定依赖原则包之间的依赖关系都应该是稳定方向依赖的，包要依赖的包要比自己更具有稳定性。 参考： https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/面向对象思想.md]]></content>
@@ -256,67 +248,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer---第一个只出现一次的字符]]></title>
-    <url>%2F2019%2F02%2F27%2F%E5%89%91%E6%8C%87offer---%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6%2F</url>
-    <content type="text"><![CDATA[版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/87980784 使用 HashMap 对出现次数进行统计 public int FirstNotRepeatingChar(String str) { if(str==null || str.length()==0) return -1; Map&lt;Character, Integer&gt; map = new HashMap&lt;&gt;(); for(int i=0; i&lt;str.length(); i++){ char c = str.charAt(i); if(map.containsKey(c)){ map.put(c, map.get(c)+1); }else{ map.put(c, 1); } } for(int i=0; i&lt;str.length(); i++){ if(map.get(str.charAt(i)) == 1) return i; } return -1; } 考虑到要统计的字符范围有限，因此可以使用整型数组代替 HashMap public int FirstNotRepeatingChar(String str) { if(str==null || str.length()==0) return -1; int[] cnt = new int[256]; for(int i=0; i&lt;str.length(); i++){ cnt[str.charAt(i)]++; } for(int i=0; i&lt;str.length(); i++){ if(cnt[str.charAt(i)] == 1) return i; } return -1; } 以上实现的空间复杂度还不是最优的。考虑到只需要找到只出现一次的字符，那么需要统计的次数信息只有 0,1,更大，使用两个比特位就能存储这些信息 public int FirstNotRepeatingChar(String str) { if(str==null || str.length()==0) return -1; BitSet bs1 = new BitSet(256); BitSet bs2 = new BitSet(256); for(char c : str.toCharArray()){ // 00--&gt;01 if(!bs1.get(c) &amp;&amp; !bs2.get(c)) bs1.set(c); // 01--&gt;11 else if(bs1.get(c) &amp;&amp; !bs2.get(c)) bs2.set(c); } for(int i=0; i&lt;str.length(); i++){ char c = str.charAt(i); // 01 if(bs1.get(c) &amp;&amp; !bs2.get(c)) return i; } return -1; }]]></content>
-      <categories>
-        <category>算法</category>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>hashmap</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[剑指offer---丑数]]></title>
-    <url>%2F2019%2F02%2F27%2F%E5%89%91%E6%8C%87offer---%E4%B8%91%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[来源牛客网： https://www.nowcoder.com/profile/835689/codeBookDetail?submissionId=1522621 通俗易懂的解释：首先从丑数的定义我们知道，一个丑数的因子只有2,3,5，那么丑数p = 2 ^ x 3 ^ y 5 ^ z，换句话说一个丑数一定由另一个丑数乘以2或者乘以3或者乘以5得到，那么我们从1开始乘以2,3,5，就得到2,3,5三个丑数，在从这三个丑数出发乘以2,3,5就得到4，6,10,6，9,15,10,15,25九个丑数，我们发现这种方法会得到重复的丑数，而且我们题目要求第N个丑数，这样的方法得到的丑数也是无序的。那么我们可以维护三个队列：（1）丑数数组： 1乘以2的队列：2乘以3的队列：3乘以5的队列：5选择三个队列头最小的数2加入丑数数组，同时将该最小的数乘以2,3,5放入三个队列；（2）丑数数组：1,2乘以2的队列：4乘以3的队列：3，6乘以5的队列：5，10选择三个队列头最小的数3加入丑数数组，同时将该最小的数乘以2,3,5放入三个队列；（3）丑数数组：1,2,3乘以2的队列：4,6乘以3的队列：6,9乘以5的队列：5,10,15选择三个队列头里最小的数4加入丑数数组，同时将该最小的数乘以2,3,5放入三个队列；（4）丑数数组：1,2,3,4乘以2的队列：6，8乘以3的队列：6,9,12乘以5的队列：5,10,15,20选择三个队列头里最小的数5加入丑数数组，同时将该最小的数乘以2,3,5放入三个队列；（5）丑数数组：1,2,3,4,5乘以2的队列：6,8,10，乘以3的队列：6,9,12,15乘以5的队列：10,15,20,25选择三个队列头里最小的数6加入丑数数组，但我们发现，有两个队列头都为6，所以我们弹出两个队列头，同时将12,18,30放入三个队列；……………………疑问：1.为什么分三个队列？丑数数组里的数一定是有序的，因为我们是从丑数数组里的数乘以2,3,5选出的最小数，一定比以前未乘以2,3,5大，同时对于三个队列内部，按先后顺序乘以2,3,5分别放入，所以同一个队列内部也是有序的；2.为什么比较三个队列头部最小的数放入丑数数组？因为三个队列是有序的，所以取出三个头中最小的，等同于找到了三个队列所有数中最小的。实现思路：我们没有必要维护三个队列，只需要记录三个指针显示到达哪一步；“|”表示指针,arr表示丑数数组；（1）1|2|3|5目前指针指向0,0,0，队列头arr[0] 2 = 2, arr[0] 3 = 3, arr[0] 5 = 5（2）1 22 |4|3 6|5 10目前指针指向1,0,0，队列头arr[1] 2 = 4, arr[0] 3 = 3, arr[0] 5 = 5（3）1 2 32| 4 63 |6 9|5 10 15目前指针指向1,1,0，队列头arr[1] 2 = 4, arr[1] 3 = 6, arr[0] * 5 = 5……………… public int GetUglyNumber_Solution(int index) { if(index&lt;=6) return index; int i2=0,i3=0,i5=0; int[] dp = new int[index]; dp[0] = 1; for(int i=1; i&lt;index; i++){ int next2 = dp[i2]*2; int next3 = dp[i3]*3; int next5 = dp[i5]*5; dp[i] = Math.min(next2, Math.min(next3, next5)); if(next2 == dp[i]) i2++; if(next3 == dp[i]) i3++; if(next5 == dp[i]) i5++; } return dp[index-1]; }]]></content>
-      <categories>
-        <category>算法</category>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>队列</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[剑指offer---整数中1出现的次数]]></title>
-    <url>%2F2019%2F02%2F27%2F%E5%89%91%E6%8C%87offer---%E6%95%B4%E6%95%B0%E4%B8%AD1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[来源：牛客网 https://www.nowcoder.com/questionTerminal/bd7f978302044eee894445e244c7eee6 主要思路：设定整数点（如1、10、100等等）作为位置点i（对应n的各位、十位、百位等等），分别对每个数位上有多少包含1的点进行分析 根据设定的整数位置，对n进行分割，分为两部分，高位n/i，低位n%i 当i表示百位，且百位对应的数&gt;=2,如n=31456,i=100，则a=314,b=56，此时百位为1的次数有a/10+1=32（最高两位0~31），每一次都包含100个连续的点，即共有(a/10+1)*100个点的百位为1 当i表示百位，且百位对应的数为1，如n=31156,i=100，则a=311,b=56，此时百位对应的就是1，则共有a%10(最高两位0-30)次是包含100个连续点，当最高两位为31（即a=311），本次只对应局部点00~56，共b+1次，所有点加起来共有（a%10*100）+(b+1)，这些点百位对应为1 当i表示百位，且百位对应的数为0,如n=31056,i=100，则a=310,b=56，此时百位为1的次数有a/10=31（最高两位0~30 综合以上三种情况，当百位对应0或&gt;=2时，有(a+8)/10次包含所有100个点， 之所以补8，是因为当百位为0，则a/10==(a+8)/10，当百位&gt;=2，补8会产生进位位，效果等同于(a/10+1) ；还有当百位为1(a%10==1)，需要增加局部点b+1. public int NumberOf1Between1AndN_Solution(int n) { int cnt = 0; for(int i=1; i&lt;=n; i*=10){ int a = n/i; int b = n%i; cnt += (a+8)/10*i + (a%10==1 ? b+1 : 0); } return cnt; }]]></content>
-      <categories>
-        <category>undefined</category>
-      </categories>
-      <tags>
-        <tag>undefined</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[剑指offer---最小的K个数]]></title>
-    <url>%2F2019%2F02%2F27%2F%E5%89%91%E6%8C%87offer---%E6%9C%80%E5%B0%8F%E7%9A%84K%E4%B8%AA%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/87974471 解法一：最小堆 复杂度：O(NlogK) + O(K) 特别适合处理海量数据 应该使用大顶堆来维护最小堆，而不能直接创建一个小顶堆并设置一个大小，企图让小顶堆中的元素都是最小元素。维护一个大小为 K 的最小堆过程如下：在添加一个元素之后，如果大顶堆的堆顶大小大于该元素，那么需要将大顶堆的堆顶元素与该元素交换，重新调整最大堆。 public ArrayList&lt;Integer&gt; GetLeastNumbers_Solution(int [] input, int k) { ArrayList&lt;Integer&gt; ret = new ArrayList&lt;&gt;(); if(k==0 || k&gt;input.length) return ret; int[] ks = new int[k]; for(int i=0; i&lt;k; i++){ ks[i] = input[i]; } buildMaxHeap(ks); for(int i=k; i&lt;input.length; i++){ if(input[i] &lt; ks[0]){ ks[0] = input[i]; maxHeap(ks, ks.length, 0); } } for(int val : ks) ret.add(val); return ret; } private void buildMaxHeap(int[] array){ if(array==null || array.length&lt;=1) return; int half = (array.length-1)/2; for(int i=half; i&gt;=0; i--){ maxHeap(array, array.length, i); } } private void maxHeap(int[] array, int heapSize, int index){ int left = index*2+1; int right = index*2+2; int largest = index; if(left&lt;heapSize &amp;&amp; array[left]&gt;array[largest]) largest = left; if(right&lt;heapSize &amp;&amp; array[right]&gt;array[largest]) largest = right; if(largest != index){ int temp = array[largest]; array[largest] = array[index]; array[index] = temp; maxHeap(array, array.length, largest); } } 这里可以使用Java的优先队列PriorityQueue来维护最大堆，代码如下： public ArrayList&lt;Integer&gt; GetLeastNumbers_Solution(int [] input, int k) { if(k==0 || k&gt;input.length) return new ArrayList&lt;&gt;(); PriorityQueue&lt;Integer&gt; maxHeap = new PriorityQueue&lt;&gt;((o1,o2)-&gt;o2-o1); for(int val : input){ maxHeap.add(val); if(maxHeap.size() &gt; k){ maxHeap.poll(); } } return new ArrayList&lt;&gt;(maxHeap); } 解法二：快速选择算法 复杂度：O(N) + O(1) 只有当允许修改数组元素时才可以使用 快速排序的 partition() 方法，会返回一个整数 j 使得 a[l…j-1] 小于等于 a[j]，且 a[j+1…h] 大于等于 a[j]，此时 a[j] 就是数组的第 j 大元素。可以利用这个特性找出数组的第 K 个元素，这种找第 K 个元素的算法称为快速选择算法。 public ArrayList&lt;Integer&gt; GetLeastNumbers_Solution(int [] input, int k) { if(k==0 || k&gt;input.length) return new ArrayList&lt;&gt;(); int start = 0; int end = input.length-1; int index = partition(input, start, end); while(index!=(k-1)){ if(index&gt;k-1){ end = index-1; index = partition(input, start, end); }else{ start = index+1; index = partition(input, start, end); } } ArrayList&lt;Integer&gt; ret = new ArrayList&lt;&gt;(); for(int i=0; i&lt;k; i++){ ret.add(input[i]); } return ret; } private int partition(int[] array, int begin, int end){ int low = begin; int high = end; int pivot = array[low]; while(low&lt;high){ while(low&lt;high &amp;&amp; array[high]&gt;=pivot) high--; array[low] = array[high]; while(low&lt;high &amp;&amp; array[low]&lt;=pivot) low++; array[high] = array[low]; } array[low] = pivot; return low; }]]></content>
-      <categories>
-        <category>剑指offer</category>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>最小堆</tag>
-        <tag>快速选择</tag>
-        <tag>topK</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[剑指offer---数组中出现次数超过一半的数字]]></title>
-    <url>%2F2019%2F02%2F27%2F%E5%89%91%E6%8C%87offer---%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97%2F</url>
-    <content type="text"><![CDATA[版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/87967818 一般解法 ：1.先对数组进行排序，然后取数组中间位置元素，再对数据扫描一趟来判断此元素是否为多数元素。时间复杂度O(nlog(n))，空间复杂度O(1)。2.使用一个hash表，对数组进行一趟扫描统计每个元素出现的次数，即可得到多数元素。时间复杂度O(n)，空间复杂度O(n) 多数投票问题解法：可以利用 Boyer-Moore Majority Vote Algorithm 来解决这个问题，使得时间复杂度为 O(N)。 使用 cnt 来统计一个元素出现的次数，当遍历到的元素和统计元素相等时，令 cnt++，否则令 cnt–。如果前面查找了 i 个元素，且 cnt ==0，说明前 i 个元素没有 majority，或者有 majority，但是出现的次数少于 i / 2 ，因为如果多于 i / 2 的话 cnt就一定不会为 0 。此时剩下的 n - i 个元素中，majority 的数目依然多于 (n - i) / 2，因此继续查找就能找出 majority。 public int MoreThanHalfNum_Solution(int [] array) { int majority=array[0]; for(int i=1,cnt=1; i&lt;array.length; i++){ cnt = (majority==array[i]) ? cnt+1 : cnt-1; if(cnt==0){ majority = array[i]; cnt = 1; } } int cnt = 0; for(int val : array){ if(val == majority){ cnt++; } } return (cnt&gt;array.length/2) ? majority : 0; }]]></content>
-      <categories>
-        <category>剑指offer</category>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>多数投票问题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[大数据量处理]]></title>
     <url>%2F2019%2F02%2F27%2F%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%8F%E5%A4%84%E7%90%86%2F</url>
     <content type="text"><![CDATA[给定a、b两个文件，各存放50亿个url，每个url各占64字节，内存限制是4G，让你找出a、b文件共同的url？方案1：可以估计每个文件安的大小为50G×64=320G，远远大于内存限制的4G。所以不可能将其完全加载到内存中处理。考虑采取分而治之的方法。s 遍历文件a，对每个url求取 ，然后根据所取得的值将url分别存储到1000个小文件（记为 ）中。这样每个小文件的大约为300M。s 遍历文件b，采取和a相同的方式将url分别存储到1000各小文件（记为 ）。这样处理后，所有可能相同的url都在对应的小文件（）中，不对应的小文件不可能有相同的url。然后我们只要求出1000对小文件中相同的url即可。s 求每对小文件中相同的url时，可以把其中一个小文件的url存储到hash_set中。然后遍历另一个小文件的每个url，看其是否在刚才构建的hash_set中，如果是，那么就是共同的url，存到文件里面就可以了。方案2：如果允许有一定的错误率，可以使用Bloom filter，4G内存大概可以表示340亿bit。将其中一个文件中的url使用Bloomfilter映射为这340亿bit，然后挨个读取另外一个文件的url，检查是否与Bloomfilter，如果是，那么该url应该是共同的url（注意会有一定的错误率）。 有10个文件，每个文件1G，每个文件的每一行存放的都是用户的query，每个文件的query都可能重复。要求你按照query的频度排序。方案1：s 顺序读取10个文件，按照hash(query)%10的结果将query写入到另外10个文件（记为）中。这样新生成的文件每个的大小大约也1G（假设hash函数是随机的）。s 找一台内存在2G左右的机器，依次对 用hash_map(query, query_count)来统计每个query出现的次数。利用快速/堆/归并排序按照出现次数进行排序。将排序好的query和对应的query_cout输出到文件中。这样得到了10个排好序的文件（记为 ）。s 对 这10个文件进行归并排序（内排序与外排序相结合）。方案2：一般query的总量是有限的，只是重复的次数比较多而已，可能对于所有的query，一次性就可以加入到内存了。这样，我们就可以采用trie树/hash_map等直接来统计每个query出现的次数，然后按出现次数做快速/堆/归并排序就可以了。方案3：与方案1类似，但在做完hash，分成多个文件后，可以交给多个文件来处理，采用分布式的架构来处理（比如MapReduce），最后再进行合并。 有一个1G大小的一个文件，里面每一行是一个词，词的大小不超过16字节，内存限制大小是1M。返回频数最高的100个词。方案1：顺序读文件中，对于每个词x，取 ，然后按照该值存到5000个小文件（记为 ）中。这样每个文件大概是200k左右。如果其中的有的文件超过了1M大小，还可以按照类似的方法继续往下分，知道分解得到的小文件的大小都不超过1M。对每个小文件，统计每个文件中出现的词以及相应的频率（可以采用trie树/hash_map等），并取出出现频率最大的100个词（可以用含100个结点的最小堆），并把100词及相应的频率存入文件，这样又得到了5000个文件。下一步就是把这5000个文件进行归并（类似与归并排序）的过程了。 海量日志数据，提取出某日访问百度次数最多的那个IP。方案1：首先是这一天，并且是访问百度的日志中的IP取出来，逐个写入到一个大文件中。注意到IP是32位的，最多有 个IP。同样可以采用映射的方法，比如模1000，把整个大文件映射为1000个小文件，再找出每个小文中出现频率最大的IP（可以采用hash_map进行频率统计，然后再找出频率最大的几个）及相应的频率。然后再在这1000个最大的IP中，找出那个频率最大的IP，即为所求。 在2.5亿个整数中找出不重复的整数，内存不足以容纳这2.5亿个整数。方案1：采用2-Bitmap（每个数分配2bit，00表示不存在，01表示出现一次，10表示多次，11无意义）进行，共需内存 内存，还可以接受。然后扫描这2.5亿个整数，查看Bitmap中相对应位，如果是00变01，01变10，10保持不变。所描完事后，查看bitmap，把对应位是01的整数输出即可。方案2：也可采用上题类似的方法，进行划分小文件的方法。然后在小文件中找出不重复的整数，并排序。然后再进行归并，注意去除重复的元素。 海量数据分布在100台电脑中，想个办法高校统计出这批数据的TOP10。方案1：s 在每台电脑上求出TOP10，可以采用包含10个元素的堆完成（TOP10小，用最大堆，TOP10大，用最小堆）。比如求TOP10大，我们首先取前10个元素调整成最小堆，如果发现，然后扫描后面的数据，并与堆顶元素比较，如果比堆顶元素大，那么用该元素替换堆顶，然后再调整为最小堆。最后堆中的元素就是TOP10大。s 求出每台电脑上的TOP10后，然后把这100台电脑上的TOP10组合起来，共1000个数据，再利用上面类似的方法求出TOP10就可以了。 怎么在海量数据中找出重复次数最多的一个？方案1：先做hash，然后求模映射为小文件，求出每个小文件中重复次数最多的一个，并记录重复次数。然后找出上一步求出的数据中重复次数最多的一个就是所求（具体参考前面的题）。 上千万或上亿数据（有重复），统计其中出现次数最多的钱N个数据。方案1：上千万或上亿的数据，现在的机器的内存应该能存下。所以考虑采用hash_map/搜索二叉树/红黑树等来进行统计次数。然后就是取出前N个出现次数最多的数据了，可以用第6题提到的堆机制完成。 1000万字符串，其中有些是重复的，需要把重复的全部去掉，保留没有重复的字符串。请怎么设计和实现？方案1：这题用trie树比较合适，hash_map也应该能行。 一个文本文件，大约有一万行，每行一个词，要求统计出其中最频繁出现的前10个词，请给出思想，给出时间复杂度分析。方案1：这题是考虑时间效率。用trie树统计每个词出现的次数，时间复杂度是O(n _ le)（le表示单词的平准长度）。然后是找出出现最频繁的前10个词，可以用堆来实现，前面的题中已经讲到了，时间复杂度是O(n _ lg10)。所以总的时间复杂度，是O(n _ le)与O(n _ lg10)中较大的哪一个。 一个文本文件，找出前10个经常出现的词，但这次文件比较长，说是上亿行或十亿行，总之无法一次读入内存，问最优解。方案1：首先根据用hash并求模，将文件分解为多个小文件，对于单个文件利用上题的方法求出每个文件件中10个最常出现的词。然后再进行归并处理，找出最终的10个最常出现的词。 100w个数中找出最大的100个数。方案1：在前面的题中，我们已经提到了，用一个含100个元素的最小堆完成。复杂度为O(100w _ lg100)。方案2：采用快速排序的思想，每次分割之后只考虑比轴大的一部分，知道比轴大的一部分在比100多的时候，采用传统排序算法排序，取前100个。复杂度为O(100w_ 100)。方案3：采用局部淘汰法。选取前100个元素，并排序，记为序列L。然后一次扫描剩余的元素x，与排好序的100个元素中最小的元素比，如果比这个最小的要大，那么把这个最小的元素删除，并把x利用插入排序的思想，插入到序列L中。依次循环，知道扫描了所有的元素。复杂度为O(100w*100)。 寻找热门查询：搜索引擎会通过日志文件把用户每次检索使用的所有检索串都记录下来，每个查询串的长度为1-255字节。假设目前有一千万个记录，这些查询串的重复读比较高，虽然总数是1千万，但是如果去除重复和，不超过3百万个。一个查询串的重复度越高，说明查询它的用户越多，也就越热门。请你统计最热门的10个查询串，要求使用的内存不能超过1G。(1) 请描述你解决这个问题的思路；(2) 请给出主要的处理流程，算法，以及算法的复杂度。方案1：采用trie树，关键字域存该查询串出现的次数，没有出现为0。最后用10个元素的最小推来对出现频率进行排序。 一共有N个机器，每个机器上有N个数。每个机器最多存O(N)个数并对它们操作。如何找到 个数中的中数？方案1：先大体估计一下这些数的范围，比如这里假设这些数都是32位无符号整数（共有 个）。我们把0到 的整数划分为N个范围段，每个段包含个整数。比如，第一个段位0到 ，第二段为 到 ，…，第N个段为 到 。然后，扫描每个机器上的N个数，把属于第一个区段的数放到第一个机器上，属于第二个区段的数放到第二个机器上，…，属于第N个区段的数放到第N个机器上。注意这个过程每个机器上存储的数应该是O(N)的。下面我们依次统计每个机器上数的个数，一次累加，直到找到第k个机器，在该机器上累加的数大于或等于 ，而在第k-1个机器上的累加数小于 ，并把这个数记为x。那么我们要找的中位数在第k个机器中，排在第 位。然后我们对第k个机器的数排序，并找出第个数，即为所求的中位数。复杂度是 的。方案2：先对每台机器上的数进行排序。排好序后，我们采用归并排序的思想，将这N个机器上的数归并起来得到最终的排序。找到第n个便是所求。复杂度是n(i)的。 最大间隙问题给定n个实数 ，求着n个实数在实轴上向量2个数之间的最大差值，要求线性的时间算法。方案1：最先想到的方法就是先对这n个数据进行排序，然后一遍扫描即可确定相邻的最大间隙。但该方法不能满足线性时间的要求。故采取如下方法：s 找到n个数据中最大和最小数据max和min。s 用n-2个点等分区间[min, max]，即将[min, max]等分为n-1个区间（前闭后开区间），将这些区间看作桶，编号为 ，且桶的上界和桶i+1的下届相同，即每个桶的大小相同。每个桶的大小为： 。实际上，这些桶的边界构成了一个等差数列（首项为min，公差为），且认为将min放入第一个桶，将max放入第n-1个桶。s 将n个数放入n-1个桶中：将每个元素 分配到某个桶（编号为index），其中 ，并求出分到每个桶的最大最小数据。s 最大间隙：除最大最小数据max和min以外的n-2个数据放入n-1个桶中，由抽屉原理可知至少有一个桶是空的，又因为每个桶的大小相同，所以最大间隙不会在同一桶中出现，一定是某个桶的上界和气候某个桶的下界之间隙，且该量筒之间的桶（即便好在该连个便好之间的桶）一定是空桶。也就是说，最大间隙在桶i的上界和桶j的下界之间产生 。一遍扫描即可完成。 将多个集合合并成没有交集的集合：给定一个字符串的集合，格式如： 。要求将其中交集不为空的集合合并，要求合并完成的集合之间无交集，例如上例应输出 。(1) 请描述你解决这个问题的思路；(2) 给出主要的处理流程，算法，以及算法的复杂度；(3) 请描述可能的改进。方案1：采用并查集。首先所有的字符串都在单独的并查集中。然后依扫描每个集合，顺序合并将两个相邻元素合并。例如，对于 ，首先查看aaa和bbb是否在同一个并查集中，如果不在，那么把它们所在的并查集合并，然后再看bbb和ccc是否在同一个并查集中，如果不在，那么也把它们所在的并查集合并。接下来再扫描其他的集合，当所有的集合都扫描完了，并查集代表的集合便是所求。复杂度应该是O(NlgN)的。改进的话，首先可以记录每个节点的根结点，改进查询。合并的时候，可以把大的和小的进行合，这样也减少复杂度。 最大子序列与最大子矩阵问题数组的最大子序列问题：给定一个数组，其中元素有正，也有负，找出其中一个连续子序列，使和最大。方案1：这个问题可以动态规划的思想解决。设 表示以第i个元素 结尾的最大子序列，那么显然 。基于这一点可以很快用代码实现。最大子矩阵问题：给定一个矩阵（二维数组），其中数据有大有小，请找一个子矩阵，使得子矩阵的和最大，并输出这个和。方案1：可以采用与最大子序列类似的思想来解决。如果我们确定了选择第i列和第j列之间的元素，那么在这个范围内，其实就是一个最大子序列问题。如何确定第i列和第j列可以词用暴搜的方法进行。 转自： https://sunjia-704471770-qq-com.iteye.com/blog/1628359]]></content>
@@ -325,97 +256,6 @@
       </categories>
       <tags>
         <tag>海量数据</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[剑指offer---字符串的排列]]></title>
-    <url>%2F2019%2F02%2F27%2F%E5%89%91%E6%8C%87offer---%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97%2F</url>
-    <content type="text"><![CDATA[版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/87966485 基于回溯法思想（排列树）： 第一次交换：字符串首字母与其他位置字母分别交换，形成多个子树；再第一次交换基础上，发生第二次交换，第二次交换是字符串第二个字母与其他位置字母交换；…直到最后一个字母结束； public ArrayList&lt;String&gt; Permutation(String str) { List&lt;String&gt; res = new ArrayList&lt;&gt;(); if(str!=null &amp;&amp; str.length()&gt;0){ PermutationHelper(str.toCharArray(), 0, res); Collections.sort(res); } return (ArrayList)res; } private void PermutationHelper(char[] cs, int i, List&lt;String&gt; res){ if(i==cs.length-1){ String val = String.valueOf(cs); if(!res.contains(val)){ res.add(val); } }else{ for(int j=i; j&lt;cs.length; j++){ swap(cs, i, j); PermutationHelper(cs, i+1, res); swap(cs, i, j); } } } private void swap(char[] cs, int i, int j){ char temp = cs[i]; cs[i] = cs[j]; cs[j] = temp; }]]></content>
-      <categories>
-        <category>剑指offer</category>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>字符串</tag>
-        <tag>回溯</tag>
-        <tag>全排列</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[剑指offer---二进制中的个数]]></title>
-    <url>%2F2019%2F02%2F27%2F%E5%89%91%E6%8C%87offer---%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD%E7%9A%84%E4%B8%AA%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/87945433 题目描述输入一个整数，输出该数二进制表示中 1 的个数。 n&amp;(n-1)该位运算去除 n 的位级表示中最低的那一位。 n : 10110100n-1 : 10110011n&amp;(n-1) : 10110000时间复杂度：O(M)，其中 M 表示 1 的个数。 public int NumberOf1(int n) { int count = 0; while(n!=0){ count++; n = n&amp;(n-1); } return count; } 或者也可以用Integer.bitCount()来直接计算]]></content>
-      <categories>
-        <category>算法</category>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>位运算</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[剑指offer---数值的整数次方]]></title>
-    <url>%2F2019%2F02%2F27%2F%E5%89%91%E6%8C%87offer---%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9%2F</url>
-    <content type="text"><![CDATA[版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/87946665 高效解法：下面的讨论中 x 代表 base，n 代表 exponent。 因为 (x*x)n/2 可以通过递归求解，并且每次递归 n 都减小一半，因此整个算法的时间复杂度为 O(logN)。 比如：我们的目标是求出一个数字的32次方，如果我们已经知道了它的16次方，那么只要16次放的基础上再平方一次就可以了。而16次方又是8次方的平方。这样以此类推，我们求32次方只需要5次乘方：先求平方，在平方的基础上求4次方，在4次方的基础上求8次方，在8次方的基础上求16次方，最后在16此方的基础上求32次方。 public class Solution { public double Power(double base, int exponent) { if(exponent == 0) return 1; if(exponent == 1) return base; boolean isNegative = false; if(exponent &lt; 0){ exponent = -exponent; isNegative = true; } double result = Power(base*base, exponent&gt;&gt;1); if((exponent &amp; 0x1) == 1){ result = result * base; } return isNegative ? 1/result : result; } } PS：最后，除以2可以用位运算右移代替，判断奇偶可以用(exponent &amp; 0x1)]]></content>
-      <categories>
-        <category>算法</category>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>递归</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[剑指offer---链表中倒数第k个节点]]></title>
-    <url>%2F2019%2F02%2F27%2F%E5%89%91%E6%8C%87offer---%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E8%8A%82%E7%82%B9%2F</url>
-    <content type="text"><![CDATA[版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/87947852 解题思路：设链表的长度为 N。设两个指针 P1 和 P2，先让 P1 移动 K 个节点，则还有 N - K 个节点可以移动。此时让 P1 和 P2同时移动，可以知道当 P1 移动到链表结尾时，P2 移动到 N - K 个节点处，该位置就是倒数第 K 个节点。 public ListNode FindKthToTail(ListNode head,int k) { if(head==null) return null; ListNode p1 = head; while(p1!=null &amp;&amp; k--&gt;0){ p1 = p1.next; } if(k&gt;0) return null; ListNode p2 = head; while(p1!=null){ p1 = p1.next; p2 = p2.next; } return p2; }]]></content>
-      <categories>
-        <category>算法</category>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>链表</tag>
-        <tag>双指针</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[剑指offer---反转链表]]></title>
-    <url>%2F2019%2F02%2F27%2F%E5%89%91%E6%8C%87offer---%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%2F</url>
-    <content type="text"><![CDATA[版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/87948855 递归： public ListNode FindKthToTail(ListNode head,int k) { if(head==null) return null; ListNode p1 = head; while(p1!=null &amp;&amp; k--&gt;0){ p1 = p1.next; } if(k&gt;0) return null; ListNode p2 = head; while(p1!=null){ p1 = p1.next; p2 = p2.next; } return p2; } 非递归： public ListNode ReverseList(ListNode head) { ListNode newList = new ListNode(-1); while (head != null) { ListNode next = head.next; head.next = newList.next; newList.next = head; head = next; } return newList.next; }]]></content>
-      <categories>
-        <category>算法</category>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>链表</tag>
-        <tag>反转</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[剑指offer---复制链表的复制]]></title>
-    <url>%2F2019%2F02%2F27%2F%E5%89%91%E6%8C%87offer---%E5%A4%8D%E5%88%B6%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6%2F</url>
-    <content type="text"><![CDATA[第一步，在每个节点的后面插入复制的节点。第二步，对复制节点的 random 链接进行赋值。第三步，拆分 public RandomListNode Clone(RandomListNode pHead) { if(pHead == null){ return null; } //插入复制节点 RandomListNode cur = pHead; while(cur!=null){ RandomListNode clone = new RandomListNode(cur.label); clone.next = cur.next; cur.next = clone; cur = clone.next; } //为复制节点建立random连接 cur = pHead; while(cur!=null){ RandomListNode clone = cur.next; if(cur.random!=null) clone.random = cur.random.next; cur = clone.next; } //拆分两个链表 cur = pHead; RandomListNode pCloneHead = pHead.next; while(cur.next!=null){ //此处temp在拆分过程中交替表示复制节点 RandomListNode temp = cur.next; cur.next = temp.next; cur = temp; } return pCloneHead; }]]></content>
-      <categories>
-        <category>算法</category>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>链表</tag>
-        <tag>复制</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[剑指offer---二叉搜索树与双向链表]]></title>
-    <url>%2F2019%2F02%2F27%2F%E5%89%91%E6%8C%87offer---%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%2F</url>
-    <content type="text"><![CDATA[版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/87959329 题目描述:输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。 递归法，中序遍历： private TreeNode pre = null; private TreeNode head = null; public TreeNode Convert(TreeNode pRootOfTree) { inOrder(pRootOfTree); return head; } private void inOrder(TreeNode node){ if(node == null) return; inOrder(node.left); node.left = pre; if(pre!=null){ pre.right = node; } pre = node; if(head == null) head = node; inOrder(node.right); }]]></content>
-      <categories>
-        <category>算法</category>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>二叉树</tag>
-        <tag>遍历</tag>
-        <tag>双向链表</tag>
       </tags>
   </entry>
   <entry>
