@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="JavaIO,">
+  <meta name="keywords" content="IO,设计模式,结构型,装饰者模式,">
 
 
 
@@ -88,27 +88,21 @@
 
 
 
-<meta name="description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88040936 定义在不改变原类文件以及不使用继承的情况下，动态地将责任附加到对象上，从而实现动态拓展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象 组成部分  抽象构件(Component)它是具体构件和抽象装饰类的共同祖先，声明了具体构件需要实">
-<meta name="keywords" content="JavaIO">
+<meta name="description" content="定义在不改变原类文件以及不使用继承的情况下，动态地将责任附加到对象上，从而实现动态拓展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象 组成部分  抽象构件(Component)它是具体构件和抽象装饰类的共同祖先，声明了具体构件需要实现的业务方法  具体构件(ConcreteComponent)它是抽象构件的子类，用于定义具体的构件对象，实现了在抽象构件中声明的业务方法  抽象">
+<meta name="keywords" content="IO,设计模式,结构型,装饰者模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="装饰者模式">
 <meta property="og:url" content="https://enpong.github.io/2019/02/28/装饰者模式/index.html">
 <meta property="og:site_name" content="Enpong">
-<meta property="og:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88040936 定义在不改变原类文件以及不使用继承的情况下，动态地将责任附加到对象上，从而实现动态拓展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象 组成部分  抽象构件(Component)它是具体构件和抽象装饰类的共同祖先，声明了具体构件需要实">
+<meta property="og:description" content="定义在不改变原类文件以及不使用继承的情况下，动态地将责任附加到对象上，从而实现动态拓展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象 组成部分  抽象构件(Component)它是具体构件和抽象装饰类的共同祖先，声明了具体构件需要实现的业务方法  具体构件(ConcreteComponent)它是抽象构件的子类，用于定义具体的构件对象，实现了在抽象构件中声明的业务方法  抽象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190228180200747.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190228184318894.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-04-09T07:59:14.704Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190228180200747.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190228184318894.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-04-18T04:35:12.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="装饰者模式">
-<meta name="twitter:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88040936 定义在不改变原类文件以及不使用继承的情况下，动态地将责任附加到对象上，从而实现动态拓展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象 组成部分  抽象构件(Component)它是具体构件和抽象装饰类的共同祖先，声明了具体构件需要实">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190228180200747.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta name="twitter:description" content="定义在不改变原类文件以及不使用继承的情况下，动态地将责任附加到对象上，从而实现动态拓展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象 组成部分  抽象构件(Component)它是具体构件和抽象装饰类的共同祖先，声明了具体构件需要实现的业务方法  具体构件(ConcreteComponent)它是抽象构件的子类，用于定义具体的构件对象，实现了在抽象构件中声明的业务方法  抽象">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190228180200747.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
 
 
 
@@ -367,8 +361,8 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -378,8 +372,8 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
+                  <a href="/categories/设计模式/结构型模式/" itemprop="url" rel="index">
+                    <span itemprop="name">结构型模式</span>
                   </a>
                 </span>
 
@@ -435,7 +429,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  742
+                  781
                 </span>
               
 
@@ -451,7 +445,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -472,11 +466,8 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
       
 
       
-        <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88040936" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88040936</a></p>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>在不改变原类文件以及不使用继承的情况下，动态地将责任附加到对象上，从而实现动态拓展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象</p>
-<h3 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h3><p><img src="https://img-blog.csdnimg.cn/20190228180200747.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+        <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>在<code>不改变原类文件以及不使用继承</code>的情况下，动态地将责任附加到对象上，从而实现动态拓展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象</p>
+<h3 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h3><p><img src="https://img-blog.csdnimg.cn/20190228180200747.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <ol>
 <li><p>抽象构件(Component)<br>它是具体构件和抽象装饰类的共同祖先，声明了具体构件需要实现的业务方法</p>
 </li>
@@ -492,72 +483,16 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
 <li>抽象构件：掌握技能的程序员 </li>
 <li>具体构件：一个掌握写Android代码技能的程序员，一个掌握写php代码技能的程序员 </li>
 <li>抽象装饰类： </li>
-<li>具体装饰类： 在业务方法中添加设计模式的技能 </li>
+<li><p>具体装饰类： 在业务方法中添加设计模式的技能 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Component（抽象构件）</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ProgramMonkey</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">skills</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ConcreteComponent（具体构件）</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AndroidProgramMonkey</span> <span class="keyword">implements</span> <span class="title">ProgramMonkey</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">skills</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"会写Android代码！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ConcreteComponent（具体构件）</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PHPProgramMonkey</span> <span class="keyword">implements</span> <span class="title">ProgramMonkey</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">skills</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"会写PHP代码！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Decorator（抽象装饰类）</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProgramMonkeyDecorator</span> <span class="keyword">implements</span> <span class="title">ProgramMonkey</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> ProgramMonkey mProgramMonkey;<span class="comment">//维护一个指向需要增加职责的构件的引用，用来调用该构件的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ProgramMonkeyDecorator</span><span class="params">(ProgramMonkey mProgramMonkey)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mProgramMonkey = mProgramMonkey;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">skills</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mProgramMonkey.skills();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ConcreteDecorator（具体装饰类）</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PatternDecorator</span> <span class="keyword">extends</span> <span class="title">ProgramMonkeyDecorator</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PatternDecorator</span><span class="params">(ProgramMonkey mProgramMonkey)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(mProgramMonkey);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">skills</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.skills();</span><br><span class="line">        System.out.println(<span class="string">"会设计模式！"</span>);<span class="comment">//增加的职责</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//有一个Android程序猿只会写Android代码</span></span><br><span class="line">        ProgramMonkey programMonkey = <span class="keyword">new</span> AndroidProgramMonkey();</span><br><span class="line">        programMonkey.skills();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//装饰一下他，装逼的技能，他竟然除了写Android还懂设计模式</span></span><br><span class="line">        programMonkey = <span class="keyword">new</span> PatternDecorator(programMonkey);</span><br><span class="line">        programMonkey.skills();</span><br><span class="line">        programMonkey = <span class="keyword">new</span> PHPProgramMonkey();</span><br><span class="line">        programMonkey.skills();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<pre><code>//Component（抽象构件）
-interface ProgramMonkey {
-    void skills();
-}
-//ConcreteComponent（具体构件）
-class AndroidProgramMonkey implements ProgramMonkey {
-    @Override
-    public void skills() {
-        System.out.println(&quot;会写Android代码！&quot;);
-    }
-}
-//ConcreteComponent（具体构件）
-class PHPProgramMonkey implements ProgramMonkey {
-    @Override
-    public void skills() {
-        System.out.println(&quot;会写PHP代码！&quot;);
-    }
-}
-//Decorator（抽象装饰类）
-class ProgramMonkeyDecorator implements ProgramMonkey {
-    protected ProgramMonkey mProgramMonkey;
-
-    public ProgramMonkeyDecorator(ProgramMonkey mProgramMonkey) {
-        this.mProgramMonkey = mProgramMonkey;
-    }
-
-    public void skills() {
-        mProgramMonkey.skills();
-    }
-}
-//ConcreteDecorator（具体装饰类）
-class PatternDecorator extends ProgramMonkeyDecorator {
-    public PatternDecorator(ProgramMonkey mProgramMonkey) {
-        super(mProgramMonkey);
-    }
-
-    @Override
-    public void skills() {
-        super.skills();
-        System.out.println(&quot;会设计模式！&quot;);
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        //有一个Android程序猿只会写Android代码
-        ProgramMonkey programMonkey = new AndroidProgramMonkey();
-        programMonkey.skills();
-        //装饰一下他，装逼的技能，他竟然除了写Android还懂设计模式
-        programMonkey = new PatternDecorator(programMonkey);
-        programMonkey.skills();
-
-        programMonkey = new PHPProgramMonkey();
-        programMonkey.skills();
-    }
-}
-</code></pre><h3 id="Java-I-O中的装饰模式"><a href="#Java-I-O中的装饰模式" class="headerlink" title="Java I/O中的装饰模式"></a>Java I/O中的装饰模式</h3><p><img src="https://img-blog.csdnimg.cn/20190228184318894.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="Java-I-O中的装饰模式"><a href="#Java-I-O中的装饰模式" class="headerlink" title="Java I/O中的装饰模式"></a>Java I/O中的装饰模式</h3><p><img src="https://img-blog.csdnimg.cn/20190228184318894.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <ul>
-<li>InputStream是抽象构件 </li>
-<li>FileInputStream是InputStream的子类，属于其中一个具体构件，提供字节流输入的操作；PipedInputStream、ByteArrayInputStream也是具体构件 </li>
-<li>FilterInputStream是InputStream的子类，属于抽象装饰类，装饰者用于装饰组件，为组件提供额外的功能。例如 BufferedInputStream 为 FileInputStream 提供缓存的功能。 </li>
-<li>DataInputStream、BufferedInputStream、PushBackInputStream都是具体装饰者 </li>
+<li><code>InputStream</code>是抽象构件 </li>
+<li><code>FileInputStream</code>是InputStream的子类，属于其中一个具体构件，提供字节流输入的操作；<code>PipedInputStream</code>、<code>ByteArrayInputStream</code>也是具体构件 </li>
+<li><code>FilterInputStream</code>是<code>InputStream</code>的子类，属于抽象装饰类，装饰者用于装饰组件，为组件提供额外的功能。例如 <code>BufferedInputStream</code> 为 <code>FileInputStream</code> 提供缓存的功能。 </li>
+<li><code>DataInputStream</code>、<code>BufferedInputStream</code>、<code>PushBackInputStream</code>都是具体装饰者 </li>
 </ul>
 
       
@@ -586,7 +521,13 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
       
         <div class="post-tags">
           
-            <a href="/tags/JavaIO/" rel="tag"><i class="fa fa-tag"></i> JavaIO</a>
+            <a href="/tags/IO/" rel="tag"><i class="fa fa-tag"></i> IO</a>
+          
+            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+          
+            <a href="/tags/结构型/" rel="tag"><i class="fa fa-tag"></i> 结构型</a>
+          
+            <a href="/tags/装饰者模式/" rel="tag"><i class="fa fa-tag"></i> 装饰者模式</a>
           
         </div>
       
@@ -609,8 +550,8 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/28/JavaIO---字符操作/" rel="prev" title="JavaIO---字符操作">
-                JavaIO---字符操作 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/28/字符操作/" rel="prev" title="字符操作">
+                字符操作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -704,7 +645,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -715,7 +656,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -817,7 +758,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共39.5k字</span>
+  <span class="post-count">博客全站共39.3k字</span>
 </div>
 
         

@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="基础,">
+  <meta name="keywords" content="java,">
 
 
 
@@ -88,21 +88,21 @@
 
 
 
-<meta name="description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88036891  基本数据类型，byte/8、short/16、char/16、int/32、float/32、long/62、double/16、boolean（只有两个值，可以用1bit来表示，但是具体大小没有明确规定，JVM在编译时期将boolean类型的数据转成">
-<meta name="keywords" content="基础">
+<meta name="description" content="基本数据类型，byte/8、short/16、char/16、int/32、float/32、long/62、double/16、boolean（只有两个值，可以用1bit来表示，但是具体大小没有明确规定，JVM在编译时期将boolean类型的数据转成int类型）  包装数据类型，基本数据类型都有对应的包装数据类型，两者之间的转换过程为装箱拆箱，装箱：基本数据类型–&amp;gt;包装数据类型；  缓存">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java基础">
 <meta property="og:url" content="https://enpong.github.io/2019/02/28/java基础/index.html">
 <meta property="og:site_name" content="Enpong">
-<meta property="og:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88036891  基本数据类型，byte/8、short/16、char/16、int/32、float/32、long/62、double/16、boolean（只有两个值，可以用1bit来表示，但是具体大小没有明确规定，JVM在编译时期将boolean类型的数据转成">
+<meta property="og:description" content="基本数据类型，byte/8、short/16、char/16、int/32、float/32、long/62、double/16、boolean（只有两个值，可以用1bit来表示，但是具体大小没有明确规定，JVM在编译时期将boolean类型的数据转成int类型）  包装数据类型，基本数据类型都有对应的包装数据类型，两者之间的转换过程为装箱拆箱，装箱：基本数据类型–&amp;gt;包装数据类型；  缓存">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190228162602511.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190228171321744.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190228171618152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-04-09T07:59:14.149Z">
+<meta property="og:updated_time" content="2019-04-18T03:34:40.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java基础">
-<meta name="twitter:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88036891  基本数据类型，byte/8、short/16、char/16、int/32、float/32、long/62、double/16、boolean（只有两个值，可以用1bit来表示，但是具体大小没有明确规定，JVM在编译时期将boolean类型的数据转成">
+<meta name="twitter:description" content="基本数据类型，byte/8、short/16、char/16、int/32、float/32、long/62、double/16、boolean（只有两个值，可以用1bit来表示，但是具体大小没有明确规定，JVM在编译时期将boolean类型的数据转成int类型）  包装数据类型，基本数据类型都有对应的包装数据类型，两者之间的转换过程为装箱拆箱，装箱：基本数据类型–&amp;gt;包装数据类型；  缓存">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190228162602511.png">
 
 
@@ -369,6 +369,17 @@
 
                 
                 
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/基础/" itemprop="url" rel="index">
+                    <span itemprop="name">基础</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -419,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  978
+                  957
                 </span>
               
 
@@ -456,27 +467,37 @@
       
 
       
-        <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88036891" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88036891</a></p>
-<ul>
-<li>基本数据类型，byte/8、short/16、char/16、int/32、float/32、long/62、double/16、boolean（只有两个值，可以用1bit来表示，但是具体大小没有明确规定，JVM在编译时期将boolean类型的数据转成int类型） </li>
+        <ul>
+<li>基本数据类型，<code>byte/8、short/16、char/16、int/32、float/32、long/62、double/16、boolean</code>（只有两个值，可以用1bit来表示，但是具体大小没有明确规定，JVM在编译时期将boolean类型的数据转成int类型） </li>
 <li>包装数据类型，基本数据类型都有对应的包装数据类型，两者之间的转换过程为装箱拆箱，装箱：基本数据类型–&gt;包装数据类型； </li>
-<li><p>缓存池：new Integer(123)每次都会新建一个对象，而使用Integer.valueOf(123)创建实例时，会先判断该值是否在缓存池中，如果在直接返回缓存池中的内容，因此多次调用会取得同一个对象的引用；在自动装箱过程中，编译器会自动调用valueOf()，因此多个 Integer 实例使用自动装箱来创建并且值相同，那么就会引用相同的对象；每个基本数据类型都有对应的缓存池，使用这些基本类型对应的包装类型时，就可以直接使用缓冲池中的对象，但是有大小限制；<br><img src="https://img-blog.csdnimg.cn/20190228162602511.png" alt="在这里插入图片描述"></p>
-</li>
-<li><p>String Pool(字符串常量池)：在String Pool中添加字符串有两种方法，一种是字符串字面量”abc”在编译时期就确定，另一种是通过调用intern()在程序运行时将字符串对象添加到String Pool并返回该字符串的引用。在 Java 7 之前，String Pool 被放在运行时常量池中，它属于永久代。而在 Java 7，String Pool 被移到堆中。这是因为永久代的空间有限，在大量使用字符串的场景下会导致 OutOfMemoryError 错误 </p>
-</li>
-<li>switch：从Java7开始，可以在switch条件判断语句中使用String对象；switch 不支持 long，是因为 switch 的设计初衷是对那些只有少数的几个值进行等值判断，如果值过于复杂，那么还是用 if 比较合适 </li>
+<li>缓存池：<code>new Integer(123)</code>每次都会新建一个对象，而使用<code>Integer.valueOf(123)</code>创建实例时，会先判断该值是否在缓存池中，如果在直接返回缓存池中的内容，因此多次调用会取得同一个对象的引用；在自动装箱过程中，编译器会自动调用<code>valueOf()</code>，因此多个 <code>Integer</code>实例使用自动装箱来创建并且值相同，那么就会引用相同的对象；每个基本数据类型都有对应的缓存池，使用这些基本类型对应的包装类型时，就可以直接使用缓冲池中的对象，但是有大小限制；<br><img src="https://img-blog.csdnimg.cn/20190228162602511.png" alt="在这里插入图片描述"></li>
+<li><code>String Pool</code>(字符串常量池)：在<code>String Pool</code>中添加字符串有两种方法，一种是字符串字面量”abc”在编译时期就确定，另一种是通过调用<code>intern()</code>在程序运行时将字符串对象添加到<code>String Pool</code>并返回该字符串的引用。在 Java 7 之前，<code>String Pool</code>被放在运行时常量池中，它属于永久代。而在 Java 7，<code>String Pool</code>被移到堆中。这是因为永久代的空间有限，在大量使用字符串的场景下会导致<code>OutOfMemoryError</code>错误 </li>
+<li><code>switch</code>：从Java7开始，可以在switch条件判断语句中使用String对象；switch 不支持 long，是因为 switch 的设计初衷是对那些只有少数的几个值进行等值判断，如果值过于复杂，那么还是用 if 比较合适 </li>
 <li>抽象类与接口：抽象类可以有构造方法而接口不行；接口的成员（字段和方法）默认都是public而抽象类可以是任意访问权限；接口的字段默认都是static和final修饰的而抽象类可以有普通成员变量 </li>
 <li>重写的两个限制：子类方法访问权限必须大于等于父类的；子类方法返回值类型必须是父类的返回值类型或子类型 </li>
 <li>重载：返回值类型、方法名相同；参数类型、个数、顺序不同 </li>
-<li>equal(Object o)的实现：1.判断是否为同一对象的引用，如果是直接返回true；2.判断是否为同一类型（getClass())，如果不是直接返回false；3.将参数Object对象进行转型；4.判断每个关键域是否相等。 </li>
-<li>hashCode()：hashCode() 返回散列值，而 equals() 是用来判断两个对象是否等价。等价的两个对象散列值一定相同，但是散列值相同的两个对象不一定等价。在覆盖 equals() 方法时应当总是覆盖 hashCode() 方法，保证等价的两个对象散列值也相等； </li>
-<li>clone()：1.Object的一个protected方法，如果一个类不显式重写该方法，那该类就不能调用clone()方法；而且该类要实现Cloneable()标记接口，要不然调用时会抛出CloneNotSupportedException。2.使用 clone() 方法来拷贝一个对象即复杂又有风险，它会抛出异常，并且还需要类型转换。Effective Java 书上讲到，最好不要去使用 clone()，可以使用拷贝构造函数或者拷贝工厂来拷贝一个对象。 </li>
+<li><code>equal(Object o)</code>的实现：<ol>
+<li>判断是否为同一对象的引用，如果是直接返回true；</li>
+<li>判断是否为同一类型（getClass())，如果不是直接返回false；</li>
+<li>将参数Object对象进行转型；</li>
+<li>判断每个关键域是否相等。 </li>
+</ol>
+</li>
+<li><code>hashCode()</code>：hashCode() 返回散列值，而 equals() 是用来判断两个对象是否等价。<ul>
+<li>等价的两个对象散列值一定相同，但是散列值相同的两个对象不一定等价。</li>
+<li>在覆盖 equals() 方法时应当总是覆盖 hashCode() 方法，保证等价的两个对象散列值也相等； </li>
+</ul>
+</li>
+<li><code>clone()</code>：<ol>
+<li>Object的一个protected方法，如果一个类不显式重写该方法，那该类就不能调用clone()方法；而且该类要实现Cloneable()标记接口，要不然调用时会抛出CloneNotSupportedException。</li>
+<li>使用 clone() 方法来拷贝一个对象即复杂又有风险，它会抛出异常，并且还需要类型转换。Effective Java 书上讲到，最好不要去使用 clone()，可以使用拷贝构造函数或者拷贝工厂来拷贝一个对象。 </li>
+</ol>
+</li>
 <li>深拷贝与浅拷贝：区别在于浅拷贝拷贝时碰到对象只是复制了对象的引用。 </li>
 <li>异常： <img src="https://img-blog.csdnimg.cn/20190228171321744.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
 <li>Java与C++： <img src="https://img-blog.csdnimg.cn/20190228171618152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
 </ul>
-<p>参考： <a href="https://github.com/CyC2018/CS-
-Notes/blob/master/docs/notes/Java%20%E5%9F%BA%E7%A1%80.md" target="_blank" rel="noopener"> CS-Note/Java基础 </a></p>
+<p>参考： <a href="https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/Java%20%E5%9F%BA%E7%A1%80.md" target="_blank" rel="noopener"> CS-Note/Java基础 </a></p>
 
       
     </div>
@@ -504,7 +525,7 @@ Notes/blob/master/docs/notes/Java%20%E5%9F%BA%E7%A1%80.md" target="_blank" rel="
       
         <div class="post-tags">
           
-            <a href="/tags/基础/" rel="tag"><i class="fa fa-tag"></i> 基础</a>
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
           
         </div>
       
@@ -517,7 +538,7 @@ Notes/blob/master/docs/notes/Java%20%E5%9F%BA%E7%A1%80.md" target="_blank" rel="
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/28/Java并发---互斥同步/" rel="next" title="Java并发互斥同步">
+              <a href="/2019/02/28/互斥同步/" rel="next" title="Java并发互斥同步">
                 <i class="fa fa-chevron-left"></i> Java并发互斥同步
               </a>
             
@@ -613,7 +634,7 @@ Notes/blob/master/docs/notes/Java%20%E5%9F%BA%E7%A1%80.md" target="_blank" rel="
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -624,7 +645,7 @@ Notes/blob/master/docs/notes/Java%20%E5%9F%BA%E7%A1%80.md" target="_blank" rel="
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -710,7 +731,7 @@ Notes/blob/master/docs/notes/Java%20%E5%9F%BA%E7%A1%80.md" target="_blank" rel="
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共39.5k字</span>
+  <span class="post-count">博客全站共39.3k字</span>
 </div>
 
         

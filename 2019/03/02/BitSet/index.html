@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="BitSet,大数据量,hashcode,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Enpong" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="JAVA中BitSet就是“位图”数据结构，根据“位图”的语义，数据的存在性可以使用bit位上的1或0来表示；一个bit具有2个值：0和1，正好可以用来表示false和true。对于判断“数据是否存在”的场景，我们通常使用HashMap来存储，不过hashmap这个数据结构KEY和Value的保存需要消耗较多的内存，不适合保存较多的数据，即大数据场景；比如在有10亿条URL中判定一个（  www.">
+<meta name="keywords" content="BitSet,大数据量,hashcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BitSet">
+<meta property="og:url" content="https://enpong.github.io/2019/03/02/BitSet/index.html">
+<meta property="og:site_name" content="Enpong">
+<meta property="og:description" content="JAVA中BitSet就是“位图”数据结构，根据“位图”的语义，数据的存在性可以使用bit位上的1或0来表示；一个bit具有2个值：0和1，正好可以用来表示false和true。对于判断“数据是否存在”的场景，我们通常使用HashMap来存储，不过hashmap这个数据结构KEY和Value的保存需要消耗较多的内存，不适合保存较多的数据，即大数据场景；比如在有10亿条URL中判定一个（  www.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-18T04:24:53.386Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BitSet">
+<meta name="twitter:description" content="JAVA中BitSet就是“位图”数据结构，根据“位图”的语义，数据的存在性可以使用bit位上的1或0来表示；一个bit具有2个值：0和1，正好可以用来表示false和true。对于判断“数据是否存在”的场景，我们通常使用HashMap来存储，不过hashmap这个数据结构KEY和Value的保存需要消耗较多的内存，不适合保存较多的数据，即大数据场景；比如在有10亿条URL中判定一个（  www.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://enpong.github.io/2019/03/02/BitSet/">
+
+
+
+
+
+  <title>BitSet | Enpong</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/Enpong"><img style="position:fixed;top:0;right:0" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_white_ffffff.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Enpong</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成长之路</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-movies">
+          <a href="/movies" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-film"></i> <br>
+            
+            电影
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://enpong.github.io/2019/03/02/BitSet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Enpong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Enpong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BitSet</h1>
+        
+
+        <div class="post-meta">
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-02T19:10:27+08:00">
+                2019-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/其他/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/02/BitSet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/02/BitSet/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/02/BitSet/" class="leancloud_visitors" data-flag-title="BitSet">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>JAVA中<code>BitSet</code>就是“位图”数据结构，根据“位图”的语义，数据的存在性可以使用bit位上的1或0来表示；一个bit具有2个值：0和1，正好可以用来表示false和true。对于判断“数据是否存在”的场景，我们通常使用HashMap来存储，不过hashmap这个数据结构KEY和Value的保存需要消耗较多的内存，不适合保存较多的数据，即大数据场景；比如在有10亿条URL中判定一个（ <a href="http://www.baidu.com" target="_blank" rel="noopener"> www.baidu.com </a>）是否存在，如果我们使用常规的hashmap来保存将是不现实的，因为URL本身需要占据较多的内存而无法直接操作。如果我们使用bitset来保存，那么可以对一条URL求hashcode，并将数字映射在bitset上，那么事实上它只需要bitset上的一个bit位即可，即我们1位空间即可表达一个URL字符串的存在性。</p>
+<blockquote>
+<p>所谓“存在性”，就是通过BitSet来检测一个数字是否存在。</p>
+</blockquote>
+<h4 id="BitSet原理"><a href="#BitSet原理" class="headerlink" title="BitSet原理"></a>BitSet原理</h4><p>JAVA中，一个long型数字占用64位空间，根据上述“位图”的概念，那么一个long型数字（4个字节）就可以保存64个数字的“存在性”状态(无碰撞冲突时，<br>即true、false状态)。比如50个数字{0,1,10,…63}，判定“15”是否存在，那么我们通常会首先将这些数字使用数组或者hashmap保存，然后<br>再去判定，那么保存这些这些数据需要占用64 * 64位；如果使用位图，那么一个long型数字即可。（如果换成50个字符串，那么其节约的空间可能更大）。</p>
+<ol>
+<li>BitSet只面向数字比较，比如set(int a,boolean value)方法，将数字a在bitSet中设定为true或者false；此后可以通过get(int a)方法检测结果。对于string类型的数据，如果像使用BitSet，那么可以将其hashcode值映射在bitset中。 </li>
+<li>首先我们需要知道：1，1&lt;&lt;64，1&lt;&lt;128，1&lt;&lt;192…等，这些数字的计算结果是相等的（位运算）；这也是一个long数字，只能表达连续的(或者无冲突的)64个数字的状态，即如果把数字1在long中用位表示，那么数字64将无法通过同一个long数字中位表示–冲突；BitSet内部，是一个long[]数组，数组的大小由bitSet接收的最大数字决定，这个数组将数字分段表示[0,63],[64,127],[128,191]…。即long[0]用来存储[0,63]这个范围的数字的“存在性”，long[1]用来存储[64,127]，依次轮推，这样就避免了位运算导致的冲突。 首先我们需要知道：1，1&lt;&lt;64，1&lt;&lt;128，1&lt;&lt;192…等，这些数字的计算结果是相等的（位运算）；这也是一个long数字，只能表达连续的(或者无冲突的)64个数字的状态，即如果把数字1在long中用位表示，那么数字64将无法通过同一个long数字中位表示–冲突；BitSet内部，是一个long[]数组，数组的大小由bitSet接收的最大数字决定，这个数组将数字分段表示[0,63],[64,127],[128,191]…。即long[0]用来存储[0,63]这个范围的数字的“存在性”，long[1]用来存储[64,127]，依次轮推，这样就避免了位运算导致的冲突。 </li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>数字范围</th>
+<th style="text-align:center">[0,63]</th>
+<th>[64,127]</th>
+<th style="text-align:right">[128,191]</th>
+<th style="text-align:right">…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>long数组索引</td>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">…</td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li><p>bitSet内部的long[]数组是基于向量的，即随着set的最大数字而动态扩展。数组的最大长度计算：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(maxValue - <span class="number">1</span>) &gt;&gt; <span class="number">6</span>  + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>BitSet中set方法伪代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> index = number &gt;&gt; <span class="number">6</span>;<span class="comment">//找到number需要映射的数组的index。  </span></span><br><span class="line">    <span class="keyword">if</span>(index + <span class="number">1</span> &gt; length) &#123;  </span><br><span class="line">        ensureCapacity(index + <span class="number">1</span>);<span class="comment">//重新扩展long[]数组  </span></span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="keyword">long</span>[index] |= (<span class="number">1L</span> &lt;&lt; number);<span class="comment">//冲突解决  </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="使用BitSet"><a href="#使用BitSet" class="headerlink" title="使用BitSet"></a>使用BitSet</h4><p>本例中使用bitSet做String字符串的存在性校验。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BitSet bitSet = <span class="keyword">new</span> BitSet(Integer.MAX_VALUE);<span class="comment">//hashcode的值域  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//0x7FFFFFFF  </span></span><br><span class="line">String url = <span class="string">"http://baidu.com/a"</span>;  </span><br><span class="line"><span class="keyword">int</span> hashcode = url.hashCode() &amp; <span class="number">0x7FFFFFFF</span>;  </span><br><span class="line">bitSet.set(hashcode);  </span><br><span class="line">  </span><br><span class="line">System.out.println(bitSet.cardinality());<span class="comment">//着色位的个数  </span></span><br><span class="line">System.out.println(bitSet.get(hashcode));<span class="comment">//检测存在性  </span></span><br><span class="line">bitSet.clear(hashcode);<span class="comment">//清除位数据</span></span><br></pre></td></tr></table></figure>
+<h4 id="BitSet与Hashcode冲突"><a href="#BitSet与Hashcode冲突" class="headerlink" title="BitSet与Hashcode冲突"></a>BitSet与Hashcode冲突</h4><p>因为BitSet API只能接收int型的数字，即只能判定int数字是否在bitSet中存在。所以，对于String类型，我们通常使用它的hashcode，但这有一种隐患，java中hashcode存在冲突问题，即不同的String可能得到的hashcode是一样的（即使不重写hashcode方法），如果我们不能很好的解决这个问题，那么就会出现“数据抖动”—不同的hashcode算法、运行环境、bitSet容量，会导致判断的结果有所不同。比如A、B连个字符串，它们的hashcode一样，如果A在BitSet中“着色”(值为true)，那么检测B是否在BitSet存在时，也会得到true。</p>
+<p>这个问题该如何解决或者缓解呢？</p>
+<ol>
+<li><p>调整hashcode生成算法：我们可以对一个String使用多个hashcode算法，生成多个hashcode，然后在同一个BitSet进行多次“着色”，在判断存在性时，只有所有的着色位为true时，才判定成功</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String url = <span class="string">"http://baidu.com/a"</span>;  </span><br><span class="line"><span class="keyword">int</span> hashcode1 = url.hashCode() &amp; <span class="number">0x7FFFFFFF</span>;  </span><br><span class="line">bitSet.set(hashcode1);  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">int</span> hashcode2 = (url + <span class="string">"-seed-"</span>).hashCode() &amp; <span class="number">0x7FFFFFFF</span>;  </span><br><span class="line">bitSet.set(hashcode2);  </span><br><span class="line">System.out.println(bitSet.get(hashcode1) &amp;&amp; bitSet.get(hashcode2));  </span><br><span class="line"><span class="comment">//也可以在两个不同的bitSet上进行2次“着色”，这样冲突性更小。但会消耗双倍的内存</span></span><br></pre></td></tr></table></figure>
+<p>其实我们能够看出，这种方式降低了误判的概率。但是如果BitSet中存储了较多的数字，那么互相覆盖着色，最终数据冲突的可能性会逐渐增加，最终仍然有一定概率的判断失误。所以在hashcode算法的个数与实际String的个数之间有一个权衡，我们建议:  “hashcode算法个数 <em> String字符串的个数”  &lt; Integer.MAX_VALUE </em> 0.8</p>
+</li>
+<li>多个BitSet并行保存：<br>改良1)中的实现方式，我们仍然使用多个hashcode生成算法，但是每个算法生成的值在不同的BitSet中着色，这样可以保持每个BitSet的稀疏度(降低冲突的几率)。在实际结果上，比1)的误判率更低，但是它需要额外的占用更多的内存，毕竟每个BitSet都需要占用内存。这种方式，通常是缩小hashcode的值域，避免内存过度消耗。</li>
+</ol>
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">BitSet bitSet1 = <span class="keyword">new</span> BitSet(Integer.MAX_VALUE);<span class="comment">//127M  </span></span><br><span class="line">BitSet bitSet2 = <span class="keyword">new</span> BitSet(Integer.MAX_VALUE);  </span><br><span class="line">  </span><br><span class="line">String url = <span class="string">"http://baidu.com/a"</span>;  </span><br><span class="line"><span class="keyword">int</span> hashcode1 = url.hashCode() &amp; <span class="number">0x7FFFFFFF</span>;  </span><br><span class="line">bitSet1.set(hashcode1);  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">int</span> hashcode2 = (url + <span class="string">"-seed-"</span>).hashCode() &amp; <span class="number">0x7FFFFFFF</span>;  </span><br><span class="line">bitSet2.set(hashcode2);  </span><br><span class="line">  </span><br><span class="line">System.out.println(bitSet1.get(hashcode1) &amp;&amp; bitSet2.get(hashcode2));</span><br></pre></td></tr></table></figure>
+</code></pre><ol start="3">
+<li>是否有必要完全避免误判？<br>如果做到100%的正确判断率，在原理上说BitSet是无法做的，BitSet能够保证“如果判定结果为false，那么数据一定是不存在；但是如果结果为true，可能数据存在，也可能不存在(冲突覆盖)”,即“false == YES，true == Maybe”。有人提出将冲突的数据保存在类似于BTree的额外数据结构中，事实上这种方式增加了设计的复杂度，而且最终仍然没有良好的解决内存占用较大的问题。</li>
+</ol>
+<h4 id="BloomFilter-布隆姆过滤器"><a href="#BloomFilter-布隆姆过滤器" class="headerlink" title="BloomFilter(布隆姆过滤器)"></a>BloomFilter(布隆姆过滤器)</h4><p>BloomFilter 的设计思想和BitSet有较大的相似性，目的也一致，它的核心思想也是使用多个Hash算法在一个“位图”结构上着色，最终提高“存在性”判断的效率。请参见Guava  BloomFilter。如下为代码样例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Charset charset = Charset.forName(<span class="string">"utf-8"</span>);  </span><br><span class="line">BloomFilter&lt;String&gt; bloomFilter = BloomFilter.create(Funnels.stringFunnel(charset),<span class="number">2</span>&lt;&lt;<span class="number">21</span>);<span class="comment">//指定bloomFilter的容量  </span></span><br><span class="line">String url = <span class="string">"www.baidu.com/a"</span>;  </span><br><span class="line">bloomFilter.put(url);  </span><br><span class="line">System.out.println(bloomFilter.mightContain(url));</span><br></pre></td></tr></table></figure>
+<h4 id="内存消耗"><a href="#内存消耗" class="headerlink" title="内存消耗"></a>内存消耗</h4><p>据上所述，BitSet可以有效的降低内存的使用量，但是它的内存使用量是有内部long数组的大小决定，所以在创建BitSet时指定的值域非常重要，过大的值域将会导致OOM（比如指定Long.MAX_VALUE）,在一个BitMap上存储Integer.MAX_VALUE个“着色”（注意，BitSet只能对正数操作），大概消耗128M内存。</p>
+<hr>
+<p>转自：<a href="https://shift-alt-ctrl.iteye.com/blog/2194519" target="_blank" rel="noopener">https://shift-alt-ctrl.iteye.com/blog/2194519</a></p>
+
+      
+    </div>
+    
+    
+    
+	
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BitSet/" rel="tag"><i class="fa fa-tag"></i> BitSet</a>
+          
+            <a href="/tags/大数据量/" rel="tag"><i class="fa fa-tag"></i> 大数据量</a>
+          
+            <a href="/tags/hashcode/" rel="tag"><i class="fa fa-tag"></i> hashcode</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/02/实现Trie前缀树/" rel="next" title="实现Trie前缀树">
+                <i class="fa fa-chevron-left"></i> 实现Trie前缀树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/05/五种IO模型/" rel="prev" title="五种IO模型">
+                五种IO模型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/user.jpg" alt="Enpong">
+            
+              <p class="site-author-name" itemprop="name">Enpong</p>
+              <p class="site-description motion-element" itemprop="description">地狱烂旗，有鬼扯过</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Enpong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:chenanpeng666@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#BitSet原理"><span class="nav-number">1.</span> <span class="nav-text">BitSet原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用BitSet"><span class="nav-number">2.</span> <span class="nav-text">使用BitSet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BitSet与Hashcode冲突"><span class="nav-number">3.</span> <span class="nav-text">BitSet与Hashcode冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BloomFilter-布隆姆过滤器"><span class="nav-number">4.</span> <span class="nav-text">BloomFilter(布隆姆过滤器)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存消耗"><span class="nav-number">5.</span> <span class="nav-text">内存消耗</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="heart">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Enpong</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共39.3k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+     return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+         verify: false,
+         notify: false,
+        appId: 'ldPOlCWgVrk93HR7G12c0oww-gzGzoHsz',
+        appKey: 'vq7kE2IO6C91pKYG2nvLF2sN',
+        placeholder: '在这说点什么吧...Just go go',
+        avatar:'mm',
+       guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+         
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === '') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("stk6R0cqEdgQwSmbY1PCktKR-gzGzoHsz", "6zbVLtpGAYQYgWXFdPxltWm9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" color="0,0,255" opacity="0.7" zindex="-2" count="300" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

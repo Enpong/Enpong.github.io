@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="I,O,">
+  <meta name="keywords" content="IO,">
 
 
 
@@ -88,39 +88,25 @@
 
 
 
-<meta name="description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88177447 一个输入操作通常有两个阶段：  等待数据准备，即从存储介质（磁盘，网络等）拷贝到内核；  从内核向进程复制数据   阻塞I/O  应用进程被阻塞，直到数据从内核缓冲区复制到应用进程缓冲区中才返回   非阻塞I/O  应用进程执行系统调用之后，内核返回一个">
-<meta name="keywords" content="I,O">
+<meta name="description" content="一个输入操作通常有两个阶段：  等待数据准备，即从存储介质（磁盘，网络等）拷贝到内核； 从内核向进程复制数据  阻塞I/O  应用进程被阻塞，直到数据从内核缓冲区复制到应用进程缓冲区中才返回  非阻塞I/O  应用进程执行系统调用之后，内核返回一个错误码。应用进程可以继续执行，但是需要不断的执行系统调用来获知 I/O 是否完成，这种方式称为轮询（polling）。  I/O复用  使用 selec">
+<meta name="keywords" content="IO">
 <meta property="og:type" content="article">
 <meta property="og:title" content="五种IO模型">
 <meta property="og:url" content="https://enpong.github.io/2019/03/05/五种IO模型/index.html">
 <meta property="og:site_name" content="Enpong">
-<meta property="og:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88177447 一个输入操作通常有两个阶段：  等待数据准备，即从存储介质（磁盘，网络等）拷贝到内核；  从内核向进程复制数据   阻塞I/O  应用进程被阻塞，直到数据从内核缓冲区复制到应用进程缓冲区中才返回   非阻塞I/O  应用进程执行系统调用之后，内核返回一个">
+<meta property="og:description" content="一个输入操作通常有两个阶段：  等待数据准备，即从存储介质（磁盘，网络等）拷贝到内核； 从内核向进程复制数据  阻塞I/O  应用进程被阻塞，直到数据从内核缓冲区复制到应用进程缓冲区中才返回  非阻塞I/O  应用进程执行系统调用之后，内核返回一个错误码。应用进程可以继续执行，但是需要不断的执行系统调用来获知 I/O 是否完成，这种方式称为轮询（polling）。  I/O复用  使用 selec">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190305124039713.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190305124240779.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190305124437547.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190305124709590.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190305125019326.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190305125145450.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-04-09T07:59:23.537Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190305124039713.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190305124240779.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190305124437547.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190305124709590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190305125019326.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190305125145450.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-04-18T04:26:32.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="五种IO模型">
-<meta name="twitter:description" content="版权声明：Enpong之家 https://blog.csdn.net/qq_40005950/article/details/88177447 一个输入操作通常有两个阶段：  等待数据准备，即从存储介质（磁盘，网络等）拷贝到内核；  从内核向进程复制数据   阻塞I/O  应用进程被阻塞，直到数据从内核缓冲区复制到应用进程缓冲区中才返回   非阻塞I/O  应用进程执行系统调用之后，内核返回一个">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190305124039713.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
+<meta name="twitter:description" content="一个输入操作通常有两个阶段：  等待数据准备，即从存储介质（磁盘，网络等）拷贝到内核； 从内核向进程复制数据  阻塞I/O  应用进程被阻塞，直到数据从内核缓冲区复制到应用进程缓冲区中才返回  非阻塞I/O  应用进程执行系统调用之后，内核返回一个错误码。应用进程可以继续执行，但是需要不断的执行系统调用来获知 I/O 是否完成，这种方式称为轮询（polling）。  I/O复用  使用 selec">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190305124039713.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
 
 
 
@@ -386,6 +372,17 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
 
                 
                 
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/设备管理/" itemprop="url" rel="index">
+                    <span itemprop="name">设备管理</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -436,7 +433,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  614
+                  599
                 </span>
               
 
@@ -473,53 +470,40 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
       
 
       
-        <p>版权声明：Enpong之家 <a href="https://blog.csdn.net/qq_40005950/article/details/88177447" target="_blank" rel="noopener">https://blog.csdn.net/qq_40005950/article/details/88177447</a></p>
-<p>一个输入操作通常有两个阶段：</p>
+        <p>一个输入操作通常有两个阶段：</p>
 <ul>
-<li>等待数据准备，即从存储介质（磁盘，网络等）拷贝到内核； </li>
-<li>从内核向进程复制数据 </li>
+<li>等待数据准备，即从存储介质（磁盘，网络等）拷贝到内核；</li>
+<li>从内核向进程复制数据</li>
 </ul>
-<h5 id="阻塞I-O"><a href="#阻塞I-O" class="headerlink" title="阻塞I/O"></a>阻塞I/O</h5><p><img src="https://img-blog.csdnimg.cn/20190305124039713.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="阻塞I-O"><a href="#阻塞I-O" class="headerlink" title="阻塞I/O"></a>阻塞I/O</h5><p><img src="https://img-blog.csdnimg.cn/20190305124039713.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <ul>
-<li>应用进程被阻塞，直到数据从内核缓冲区复制到应用进程缓冲区中才返回 </li>
+<li>应用进程被阻塞，直到数据从内核缓冲区复制到应用进程缓冲区中才返回</li>
 </ul>
-<h5 id="非阻塞I-O"><a href="#非阻塞I-O" class="headerlink" title="非阻塞I/O"></a>非阻塞I/O</h5><p><img src="https://img-blog.csdnimg.cn/20190305124240779.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="非阻塞I-O"><a href="#非阻塞I-O" class="headerlink" title="非阻塞I/O"></a>非阻塞I/O</h5><p><img src="https://img-blog.csdnimg.cn/20190305124240779.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <ul>
-<li>应用进程执行系统调用之后，内核返回一个错误码。应用进程可以继续执行，但是需要不断的执行系统调用来获知 I/O 是否完成，这种方式称为轮询（polling）。 </li>
+<li>应用进程执行系统调用之后，内核返回一个错误码。应用进程可以继续执行，但是需要不断的执行系统调用来获知 I/O 是否完成，这种方式称为轮询（polling）。</li>
 </ul>
-<h5 id="I-O复用"><a href="#I-O复用" class="headerlink" title="I/O复用"></a>I/O复用</h5><p><img src="https://img-blog.csdnimg.cn/20190305124437547.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="I-O复用"><a href="#I-O复用" class="headerlink" title="I/O复用"></a>I/O复用</h5><p><img src="https://img-blog.csdnimg.cn/20190305124437547.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <ul>
-<li>使用 select 或者 poll 等待数据，并且可以等待多个套接字中的任何一个变为可读。这一过程会被阻塞，当某一个套接字可读时返回，之后再使用 recvfrom 把数据从内核复制到进程中； </li>
-<li>它可以让单个进程具有处理多个 I/O 事件的能力。又被称为 Event Driven I/O，即事件驱动 I/O。 </li>
+<li>使用 select 或者 poll 等待数据，并且可以等待多个套接字中的任何一个变为可读。这一过程会被阻塞，当某一个套接字可读时返回，之后再使用 recvfrom 把数据从内核复制到进程中；</li>
+<li>它可以让单个进程具有处理多个 I/O 事件的能力。又被称为 Event Driven I/O，即事件驱动 I/O。</li>
 </ul>
-<h5 id="信号驱动I-O"><a href="#信号驱动I-O" class="headerlink" title="信号驱动I/O"></a>信号驱动I/O</h5><p><img src="https://img-blog.csdnimg.cn/20190305124709590.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="信号驱动I-O"><a href="#信号驱动I-O" class="headerlink" title="信号驱动I/O"></a>信号驱动I/O</h5><p><img src="https://img-blog.csdnimg.cn/20190305124709590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <ul>
-<li>通过系统调用 sigaction 安装一个信号处理程序。此系统调用立即返回，进程继续工作，它是非阻塞的； </li>
-<li>当数据报准备好被读时，就为该进程生成一个SIGIO信号； </li>
-<li>应用进程收到之后在信号处理程序中调用 recvfrom 将数据从内核复制到应用进程中。 </li>
+<li>通过系统调用 sigaction 安装一个信号处理程序。此系统调用立即返回，进程继续工作，它是非阻塞的；</li>
+<li>当数据报准备好被读时，就为该进程生成一个SIGIO信号；</li>
+<li>应用进程收到之后在信号处理程序中调用 recvfrom 将数据从内核复制到应用进程中。</li>
 </ul>
-<h5 id="异步I-O"><a href="#异步I-O" class="headerlink" title="异步I/O"></a>异步I/O</h5><p><img src="https://img-blog.csdnimg.cn/20190305125019326.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="异步I-O"><a href="#异步I-O" class="headerlink" title="异步I/O"></a>异步I/O</h5><p><img src="https://img-blog.csdnimg.cn/20190305125019326.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <ul>
-<li>应用进程执行 aio_read 系统调用会立即返回，应用进程可以继续执行，不会被阻塞，内核会在所有操作完成之后向应用进程发送信号； </li>
-<li>调用aio_read函数，告诉内核描述字，缓冲区指针，缓冲区大小，文件偏移以及通知的方式，然后立即返回。当内核将数据拷贝到缓冲区后，再通知应用程序。 </li>
+<li>应用进程执行 aio_read 系统调用会立即返回，应用进程可以继续执行，不会被阻塞，内核会在所有操作完成之后向应用进程发送信号；</li>
+<li>调用aio_read函数，告诉内核描述字，缓冲区指针，缓冲区大小，文件偏移以及通知的方式，然后立即返回。当内核将数据拷贝到缓冲区后，再通知应用程序。</li>
 </ul>
-<h5 id="对比五种I-O模型"><a href="#对比五种I-O模型" class="headerlink" title="对比五种I/O模型"></a>对比五种I/O模型</h5><p><img src="https://img-blog.csdnimg.cn/20190305125145450.png?x-oss-process=i
-mage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4
-ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="对比五种I-O模型"><a href="#对比五种I-O模型" class="headerlink" title="对比五种I/O模型"></a>对比五种I/O模型</h5><p><img src="https://img-blog.csdnimg.cn/20190305125145450.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <ul>
-<li>同步I/O：将数据从内核缓冲区复制到应用进程缓冲区的阶段，应用进程会阻塞； </li>
-<li>异步I/O：在I/O操作未完成前，请求进程未被阻塞。 </li>
-<li>阻塞式 I/O、非阻塞式 I/O、I/O 复用和信号驱动 I/O 都是同步 I/O，它们的主要区别在第一个阶段。非阻塞式 I/O 、信号驱动 I/O 和异步 I/O 在第一阶段不会阻塞。 </li>
+<li>同步I/O：将数据从内核缓冲区复制到应用进程缓冲区的阶段，应用进程会阻塞；</li>
+<li>异步I/O：在I/O操作未完成前，请求进程未被阻塞。</li>
+<li>阻塞式 I/O、非阻塞式 I/O、I/O 复用和信号驱动 I/O 都是同步 I/O，它们的主要区别在第一个阶段。非阻塞式 I/O 、信号驱动 I/O 和异步 I/O 在第一阶段不会阻塞。</li>
 </ul>
 
       
@@ -548,9 +532,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
       
         <div class="post-tags">
           
-            <a href="/tags/I/" rel="tag"><i class="fa fa-tag"></i> I</a>
-          
-            <a href="/tags/O/" rel="tag"><i class="fa fa-tag"></i> O</a>
+            <a href="/tags/IO/" rel="tag"><i class="fa fa-tag"></i> IO</a>
           
         </div>
       
@@ -563,8 +545,8 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/02/JAVA中BitSet/" rel="next" title="JAVA中BitSet">
-                <i class="fa fa-chevron-left"></i> JAVA中BitSet
+              <a href="/2019/03/02/BitSet/" rel="next" title="BitSet">
+                <i class="fa fa-chevron-left"></i> BitSet
               </a>
             
           </div>
@@ -668,7 +650,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -679,7 +661,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -781,7 +763,7 @@ ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描�
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共39.5k字</span>
+  <span class="post-count">博客全站共39.3k字</span>
 </div>
 
         
