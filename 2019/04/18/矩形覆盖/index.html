@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="动态规划,">
 
 
 
@@ -88,16 +88,20 @@
 
 
 
-<meta name="description" content="地狱烂旗，有鬼扯过">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Enpong">
-<meta property="og:url" content="https://enpong.github.io/categories/设计模式，结构型模式/代理模式/index.html">
+<meta name="description" content="题目描述我们可以用 2*1 的小矩形横着或者竖着去覆盖更大的矩形。请问用 n 个 2*1 的小矩形无重叠地覆盖一个 2*n 的大矩形，总共有多少种方法？    思路由于小矩形的尺寸是2×1，所以有大矩形为2×n的存在，那么我们第一步就可以有两种处理方式：  第一步如果选择竖方向填充，那么该问题的规模就缩减为对于剩余的2*(n-1)的大矩形的填充 ； 第一步如果选择横方向的填充，则第二排的前面两个小">
+<meta name="keywords" content="动态规划">
+<meta property="og:type" content="article">
+<meta property="og:title" content="矩形覆盖">
+<meta property="og:url" content="https://enpong.github.io/2019/04/18/矩形覆盖/index.html">
 <meta property="og:site_name" content="Enpong">
-<meta property="og:description" content="地狱烂旗，有鬼扯过">
+<meta property="og:description" content="题目描述我们可以用 2*1 的小矩形横着或者竖着去覆盖更大的矩形。请问用 n 个 2*1 的小矩形无重叠地覆盖一个 2*n 的大矩形，总共有多少种方法？    思路由于小矩形的尺寸是2×1，所以有大矩形为2×n的存在，那么我们第一步就可以有两种处理方式：  第一步如果选择竖方向填充，那么该问题的规模就缩减为对于剩余的2*(n-1)的大矩形的填充 ； 第一步如果选择横方向的填充，则第二排的前面两个小">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://enpong.github.io/2019/04/18/矩形覆盖/11_1.gif">
+<meta property="og:updated_time" content="2019-04-18T05:13:07.941Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Enpong">
-<meta name="twitter:description" content="地狱烂旗，有鬼扯过">
+<meta name="twitter:title" content="矩形覆盖">
+<meta name="twitter:description" content="题目描述我们可以用 2*1 的小矩形横着或者竖着去覆盖更大的矩形。请问用 n 个 2*1 的小矩形无重叠地覆盖一个 2*n 的大矩形，总共有多少种方法？    思路由于小矩形的尺寸是2×1，所以有大矩形为2×n的存在，那么我们第一步就可以有两种处理方式：  第一步如果选择竖方向填充，那么该问题的规模就缩减为对于剩余的2*(n-1)的大矩形的填充 ； 第一步如果选择横方向的填充，则第二排的前面两个小">
+<meta name="twitter:image" content="https://enpong.github.io/2019/04/18/矩形覆盖/11_1.gif">
 
 
 
@@ -127,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="https://enpong.github.io/categories/设计模式，结构型模式/代理模式/">
+  <link rel="canonical" href="https://enpong.github.io/2019/04/18/矩形覆盖/">
 
 
 
 
 
-  <title>分类: 代理模式 | Enpong</title>
+  <title>矩形覆盖 | Enpong</title>
   
 
 
@@ -152,7 +156,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/Enpong"><img style="position:fixed;top:0;right:0" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_white_ffffff.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
 
@@ -289,79 +293,250 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>代理模式<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://enpong.github.io/2019/04/18/矩形覆盖/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Enpong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Enpong">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/12/17/CGLIB动态代理/" itemprop="url">
-              
-                <span itemprop="name">CGLIB动态代理</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">矩形覆盖</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-17T15:38:48+08:00" content="2018-12-17">
-          12-17
-        </time>
-      </div>
+        <div class="post-meta">
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T12:55:15+08:00">
+                2019-04-18
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/剑指offer/" itemprop="url" rel="index">
+                    <span itemprop="name">剑指offer</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/18/矩形覆盖/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/18/矩形覆盖/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/04/18/矩形覆盖/" class="leancloud_visitors" data-flag-title="矩形覆盖">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  284
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>我们可以用 2*1 的小矩形横着或者竖着去覆盖更大的矩形。请问用 n 个 2*1 的小矩形无重叠地覆盖一个 2*n 的大矩形，总共有多少种方法？ </p>
+<div align="center"><img src="//enpong.github.io/2019/04/18/矩形覆盖/11_1.gif"></div>
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/17/静态代理/" itemprop="url">
-              
-                <span itemprop="name">静态代理</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-17T15:37:16+08:00" content="2018-12-17">
-          12-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+<h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>由于小矩形的尺寸是2×1，所以有大矩形为2×<em>n</em>的存在，那么我们第一步就可以有两种处理方式：</p>
+<ul>
+<li>第一步如果选择竖方向填充，那么该问题的规模就缩减为对于剩余的<code>2*(n-1)</code>的大矩形的填充 ；</li>
+<li>第一步如果选择横方向的填充，则第二排的前面两个小矩形也只能如此填充，那么该问题的规模就缩减为对于剩余的<code>2*(n-2)</code>的大矩形的填充 。</li>
+<li>结合上述分析，很容易得到递推的关系： <code>rectCover(n) = rectCover(n-1)+rectCover(n-2)</code>。当然此处也要注意递归跳出条件的判定 。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rectCover</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    <span class="keyword">int</span> ret1 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> ret2 = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">3</span>; i&lt;=n; i++)&#123;</span><br><span class="line">        ret = ret1 + ret2;</span><br><span class="line">        ret1 = ret2;</span><br><span class="line">        ret2 = ret;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
+	
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/动态规划/" rel="tag"><i class="fa fa-tag"></i> 动态规划</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/18/斐波那契数列/" rel="next" title="斐波那契数列">
+                <i class="fa fa-chevron-left"></i> 斐波那契数列
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/18/旋转数组的最小数字/" rel="prev" title="旋转数组的最小数字">
+                旋转数组的最小数字 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -369,6 +544,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -389,8 +571,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -407,7 +598,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -418,7 +609,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -429,7 +620,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -476,6 +667,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -515,7 +722,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共39.3k字</span>
+  <span class="post-count">博客全站共41k字</span>
 </div>
 
         
@@ -656,6 +863,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

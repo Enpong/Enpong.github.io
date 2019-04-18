@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[机器人的运动范围]]></title>
+    <url>%2F2019%2F04%2F18%2F%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4%2F</url>
+    <content type="text"><![CDATA[题目描述地上有一个 m 行和 n 列的方格。一个机器人从坐标 (0, 0) 的格子开始移动，每一次只能向左右上下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于 k 的格子。 例如，当 k 为 18 时，机器人能够进入方格 (35,37)，因为 3+5+3+7=18。但是，它不能进入方格 (35,38)，因为 3+5+3+8=19。请问该机器人能够达到多少个格子？ 思路深度遍历 123456789101112131415161718192021222324252627282930313233343536373839404142private static final int[][] next = &#123;&#123;0, -1&#125;, &#123;0, 1&#125;, &#123;-1, 0&#125;, &#123;1, 0&#125;&#125;;private int cnt = 0;private int rows;private int cols;private int threshold;private int[][] digitSum;public int movingCount(int threshold, int rows, int cols) &#123; this.rows = rows; this.cols = cols; this.threshold = threshold; initDigitSum(); boolean[][] marked = new boolean[rows][cols]; dfs(marked, 0, 0); return cnt;&#125;private void dfs(boolean[][] marked, int r, int c) &#123; if (r &lt; 0 || r &gt;= rows || c &lt; 0 || c &gt;= cols || marked[r][c]) return; marked[r][c] = true; if (this.digitSum[r][c] &gt; this.threshold) return; cnt++; for (int[] n : next) dfs(marked, r + n[0], c + n[1]);&#125;private void initDigitSum() &#123; int[] digitSumOne = new int[Math.max(rows, cols)]; for (int i = 0; i &lt; digitSumOne.length; i++) &#123; int n = i; while (n &gt; 0) &#123; digitSumOne[i] += n % 10; n /= 10; &#125; &#125; this.digitSum = new int[rows][cols]; for (int i = 0; i &lt; this.rows; i++) for (int j = 0; j &lt; this.cols; j++) this.digitSum[i][j] = digitSumOne[i] + digitSumOne[j];&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>dfs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[矩阵中的路径]]></title>
+    <url>%2F2019%2F04%2F18%2F%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84%2F</url>
+    <content type="text"><![CDATA[题目描述请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则该路径不能再进入该格子。 例如下面的矩阵包含了一条 bfce 路径。 思路回溯法： 1234567891011121314151617181920212223242526272829303132333435363738private final static int[][] next = &#123;&#123;0, -1&#125;, &#123;0, 1&#125;, &#123;-1, 0&#125;, &#123;1, 0&#125;&#125;;private int rows;private int cols;public boolean hasPath(char[] array, int rows, int cols, char[] str) &#123; if (rows == 0 || cols == 0) return false; this.rows = rows; this.cols = cols; boolean[][] marked = new boolean[rows][cols]; char[][] matrix = buildMatrix(array); for (int i = 0; i &lt; rows; i++) for (int j = 0; j &lt; cols; j++) if (backtracking(matrix, str, marked, 0, i, j)) return true; return false;&#125;private boolean backtracking(char[][] matrix, char[] str, boolean[][] marked, int pathLen, int r, int c) &#123; if (pathLen == str.length) return true; if (r &lt; 0 || r &gt;= rows || c &lt; 0 || c &gt;= cols || matrix[r][c] != str[pathLen] || marked[r][c]) return false; marked[r][c] = true; for (int[] n : next) if (backtracking(matrix, str, marked, pathLen + 1, r + n[0], c + n[1])) return true; marked[r][c] = false; return false;&#125;private char[][] buildMatrix(char[] array) &#123; char[][] matrix = new char[rows][cols]; for (int i = 0, idx = 0; i &lt; rows; i++) for (int j = 0; j &lt; cols; j++) matrix[i][j] = array[idx++]; return matrix;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>回溯</tag>
+        <tag>路径</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[旋转数组的最小数字]]></title>
+    <url>%2F2019%2F04%2F18%2F%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%2F</url>
+    <content type="text"><![CDATA[题目描述把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。 {3, 4, 5, 1, 2} 为 {1, 2, 3, 4, 5} 的一个旋转，该数组的最小值为 1。 思路在一个有序数组中查找一个元素可以用二分查找，二分查找也称为折半查找，每次都能将查找区间减半，这种折半特性的算法时间复杂度都为 O(logN)。 本题可以修改二分查找算法进行求解： 当 nums[m] &lt;= nums[h] 的情况下，说明解在 [l, m] 之间，此时令 h = m； 否则解在 [m + 1, h] 之间，令 l = m + 1。 12345678910111213public int minNumberInRotateArray(int[] nums) &#123; if (nums.length == 0) return 0; int l = 0, h = nums.length - 1; while (l &lt; h) &#123; int m = l + (h - l) / 2; if (nums[m] &lt;= nums[h]) h = m; else l = m + 1; &#125; return nums[l];&#125; 拓展如果数组元素允许重复的话，那么就会出现一个特殊的情况：nums[l] == nums[m] == nums[h]，那么此时无法确定解在哪个区间，需要切换到顺序查找。例如对于数组 {1,1,1,0,1}，l、m 和 h 指向的数都为 1，此时无法知道最小数字 0 在哪个区间。 12345678910111213141516171819202122public int minNumberInRotateArray(int[] nums) &#123; if (nums.length == 0) return 0; int l = 0, h = nums.length - 1; while (l &lt; h) &#123; int m = l + (h - l) / 2; if (nums[l] == nums[m] &amp;&amp; nums[m] == nums[h]) return minNumber(nums, l, h); else if (nums[m] &lt;= nums[h]) h = m; else l = m + 1; &#125; return nums[l];&#125;private int minNumber(int[] nums, int l, int h) &#123; for (int i = l; i &lt; h; i++) if (nums[i] &gt; nums[i + 1]) return nums[i + 1]; return nums[l];&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>二分查找</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[矩形覆盖]]></title>
+    <url>%2F2019%2F04%2F18%2F%E7%9F%A9%E5%BD%A2%E8%A6%86%E7%9B%96%2F</url>
+    <content type="text"><![CDATA[题目描述我们可以用 2*1 的小矩形横着或者竖着去覆盖更大的矩形。请问用 n 个 2*1 的小矩形无重叠地覆盖一个 2*n 的大矩形，总共有多少种方法？ 思路由于小矩形的尺寸是2×1，所以有大矩形为2×n的存在，那么我们第一步就可以有两种处理方式： 第一步如果选择竖方向填充，那么该问题的规模就缩减为对于剩余的2*(n-1)的大矩形的填充 ； 第一步如果选择横方向的填充，则第二排的前面两个小矩形也只能如此填充，那么该问题的规模就缩减为对于剩余的2*(n-2)的大矩形的填充 。 结合上述分析，很容易得到递推的关系： rectCover(n) = rectCover(n-1)+rectCover(n-2)。当然此处也要注意递归跳出条件的判定 。 12345678910111213public int rectCover(int n)&#123; if(n&lt;=2) return n; int ret1 = 1; int ret2 = 2; int ret = 1; for(int i=3; i&lt;=n; i++)&#123; ret = ret1 + ret2; ret1 = ret2; ret2 = ret; &#125; return ret;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[斐波那契数列]]></title>
+    <url>%2F2019%2F04%2F18%2F%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%2F</url>
+    <content type="text"><![CDATA[题目描述求斐波那契数列的第 n 项，n &lt;= 39。 思路 递归是将一个问题划分成多个子问题求解，动态规划也是如此，但是动态规划会把子问题的解缓存起来，从而避免重复求解子问题。 1234567891011public int Fibonacci(int n) &#123; if(n&lt;=1) return n; int[] fib = new fib[n+1]; fib[0] = 0; fib[1] = 1; for(int i=2; i&lt;=n; i++)&#123; fib[i] = fib[i-1] + fib[i-2]; &#125; return fib[n];&#125; 考虑到第 i 项只与第 i-1 和第 i-2 项有关，因此只需要存储前两项的值就能求解第 i 项，从而将空间复杂度由 O(N) 降低为 O(1)。 12345678910111213public int Fibonacci(int n) &#123; if(n&lt;=1) return n; int fib1 = 0; int fib2 = 1; int result = 0; for(int i=2; i&lt;=n; i++)&#123; result = fib1 + fib2; fib1 = fib2; fib2 = result; &#125; return result;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+        <tag>空间优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[用两个栈实现队列]]></title>
     <url>%2F2019%2F04%2F18%2F%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%2F</url>
     <content type="text"><![CDATA[题目描述用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。 思路in 栈用来处理入栈（push）操作，out 栈用来处理出栈（pop）操作。一个元素进入 in 栈之后，出栈的顺序被反转。当元素要出栈时，需要先进入 out 栈，此时元素出栈顺序再一次被反转，因此出栈顺序就和最开始入栈顺序是相同的，先进入的元素先退出，这就是队列的顺序。 1234567891011121314151617Stack&lt;Integer&gt; in = new Stack&lt;&gt;();Stack&lt;Integer&gt; out = new Stack&lt;&gt;();public void push(int node)&#123; in.push(node);&#125;public int pop() throws Exception&#123; if(out.isEmpty())&#123; while(!in.isEmpty())&#123; out.push(in.pop()); &#125; &#125; if(out.isEmpty()) throw new Exception("queue is empty!"); return out.pop();&#125;]]></content>
@@ -73,7 +131,8 @@
         <category>剑指offer</category>
       </categories>
       <tags>
-        <tag>数组，查找</tag>
+        <tag>数组</tag>
+        <tag>查找</tag>
       </tags>
   </entry>
   <entry>
@@ -102,9 +161,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[leetcode---二分查找]]></title>
+    <title><![CDATA[二分查找]]></title>
     <url>%2F2019%2F03%2F22%2F%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%2F</url>
-    <content type="text"><![CDATA[二分查找基本实现12345678910111213public int binarySearch(int[] nums, int key)&#123; int l = 0, h = nums.length-1; while(l&lt;=h)&#123; int mid = l+(h-l)/2; //防止(h+l)/2加法溢出 if(nums[mid]==key) return mid; else if(nums[mid]&gt;key) h = mid-1; else l = mid+1; &#125; return -1;&#125; 变种二分查找，找出数组中key重复元素最左位置(注意边界)1234567891011121314public int binarySearch(int[] nums, int key)&#123; int l=0, h=nums.length-1; while(l&lt;h)&#123; int mid = l+(h-l)/2; if(nums[mid]&gt;=key) h = mid; else l = mid+1; &#125; if(nums[l]==key) return l; else return -1;&#125; leetcode上二分查找题1234567891011121314151617//求开方 69. Sqrt(x) (Easy)public int mySqrt(int x)&#123; if(x&lt;=1) return x; int l=1,h=x; while(l&lt;=h)&#123; int mid = l+(h-l)/2; int sqrt = x/mid; if(sqrt==mid) return mid; else if(mid&gt;sqrt) h = mid-1; else l = mid+1; &#125; return h;&#125; 12345678910111213//给定一个有序的字符数组 letters 和一个字符 target，要求找出 letters 中大于 target 的最小字符，如果找不到就返回第 1 个字符//744. Find Smallest Letter Greater Than Target (Easy)public char nextGreatestLetter(char[] letters, char target)&#123; int l=0, h=letters.length-1; while(l&lt;=h)&#123; int mid = l+(h-l)/2; if(letters[mid]&lt;=target) l = mid+1; else h = mid-1; &#125; return l&lt;letters.length ? letters[l] : letters[0];&#125; 123456789101112131415161718//以O(logN)时间复杂度找出有序数组中唯一不出现2次的元素//540. Single Element in a Sorted Array (Medium)//假设index是该元素所在位置，mid是偶数，则当(mid+1&lt;index)时，nums[m]==nums[m+1];//当(mid+1&gt;=index),nums[m]!=nums[m+1]//因此，m为偶数的情况下，当nums[m]==nums[m+1],index所在区间应该为[m+2,h];否则，index在[l,m];public int singleNonDuplicate(int[] nums)&#123; int l=0, h=nums.length-1; while(l&lt;h)&#123; int mid = l+(h-l)/2; if(mid%2==1) mid--; //保证mid是偶数 if(nums[mid]==nums[mid+1) l = m+2; else h = m; &#125; return h;&#125; 123456789101112//旋转数组中的最小数字 153. Find Minimum in Rotated Sorted Array (Medium)public int findMin(int[] nums)&#123; int l=0, h=nums.length-1; while(l&lt;h)&#123; int mid = l+(h-l)/2; if(nums[mid]&lt;=nums[h]) h = mid; else l = mid+1; &#125; return nums[l];&#125; 123456789101112131415161718192021222324252627282930//查找区间，找到最左位置，找到最右位置//34. Search for a Range (Medium)public int findRange(int[] nums, int target)&#123; int first=0, last=0; int l=0, h=nums.length-1; //找最左位置 while(l&lt;h)&#123; int mid = l+(h-l)/2; if(nums[mid]&gt;=target) h = mid; else l = mid+1; &#125; if(nums[l]!=target) return new int&#123;-1,-1&#125;; else&#123; first = l; //找最右位置 l=0, h=nums.length-1; while(l&lt;h)&#123; int mid = l+(h-l+1)/2;//这里mid选择向上取整，否则会死循环 if(nums[mid]&lt;=target) l = mid; else h = mid-1; &#125; last = h; return new int&#123;first, last&#125;; &#125;&#125; ​]]></content>
+    <content type="text"><![CDATA[二分查找基本实现12345678910111213public int binarySearch(int[] nums, int key)&#123; int l = 0, h = nums.length-1; while(l&lt;=h)&#123; int mid = l+(h-l)/2; //防止(h+l)/2加法溢出 if(nums[mid]==key) return mid; else if(nums[mid]&gt;key) h = mid-1; else l = mid+1; &#125; return -1;&#125; 变种二分查找，找出数组中key重复元素最左位置(注意边界)1234567891011121314public int binarySearch(int[] nums, int key)&#123; int l=0, h=nums.length-1; while(l&lt;h)&#123; int mid = l+(h-l)/2; if(nums[mid]&gt;=key) h = mid; else l = mid+1; &#125; if(nums[l]==key) return l; else return -1;&#125; leetcode上二分查找题1234567891011121314151617//求开方 69. Sqrt(x) (Easy)public int mySqrt(int x)&#123; if(x&lt;=1) return x; int l=1,h=x; while(l&lt;=h)&#123; int mid = l+(h-l)/2; int sqrt = x/mid; if(sqrt==mid) return mid; else if(mid&gt;sqrt) h = mid-1; else l = mid+1; &#125; return h;&#125; 12345678910111213//给定一个有序的字符数组 letters 和一个字符 target，要求找出 letters 中大于 target 的最小字符，如果找不到就返回第 1 个字符//744. Find Smallest Letter Greater Than Target (Easy)public char nextGreatestLetter(char[] letters, char target)&#123; int l=0, h=letters.length-1; while(l&lt;=h)&#123; int mid = l+(h-l)/2; if(letters[mid]&lt;=target) l = mid+1; else h = mid-1; &#125; return l&lt;letters.length ? letters[l] : letters[0];&#125; 123456789101112131415161718//以O(logN)时间复杂度找出有序数组中唯一不出现2次的元素//540. Single Element in a Sorted Array (Medium)//假设index是该元素所在位置，mid是偶数，则当(mid+1&lt;index)时，nums[m]==nums[m+1];//当(mid+1&gt;=index),nums[m]!=nums[m+1]//因此，m为偶数的情况下，当nums[m]==nums[m+1],index所在区间应该为[m+2,h];否则，index在[l,m];public int singleNonDuplicate(int[] nums)&#123; int l=0, h=nums.length-1; while(l&lt;h)&#123; int mid = l+(h-l)/2; if(mid%2==1) mid--; //保证mid是偶数 if(nums[mid]==nums[mid+1) l = m+2; else h = m; &#125; return h;&#125; 123456789101112//旋转数组中的最小数字 153. Find Minimum in Rotated Sorted Array (Medium)public int findMin(int[] nums)&#123; int l=0, h=nums.length-1; while(l&lt;h)&#123; int mid = l+(h-l)/2; if(nums[mid]&lt;=nums[h]) h = mid; else l = mid+1; &#125; return nums[l];&#125; 123456789101112131415161718192021222324252627282930//查找区间，找到最左位置，找到最右位置//34. Search for a Range (Medium)public int findRange(int[] nums, int target)&#123; int first=0, last=0; int l=0, h=nums.length-1; //找最左位置 while(l&lt;h)&#123; int mid = l+(h-l)/2; if(nums[mid]&gt;=target) h = mid; else l = mid+1; &#125; if(nums[l]!=target) return new int&#123;-1,-1&#125;; else&#123; first = l; //找最右位置 l=0, h=nums.length-1; while(l&lt;h)&#123; int mid = l+(h-l+1)/2;//这里mid选择向上取整，否则会死循环 if(nums[mid]&lt;=target) l = mid; else h = mid-1; &#125; last = h; return new int&#123;first, last&#125;; &#125;&#125; ​ 总结关于while里的判断条件，如果缩小区间的形式是l = m-1 &amp;&amp; h = m+1（即两边闭区间），那么判断条件是l&lt;=h；否则应该是l&lt;h]]></content>
       <categories>
         <category>leetcode</category>
         <category>查找</category>
@@ -445,7 +504,8 @@
     <url>%2F2018%2F12%2F17%2FCGLIB%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%2F</url>
     <content type="text"><![CDATA[原理 不管是静态代理还是jdk动态代理，代理的条件之一就是要求目标类和代理类实现同一业务接口；所以，对于无接口类的代理，我们就不能再用之前的代理方式； CGLIB动态代理的生成原理是 生成目标类的子类，而子类是增强过的，即子类就是目标类的代理类 。所以，使用CGLIB动态代理，要求目标类必须能够被继承，即不能是final的类 实现 导入CDLIB的jar包：cglib-full.jar 定义目标类，不用实现任何接口 1234567891011public class AccountService &#123; //目标方法 public void transfer()&#123; System.out.println("转账！"); &#125;&#125; 创建代理类的工厂，该类需实现MethodInterceptor接口 声明目标类的成员变量，并创建接受该参数的构造器 定义代理生成方法，用于创建代理对象，即目标类的子类 定义回调接口方法，在这里对目标类进行增强 12345678910111213141516171819202122232425262728293031323334353637383940public class AccountServiceCglibProxyFactory implements MethodInterceptor &#123; //1. 声明目标类的成员变量，并创建接受该参数的构造器 private AccountService targer; public AccountServiceCglibProxyFactory(AccountService targer) &#123; this.targer = targer; &#125; public AccountServiceCglibProxyFactory() &#123; &#125; //2. 定义代理生成方法，用于创建代理对象，即目标类的子类 public AccountService createProxy()&#123; //创建增强器 Enhancer enhancer = new Enhancer(); //初始化增强器，将目标类指定为父类 enhancer.setSuperclass(AccountService.class); //初始化增强器，设置回调方法,因为MethodInterceptor接口继承自Callback，因此可以使用this enhancer.setCallback(this); //使用增强器创建代理对象 return (AccountService) enhancer.create(); &#125; //3. 定义回调接口方法，在这里对目标类进行增强； //本类中调用了Enhance类的setCallback(this)方法，并将回调对象this作为实参传递给了Enhancer类； //Enhancer类在后续的执行过程中，会调用本类的intercept方法； //这个intercept()方法就是回调方法 @Override public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable &#123; //若为transfer方法，则进行增强 if("transfer".equals(method.getName()))&#123; //直接调用目标对象的业务方法执行 Object result = method.invoke(targer, objects); return result; &#125; return method.invoke(targer, objects); &#125;&#125; 定义客户类 12345678910public class Client &#123; public static void main(String[] args) &#123; //创建目标对象 AccountService target = new AccountService(); //创建代理对象 AccountService proxy = new AccountServiceCglibProxyFactory(target).createProxy(); //执行增强后的业务方法 proxy.transfer(); &#125;&#125;]]></content>
       <categories>
-        <category>设计模式，结构型模式</category>
+        <category>设计模式</category>
+        <category>结构型模式</category>
         <category>代理模式</category>
       </categories>
       <tags>
@@ -474,7 +534,8 @@
     <url>%2F2018%2F12%2F17%2F%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%2F</url>
     <content type="text"><![CDATA[静态代理，代理类是在程序运行之前就定义好的 定义业务接口，简单的转账业务 1234567public interface IAccountService &#123; //主业务逻辑，转账 void transfer();&#125; 定义目标类，该类实现业务接口，并实现接口定义的目标方法（只实现主业务逻辑转账） 12345678910111213public class AccountServiceImpl implements IAccountService &#123; //目标方法 @Override public void transfer() &#123; System.out.println("完成转账功能"); &#125;&#125; 定义代理类，该类实现业务接口。并且将接口对象作为一个成员变量，还要定义一个带参数（接口对象）的构造器，因为要将目标对象引入代理类，以便代理类调用目标类的目标方法 123456789101112131415161718192021public class AccountProxy implements IAccountService &#123; //声明业务接口对象 private IAccountService target; public AccountProxy() &#123; &#125; // 业务接口对象作为构造器参数 public AccountProxy(IAccountService target) &#123; this.target = target; &#125; /** * 代理方法，实现对目标方法的功能增强 */ @Override public void transfer() &#123; //对目标方法的增强 System.out.println("对转账人身份进行了验证！！"); target.transfer(); &#125;&#125; 定义客户类实现使用代理类转账。 123456789101. public class Client &#123; public static void main(String[] args) &#123; //创建目标对象 IAccountService target = new AccountServiceImpl(); //创建代理对象 IAccountService proxy = new AccountProxy(target); //执行增强过的业务 proxy.transfer(); &#125; &#125;]]></content>
       <categories>
-        <category>设计模式，结构型模式</category>
+        <category>设计模式</category>
+        <category>结构型模式</category>
         <category>代理模式</category>
       </categories>
       <tags>
