@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://enpong.github.io/"/>
-  <updated>2019-05-03T04:32:27.046Z</updated>
+  <updated>2019-05-03T05:49:55.431Z</updated>
   <id>https://enpong.github.io/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux高性能服务器编程</title>
+    <link href="https://enpong.github.io/2019/05/03/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/"/>
+    <id>https://enpong.github.io/2019/05/03/Linux高性能服务器编程/</id>
+    <published>2019-05-03T05:45:59.000Z</published>
+    <updated>2019-05-03T05:49:55.431Z</updated>
+    
+    <content type="html"><![CDATA[ <div class="row">    <embed src="Linux高性能服务器编程.pdf" width="100%" height="550" type="application/pdf"></div> ]]></content>
+    
+    <summary type="html">
+    
+      
+      
+         
+
+	&lt;div class=&quot;row&quot;&gt;
+    &lt;embed src=&quot;Linux高性能服务器编程.pdf&quot; width=&quot;100%&quot; height=&quot;550&quot; type=&quot;application/pdf&quot;&gt;
+	&lt;/div&gt;
+
+
+ 
+      
+    
+    </summary>
+    
+      <category term="电子书" scheme="https://enpong.github.io/categories/%E7%94%B5%E5%AD%90%E4%B9%A6/"/>
+    
+    
+      <category term="Linux" scheme="https://enpong.github.io/tags/Linux/"/>
+    
+      <category term="Socket" scheme="https://enpong.github.io/tags/Socket/"/>
+    
+  </entry>
   
   <entry>
     <title>荷兰国旗问题</title>
@@ -565,33 +599,6 @@
     
     
       <category term="dfs" scheme="https://enpong.github.io/tags/dfs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>矩阵中的路径</title>
-    <link href="https://enpong.github.io/2019/04/18/%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/"/>
-    <id>https://enpong.github.io/2019/04/18/矩阵中的路径/</id>
-    <published>2019-04-18T05:32:26.000Z</published>
-    <updated>2019-04-18T06:01:00.140Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则该路径不能再进入该格子。</p><p>例如下面的矩阵包含了一条 bfce 路径。</p><div align="center"><img src="//enpong.github.io/2019/04/18/矩阵中的路径/12_1.png"></div><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>回溯法：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span>[][] next = &#123;&#123;<span class="number">0</span>, -<span class="number">1</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> rows;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> cols;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasPath</span><span class="params">(<span class="keyword">char</span>[] array, <span class="keyword">int</span> rows, <span class="keyword">int</span> cols, <span class="keyword">char</span>[] str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (rows == <span class="number">0</span> || cols == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">this</span>.rows = rows;</span><br><span class="line">    <span class="keyword">this</span>.cols = cols;</span><br><span class="line">    <span class="keyword">boolean</span>[][] marked = <span class="keyword">new</span> <span class="keyword">boolean</span>[rows][cols];</span><br><span class="line">    <span class="keyword">char</span>[][] matrix = buildMatrix(array);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rows; i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cols; j++)</span><br><span class="line">            <span class="keyword">if</span> (backtracking(matrix, str, marked, <span class="number">0</span>, i, j))</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">backtracking</span><span class="params">(<span class="keyword">char</span>[][] matrix, <span class="keyword">char</span>[] str, <span class="keyword">boolean</span>[][] marked, <span class="keyword">int</span> pathLen, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (pathLen == str.length)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (r &lt; <span class="number">0</span> || r &gt;= rows || c &lt; <span class="number">0</span> || c &gt;= cols || matrix[r][c] != str[pathLen] || marked[r][c])</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    marked[r][c] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span>[] n : next)</span><br><span class="line">        <span class="keyword">if</span> (backtracking(matrix, str, marked, pathLen + <span class="number">1</span>, r + n[<span class="number">0</span>], c + n[<span class="number">1</span>]))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    marked[r][c] = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">char</span>[][] buildMatrix(<span class="keyword">char</span>[] array) &#123;</span><br><span class="line">    <span class="keyword">char</span>[][] matrix = <span class="keyword">new</span> <span class="keyword">char</span>[rows][cols];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, idx = <span class="number">0</span>; i &lt; rows; i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cols; j++)</span><br><span class="line">            matrix[i][j] = array[idx++];</span><br><span class="line">    <span class="keyword">return</span> matrix;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h5 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h5&gt;&lt;p&gt;请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在
-      
-    
-    </summary>
-    
-      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
-    
-    
-      <category term="回溯" scheme="https://enpong.github.io/tags/%E5%9B%9E%E6%BA%AF/"/>
-    
-      <category term="路径" scheme="https://enpong.github.io/tags/%E8%B7%AF%E5%BE%84/"/>
     
   </entry>
   
