@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://enpong.github.io/"/>
-  <updated>2019-05-03T03:36:59.733Z</updated>
+  <updated>2019-05-03T04:32:27.046Z</updated>
   <id>https://enpong.github.io/</id>
   
   <author>
@@ -15,6 +15,66 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>荷兰国旗问题</title>
+    <link href="https://enpong.github.io/2019/05/03/%E8%8D%B7%E5%85%B0%E5%9B%BD%E6%97%97%E9%97%AE%E9%A2%98/"/>
+    <id>https://enpong.github.io/2019/05/03/荷兰国旗问题/</id>
+    <published>2019-05-03T04:28:05.000Z</published>
+    <updated>2019-05-03T04:32:27.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>荷兰国旗包含三种颜色：红、白、蓝。</p><p>有三种颜色的球，算法的目标是将这三种球按颜色顺序正确地排列。</p><p>它其实是三向切分快速排序的一种变种，在三向切分快速排序中，每次切分都将数组分成三个区间：小于切分元素、等于切分元素、大于切分元素，而该算法是将数组分成三个区间：等于红色、等于白色、等于蓝色。</p><h2 id="按颜色进行排序"><a href="#按颜色进行排序" class="headerlink" title="按颜色进行排序"></a>按颜色进行排序</h2><p><a href="https://leetcode.com/problems/sort-colors/description/" target="_blank" rel="noopener">75. Sort Colors (Medium)</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,0,2,1,1,0]</span><br><span class="line">Output: [0,0,1,1,2,2]</span><br></pre></td></tr></table></figure><p>题目描述：只有 0/1/2 三种颜色。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> zero = -<span class="number">1</span>, one = <span class="number">0</span>, two = nums.length;</span><br><span class="line">    <span class="keyword">while</span> (one &lt; two) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[one] == <span class="number">0</span>) &#123;</span><br><span class="line">            swap(nums, ++zero, one++);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[one] == <span class="number">2</span>) &#123;</span><br><span class="line">            swap(nums, --two, one);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ++one;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t = nums[i];</span><br><span class="line">    nums[i] = nums[j];</span><br><span class="line">    nums[j] = t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;荷兰国旗包含三种颜色：红、白、蓝。&lt;/p&gt;
+&lt;p&gt;有三种颜色的球，算法的目标是将这三种球按颜色顺序正确地排列。&lt;/p&gt;
+&lt;p&gt;它其实是三向切分快速排序的一种变种，在三向切分快速排序中，每次切分都将数组分成三个区间：小于切分元素、等于切分元素、大于切分元素，而该算法是将数组分
+      
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://enpong.github.io/categories/leetcode/"/>
+    
+      <category term="排序" scheme="https://enpong.github.io/categories/leetcode/%E6%8E%92%E5%BA%8F/"/>
+    
+    
+      <category term="排序" scheme="https://enpong.github.io/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kth Element &amp; TopK Element</title>
+    <link href="https://enpong.github.io/2019/05/03/Kth-Element-TopK-Element/"/>
+    <id>https://enpong.github.io/2019/05/03/Kth-Element-TopK-Element/</id>
+    <published>2019-05-03T03:46:20.000Z</published>
+    <updated>2019-05-03T04:27:12.208Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Kth-Element"><a href="#Kth-Element" class="headerlink" title="Kth Element"></a>Kth Element</h1><h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>使用快排将数组排序，选取排好序的第 K 个元素，时间复杂度O(nlogn)，空间复杂度O(1)</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line">    <span class="keyword">return</span> nums[nums.length-k];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p>维护大小为 K 的小顶堆，首先建立大小为K的小顶堆，第 K+1 元素加入堆时与堆顶元素比较大小，如果大于堆顶元素，则替代堆顶元素，重新调整堆成为小顶堆；直到遍历完剩下的元素；时间复杂度为O(nlogK)，空间复杂度O(K).</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> K)</span></span>&#123;</span><br><span class="line">    PriorityQueue&lt;Integer&gt; heap = <span class="keyword">new</span> PriorityQueue&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> val : nums)&#123;</span><br><span class="line">        heap.add(val);</span><br><span class="line">        <span class="keyword">if</span>(heap.size &gt; k)</span><br><span class="line">            heap.poll();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> heap.peek();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="快速选择"><a href="#快速选择" class="headerlink" title="快速选择"></a>快速选择</h2><p>根据快速排序分区操作的特性：分区操作将小于基准值的元素分在基准左边，大于分在右边，并返回基准值下标；如果返回的基准值下标正好是 K ，则完成；平均时间复杂度O(n)，最坏时间复杂度O(n²)，空间复杂度O(1)。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> K)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, h = nums.length-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(l &lt;= h)&#123;</span><br><span class="line">        <span class="keyword">int</span> partitionInd = partition(nums, l, h);</span><br><span class="line">        <span class="keyword">if</span>(partitionInd == k-<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> nums[partitionInd];</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(partitionInd &lt; k-<span class="number">1</span>)</span><br><span class="line">            h = partitionInd-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            l = partitionInd+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> l, <span class="keyword">int</span> h)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l==h)</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">    <span class="keyword">int</span> pivot = nums[l];</span><br><span class="line">    <span class="keyword">while</span>(l&lt;h)&#123;</span><br><span class="line">        <span class="keyword">while</span>(nums[h]&gt;=pivot &amp;&amp; l&lt;h)</span><br><span class="line">            h--;</span><br><span class="line">        nums[l] = nums[h];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(nums[l]&lt;=pivot &amp;&amp; l&lt;h)</span><br><span class="line">            l++;</span><br><span class="line">        nums[h] = nums[l];</span><br><span class="line">    &#125;</span><br><span class="line">    nums[l] = pivot;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="TopK-Element"><a href="#TopK-Element" class="headerlink" title="TopK Element"></a>TopK Element</h1><p>用于求解 <strong>TopK Elements</strong> 问题，通过维护一个大小为 K 的堆，堆中的元素就是 TopK Elements。</p><p>堆排序也可以用于求解 Kth Element 问题，堆顶元素就是 Kth Element。</p><p>快速选择也可以求解 TopK Elements 问题，因为找到 Kth Element 之后，再遍历一次数组，所有小于等于 Kth Element 的元素都是 TopK Elements。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Kth-Element&quot;&gt;&lt;a href=&quot;#Kth-Element&quot; class=&quot;headerlink&quot; title=&quot;Kth Element&quot;&gt;&lt;/a&gt;Kth Element&lt;/h1&gt;&lt;h2 id=&quot;快速排序&quot;&gt;&lt;a href=&quot;#快速排序&quot; class=&quot;
+      
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://enpong.github.io/categories/leetcode/"/>
+    
+      <category term="排序" scheme="https://enpong.github.io/categories/leetcode/%E6%8E%92%E5%BA%8F/"/>
+    
+    
+      <category term="堆" scheme="https://enpong.github.io/tags/%E5%A0%86/"/>
+    
+      <category term="排序" scheme="https://enpong.github.io/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="快排" scheme="https://enpong.github.io/tags/%E5%BF%AB%E6%8E%92/"/>
+    
+  </entry>
   
   <entry>
     <title>滑动窗口的最大值</title>
@@ -532,58 +592,6 @@
       <category term="回溯" scheme="https://enpong.github.io/tags/%E5%9B%9E%E6%BA%AF/"/>
     
       <category term="路径" scheme="https://enpong.github.io/tags/%E8%B7%AF%E5%BE%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>旋转数组的最小数字</title>
-    <link href="https://enpong.github.io/2019/04/18/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97/"/>
-    <id>https://enpong.github.io/2019/04/18/旋转数组的最小数字/</id>
-    <published>2019-04-18T05:15:05.000Z</published>
-    <updated>2019-04-18T05:26:41.398Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。</p><blockquote><p>{3, 4, 5, 1, 2} 为 {1, 2, 3, 4, 5} 的一个旋转，该数组的最小值为 1。</p></blockquote><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>在一个有序数组中查找一个元素可以用二分查找，二分查找也称为折半查找，每次都能将查找区间减半，这种折半特性的算法时间复杂度都为 O(logN)。</p><p>本题可以修改二分查找算法进行求解：</p><ul><li>当 nums[m] &lt;= nums[h] 的情况下，说明解在 [l, m] 之间，此时令 h = m；</li><li>否则解在 [m + 1, h] 之间，令 l = m + 1。</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minNumberInRotateArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, h = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; h) &#123;</span><br><span class="line">        <span class="keyword">int</span> m = l + (h - l) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[m] &lt;= nums[h])</span><br><span class="line">            h = m;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            l = m + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums[l];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h5><p>如果数组元素允许重复的话，那么就会出现一个特殊的情况：nums[l] == nums[m] == nums[h]，那么此时无法确定解在哪个区间，需要切换到顺序查找。例如对于数组 {1,1,1,0,1}，l、m 和 h 指向的数都为 1，此时无法知道最小数字 0 在哪个区间。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minNumberInRotateArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, h = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; h) &#123;</span><br><span class="line">        <span class="keyword">int</span> m = l + (h - l) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[l] == nums[m] &amp;&amp; nums[m] == nums[h])</span><br><span class="line">            <span class="keyword">return</span> minNumber(nums, l, h);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (nums[m] &lt;= nums[h])</span><br><span class="line">            h = m;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            l = m + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums[l];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">minNumber</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> l, <span class="keyword">int</span> h)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = l; i &lt; h; i++)</span><br><span class="line">        <span class="keyword">if</span> (nums[i] &gt; nums[i + <span class="number">1</span>])</span><br><span class="line">            <span class="keyword">return</span> nums[i + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> nums[l];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h5 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h5&gt;&lt;p&gt;把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素
-      
-    
-    </summary>
-    
-      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
-    
-    
-      <category term="二分查找" scheme="https://enpong.github.io/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
-    
-      <category term="数组" scheme="https://enpong.github.io/tags/%E6%95%B0%E7%BB%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>矩形覆盖</title>
-    <link href="https://enpong.github.io/2019/04/18/%E7%9F%A9%E5%BD%A2%E8%A6%86%E7%9B%96/"/>
-    <id>https://enpong.github.io/2019/04/18/矩形覆盖/</id>
-    <published>2019-04-18T04:55:15.000Z</published>
-    <updated>2019-04-18T05:13:07.941Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>我们可以用 2*1 的小矩形横着或者竖着去覆盖更大的矩形。请问用 n 个 2*1 的小矩形无重叠地覆盖一个 2*n 的大矩形，总共有多少种方法？ </p><div align="center"><img src="//enpong.github.io/2019/04/18/矩形覆盖/11_1.gif"></div><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>由于小矩形的尺寸是2×1，所以有大矩形为2×<em>n</em>的存在，那么我们第一步就可以有两种处理方式：</p><ul><li>第一步如果选择竖方向填充，那么该问题的规模就缩减为对于剩余的<code>2*(n-1)</code>的大矩形的填充 ；</li><li>第一步如果选择横方向的填充，则第二排的前面两个小矩形也只能如此填充，那么该问题的规模就缩减为对于剩余的<code>2*(n-2)</code>的大矩形的填充 。</li><li>结合上述分析，很容易得到递推的关系： <code>rectCover(n) = rectCover(n-1)+rectCover(n-2)</code>。当然此处也要注意递归跳出条件的判定 。</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rectCover</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    <span class="keyword">int</span> ret1 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> ret2 = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">3</span>; i&lt;=n; i++)&#123;</span><br><span class="line">        ret = ret1 + ret2;</span><br><span class="line">        ret1 = ret2;</span><br><span class="line">        ret2 = ret;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h5 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h5&gt;&lt;p&gt;我们可以用 2*1 的小矩形横着或者竖着去覆盖更大的矩形。请问用 n 个 2*1 的小矩形无重叠地覆盖一个 2*n 的大矩形
-      
-    
-    </summary>
-    
-      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
-    
-    
-      <category term="动态规划" scheme="https://enpong.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
   </entry>
   
