@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[滑动窗口的最大值]]></title>
+    <url>%2F2019%2F05%2F03%2F%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC%2F</url>
+    <content type="text"><![CDATA[题目描述解题思路最大堆使用Java的优先队列（也就是堆），我们可以使用最大堆（PriorityQueue默认是最小堆，构建最大堆只需要在构建时传入一个 comparator 即可），在滑动窗口滑动时，将当前元素加入最大堆中，堆顶的元素即是最大值。 12345678910111213141516public ArrayList&lt;Integer&gt; maxInWindows(int[] nums, int size)&#123; ArrayList&lt;Integer&gt; ret = new ArrayList&lt;&gt;(); if(nums==null || nums.length==0 || size==0) return ret; PriorityQueue&lt;Integer&gt; heap = new PriorityQueue&lt;&gt;((o1,o2)-&gt;o2-o1); for(int i=0; i&lt;size; i++)&#123; heap.add(nums[i]); &#125; ret.add(heap.peek()); for(int i=0, j=i+size; j&lt;nums.length; i++,j++)&#123; heap.remove(nums[i]); heap.add(nums[j]); ret.add(heap.peek()); &#125; return ret;&#125; 双端队列可以使用双端队列，队列中之存放当前元素的下标，设新来的元素为k，如果前面的元素比k小，直接把前面的删除（因为不可能成为后面窗口的最大值），如果前面的元素比 k 大，判断是否还在窗口范围内，不在则移除。 先判断当前队列是否为空，如果不空而且当前元素比队列中尾部的元素大，将队列元素的尾端弹出； 判断队列头元素（存的是下标）是否还在滑动窗口中，不在则把头元素移除。 1234567891011121314151617public ArrayList&lt;Integer&gt; maxInWindows(int[] nums, int size)&#123; ArrayList&lt;Integer&gt; ret = new ArrayList&lt;&gt;(); if(nums==null || nums.length==0 || size==0) return ret; Deque&lt;Integer&gt; queue = new LinkedList&lt;&gt;(); for(int i=0; i&lt;nums.length; i++)&#123; while(!queue.isEmpty() &amp;&amp; nums[i]&gt;=nums[queue.getLast()]) queue.pollLast(); while(!queue.isEmpty() &amp;&amp; queue.getFirst()&lt;i-(size-1)) queue.pollFirst(); queue.offerLast(i); if(i+1&gt;=size)&#123; ret.add(nums[queue.getFirst()]); &#125; &#125; return ret;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>堆</tag>
+        <tag>双端队列</tag>
+        <tag>最值</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[创建高性能的索引]]></title>
+    <url>%2F2019%2F04%2F30%2F%E5%88%9B%E5%BB%BA%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E7%B4%A2%E5%BC%95%2F</url>
+    <content type="text"><![CDATA[索引由存储引擎层实现。 B-Tree索引查询类型 全值匹配：索引中所有列进行匹配； 匹配最左前缀：只是用索引的第一列； 匹配列前缀：匹配索引第一列的值的开头部分； 匹配范围值：索引第一列某个范围的所有；如果范围匹配的不是索引第一列，需要补全需要范围索引列的前面全部索引列 限制限制与索引列的顺序息息相关 如果不是从索引的最左列开始查找，则无法使用索引； 不能跳过跳过索引中的列； 如果查询中有某个列的范围查找，其右边所有列都无法使用索引优化查找。 哈希索引限制 哈希索引只保存哈希值和行指针，不存储字段值；需要通过行指针获取行数据； 哈希索引不支持部分索引列匹配，因为哈希值是全部索引列的值哈希得到的； 哈希索引只支持等值查询； 哈希索引无法用于排序，因为数据不是按索引的值顺序存储的。 自适应哈希索引当InnoDB注意到某些索引值被使用非常频繁时，会在B-Tree索引的基础上建立哈希索引，这样就有了哈希索引的一些特点，比如快速哈希查找；这是一个完全自动、内部的行为，无法人为配置控制，只能选择开启或关闭该功能。 空间数据索引（R-Tree）MyISAM表支持空间索引，可以用作地理数据存储；和B-Tree索引不同，它无需前缀索引，而是可以使用所有维度来索引数据，可以使用任意维度来组合查询。 全文索引全文索引是一种特殊的索引类型，用于查找文本中的关键词，而不是索引的值。]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>索引</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL架构]]></title>
+    <url>%2F2019%2F04%2F29%2FMySQL%E6%9E%B6%E6%9E%84%2F</url>
+    <content type="text"><![CDATA[MySQL逻辑架构 第一层：连接/线程管理，授权认证、安全等； 第二层：核心服务功能，查询、优化、解析、缓存以及所有内置函数，存储过程、触发器、视图； 第三层：存储引擎，负责MySQL中数据的提取和存储；事务、行级锁在该层实现。 并发控制读写锁读锁：共享锁，同一时刻多个客户可以同时读取同一资源互不干扰； 写锁：排他锁，一个写锁会阻塞其他写锁和读锁。 锁粒度锁定资源粒度越小，并发度越高，锁开销越大。 表锁尽管存储引擎可以管理自己的锁，但是MySQL本身还是会使用各种有效的表锁来实现不同的目的，比如，服务器会为 ALTER TABLE语句使用表锁而忽略存储引擎的锁机制。 行锁行级锁只在存储引擎层实现，而MySQL服务器层没有实现。 事务ACID 原子性：一个事务中的操作要么全部执行，要么全部失败回滚； 一致性：数据库总是从一个一致性状态到另一个一致性状态； 隔离性：一个事务的修改在提交前，对其他事务不可见； 持久性：事务一旦提交，所做的修改持久化到数据库。 隔离级别 未提交读：事务中的修改，即使未提交，其他事务也是可见的； 提交读：一个事务从开始直到提交之前，所作的修改对其他事务不可见； 可重复读：保证同一事务多次读取同一记录结果一致； 串行化：强制事务串行执行；在读取的每一行数据都加锁，会导致大量的超时和锁争用问题。 死锁两个或多个事务在同一资源上相互争用，并请求对方已经锁定的资源，从而导致的恶性循环现象。 解决姿势： 查询时间到达锁等待设定的时间后，放弃锁请求； InnoDB处理方式：将持有最少行级排他锁的事务回滚。 事务日志预写式日志：修改数据时只需要修改内存拷贝中的数据，并且将修改行为追加记录到持久在硬盘的事务日志中；因此修改需要两次写磁盘，一次修改行为写入日志，一次是内存中被修改的数据慢慢刷回磁盘；如果数据的修改行为已经记录到日志中而数据本身还未写回磁盘，此时系统崩溃，数据的修改也不会丢失，存储引擎重启时执行事务日志即可恢复。 多版本并发控制（MVCC）事务型存储引擎，采用多版本并发控制减少加锁操作，降低锁开销。 InnoDB多版本并发控制的简单实现 SELECT：1.查找版本号小于或等于当前事务版本的数据行，这样可以确保读取的数据行要么是事务开始前已存在的或者当前事务插入的行； 2.删除标识版本号要么未定义，要么大于当前事务版本号； INSERT：为插入的数据行保存当前系统版本号为行版本号； DELETE：为删除的数据行保存当前系统版本号为删除标识； UPDATE：先INSERT后DELETE。 MySQL存储引擎数据表的定义由服务器层实现； InnoDB 数据存储在表空间 MVCC支持高并发，默认隔离级别可重复读，并使用间隙锁解决幻读问题； 聚簇索引 优化：可预测性预读、自适应哈希索引、插入缓冲区 在线热备份 MyISAM 全文索引、压缩]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>锁</tag>
+        <tag>事务</tag>
+        <tag>存储引擎</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Linux]]></title>
     <url>%2F2019%2F04%2F24%2FLinux%2F</url>
     <content type="text"><![CDATA[常用操作和命令Tab：命令或文件名补全； Ctrl+C：中断程序； Ctrl+D：结束键盘输入； ls：（-a全部文件）、（-d只列出目录）、（-l长数据串行输出）； mkdir：（-p递归创建）、（-m配置权限）； rmkdir：（-p递归删除） touch：更新文件时间或者建立新文件； –help：指令用法和选项介绍； man：显示指令具体信息； info：将文档分成一个个页面，每个页面可跳转； doc：/usr/share/doc，存放软件一整套说明文件； who：查看在线用户； sync：将内存中的文件同步到磁盘，关机前使用； shutdown：（-k警告信息不关机）、（-r关闭系统服务后重启）、（-h关闭系统服务后立即关机）、（-c取消shutdown命令） PATH：环境变量，声明可执行文件的路径，多个用：分隔符； sudo：一般用户使用root可执行的命令，只有再/etc/sudoers配置的用户才可用； RPM：redhat package manager，软件包管理工具； YUM：基于RPM，具有依赖管理和软件升级功能； VIM：指令模式，编辑模式，指令列模式； 磁盘磁盘接口IDE：磁盘接口，并口线抗干扰性差，已逐渐被SATA取代； SATA：串口ATA，支持热插拔； SCSI：小型机系统接口； SAS：采取序列式技术以获得更高传输速度； 磁盘文件名Linux每个硬件都被当成一个文件，包括磁盘 IDE磁盘：/dev/hd[a-d] SATA/SCSI/SAS磁盘：/dev/sd[a-p] 后面的序号与系统检测到磁盘的顺序有关，有插入的插槽位置无关； 分区分区表MBR：限制较多，第一个扇区最重要，里面有开机记录和分区表，开机记录446bytes，分区表64bytes；分区表最多能存4个分区，主分区和扩展分区，扩展分区只有一个，扩展区可分出更多分区（逻辑分区）；分区也是一个文件，命名方式：磁盘文件名+编号，/dev/sda1；逻辑分区从5开始。 GPT： 文件系统分区与文件系统对分区进行格式化是为了再分区建立文件系统，一个分区通常只能格式化为一个文件系统，但是磁盘阵列等技术可以将一个分区格式化为多个文件系统。 组成inode：一个文件一个，记录文件属性，同时记录文件内容所在的block编号； block：记录文件的内容，文件太大的话，占用多个block； superblock：记录文件系统的整体信息，包括inode和block总量、使用量、剩余量，以及文件系统的格式和相关信息等； block bitmap：记录block是否被使用的位域； 文件读取Ext2文件系统：当要读取一个文件内容时，先在inode中查找文件内容所在的所有block，然后把所有内容读出来； FAT文件系统：没有inode，每个block中存着下一个block编号； 磁盘碎片文件内容所在block过于分散，导致磁盘头移动距离过大降低读写性能； block：在Ext2文件系统，block大小1K，2K，4K三种，一个block只能被一个文件使用； inode：权限，拥有者与群组，容量，建立修改时间，最近读取时间，文件特性旗标，文件真正内容指向；大小固定128bytes，每个文件仅占用1个； 目录一个目1个Inode，至少1个block，block记录目录下文件的inode和文件名；inode本身不记录文件名，文件名记录在目录，因此文件增删改操作与目录的w权限有关； 日志修复文件系统 挂载挂载利用目录作为文件系统进入点，即进入目录之后就可以读取文件系统的数据 目录配置/：根目录 /usr：系统默认软件都会安装到这个目录 /var：存放系统或程序运行过程中的数据文件 文件文件属性ls： drwxr-xr-x 3 root root 17 May 6 00:14 .config dr…x：文件类型（d目录、-文件、l链接文件）和权限，文件拥有者、群组、其他人； 3：链接数； root：文件拥有者； root：所属群组； 17：文件大小； May..:14：最后修改时间； config：文件名 获取文件内容cat：取出文件内容 tac：cat的反向操作，从最后一行打印 more：可以一页一页查看文件内容，适合大文件查看； less：和more类似，多了向前翻页功能 head：取得文件前几行； tail：取得文件后几行 od：以字符或者十六进制显示二进制文件； 指令与文件搜索witch：指令搜索 whereis：文件搜索，速度快，因为只搜索几个特定目录； locate：文件搜索，可用关键字或正则搜索，使用/var/lib/mlocate/数据库进行搜索，存在内存中，每日一更；（-r正则表达式） find：文件搜索，可以使用文件属性和权限搜索 Bash]]></content>
@@ -61,8 +100,8 @@
       </categories>
       <tags>
         <tag>线程</tag>
-        <tag>同步</tag>
         <tag>队列</tag>
+        <tag>同步</tag>
         <tag>AQS</tag>
       </tags>
   </entry>
@@ -77,8 +116,8 @@
       </categories>
       <tags>
         <tag>线程</tag>
-        <tag>同步</tag>
         <tag>队列</tag>
+        <tag>同步</tag>
         <tag>AQS</tag>
       </tags>
   </entry>
@@ -190,8 +229,8 @@
         <category>剑指offer</category>
       </categories>
       <tags>
-        <tag>数组</tag>
         <tag>二分查找</tag>
+        <tag>数组</tag>
       </tags>
   </entry>
   <entry>
@@ -352,9 +391,9 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>java容器</tag>
         <tag>LRU</tag>
         <tag>缓存</tag>
+        <tag>java容器</tag>
       </tags>
   </entry>
   <entry>

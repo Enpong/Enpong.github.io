@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://enpong.github.io/"/>
-  <updated>2019-04-25T10:52:05.642Z</updated>
+  <updated>2019-05-03T03:36:59.733Z</updated>
   <id>https://enpong.github.io/</id>
   
   <author>
@@ -15,6 +15,94 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>滑动窗口的最大值</title>
+    <link href="https://enpong.github.io/2019/05/03/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/"/>
+    <id>https://enpong.github.io/2019/05/03/滑动窗口的最大值/</id>
+    <published>2019-05-03T03:10:52.000Z</published>
+    <updated>2019-05-03T03:36:59.733Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><h2 id="最大堆"><a href="#最大堆" class="headerlink" title="最大堆"></a>最大堆</h2><p>使用Java的优先队列（也就是堆），我们可以使用最大堆（<code>PriorityQueue</code>默认是最小堆，构建最大堆只需要在构建时传入一个 comparator 即可），在滑动窗口滑动时，将当前元素加入最大堆中，堆顶的元素即是最大值。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">maxInWindows</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> size)</span></span>&#123;</span><br><span class="line">    ArrayList&lt;Integer&gt; ret = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span> || size==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    PriorityQueue&lt;Integer&gt; heap = <span class="keyword">new</span> PriorityQueue&lt;&gt;((o1,o2)-&gt;o2-o1);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;size; i++)&#123;</span><br><span class="line">        heap.add(nums[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    ret.add(heap.peek());</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>, j=i+size; j&lt;nums.length; i++,j++)&#123;</span><br><span class="line">        heap.remove(nums[i]);</span><br><span class="line">        heap.add(nums[j]);</span><br><span class="line">        ret.add(heap.peek());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="双端队列"><a href="#双端队列" class="headerlink" title="双端队列"></a>双端队列</h2><p>可以使用双端队列，队列中之存放当前元素的下标，设新来的元素为k，如果前面的元素比k小，直接把前面的删除（因为不可能成为后面窗口的最大值），如果前面的元素比 k 大，判断是否还在窗口范围内，不在则移除。</p><ol><li>先判断当前队列是否为空，如果不空而且当前元素比队列中尾部的元素大，将队列元素的尾端弹出；</li><li>判断队列头元素（存的是下标）是否还在滑动窗口中，不在则把头元素移除。</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">maxInWindows</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> size)</span></span>&#123;</span><br><span class="line">    ArrayList&lt;Integer&gt; ret = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span> || size==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    Deque&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.length; i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty() &amp;&amp; nums[i]&gt;=nums[queue.getLast()])</span><br><span class="line">            queue.pollLast();</span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty() &amp;&amp; queue.getFirst()&lt;i-(size-<span class="number">1</span>))</span><br><span class="line">            queue.pollFirst();</span><br><span class="line">        queue.offerLast(i);</span><br><span class="line">        <span class="keyword">if</span>(i+<span class="number">1</span>&gt;=size)&#123;</span><br><span class="line">            ret.add(nums[queue.getFirst()]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;h1 id=&quot;解题思路&quot;&gt;&lt;a href=&quot;#解题思路&quot; class=&quot;headerlink&quot; title=&quot;解题思路&quot;&gt;&lt;/a
+      
+    
+    </summary>
+    
+      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="堆" scheme="https://enpong.github.io/tags/%E5%A0%86/"/>
+    
+      <category term="双端队列" scheme="https://enpong.github.io/tags/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97/"/>
+    
+      <category term="最值" scheme="https://enpong.github.io/tags/%E6%9C%80%E5%80%BC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>创建高性能的索引</title>
+    <link href="https://enpong.github.io/2019/04/30/%E5%88%9B%E5%BB%BA%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E7%B4%A2%E5%BC%95/"/>
+    <id>https://enpong.github.io/2019/04/30/创建高性能的索引/</id>
+    <published>2019-04-30T02:48:14.000Z</published>
+    <updated>2019-04-30T03:48:42.237Z</updated>
+    
+    <content type="html"><![CDATA[<p>索引由存储引擎层实现。</p><h2 id="B-Tree索引"><a href="#B-Tree索引" class="headerlink" title="B-Tree索引"></a>B-Tree索引</h2><h3 id="查询类型"><a href="#查询类型" class="headerlink" title="查询类型"></a>查询类型</h3><ol><li><code>全值匹配</code>：索引中所有列进行匹配；</li><li><code>匹配最左前缀</code>：只是用索引的第一列；</li><li><code>匹配列前缀</code>：匹配索引第一列的值的开头部分；</li><li><code>匹配范围值</code>：索引第一列某个范围的所有；如果范围匹配的不是索引第一列，需要补全需要范围索引列的前面全部索引列</li></ol><h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><p>限制与索引列的顺序息息相关</p><ol><li>如果不是从索引的最左列开始查找，则无法使用索引；</li><li>不能跳过跳过索引中的列；</li><li>如果查询中有某个列的范围查找，其右边所有列都无法使用索引优化查找。</li></ol><h2 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h2><h3 id="限制-1"><a href="#限制-1" class="headerlink" title="限制"></a>限制</h3><ol><li>哈希索引只保存哈希值和行指针，不存储字段值；需要通过行指针获取行数据；</li><li>哈希索引不支持部分索引列匹配，因为哈希值是全部索引列的值哈希得到的；</li><li>哈希索引只支持等值查询；</li><li>哈希索引无法用于排序，因为数据不是按索引的值顺序存储的。</li></ol><h3 id="自适应哈希索引"><a href="#自适应哈希索引" class="headerlink" title="自适应哈希索引"></a>自适应哈希索引</h3><p>当InnoDB注意到某些索引值被使用非常频繁时，会在B-Tree索引的基础上建立哈希索引，这样就有了哈希索引的一些特点，比如快速哈希查找；这是一个完全自动、内部的行为，无法人为配置控制，只能选择开启或关闭该功能。</p><h2 id="空间数据索引（R-Tree）"><a href="#空间数据索引（R-Tree）" class="headerlink" title="空间数据索引（R-Tree）"></a>空间数据索引（R-Tree）</h2><p>MyISAM表支持空间索引，可以用作地理数据存储；和B-Tree索引不同，它无需前缀索引，而是可以使用所有维度来索引数据，可以使用任意维度来组合查询。</p><h2 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h2><p>全文索引是一种特殊的索引类型，用于查找文本中的关键词，而不是索引的值。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;索引由存储引擎层实现。&lt;/p&gt;
+&lt;h2 id=&quot;B-Tree索引&quot;&gt;&lt;a href=&quot;#B-Tree索引&quot; class=&quot;headerlink&quot; title=&quot;B-Tree索引&quot;&gt;&lt;/a&gt;B-Tree索引&lt;/h2&gt;&lt;h3 id=&quot;查询类型&quot;&gt;&lt;a href=&quot;#查询类型&quot; 
+      
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://enpong.github.io/categories/MySQL/"/>
+    
+    
+      <category term="MySQL" scheme="https://enpong.github.io/tags/MySQL/"/>
+    
+      <category term="索引" scheme="https://enpong.github.io/tags/%E7%B4%A2%E5%BC%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL架构</title>
+    <link href="https://enpong.github.io/2019/04/29/MySQL%E6%9E%B6%E6%9E%84/"/>
+    <id>https://enpong.github.io/2019/04/29/MySQL架构/</id>
+    <published>2019-04-29T12:11:40.000Z</published>
+    <updated>2019-04-30T02:49:25.233Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="MySQL逻辑架构"><a href="#MySQL逻辑架构" class="headerlink" title="MySQL逻辑架构"></a>MySQL逻辑架构</h2><div align="center"><img src="//enpong.github.io/2019/04/29/MySQL架构/1.png"></div><ul><li>第一层：连接/线程管理，授权认证、安全等；</li><li>第二层：核心服务功能，查询、优化、解析、缓存以及所有内置函数，存储过程、触发器、视图；</li><li>第三层：存储引擎，负责MySQL中数据的提取和存储；事务、行级锁在该层实现。</li></ul><h2 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h2><h3 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h3><p>读锁：共享锁，同一时刻多个客户可以同时读取同一资源互不干扰；</p><p>写锁：排他锁，一个写锁会阻塞其他写锁和读锁。</p><h3 id="锁粒度"><a href="#锁粒度" class="headerlink" title="锁粒度"></a>锁粒度</h3><p>锁定资源粒度越小，并发度越高，锁开销越大。</p><h4 id="表锁"><a href="#表锁" class="headerlink" title="表锁"></a>表锁</h4><p>尽管存储引擎可以管理自己的锁，但是MySQL本身还是会使用各种有效的表锁来实现不同的目的，比如，服务器会为 ALTER TABLE语句使用表锁而忽略存储引擎的锁机制。</p><h4 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h4><p>行级锁只在存储引擎层实现，而MySQL服务器层没有实现。</p><h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><h3 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h3><ul><li>原子性：一个事务中的操作要么全部执行，要么全部失败回滚；</li><li>一致性：数据库总是从一个一致性状态到另一个一致性状态；</li><li>隔离性：一个事务的修改在提交前，对其他事务不可见；</li><li>持久性：事务一旦提交，所做的修改持久化到数据库。</li></ul><h3 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h3><ul><li>未提交读：事务中的修改，即使未提交，其他事务也是可见的；</li><li>提交读：一个事务从开始直到提交之前，所作的修改对其他事务不可见；</li><li>可重复读：保证同一事务多次读取同一记录结果一致；</li><li>串行化：强制事务串行执行；在读取的每一行数据都加锁，会导致大量的超时和锁争用问题。</li></ul><div align="center"><img src="//enpong.github.io/2019/04/29/MySQL架构/2.png"></div><h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>两个或多个事务在同一资源上相互争用，并请求对方已经锁定的资源，从而导致的恶性循环现象。</p><p>解决姿势：</p><ol><li>查询时间到达锁等待设定的时间后，放弃锁请求；</li><li>InnoDB处理方式：将持有最少行级排他锁的事务回滚。</li></ol><h3 id="事务日志"><a href="#事务日志" class="headerlink" title="事务日志"></a>事务日志</h3><p>预写式日志：修改数据时只需要修改内存拷贝中的数据，并且将修改行为追加记录到持久在硬盘的事务日志中；因此修改需要两次写磁盘，一次修改行为写入日志，一次是内存中被修改的数据慢慢刷回磁盘；如果数据的修改行为已经记录到日志中而数据本身还未写回磁盘，此时系统崩溃，数据的修改也不会丢失，存储引擎重启时执行事务日志即可恢复。</p><h2 id="多版本并发控制（MVCC）"><a href="#多版本并发控制（MVCC）" class="headerlink" title="多版本并发控制（MVCC）"></a>多版本并发控制（MVCC）</h2><p>事务型存储引擎，采用多版本并发控制减少加锁操作，降低锁开销。</p><h3 id="InnoDB多版本并发控制的简单实现"><a href="#InnoDB多版本并发控制的简单实现" class="headerlink" title="InnoDB多版本并发控制的简单实现"></a>InnoDB多版本并发控制的简单实现</h3><ul><li>SELECT：1.查找版本号小于或等于当前事务版本的数据行，这样可以确保读取的数据行要么是事务开始前已存在的或者当前事务插入的行； 2.删除标识版本号要么未定义，要么大于当前事务版本号；</li><li>INSERT：为插入的数据行保存当前系统版本号为行版本号；</li><li>DELETE：为删除的数据行保存当前系统版本号为删除标识；</li><li>UPDATE：先INSERT后DELETE。</li></ul><h2 id="MySQL存储引擎"><a href="#MySQL存储引擎" class="headerlink" title="MySQL存储引擎"></a>MySQL存储引擎</h2><p>数据表的定义由服务器层实现；</p><h3 id="InnoDB"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h3><ul><li>数据存储在表空间</li><li>MVCC支持高并发，默认隔离级别可重复读，并使用间隙锁解决幻读问题；</li><li>聚簇索引</li><li>优化：可预测性预读、自适应哈希索引、插入缓冲区</li><li>在线热备份</li></ul><h3 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h3><ul><li>全文索引、压缩</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;MySQL逻辑架构&quot;&gt;&lt;a href=&quot;#MySQL逻辑架构&quot; class=&quot;headerlink&quot; title=&quot;MySQL逻辑架构&quot;&gt;&lt;/a&gt;MySQL逻辑架构&lt;/h2&gt;&lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;//enpong.github
+      
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://enpong.github.io/categories/MySQL/"/>
+    
+    
+      <category term="MySQL" scheme="https://enpong.github.io/tags/MySQL/"/>
+    
+      <category term="锁" scheme="https://enpong.github.io/tags/%E9%94%81/"/>
+    
+      <category term="事务" scheme="https://enpong.github.io/tags/%E4%BA%8B%E5%8A%A1/"/>
+    
+      <category term="存储引擎" scheme="https://enpong.github.io/tags/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux</title>
@@ -176,9 +264,9 @@
     
       <category term="线程" scheme="https://enpong.github.io/tags/%E7%BA%BF%E7%A8%8B/"/>
     
-      <category term="同步" scheme="https://enpong.github.io/tags/%E5%90%8C%E6%AD%A5/"/>
-    
       <category term="队列" scheme="https://enpong.github.io/tags/%E9%98%9F%E5%88%97/"/>
+    
+      <category term="同步" scheme="https://enpong.github.io/tags/%E5%90%8C%E6%AD%A5/"/>
     
       <category term="AQS" scheme="https://enpong.github.io/tags/AQS/"/>
     
@@ -211,9 +299,9 @@
     
       <category term="线程" scheme="https://enpong.github.io/tags/%E7%BA%BF%E7%A8%8B/"/>
     
-      <category term="同步" scheme="https://enpong.github.io/tags/%E5%90%8C%E6%AD%A5/"/>
-    
       <category term="队列" scheme="https://enpong.github.io/tags/%E9%98%9F%E5%88%97/"/>
+    
+      <category term="同步" scheme="https://enpong.github.io/tags/%E5%90%8C%E6%AD%A5/"/>
     
       <category term="AQS" scheme="https://enpong.github.io/tags/AQS/"/>
     
@@ -468,9 +556,9 @@
       <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
     
     
-      <category term="数组" scheme="https://enpong.github.io/tags/%E6%95%B0%E7%BB%84/"/>
-    
       <category term="二分查找" scheme="https://enpong.github.io/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
+    
+      <category term="数组" scheme="https://enpong.github.io/tags/%E6%95%B0%E7%BB%84/"/>
     
   </entry>
   
@@ -496,89 +584,6 @@
     
     
       <category term="动态规划" scheme="https://enpong.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>斐波那契数列</title>
-    <link href="https://enpong.github.io/2019/04/18/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/"/>
-    <id>https://enpong.github.io/2019/04/18/斐波那契数列/</id>
-    <published>2019-04-18T04:44:42.000Z</published>
-    <updated>2019-04-18T04:54:56.699Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>求斐波那契数列的第 n 项，n &lt;= 39。 </p><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><div align="center"><img src="//enpong.github.io/2019/04/18/斐波那契数列/10_1.jpg"></div><ul><li><p>递归是将一个问题划分成多个子问题求解，动态规划也是如此，但是动态规划会把子问题的解缓存起来，从而避免重复求解子问题。 </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    <span class="keyword">int</span>[] fib = <span class="keyword">new</span> fib[n+<span class="number">1</span>];</span><br><span class="line">    fib[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    fib[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=n; i++)&#123;</span><br><span class="line">        fib[i] = fib[i-<span class="number">1</span>] + fib[i-<span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fib[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><ul><li><p>考虑到第 i 项只与第 i-1 和第 i-2 项有关，因此只需要存储前两项的值就能求解第 i 项，从而将空间复杂度由 <code>O(N)</code> 降低为 <code>O(1)</code>。 </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    <span class="keyword">int</span> fib1 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> fib2 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=n; i++)&#123;</span><br><span class="line">        result = fib1 + fib2;</span><br><span class="line">        fib1 = fib2;</span><br><span class="line">        fib2 = result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h5 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h5&gt;&lt;p&gt;求斐波那契数列的第 n 项，n &amp;lt;= 39。 &lt;/p&gt;
-&lt;h5 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class
-      
-    
-    </summary>
-    
-      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
-    
-    
-      <category term="动态规划" scheme="https://enpong.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-      <category term="空间优化" scheme="https://enpong.github.io/tags/%E7%A9%BA%E9%97%B4%E4%BC%98%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>用两个栈实现队列</title>
-    <link href="https://enpong.github.io/2019/04/18/%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/"/>
-    <id>https://enpong.github.io/2019/04/18/用两个栈实现队列/</id>
-    <published>2019-04-17T19:42:52.000Z</published>
-    <updated>2019-04-17T19:50:42.122Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。 </p><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>in 栈用来处理入栈（push）操作，out 栈用来处理出栈（pop）操作。一个元素进入 in 栈之后，出栈的顺序被反转。当元素要出栈时，需要先进入 out 栈，此时元素出栈顺序再一次被反转，因此出栈顺序就和最开始入栈顺序是相同的，先进入的元素先退出，这就是队列的顺序。 </p><div align="center"><img src="//enpong.github.io/2019/04/18/用两个栈实现队列/9_1.gif"></div><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Stack&lt;Integer&gt; in = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">Stack&lt;Integer&gt; out = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span></span>&#123;</span><br><span class="line">    in.push(node);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(out.isEmpty())&#123;</span><br><span class="line">        <span class="keyword">while</span>(!in.isEmpty())&#123;</span><br><span class="line">            out.push(in.pop());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="keyword">if</span>(out.isEmpty())</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"queue is empty!"</span>);</span><br><span class="line">    <span class="keyword">return</span> out.pop();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h4&gt;&lt;p&gt;用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。 &lt;/p&gt;
-&lt;h4 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路
-      
-    
-    </summary>
-    
-      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
-    
-    
-      <category term="栈" scheme="https://enpong.github.io/tags/%E6%A0%88/"/>
-    
-      <category term="队列" scheme="https://enpong.github.io/tags/%E9%98%9F%E5%88%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>二叉树的下一个结点</title>
-    <link href="https://enpong.github.io/2019/04/18/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E7%BB%93%E7%82%B9/"/>
-    <id>https://enpong.github.io/2019/04/18/二叉树的下一个结点/</id>
-    <published>2019-04-17T19:10:37.000Z</published>
-    <updated>2019-04-17T19:42:10.972Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。 </p><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol><li><p>该节点的右子树不为空，则下一节点是该节点右子树中最左节点；</p><div align="center"><img src="//enpong.github.io/2019/04/18/二叉树的下一个结点/8_1.gif"></div></li></ol><ol start="2"><li><p>该节点的右子树为空，则下一节点是包含该节点的最小左子树的子树根节点。</p><div align="center"><img src="//enpong.github.io/2019/04/18/二叉树的下一个结点/8_2.gif"></div><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//二叉树结点结构</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    TreeNode left;</span><br><span class="line">    TreeNode right;</span><br><span class="line">    TreeNode parent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">getNext</span><span class="params">(TreeNode node)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(node.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        TreeNode temp = node.right;</span><br><span class="line">        <span class="keyword">while</span>(temp.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            temp = temp.left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(node.parent!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            TreeNode parent = node.parent;</span><br><span class="line">            <span class="keyword">if</span>(parent.left==node)</span><br><span class="line">                <span class="keyword">return</span> parent;</span><br><span class="line">            node = parent;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h4&gt;&lt;p&gt;给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结
-      
-    
-    </summary>
-    
-      <category term="剑指offer" scheme="https://enpong.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
-    
-    
-      <category term="二叉树" scheme="https://enpong.github.io/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
-    
-      <category term="中序" scheme="https://enpong.github.io/tags/%E4%B8%AD%E5%BA%8F/"/>
     
   </entry>
   
