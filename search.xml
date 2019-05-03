@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Linux高性能服务器编程]]></title>
-    <url>%2F2019%2F05%2F03%2FLinux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B%2F</url>
-    <content type="text"><![CDATA[]]></content>
-      <categories>
-        <category>电子书</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Socket</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[荷兰国旗问题]]></title>
     <url>%2F2019%2F05%2F03%2F%E8%8D%B7%E5%85%B0%E5%9B%BD%E6%97%97%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[荷兰国旗包含三种颜色：红、白、蓝。 有三种颜色的球，算法的目标是将这三种球按颜色顺序正确地排列。 它其实是三向切分快速排序的一种变种，在三向切分快速排序中，每次切分都将数组分成三个区间：小于切分元素、等于切分元素、大于切分元素，而该算法是将数组分成三个区间：等于红色、等于白色、等于蓝色。 按颜色进行排序75. Sort Colors (Medium) 12Input: [2,0,2,1,1,0]Output: [0,0,1,1,2,2] 题目描述：只有 0/1/2 三种颜色。 123456789101112131415161718public void sortColors(int[] nums) &#123; int zero = -1, one = 0, two = nums.length; while (one &lt; two) &#123; if (nums[one] == 0) &#123; swap(nums, ++zero, one++); &#125; else if (nums[one] == 2) &#123; swap(nums, --two, one); &#125; else &#123; ++one; &#125; &#125;&#125;private void swap(int[] nums, int i, int j) &#123; int t = nums[i]; nums[i] = nums[j]; nums[j] = t;&#125;]]></content>
