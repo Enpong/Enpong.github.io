@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="线程,队列,同步,AQS,">
+  <meta name="keywords" content="JUC,">
 
 
 
@@ -89,7 +89,7 @@
 
 
 <meta name="description" content="AQS的设计模式采用的模板方法模式，子类通过继承的方式，实现它的抽象方法来管理同步状态，对于子类而言它并没有太多的活要做，AQS提供了大量的模板方法来实现同步，主要是分为三类：独占式获取和释放同步状态、共享式获取和释放同步状态、查询同步队列中的等待线程情况。自定义子类使用AQS提供的模板方法就可以实现自己的同步语义。 独占式　　独占式，同一时刻仅有一个线程持有同步状态。 　　独占式同步状态获取">
-<meta name="keywords" content="线程,队列,同步,AQS">
+<meta name="keywords" content="JUC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AQS同步状态的获取和释放">
 <meta property="og:url" content="https://enpong.github.io/2019/04/20/AQS同步状态的获取和释放/index.html">
@@ -98,7 +98,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://enpong.github.io/2019/04/20/AQS同步状态的获取和释放/1.png">
 <meta property="og:image" content="https://enpong.github.io/2019/04/20/AQS同步状态的获取和释放/2.png">
-<meta property="og:updated_time" content="2019-04-20T13:11:08.224Z">
+<meta property="og:updated_time" content="2019-11-05T07:49:07.049Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AQS同步状态的获取和释放">
 <meta name="twitter:description" content="AQS的设计模式采用的模板方法模式，子类通过继承的方式，实现它的抽象方法来管理同步状态，对于子类而言它并没有太多的活要做，AQS提供了大量的模板方法来实现同步，主要是分为三类：独占式获取和释放同步状态、共享式获取和释放同步状态、查询同步队列中的等待线程情况。自定义子类使用AQS提供的模板方法就可以实现自己的同步语义。 独占式　　独占式，同一时刻仅有一个线程持有同步状态。 　　独占式同步状态获取">
@@ -244,26 +244,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-movies">
-          <a href="/movies" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-film"></i> <br>
-            
-            电影
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-ebook">
-          <a href="/ebook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
-            
-            电子书
-          </a>
-        </li>
-      
 
       
         <li class="menu-item menu-item-search">
@@ -382,7 +362,18 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
+                  <a href="/categories/计算机基础/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机基础</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机基础/java/" itemprop="url" rel="index">
                     <span itemprop="name">java</span>
                   </a>
                 </span>
@@ -393,19 +384,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/JUC/" itemprop="url" rel="index">
+                  <a href="/categories/计算机基础/java/JUC/" itemprop="url" rel="index">
                     <span itemprop="name">JUC</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/JUC/AQS/" itemprop="url" rel="index">
-                    <span itemprop="name">AQS</span>
                   </a>
                 </span>
 
@@ -578,13 +558,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/线程/" rel="tag"><i class="fa fa-tag"></i> 线程</a>
-          
-            <a href="/tags/队列/" rel="tag"><i class="fa fa-tag"></i> 队列</a>
-          
-            <a href="/tags/同步/" rel="tag"><i class="fa fa-tag"></i> 同步</a>
-          
-            <a href="/tags/AQS/" rel="tag"><i class="fa fa-tag"></i> AQS</a>
+            <a href="/tags/JUC/" rel="tag"><i class="fa fa-tag"></i> JUC</a>
           
         </div>
       
@@ -691,7 +665,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -702,7 +676,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -713,7 +687,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -815,7 +789,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共66.9k字</span>
+  <span class="post-count">博客全站共65.2k字</span>
 </div>
 
         

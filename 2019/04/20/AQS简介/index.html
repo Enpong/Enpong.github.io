@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="线程,队列,同步,AQS,">
+  <meta name="keywords" content="JUC,">
 
 
 
@@ -89,7 +89,7 @@
 
 
 <meta name="description" content="AQS简介　　AQS，AbstractQueuedSynchronizer，即队列同步器。它是构建锁或者其他同步组件的基础框架（如ReentrantLock、ReentrantReadWriteLock、Semaphore等），JUC 并发包的作者（ Doug Lea ）期望它能够成为实现大部分同步需求的基础。它是 JUC 并发包中的核心基础组件。 　　AQS 解决了在实现同步器时涉及到的大量细节">
-<meta name="keywords" content="线程,队列,同步,AQS">
+<meta name="keywords" content="JUC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AQS简介">
 <meta property="og:url" content="https://enpong.github.io/2019/04/20/AQS简介/index.html">
@@ -99,7 +99,7 @@
 <meta property="og:image" content="https://enpong.github.io/2019/04/20/AQS简介/1.png">
 <meta property="og:image" content="https://enpong.github.io/2019/04/20/AQS简介/2.png">
 <meta property="og:image" content="https://enpong.github.io/2019/04/20/AQS简介/3.png">
-<meta property="og:updated_time" content="2019-04-20T12:12:26.746Z">
+<meta property="og:updated_time" content="2019-11-05T07:50:07.458Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AQS简介">
 <meta name="twitter:description" content="AQS简介　　AQS，AbstractQueuedSynchronizer，即队列同步器。它是构建锁或者其他同步组件的基础框架（如ReentrantLock、ReentrantReadWriteLock、Semaphore等），JUC 并发包的作者（ Doug Lea ）期望它能够成为实现大部分同步需求的基础。它是 JUC 并发包中的核心基础组件。 　　AQS 解决了在实现同步器时涉及到的大量细节">
@@ -245,26 +245,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-movies">
-          <a href="/movies" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-film"></i> <br>
-            
-            电影
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-ebook">
-          <a href="/ebook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
-            
-            电子书
-          </a>
-        </li>
-      
 
       
         <li class="menu-item menu-item-search">
@@ -383,7 +363,18 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
+                  <a href="/categories/计算机基础/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机基础</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机基础/java/" itemprop="url" rel="index">
                     <span itemprop="name">java</span>
                   </a>
                 </span>
@@ -394,19 +385,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/JUC/" itemprop="url" rel="index">
+                  <a href="/categories/计算机基础/java/JUC/" itemprop="url" rel="index">
                     <span itemprop="name">JUC</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/JUC/AQS/" itemprop="url" rel="index">
-                    <span itemprop="name">AQS</span>
                   </a>
                 </span>
 
@@ -564,13 +544,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/线程/" rel="tag"><i class="fa fa-tag"></i> 线程</a>
-          
-            <a href="/tags/队列/" rel="tag"><i class="fa fa-tag"></i> 队列</a>
-          
-            <a href="/tags/同步/" rel="tag"><i class="fa fa-tag"></i> 同步</a>
-          
-            <a href="/tags/AQS/" rel="tag"><i class="fa fa-tag"></i> AQS</a>
+            <a href="/tags/JUC/" rel="tag"><i class="fa fa-tag"></i> JUC</a>
           
         </div>
       
@@ -677,7 +651,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -688,7 +662,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -699,7 +673,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -801,7 +775,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共66.9k字</span>
+  <span class="post-count">博客全站共65.2k字</span>
 </div>
 
         

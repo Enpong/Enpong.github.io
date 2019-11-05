@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="锁,">
+  <meta name="keywords" content="锁,JUC,">
 
 
 
@@ -89,7 +89,7 @@
 
 
 <meta name="description" content="重入锁ReentrantLockReentrantLock 排他锁，排他锁在同一时刻仅有一个线程可以进行访问，但是在大多数场景下，大部分时间都是提供读服务，而写服务占有的时间较少。然而读服务不存在数据竞争问题，如果一个线程在读时禁止其他线程读势必会导致性能降低。所以就提供了读写锁。 读写锁ReentrantReadWriteLock　　读写锁维护着一对锁，一个读锁和一个写锁。通过分离读锁和写锁，使">
-<meta name="keywords" content="锁">
+<meta name="keywords" content="锁,JUC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="读写锁-ReentrantReadWriteLock">
 <meta property="og:url" content="https://enpong.github.io/2019/04/20/读写锁-ReentrantReadWriteLock/index.html">
@@ -97,7 +97,7 @@
 <meta property="og:description" content="重入锁ReentrantLockReentrantLock 排他锁，排他锁在同一时刻仅有一个线程可以进行访问，但是在大多数场景下，大部分时间都是提供读服务，而写服务占有的时间较少。然而读服务不存在数据竞争问题，如果一个线程在读时禁止其他线程读势必会导致性能降低。所以就提供了读写锁。 读写锁ReentrantReadWriteLock　　读写锁维护着一对锁，一个读锁和一个写锁。通过分离读锁和写锁，使">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
-<meta property="og:updated_time" content="2019-04-21T07:29:39.893Z">
+<meta property="og:updated_time" content="2019-11-05T07:48:42.825Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读写锁-ReentrantReadWriteLock">
 <meta name="twitter:description" content="重入锁ReentrantLockReentrantLock 排他锁，排他锁在同一时刻仅有一个线程可以进行访问，但是在大多数场景下，大部分时间都是提供读服务，而写服务占有的时间较少。然而读服务不存在数据竞争问题，如果一个线程在读时禁止其他线程读势必会导致性能降低。所以就提供了读写锁。 读写锁ReentrantReadWriteLock　　读写锁维护着一对锁，一个读锁和一个写锁。通过分离读锁和写锁，使">
@@ -243,26 +243,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-movies">
-          <a href="/movies" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-film"></i> <br>
-            
-            电影
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-ebook">
-          <a href="/ebook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
-            
-            电子书
-          </a>
-        </li>
-      
 
       
         <li class="menu-item menu-item-search">
@@ -381,7 +361,18 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
+                  <a href="/categories/计算机基础/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机基础</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机基础/java/" itemprop="url" rel="index">
                     <span itemprop="name">java</span>
                   </a>
                 </span>
@@ -392,7 +383,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/JUC/" itemprop="url" rel="index">
+                  <a href="/categories/计算机基础/java/JUC/" itemprop="url" rel="index">
                     <span itemprop="name">JUC</span>
                   </a>
                 </span>
@@ -573,6 +564,8 @@
           
             <a href="/tags/锁/" rel="tag"><i class="fa fa-tag"></i> 锁</a>
           
+            <a href="/tags/JUC/" rel="tag"><i class="fa fa-tag"></i> JUC</a>
+          
         </div>
       
 
@@ -678,7 +671,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -689,7 +682,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -700,7 +693,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -802,7 +795,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共66.9k字</span>
+  <span class="post-count">博客全站共65.2k字</span>
 </div>
 
         

@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="结构型模式,代理模式,动态代理,">
+  <meta name="keywords" content="动态代理,CGLIB,">
 
 
 
@@ -89,7 +89,7 @@
 
 
 <meta name="description" content="原理 不管是静态代理还是jdk动态代理，代理的条件之一就是要求目标类和代理类实现同一业务接口；所以，对于无接口类的代理，我们就不能再用之前的代理方式；  CGLIB动态代理的生成原理是  生成目标类的子类，而子类是增强过的，即子类就是目标类的代理类  。所以，使用CGLIB动态代理，要求目标类必须能够被继承，即不能是final的类   实现 导入CDLIB的jar包：cglib-full.jar">
-<meta name="keywords" content="结构型模式,代理模式,动态代理">
+<meta name="keywords" content="动态代理,CGLIB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CGLIB动态代理">
 <meta property="og:url" content="https://enpong.github.io/2018/12/17/CGLIB动态代理/index.html">
@@ -97,7 +97,7 @@
 <meta property="og:description" content="原理 不管是静态代理还是jdk动态代理，代理的条件之一就是要求目标类和代理类实现同一业务接口；所以，对于无接口类的代理，我们就不能再用之前的代理方式；  CGLIB动态代理的生成原理是  生成目标类的子类，而子类是增强过的，即子类就是目标类的代理类  。所以，使用CGLIB动态代理，要求目标类必须能够被继承，即不能是final的类   实现 导入CDLIB的jar包：cglib-full.jar">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20181217171137177.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMDA1OTUw,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-04-18T04:42:11.552Z">
+<meta property="og:updated_time" content="2019-11-05T07:54:19.779Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CGLIB动态代理">
 <meta name="twitter:description" content="原理 不管是静态代理还是jdk动态代理，代理的条件之一就是要求目标类和代理类实现同一业务接口；所以，对于无接口类的代理，我们就不能再用之前的代理方式；  CGLIB动态代理的生成原理是  生成目标类的子类，而子类是增强过的，即子类就是目标类的代理类  。所以，使用CGLIB动态代理，要求目标类必须能够被继承，即不能是final的类   实现 导入CDLIB的jar包：cglib-full.jar">
@@ -243,26 +243,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-movies">
-          <a href="/movies" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-film"></i> <br>
-            
-            电影
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-ebook">
-          <a href="/ebook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
-            
-            电子书
-          </a>
-        </li>
-      
 
       
         <li class="menu-item menu-item-search">
@@ -394,17 +374,6 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/设计模式/结构型模式/" itemprop="url" rel="index">
                     <span itemprop="name">结构型模式</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/结构型模式/代理模式/" itemprop="url" rel="index">
-                    <span itemprop="name">代理模式</span>
                   </a>
                 </span>
 
@@ -548,11 +517,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/结构型模式/" rel="tag"><i class="fa fa-tag"></i> 结构型模式</a>
-          
-            <a href="/tags/代理模式/" rel="tag"><i class="fa fa-tag"></i> 代理模式</a>
-          
             <a href="/tags/动态代理/" rel="tag"><i class="fa fa-tag"></i> 动态代理</a>
+          
+            <a href="/tags/CGLIB/" rel="tag"><i class="fa fa-tag"></i> CGLIB</a>
           
         </div>
       
@@ -659,7 +626,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -670,7 +637,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -681,7 +648,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -783,7 +750,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共66.9k字</span>
+  <span class="post-count">博客全站共65.2k字</span>
 </div>
 
         
